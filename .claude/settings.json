@@ -1,0 +1,37 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '\\n Git Workflow Active: Feature-Branch wird automatisch erstellt.\\n Regel: Niemals direkt auf main committen!\\n'"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node -e \"const data = JSON.parse(require('fs').readFileSync(0, 'utf-8')); const cmd = data.tool_input?.command || ''; if (cmd.includes('git commit')) { const branch = require('child_process').execSync('git branch --show-current', {encoding: 'utf8'}).trim(); if (branch === 'main') { console.error('ERROR: Direkte Commits auf main sind nicht erlaubt!\\nBitte erstelle einen Feature-Branch: git checkout -b feature/description'); process.exit(2); } }\""
+          }
+        ]
+      }
+    ]
+  },
+  "permissions": {
+    "allow": [
+      "Bash(git checkout*)",
+      "Bash(git branch*)",
+      "Bash(git commit*)",
+      "Bash(git push*)",
+      "Bash(git add*)",
+      "Bash(git status*)",
+      "Bash(git diff*)",
+      "Bash(git log*)"
+    ]
+  }
+}

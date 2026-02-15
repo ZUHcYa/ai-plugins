@@ -1,0 +1,22 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "ai-hub",
+  "owner": {
+    "name": "ZUHcYa"
+  },
+  "metadata": {
+    "description": "AI Plugin Hub - Curated plugins for AI coding assistants"
+  },
+  "plugins": [
+    {
+      "name": "music-production",
+      "source": "./music-production",
+      "description": "Music Production Workflow Companion - Begleitung des Musikproduktionsprozesses mit Skills"
+    },
+    {
+      "name": "compass",
+      "source": "./compass",
+      "description": "Session Goal Alignment - Vision tracking, automatic drift detection, and strategic challenging"
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "description": "Compass alignment hooks - session goal tracking, pre-action alignment check, drift detection",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "Check if .compass/ directory exists in the current working directory.\n\nIf .compass/ does NOT exist:\n  - Output: '[compass] Vision tracking not set up. Use /compass:init to get started.'\n  - Return 'approve' immediately\n\nIf .compass/ exists:\n  1. Read .compass/VISION.md - extract the content under '## Ziel' (1-2 lines max)\n  2. Read .compass/session.md - check if a session goal is already set for today (date matches today)\n  3. If a goal IS set for today:\n     - Output: '[compass] Vision: <1-line goal summary> | Ziel: <session goal summary>'\n  4. If NO goal is set for today:\n     - Output: '[compass] Vision: <1-line goal summary> | Kein Session-Ziel. Nutze /compass:focus'\n  5. Return 'approve'\n\nIMPORTANT: This hook is read-only. Do NOT ask the user questions. Do NOT write files. Just show status and approve.",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "You are the compass alignment checker. A file is about to be CREATED or OVERWRITTEN.\n\nEvaluate quickly if this action aligns with the current goals.\n\n## Fast Path (approve immediately, no output)\nApprove silently if ANY of these apply:\n- The file is inside .compass/ (compass state files)\n- The file is clearly related to the session goal\n- The file is a standard config, test, or documentation file\n- No .compass/session.md exists (no goal to check against)\n\n## Check Path\nIf the file creation seems unrelated to the session goal:\n1. Read .compass/session.md (session goal)\n2. Read .compass/VISION.md (vision and anti-goals)\n3. Read .compass/rules.md (custom rules)\n4. Evaluate against built-in heuristics:\n   - YAGNI: Is this file needed for the current goal?\n   - SCOPE CREEP: Does this file extend beyond the original request?\n   - OVER-ENGINEERING: Is this an unnecessary abstraction layer?\n   - NIH SYNDROME: Does this recreate something that already exists?\n5. Check against custom rules in rules.md\n\n## Response\nIf aligned: respond ONLY with 'approve'\nIf concern: '[compass] <HEURISTIC>: <1 sentence warning>\\n\\napprove'\n\nIMPORTANT: ALWAYS end with 'approve'. Never block. You are an advisor.",
+            "timeout": 30
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "You are the compass alignment checker. A shell command is about to be executed.\n\nEvaluate quickly if this action aligns with the current goals.\n\n## Fast Path (approve immediately, no output)\nApprove silently if ANY of these apply:\n- Standard git operations (status, diff, log, add, commit, push, branch, checkout)\n- Reading/listing files (ls, cat, head, tail)\n- Running tests or linters\n- Package manager info commands (npm list, pip show)\n- No .compass/session.md exists (no goal to check against)\n\n## Check Path\nIf the command seems unrelated to the session goal:\n1. Read .compass/session.md (session goal)\n2. Read .compass/VISION.md (vision and anti-goals)\n3. Read .compass/rules.md (custom rules)\n4. Evaluate against built-in heuristics:\n   - YAGNI: Is this command needed for the current goal?\n   - SCOPE CREEP: Does this install/build something beyond scope?\n   - OVER-ENGINEERING: Is this setting up unnecessary infrastructure?\n   - NIH SYNDROME: Is this building something that exists as a package?\n5. Check against custom rules in rules.md\n\n## Response\nIf aligned: respond ONLY with 'approve'\nIf concern: '[compass] <HEURISTIC>: <1 sentence warning>\\n\\napprove'\n\nIMPORTANT: ALWAYS end with 'approve'. Never block. You are an advisor.",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "Evaluate if the work just completed aligns with the session goal.\n\n## Fast Path (approve immediately, no output)\n- No .compass/session.md exists: approve immediately\n- The work was trivial (answering a question, reading files, small fix): approve immediately\n- The work clearly advances the session goal: approve immediately\n\n## Check Path\nIf the work seems unrelated to the session goal:\n1. Read .compass/session.md\n2. Briefly assess: Did this response move toward or away from the goal?\n3. If minor drift:\n   - Output: '[compass] Drift: <brief description>. Erwaege /compass:check'\n   - approve\n4. If significant drift (multiple unrelated changes, new features not in scope):\n   - Output: '[compass] Erhebliche Abweichung vom Session-Ziel. Empfehlung: /compass:retro'\n   - approve\n\n## Response\nMost of the time: respond ONLY with 'approve'\nOnly speak up when something is clearly off.\n\nIMPORTANT: Run silently for aligned work. Be brief when warning. ALWAYS approve.",
+            "timeout": 30
+          }
+        ]
+      }
+    ]
+  }
+}

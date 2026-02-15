@@ -1,0 +1,11 @@
+{
+  "version": "0.3.0",
+  "name": "music-production",
+  "description": "Music Production Workflow Companion - Song-Lifecycle von der Idee bis zum Catalog",
+  "author": {
+    "name": "zuhcya",
+    "url": "https://github.com/ZUHcYa"
+  },
+  "repository": "https://github.com/ZUHcYa/ai-hub",
+  "keywords": ["music", "production", "workflow", "song", "release", "catalog", "lifecycle"]
+}
