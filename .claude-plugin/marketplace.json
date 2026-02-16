@@ -1,11 +1,11 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
-  "name": "ai-hub",
+  "name": "ai-plugins",
   "owner": {
     "name": "ZUHcYa"
   },
   "metadata": {
-    "description": "AI Plugin Hub - Curated plugins for AI coding assistants"
+    "description": "AI Plugins - Curated plugins for AI coding assistants"
   },
   "plugins": [
     {
