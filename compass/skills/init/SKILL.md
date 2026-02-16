@@ -63,7 +63,7 @@ Claude: compass (v0.1.0) - .compass/ already exists:
 ## What the Skill Does
 
 1. Read version from `compass/.claude-plugin/plugin.json` (= installed version)
-2. Version-Check: WebFetch `https://raw.githubusercontent.com/ZUHcYa/ai-hub/main/compass/.claude-plugin/plugin.json`, JSON parsen, `version` Feld extrahieren (= latest version).
+2. Version-Check: WebFetch `https://raw.githubusercontent.com/ZUHcYa/ai-plugins/main/compass/.claude-plugin/plugin.json`, JSON parsen, `version` Feld extrahieren (= latest version).
    - Wenn latest > installed: Update-Hinweis merken fuer Ausgabe
    - Wenn gleich oder Fetch fehlschlaegt: kein Hinweis
 3. Check if `.compass/` directory exists in the current working directory

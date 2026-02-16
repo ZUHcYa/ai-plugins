@@ -1,7 +1,6 @@
 # Claude Code - Personal Configuration
 .claude/settings.local.json
 CLAUDE.local.md
-/CLAUDE.md
 
 # Dependencies
 node_modules/
@@ -41,6 +40,9 @@ Thumbs.db
 
 # Compass - Private vision tracking
 .compass/
+
+# Music Production - Private config
+.music-production/
 
 # Trips - Private trip tracking config
 .trips/

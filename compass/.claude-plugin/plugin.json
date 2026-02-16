@@ -6,6 +6,6 @@
     "name": "zuhcya",
     "url": "https://github.com/ZUHcYa"
   },
-  "repository": "https://github.com/ZUHcYa/ai-hub",
+  "repository": "https://github.com/ZUHcYa/ai-plugins",
   "keywords": ["alignment", "vision", "goals", "scope-control", "session-management", "drift-detection"]
 }

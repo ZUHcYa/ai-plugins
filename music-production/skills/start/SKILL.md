@@ -141,7 +141,7 @@ Claude: Music-Production Status (v0.3.0)
 ### After Setup (Overview)
 
 1. Read version from `music-production/.claude-plugin/plugin.json` (= installed version)
-2. Version-Check: WebFetch `https://raw.githubusercontent.com/ZUHcYa/ai-hub/main/music-production/.claude-plugin/plugin.json`, JSON parsen, `version` Feld extrahieren (= latest version).
+2. Version-Check: WebFetch `https://raw.githubusercontent.com/ZUHcYa/ai-plugins/main/music-production/.claude-plugin/plugin.json`, JSON parsen, `version` Feld extrahieren (= latest version).
    - Wenn latest > installed: im Header anzeigen: `Music-Production Status (v0.x.0 - Update verfuegbar: v0.y.0)` und am Ende "Update: Plugin neu installieren fuer vX.Y.Z"
    - Wenn gleich oder Fetch fehlschlaegt: nur `Music-Production Status (v0.x.0)` zeigen
 3. Read config from `.music-production/config.json`

@@ -17,16 +17,17 @@ This is a monorepo containing the plugin marketplace and all plugin source code.
 
 ### Claude Code
 
-Install any plugin from this hub:
+Add this marketplace, then install individual plugins:
 
 ```bash
-/plugin install <plugin-name>@github.com/ZUHcYa/ai-hub
+/plugin marketplace add ZUHcYa/ai-plugins
 ```
 
-### Example
+### Install a Plugin
 
 ```bash
-/plugin install knvs@github.com/ZUHcYa/ai-hub
+/plugin install compass@ai-plugins
+/plugin install music-production@ai-plugins
 ```
 
 ---
@@ -40,13 +41,14 @@ Install any plugin from this hub:
 
 See each plugin's README for details:
 - [compass/README.md](compass/README.md)
+- [music-production/README.md](music-production/README.md)
 
 ---
 
 ## Repository Structure
 
 ```
-ai-hub/
+ai-plugins/
 ├── .claude-plugin/
 │   └── marketplace.json      # Plugin registry (marketplace)
 ├── compass/                  # Session Goal Alignment
