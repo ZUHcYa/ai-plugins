@@ -1,6 +1,6 @@
-# ai-hub
+# ai-plugins
 
-**AI Plugin Hub** - Curated Claude Code plugins for diverse workflows.
+**AI Plugins** - Curated Claude Code plugins for diverse workflows.
 
 A marketplace of specialized plugins covering various domains:
 - **Creative workflows** (Music Production)
