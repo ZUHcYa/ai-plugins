@@ -40,7 +40,7 @@ Add this marketplace, then install individual plugins:
 | Plugin | Description | Status |
 |--------|-------------|--------|
 | [**compass**](compass/) | Session Goal Alignment - Vision tracking and drift detection | Stable |
-| [**music-production**](music-production/) | Music Production Workflow Companion | Scaffold |
+| [**music-production**](music-production/) | Music Production Workflow Companion | Stable |
 | [**knvs**](knvs/) | Business Model Innovation - Testing Business Ideas with Claude Code | Stable |
 | [**trips**](trips/) | Business Travel Tracker - Record Dienstreisen and generate Finanzamt reports | Stable |
 
@@ -64,11 +64,12 @@ ai-plugins/
 │   ├── CLAUDE.md
 │   ├── skills/
 │   └── hooks/
-├── music-production/         # Music Production (scaffold)
+├── music-production/         # Music Production
 │   ├── .claude-plugin/
 │   │   └── plugin.json
 │   ├── CLAUDE.md
-│   └── skills/
+│   ├── skills/
+│   └── hooks/
 ├── knvs/                     # Business Model Innovation
 │   ├── .claude-plugin/
 │   │   └── plugin.json
@@ -78,7 +79,8 @@ ai-plugins/
 │   ├── .claude-plugin/
 │   │   └── plugin.json
 │   ├── CLAUDE.md
-│   └── skills/
+│   ├── skills/
+│   └── hooks/
 └── README.md
 ```
 

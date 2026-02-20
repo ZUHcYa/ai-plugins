@@ -53,7 +53,21 @@ Each trip is a file in your configured data directory:
 
 File naming: `YYYY-MM-DD_<destination-kebab-case>.md`
 
+## Automatic Hooks
+
+| Hook | When | What it does |
+|------|------|--------------|
+| **SessionStart** | Every session | Shows the last recorded trip and a reminder to use `/trips:new` |
+
+The hook is advisory only — it informs, never blocks.
+
 ## PDF Export
 
 The plugin ships with an optional MCP server (`markdown2pdf-mcp`) that generates PDFs
 from monthly reports. Requires Node.js 18+. Without it, the Markdown report works as-is.
+
+## Documentation
+
+- [QUICKSTART.md](QUICKSTART.md) - 5-minute getting started guide
+- [STRUCTURE.md](STRUCTURE.md) - Folder structure and file format reference
+- [CHANGELOG.md](CHANGELOG.md) - Version history
