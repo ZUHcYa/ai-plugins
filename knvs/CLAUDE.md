@@ -222,6 +222,7 @@ hypothesis capture. Users can also create hypotheses manually.
 - Claim (expands on the claim with context and nuance)
 - Context (origin, affected canvas, severity decision)
 - Research Assignment (checklist of concrete tasks)
+- Deep Research Prompt (ready-to-copy prompt for Gemini/GPT, generated from claim + context)
 
 Hypotheses contain NO findings, sources, or correction logs.
 

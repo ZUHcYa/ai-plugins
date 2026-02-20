@@ -247,6 +247,19 @@ an unverified market assumption:
 5. Add backlink to the callout reasoning:
    `(Severity + Direction based on hypothesis: [[research/<slug>]])`
 
+**Generating the Deep Research Prompt (Step 3):**
+
+When creating the hypothesis file, generate the `## Deep Research Prompt` section:
+
+- **Framework selection:** Porter's 5 Forces for competitive/market-position claims
+  (e.g. competitor moves, pricing, substitutes); PESTLE for macro/environmental claims
+  (e.g. regulation, technology shifts, economic cycles). Choose the most fitting forces/factors.
+- **Scope IN:** Derive from the claim + `bmc_fields`. Name the specific entity, behavior,
+  or trend being tested and the metrics that would confirm or refute it.
+- **Scope OUT:** Exclude adjacent topics not covered by `bmc_fields`
+  (e.g. if bmc_fields is [Key Partnerships], exclude general market trends).
+- **Strategic implications:** List the `bmc_fields` values verbatim.
+
 Only offer hypothesis capture when the reasoning contains an unconfirmed
 market assumption - not when there is a disagreement about the analysis.
 
@@ -277,7 +290,7 @@ Claude: -> research/vendor-ki-shift.md created
 
 Canonical template for hypothesis files in `research/`:
 
-```markdown
+````markdown
 ---
 type: research
 title: "Vendor X is missing the AI shift"
@@ -312,7 +325,37 @@ because [context and nuances beyond the claim].
 - [ ] Review Vendor X product strategy and AI roadmap
 - [ ] Gather industry analyst assessments
 - [ ] Compare competitor positioning
+
+## Deep Research Prompt
+
+*Bereit zum Kopieren in Gemini/GPT für Deep Research*
+
 ```
+Research this claim with engineering-grade rigor:
+
+**Claim:** Vendor X is missing the AI shift and is losing market relevance as a result.
+
+**Scope:**
+- IN: Vendor X product roadmap, AI strategy, recent releases, market share trends, customer churn signals
+- OUT: General AI market trends, unrelated competitors, internal business model of the researching company
+
+**Analytical Framework:** Porter's 5 Forces (Competitive Rivalry + Threat of Substitutes)
+
+**Source Requirements:**
+- Primary sources only: Gartner/Forrester/IDC reports, SEC/annual filings, official product announcements, earnings calls
+- No blogs, SEO articles, or opinion pieces
+- Every claim must include publication date and source
+
+**Contrarian View Required:**
+Research arguments AGAINST this claim. What evidence exists that Vendor X is successfully adapting to the AI shift?
+
+**Deliverable:** Structured research brief addressing:
+1. Evidence FOR the claim (with sources)
+2. Evidence AGAINST the claim (contrarian view)
+3. Verdict: Confirmed / Refuted / Insufficient Evidence
+4. Strategic implications for: Key Partnerships, Value Proposition
+```
+````
 
 ---
 
