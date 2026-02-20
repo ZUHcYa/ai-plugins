@@ -10,12 +10,12 @@ Get started with knvs in 5 minutes.
 
 **Step 1:** Add the marketplace
 ```
-/plugin marketplace add ZUHcYa/ai-hub
+/plugin marketplace add ZUHcYa/ai-plugins
 ```
 
 **Step 2:** Install the plugin
 ```
-/plugin install knvs@ai-hub
+/plugin install knvs@ai-plugins
 ```
 
 **Step 3:** Run the setup
@@ -57,28 +57,17 @@ Claude: Setting up your innovation workspace...
         ├── ideate/
         ├── explore/
         ├── exploit/
+        ├── reviews/
         └── .knvs/config.json
 
-        Ready! Run /knvs:verify or /knvs:ideate to get started.
+        Ready! Run /knvs:impact or /knvs:ideate to get started.
 ```
 
 See [STRUCTURE.md](STRUCTURE.md) for complete folder documentation.
 
 ---
 
-## 2. (Optional) Verify External Research
-
-If you have an external research report with potential deficiencies (hallucinated claims, wrong sources):
-
-```
-/knvs:verify
-```
-
-Provide the research report and deficiency list. Claude verifies facts via web research, corrects issues, and saves a verified report in `research/`.
-
----
-
-## 2b. (Optional) Extract Impact Atoms
+## 2. (Optional) Extract Impact Atoms
 
 After verifying research, extract atomic impacts:
 
@@ -140,10 +129,10 @@ Claude moves your canvas to the EXPLOIT phase and initializes:
 ## The Complete Lifecycle
 
 ```
-/knvs:start → /knvs:verify → /knvs:impact → /knvs:ideate → fill canvas → /knvs:explore → run tests → /knvs:exploit
-     |             |              |              |              |              |              |             |
-   Setup        Verify        Extract          Create       Research       Validate       Document       Scale
-              (optional)     (optional)
+/knvs:start → /knvs:impact → /knvs:ideate → fill canvas → /knvs:explore → run tests → /knvs:exploit
+     |              |              |              |              |              |             |
+   Setup         Extract          Create       Research       Validate       Document       Scale
+               (optional)     (optional)
 ```
 
 ---
@@ -174,7 +163,6 @@ Claude: knvs Status
 | Skill | When to use |
 |-------|-------------|
 | `/knvs:start` | Setup (first run) or overview + portfolio (after setup) |
-| `/knvs:verify` | Fact-check external research reports |
 | `/knvs:impact` | Extract atomic impacts from verified research |
 | `/knvs:ideas` | List all open ideas |
 | `/knvs:review` | Disruption check for EXPLOIT |

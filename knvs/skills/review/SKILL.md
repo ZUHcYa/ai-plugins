@@ -88,76 +88,76 @@ Claude: Reviews for AI Bookkeeping:
 
 ## Impact Challenge Mode
 
-After selecting a canvas for review, the skill offers impact-based analysis as **Interview-Dialog**.
-Ziel ist Bewusstseinsbildung - nicht Bewertung ob der Canvas Impacts bereits abdeckt.
-Anpassungen am Canvas erfolgen separat via `/knvs:ideate` (ggf. als geforkter Canvas).
+After selecting a canvas for review, the skill offers impact-based analysis as an **interview dialog**.
+The goal is awareness - not evaluating whether the canvas already covers impacts.
+Canvas changes happen separately via `/knvs:ideate` (optionally as a forked canvas).
 
 ```
-Claude: Moechtest du den Canvas auch gegen Impact Atoms challengen?
+Claude: Would you like to challenge the canvas against Impact Atoms as well?
 
-        Optionen:
-        [A] ALLE Impacts - Vollstaendiger Abgleich gegen alle Atoms in impacts/
-        [N] NUR NEUE Impacts - Nur Atoms erstellt seit dem letzten Review (2026-01-26)
-        [S] Skip - Normaler Review ohne Impact-Challenge
+        Options:
+        [A] ALL impacts - Full comparison against all atoms in impacts/
+        [N] NEW impacts only - Only atoms created since the last review (2026-01-26)
+        [S] Skip - Regular review without Impact Challenge
 
 User: N
-Claude: 2 Impacts gefunden. Gehen wir sie einzeln durch.
+Claude: 2 impacts found. Let's go through them one by one.
 
         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-        IMPACT 1 von 2
+        IMPACT 1 of 2
         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-        Titel: Semantische Vektoren statt Bilder
-        Severity im Canvas: HIGH
-        BMC-Felder: Value Proposition, Key Resources
+        Title: Semantic Vectors Instead of Images
+        Severity in canvas: HIGH
+        BMC fields: Value Proposition, Key Resources
 
-        Das Szenario:
-        Kuenftige Kaeufer (KI-Agenten) ignorieren reine HTML-Daten.
-        Sie benoetigen Vektoren und strukturierte Attribute.
+        The scenario:
+        Future buyers (AI agents) ignore pure HTML data.
+        They require vectors and structured attributes.
 
-        Der Druck auf diesen Canvas:
-        * Value Prop: Systeme, die nur "Visuals" liefern, werden unsichtbar.
-        * Key Resources: Vektor-Datenbanken werden Pflicht.
+        Pressure on this canvas:
+        * Value Prop: Systems that only deliver "visuals" become invisible.
+        * Key Resources: Vector databases become mandatory.
 
-        Wie schaetzt du diesen Impact aktuell ein?
+        How do you assess this impact currently?
 
-User:   Relevant, aber wir haben schon angefangen umzubauen.
+User:   Relevant, but we've already started restructuring.
 
-Claude: Gut. Heisst das, Key Resources ist schon angepasst,
-        oder steht das noch aus?
+Claude: Got it. Does that mean Key Resources is already updated,
+        or is that still pending?
 
-User:   Steht noch aus, ist aber auf der Roadmap.
+User:   Still pending, but it's on the roadmap.
 
-Claude: Verstanden. Weiter zum naechsten Impact.
-
-        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-        IMPACT 2 von 2
-        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-        Titel: Algorithmische Preisvergleiche
-        Severity im Canvas: – (noch nicht bewertet, kein Callout)
-        BMC-Felder: Revenue Streams
-
-        Das Szenario:
-        Preisvergleich wird algorithmisch statt manuell.
-
-        Der Druck auf diesen Canvas:
-        * Revenue Streams: Provisionsmodelle werden durch direkte
-          API-Verhandlungen umgangen.
-
-        Dieser Impact ist noch nicht im Canvas eingebettet.
-        Wenn relevant: Via /knvs:ideate einbetten und Severity
-        im BMC-Kontext bewerten.
-
-        Wie schaetzt du diesen Impact ein?
-
-User:   Nicht relevant fuer unser Modell.
-
-Claude: Notiert.
+Claude: Understood. Moving to the next impact.
 
         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-        ZUSAMMENFASSUNG
+        IMPACT 2 of 2
         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-        2 Impacts besprochen.
-        Weiter mit dem regulaeren Disruption Review...
+        Title: Algorithmic Price Comparison
+        Severity in canvas: – (not yet assessed, no callout)
+        BMC fields: Revenue Streams
+
+        The scenario:
+        Price comparison becomes algorithmic instead of manual.
+
+        Pressure on this canvas:
+        * Revenue Streams: Commission models are bypassed by direct
+          API negotiations.
+
+        This impact is not yet embedded in the canvas.
+        If relevant: embed via /knvs:ideate and assess severity
+        in the BMC context.
+
+        How do you assess this impact?
+
+User:   Not relevant for our model.
+
+Claude: Noted.
+
+        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        SUMMARY
+        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        2 impacts discussed.
+        Continuing with the regular Disruption Review...
 ```
 
 ### How "New Since Last Review" Works

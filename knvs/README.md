@@ -24,12 +24,12 @@
 
 **Step 1:** Add the marketplace
 ```
-/plugin marketplace add ZUHcYa/ai-hub
+/plugin marketplace add ZUHcYa/ai-plugins
 ```
 
 **Step 2:** Install the plugin
 ```
-/plugin install knvs@ai-hub
+/plugin install knvs@ai-plugins
 ```
 
 Done! The plugin is ready to use.
@@ -244,6 +244,9 @@ knvs/
 |- impacts/                      # Atomic impact analysis
 |   |- marktanalyse--impact-slug.md
 |
+|- network/                      # Vendor/partner model snapshots (indirect impacts)
+|   |- vendor-corp.md
+|
 |- ideate/                       # Ideas in research phase
 |   |- ai-bookkeeping.md
 |
@@ -264,6 +267,7 @@ knvs/
 **Phase Folders:**
 - `research/` - External research reports, verified or draft (pre-ideate)
 - `impacts/` - Atomic impact analysis from verified research
+- `network/` - Vendor/partner model snapshots for indirect impacts
 - `ideate/` - Ideas you're still researching and brainstorming
 - `explore/` - Ideas with hypotheses being validated
 - `exploit/` - Validated business models being scaled

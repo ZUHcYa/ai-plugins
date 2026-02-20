@@ -11,7 +11,7 @@
     {
       "name": "music-production",
       "source": "./music-production",
-      "description": "Music Production Workflow Companion - Begleitung des Musikproduktionsprozesses mit Skills"
+      "description": "Music Production Workflow Companion - Song lifecycle from idea to catalog"
     },
     {
       "name": "compass",
@@ -26,7 +26,7 @@
     {
       "name": "trips",
       "source": "./trips",
-      "description": "Dienstreisen-Tracking fuer deutsche Steuererklaerung - Reisen erfassen, auflisten, Finanzamt-Report generieren"
+      "description": "Business travel tracking for German tax returns - record trips, list them, generate Finanzamt-ready reports"
     }
   ]
 }

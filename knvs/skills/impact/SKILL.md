@@ -7,15 +7,15 @@ description: "Extract atomic impacts from research for BMC pressure analysis"
 
 ## Purpose
 
-Extrahiert atomare Auswirkungen (Impact Atoms) aus Forschungsberichten.
-Jeder Impact beschreibt einen spezifischen Druck oder eine Chance fuer Geschaeftsmodelle.
-Impact Atoms sind die Bruecke zwischen Forschung und Business Model Canvas.
+Extracts atomic impacts (Impact Atoms) from research reports.
+Each impact describes a specific pressure or opportunity for business models.
+Impact Atoms are the bridge between research and Business Model Canvas.
 
 ## When to Use
 
-- Nach Einlesen eines Forschungsberichts in `research/`
-- Vor der BMC-Erstellung (`/knvs:ideate`)
-- Wenn systematisch alle Geschaeftsmodell-Implikationen einer Forschung erfasst werden sollen
+- After loading a research report into `research/`
+- Before BMC creation (`/knvs:ideate`)
+- When systematically capturing all business model implications of a research
 
 ## Workflow
 
@@ -23,189 +23,189 @@ Impact Atoms sind die Bruecke zwischen Forschung und Business Model Canvas.
 
 ```
 User: /knvs:impact
-Claude: Welchen verifizierten Forschungsbericht moechtest du analysieren?
+Claude: Which verified research report would you like to analyze?
 
-        Verfuegbare Reports (research/):
+        Available reports (research/):
         1. Machine Customers Analysis [VERIFIED]
         2. AI Commerce Trends [VERIFIED]
         3. Fitness Market Study [DRAFT]
-        4. Vendor X KI-Wandel [HYPOTHESIS] (nicht verfuegbar)
+        4. Vendor X KI-Wandel [HYPOTHESIS] (not available)
 
 User: 1
-Claude: Analysiere research/machine-customers-verified.md...
+Claude: Analyzing research/machine-customers-verified.md...
 
-        Ich habe 4 potenzielle Impacts identifiziert:
+        I identified 4 potential impacts:
 
         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-        IMPACT 1 von 4
+        IMPACT 1 of 4
         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-        Titel: Erwartung: Semantische Vektoren statt Bilder
+        Title: Expectation: Semantic Vectors Instead of Images
         Tags: [tech-shift, ai-readiness, market-pressure]
-        BMC-Felder: Value Proposition, Key Resources
+        BMC Fields: Value Proposition, Key Resources
 
-        Das Szenario:
-        Kuenftige Kaeufer (KI-Agenten) ignorieren reine HTML- und Bild-Daten.
-        Sie benoetigen Vektoren und strukturierte Attribute.
+        The scenario:
+        Future buyers (AI agents) ignore pure HTML and image data.
+        They require vectors and structured attributes.
 
-        Der Druck auf Geschaeftsmodelle:
-        * Value Prop: Systeme, die nur "Visuals" liefern, werden unsichtbar.
-        * Key Resources: Vektor-Datenbanken und Schema.org-Kompetenz werden Pflicht.
+        Pressure on business models:
+        * Value Prop: Systems that only deliver "visuals" become invisible.
+        * Key Resources: Vector databases and Schema.org expertise become mandatory.
 
-        -> Uebernehmen? [J/n/bearbeiten]
+        -> Accept? [Y/n/edit]
 
-User: J
-Claude: Impact 1 gespeichert.
+User: Y
+Claude: Impact 1 saved.
 
         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-        IMPACT 2 von 4
+        IMPACT 2 of 4
         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-        Titel: Preisvergleich wird algorithmisch
+        Title: Price comparison becomes algorithmic
         Tags: [market-pressure, pricing]
-        BMC-Felder: Revenue Streams, Channels
+        BMC Fields: Revenue Streams, Channels
         [...]
 
-        -> Uebernehmen? [J/n/bearbeiten]
+        -> Accept? [Y/n/edit]
 
 User: n
-Claude: Impact 2 uebersprungen.
+Claude: Impact 2 skipped.
 
-        [... weiter fuer verbleibende Impacts ...]
+        [... continuing for remaining impacts ...]
 
         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-        ZUSAMMENFASSUNG
+        SUMMARY
         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-        Analysiert: research/machine-customers-verified.md
-        Vorgeschlagen: 4
-        Uebernommen: 3
-        Uebersprungen: 1
+        Analyzed: research/machine-customers-verified.md
+        Proposed: 4
+        Accepted: 3
+        Skipped: 1
 
-        Gespeicherte Dateien:
+        Saved files:
         - impacts/machine-customers--vector-search-mandatory.md
         - impacts/machine-customers--schema-org-pflicht.md
         - impacts/machine-customers--agent-negotiation.md
 
-        Naechste Schritte:
-        - /knvs:impact fuer weitere Research-Reports
-        - /knvs:ideate um BMC mit Impact-Kontext zu erstellen
+        Next steps:
+        - /knvs:impact for additional research reports
+        - /knvs:ideate to create BMC with impact context
 ```
 
-### Alle unverarbeiteten Reports
+### All Unprocessed Reports
 
 ```
-User: /knvs:impact (dann: "analysiere alle")
-Claude: Scanne research/ nach Reports ohne Impacts...
+User: /knvs:impact (then: "analyze all")
+Claude: Scanning research/ for reports without impacts...
 
-        Unverarbeitete Reports:
-        1. AI Commerce Trends [VERIFIED] - 0 Impacts
+        Unprocessed reports:
+        1. AI Commerce Trends [VERIFIED] - 0 impacts
 
-        Bereits verarbeitete Reports:
-        2. Machine Customers [VERIFIED] - 3 Impacts
+        Already processed reports:
+        2. Machine Customers [VERIFIED] - 3 impacts
 
-        Starte mit "AI Commerce Trends"?
+        Start with "AI Commerce Trends"?
 
-User: J
-Claude: [... gleicher Batch-Review Flow wie oben ...]
+User: Y
+Claude: [... same batch-review flow as above ...]
 ```
 
 ---
 
 ## What the Skill Does
 
-1. Liest `.knvs/config.json` fuer targetPath
-2. Scannt `research/` nach Reports mit `status: verified` oder `status: draft` (Hypothesen ausgeschlossen)
-3. Wenn kein Argument: listet verfuegbare Reports, User waehlt
-4. Wenn User "alle" oder "all" sagt: scannt `driver`-Felder aller Impacts in `impacts/` und findet Reports ohne zugehoerige Atoms
-5. Liest den ausgewaehlten Forschungsbericht vollstaendig
-6. Identifiziert distinkte Impacts:
-   - Jeder Impact = ein spezifischer Druck ODER eine Chance
-   - Muss mindestens ein BMC-Feld betreffen
-   - Muss aus dem Forschungsinhalt ableitbar sein (keine Spekulation)
-7. Prueft auf Duplikate: Vergleicht Titel und `bmc_fields` mit existierenden Atoms in `impacts/`
-   - Bei Treffer: Zeigt existierenden Impact und fragt ob Merge (multi-driver) oder Skip
-8. Praesentiert jeden Impact einzeln zur Bestaetigung:
-   - Titel, Tags, BMC-Felder, Szenario, Druck
-   - User kann: uebernehmen (J), ablehnen (n), oder bearbeiten
-   - Bei "bearbeiten": User kann Tags, BMC-Felder anpassen
-9. Schreibt bestaetigte Impacts als einzelne .md Dateien in `impacts/`
-10. Zeigt Zusammenfassung am Ende
+1. Reads `.knvs/config.json` for targetPath
+2. Scans `research/` for reports with `status: verified` or `status: draft` (hypotheses excluded)
+3. If no argument: lists available reports, user selects
+4. If user says "all": scans `driver` fields of all impacts in `impacts/` and finds reports without corresponding atoms
+5. Reads the selected research report fully
+6. Identifies distinct impacts:
+   - Each impact = one specific pressure OR opportunity
+   - Must affect at least one BMC field
+   - Must be derivable from the research content (no speculation)
+7. Checks for duplicates: compares title and `bmc_fields` with existing atoms in `impacts/`
+   - On match: shows existing impact and asks whether to merge (multi-driver) or skip
+8. Presents each impact individually for confirmation:
+   - Title, tags, BMC fields, scenario, pressure
+   - User can: accept (Y), reject (n), or edit
+   - On "edit": user can adjust tags, BMC fields
+9. Writes confirmed impacts as individual .md files to `impacts/`
+10. Shows summary at end
 
 ---
 
-## Impact-Erkennung
+## Impact Detection
 
-Der Skill sucht im Forschungsbericht nach:
+The skill searches the research report for:
 
-| Quelle im Report | Impact-Typ |
+| Source in Report | Impact Type |
 |-------------------|------------|
-| Kernbefunde | Direkter Technologie- oder Marktdruck |
-| Implikationen fuer Geschaeftsmodell | Explizite BMC-Auswirkungen |
-| Stuetzende Daten / Statistiken | Quantifizierbare Marktverschiebungen |
-| Limitationen | Unsicherheiten die trotzdem Handlungsdruck erzeugen |
+| Key Findings | Direct technology or market pressure |
+| Business Model Implications | Explicit BMC effects |
+| Supporting Data / Statistics | Quantifiable market shifts |
+| Limitations | Uncertainties that still create action pressure |
 
-### Vendor- und Partner-Analyse
+### Vendor and Partner Analysis
 
-Wenn ein Research Report über eine externe Organisation handelt (Vendor, Partner, Kunde,
-Wettbewerber), landen die extrahierten Impacts **im Network Canvas der externen Partei**
-(`network/<slug>.md`), nicht in `impacts/`.
-
-```
-Claude: Dieser Report handelt von "Vendor Corp AG" (Vendor).
-        Impacts werden in network/vendor-corp.md eingebettet, nicht in impacts/.
-
-        Impact 1: KI-gestützte Alternativen setzen VP unter Druck
-        -> [!impact]-Callout in network/vendor-corp.md, Sektion "## Value Proposition"
-```
-
-**Warum?** Impacts auf externe Modelle sollen in unserem Canvas nur als leichtgewichtiger
-`[!vendor-risk]`-Verweis erscheinen, nicht als vollständige Impact-Callouts. Der Network
-Canvas ist der Heimatort dieser Impacts.
-
-**Erkennungsregel:** Wenn Research `vendor`-Feld gesetzt hat, oder Titel/Inhalt auf eine
-konkrete externe Organisation fokussiert, nach Network Canvas fragen:
+If a research report covers an external organization (vendor, partner, customer,
+competitor), the extracted impacts land **in the Network Canvas of that external party**
+(`network/<slug>.md`), not in `impacts/`.
 
 ```
-Claude: Dieser Report analysiert "Vendor Corp AG".
-        Existiert bereits network/vendor-corp.md?
-        [J] Impacts direkt in Network Canvas einbetten
-        [N] Network Canvas neu anlegen, dann Impacts einbetten
-        [A] Als reguläre Impact Atoms behandeln (impacts/)
+Claude: This report is about "Vendor Corp AG" (Vendor).
+        Impacts will be embedded in network/vendor-corp.md, not in impacts/.
+
+        Impact 1: AI-powered alternatives put VP under pressure
+        -> [!impact] callout in network/vendor-corp.md, section "## Value Proposition"
 ```
 
-**Bei `[N]` - Network Canvas erstellen:**
+**Why?** Impacts on external models should appear in our canvas only as lightweight
+`[!vendor-risk]` references, not as full impact callouts. The Network Canvas is the
+home of these impacts.
+
+**Detection rule:** If research has `vendor` field set, or title/content focuses on a
+specific external organization, ask about Network Canvas:
 
 ```
-Claude: Neuen Network Canvas anlegen für "Vendor Corp AG".
+Claude: This report analyzes "Vendor Corp AG".
+        Does network/vendor-corp.md already exist?
+        [Y] Embed impacts directly in Network Canvas
+        [N] Create new Network Canvas, then embed impacts
+        [A] Treat as regular Impact Atoms (impacts/)
+```
 
-        Beziehung zu diesem Unternehmen?
-        [1] vendor    - Lieferant / Technologie-Partner
-        [2] partner   - strategischer Partner
-        [3] customer  - B2B-Kunde
-        [4] competitor - Wettbewerber
-        [5] industry  - Branche / Marktsegment
+**For `[N]` - Create Network Canvas:**
+
+```
+Claude: Create new Network Canvas for "Vendor Corp AG".
+
+        Relationship to this organization?
+        [1] vendor    - Supplier / Technology Partner
+        [2] partner   - strategic partner
+        [3] customer  - B2B customer
+        [4] competitor - competitor
+        [5] industry  - Industry / market segment
 
 User: 1
 
-Claude: Produkt/Plattform-Name? (Enter für keinen)
+Claude: Product/Platform name? (Enter for none)
 User: PlatformX
 
-Claude: Network Canvas erstellt: network/vendor-corp.md
-        -> Impacts werden jetzt als [!impact]-Callouts eingebettet...
+Claude: Network Canvas created: network/vendor-corp.md
+        -> Impacts will now be embedded as [!impact] callouts...
 ```
 
-Der erstellte Network Canvas nutzt das Template aus `CLAUDE.md` mit den beim Research
-identifizierten BMC-Feldern als Sektionen.
+The created Network Canvas uses the template from `CLAUDE.md` with the BMC fields
+identified during research as sections.
 
-Falls `[A]`: normale Impact-Extraktion nach `impacts/`, Formulation bleibt generisch
-("Ein Geschäftsmodell, das [Vendor] als Partner nutzt, ...").
+For `[A]`: normal impact extraction to `impacts/`, formulation stays generic
+("A business model that uses [Vendor] as a partner, ...").
 
-| Quelle im Report | Impact-Typ | Ziel |
+| Source in Report | Impact Type | Destination |
 |---|---|---|
-| Kernbefunde über EIGENEN Markt | Direkter Technologie- oder Marktdruck | `impacts/` |
-| Kernbefunde über externen Vendor/Partner | Druck auf deren Geschäftsmodell | `network/<slug>.md` |
+| Key findings about OWN market | Direct technology or market pressure | `impacts/` |
+| Key findings about external vendor/partner | Pressure on their business model | `network/<slug>.md` |
 
-### BMC-Feld-Zuordnung
+### BMC Field Assignment
 
-Jeder Impact muss mindestens einem der 9 kanonischen BMC-Felder zugeordnet werden:
+Each impact must be assigned to at least one of the 9 canonical BMC fields:
 - Value Proposition
 - Customer Segments
 - Channels
@@ -216,33 +216,33 @@ Jeder Impact muss mindestens einem der 9 kanonischen BMC-Felder zugeordnet werde
 - Key Partnerships
 - Cost Structure
 
-Ein Impact kann mehrere Felder betreffen. Die Zuordnung wird dem User zur Bestaetigung vorgelegt.
+One impact can affect multiple fields. The assignment is presented to the user for confirmation.
 
-Bei ambivalenten Befunden die eher Vorhersage als Fakt sind,
-siehe "Hypothese (Research-Vorlaeuferstufe)" in CLAUDE.md.
+For ambiguous findings that are more prediction than fact,
+see "Hypothesis (Research Predecessor Stage)" in CLAUDE.md.
 
 ---
 
-## Duplikat-Erkennung
+## Duplicate Detection
 
 ```
-Claude: Aehnlicher Impact existiert bereits:
+Claude: Similar impact already exists:
 
-        Existierend: impacts/machine-customers--vector-search-mandatory.md
-        - "Erwartung: Semantische Vektoren statt Bilder"
+        Existing: impacts/machine-customers--vector-search-mandatory.md
+        - "Expectation: Semantic Vectors Instead of Images"
         - Driver: [[research/machine-customers-verified]]
 
-        Neuer Vorschlag aus ai-commerce-trends:
-        - "Vektor-Suche wird Standard-Anforderung"
+        New proposal from ai-commerce-trends:
+        - "Vector search becomes standard requirement"
         - Driver: [[research/ai-commerce-trends-verified]]
 
-        Optionen:
-        [M] Merge: Driver zum existierenden Impact hinzufuegen
-        [N] Neu: Als separaten Impact speichern
-        [S] Skip: Ueberspringen
+        Options:
+        [M] Merge: Add driver to existing impact
+        [N] New: Save as separate impact
+        [S] Skip: Skip
 ```
 
-Bei **Merge** wird das `driver` Feld zum Array erweitert:
+On **Merge** the `driver` field is extended to an array:
 
 ```yaml
 driver:
@@ -254,53 +254,53 @@ driver:
 
 ## Edge Cases
 
-### Forschung ohne klare Impacts
+### Research without clear impacts
 
 ```
-Claude: Analyse abgeschlossen.
+Claude: Analysis complete.
 
-        Ich konnte keine spezifischen Geschaeftsmodell-Impacts ableiten.
+        I could not derive any specific business model impacts.
 
-        Moegliche Gruende:
-        - Report ist zu allgemein / zu wenig spezifisch
-        - Befunde sind deskriptiv ohne normativen Handlungsdruck
+        Possible reasons:
+        - Report is too general / too vague
+        - Findings are descriptive without normative action pressure
 
-        Empfehlung: Report manuell auf implizite Chancen pruefen,
-        oder /knvs:ideate direkt mit dem Research als Quelle nutzen.
+        Recommendation: Review report manually for implicit opportunities,
+        or use /knvs:ideate directly with the research as source.
 ```
 
-### Kein nutzbarer Report vorhanden
+### No usable report available
 
 ```
-Claude: Keine Research Reports in research/ gefunden.
+Claude: No research reports found in research/.
 
-        Optionen:
-        - Datei in research/ anlegen mit status: verified oder status: draft
-        - Hypothesen (status: hypothesis) sind keine Research Reports und werden nicht gelistet
+        Options:
+        - Create a file in research/ with status: verified or status: draft
+        - Hypotheses (status: hypothesis) are not research reports and are not listed
 ```
 
 ---
 
 ## Notes
 
-- Impact Atoms sind KEINE Business Model Canvases
-- Sie sind Pre-Ideate Dokumente die zwischen Research und BMC stehen
-- Impacts sind nach Erstellung unveraenderlich (immutable)
-- **Impact Atoms enthalten KEINE Severity-Bewertung.** Severity wird erst bei Canvas-Einbettung (`/knvs:ideate`) vergeben, weil sie den Kontext eines konkreten Geschaeftsmodells braucht.
-- Loeschen/Archivieren ist manuell moeglich
-- Wiki-Links nutzen `[[research/filename]]` Format (Obsidian-kompatibel)
-- "Alle analysieren" ist Natural Language, kein CLI-Flag
+- Impact Atoms are NOT Business Model Canvases
+- They are pre-ideate documents that sit between research and BMC
+- Impacts are immutable after creation
+- **Impact Atoms contain NO severity rating.** Severity is assigned during canvas embedding (`/knvs:ideate`) because it requires the context of a specific business model.
+- Deletion/archiving is possible manually
+- Wiki links use `[[research/filename]]` format (Obsidian-compatible)
+- "Analyze all" is natural language, not a CLI flag
 
 ---
 
 ## Impact Atom Template
 
-Kanonisches Template fuer Impact Atoms:
+Canonical template for Impact Atoms:
 
 ```markdown
 ---
 type: impact-atom
-title: "[Kurzer beschreibender Titel]"
+title: "[Short descriptive title]"
 tags: [tag1, tag2]
 driver: "[[research/filename]]"
 bmc_fields:
@@ -309,25 +309,25 @@ bmc_fields:
 created: YYYY-MM-DD
 ---
 
-# [IMPACT] Titel
+# [IMPACT] Title
 
-**Das Szenario:**
-[Was passiert / was veraendert sich? Konkret und faktenbasiert aus der Forschung.]
+**The scenario:**
+[What is happening / what is changing? Concrete and fact-based from the research.]
 
-**Der Druck auf Geschaeftsmodelle:**
-* **[BMC-Feld 1]:** [Konkreter Druck oder Chance fuer dieses Feld]
-* **[BMC-Feld 2]:** [Konkreter Druck oder Chance fuer dieses Feld]
+**Pressure on business models:**
+* **[BMC Field 1]:** [Specific pressure or opportunity for this field]
+* **[BMC Field 2]:** [Specific pressure or opportunity for this field]
 
-**Quelle:** [[research/filename]] - [Relevanter Befund/Abschnitt]
+**Source:** [[research/filename]] - [Relevant finding/section]
 ```
 
-### Dateiname
+### Filename
 
 Pattern: `impacts/<impact-slug>.md`
 
-Beispiele:
+Examples:
 - `impacts/vector-search-mandatory.md`
 - `impacts/schema-org-pflicht.md`
 - `impacts/algorithmic-pricing.md`
 
-Die Research-Herkunft steht im `driver`-Frontmatter-Feld, nicht im Dateinamen.
+The research origin is in the `driver` frontmatter field, not in the filename.

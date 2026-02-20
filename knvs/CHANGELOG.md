@@ -4,22 +4,35 @@ All notable changes to knvs will be documented in this file.
 
 ---
 
+## [0.12.0] - 2026-02-20
+
+### Changed
+
+- All documentation translated from German to English
+- Removed stale `/knvs:verify` references from QUICKSTART.md
+- Fixed repository references from `ai-hub` to `ai-plugins`
+- Added `reviews/` to QUICKSTART.md setup output example
+- Added `network/` folder to README.md file structure
+- Updated STRUCTURE.md version footer to 0.12.0
+
+---
+
 ## [0.11.0] - 2026-02-18
 
 ### Removed
 
-- **`/knvs:verify` skill**: Entfernt. Der Use Case (KI-generierte Research mit Maengeln korrigieren) entspricht nicht mehr dem Kernworkflow. Nutzer bringen bereits extern verifizierte Research Paper mit.
-- **Research Report Template aus `verify/SKILL.md`**: Template nach `CLAUDE.md` unter "Research Report: Struktur" migriert.
-- **verify-spezifische Frontmatter-Felder**: `deficiency_list` und `corrections_applied` aus den Pflichtfeldern entfernt.
+- **`/knvs:verify` skill**: Removed. The use case (correcting AI-generated research with deficiencies) no longer fits the core workflow. Users now bring already externally verified research papers.
+- **Research Report Template from `verify/SKILL.md`**: Template migrated to `CLAUDE.md` under "Research Report: Structure".
+- **verify-specific frontmatter fields**: `deficiency_list` and `corrections_applied` removed from required fields.
 
 ### Changed
 
-- **`/knvs:impact`**: Akzeptiert jetzt auch Research mit `status: draft` (vorher nur `verified`). Hypothesen bleiben ausgeschlossen (`status: hypothesis` → nicht verfuegbar).
-- **`/knvs:ideate`**: "From research" Modus zeigt jetzt auch Draft-Reports (vorher nur verified). Hypothesen weiterhin ausgeschlossen.
-- **`/knvs:start`**: Verify aus Phase-Lifecycle entfernt. Suggested Actions: Draft-Research zeigt `/knvs:impact` statt `/knvs:verify`. First-Run-Messages aktualisiert.
-- **`/knvs:sync`**: "Stale Driver" Check von Error zu Advisory herabgestuft (Draft als Impact-Driver ist jetzt legitim).
-- **CLAUDE.md**: `status: verified` kann manuell gesetzt werden. Frontmatter-Pflichtfelder vereinfacht. Hypothesen-Lifecycle ohne `/knvs:verify` formuliert.
-- **Version**: 0.10.0 -> 0.11.0
+- **`/knvs:impact`**: Now also accepts research with `status: draft` (previously only `verified`). Hypotheses remain excluded (`status: hypothesis` → not available).
+- **`/knvs:ideate`**: "From research" mode now also shows draft reports (previously only verified). Hypotheses still excluded.
+- **`/knvs:start`**: Verify removed from phase lifecycle. Suggested Actions: draft research now shows `/knvs:impact` instead of `/knvs:verify`. First-run messages updated.
+- **`/knvs:sync`**: "Stale Driver" check downgraded from error to advisory (draft as impact driver is now legitimate).
+- **CLAUDE.md**: `status: verified` can be set manually. Frontmatter required fields simplified. Hypothesis lifecycle formulated without `/knvs:verify`.
+- **Version**: 0.10.0 → 0.11.0
 
 ---
 
@@ -45,24 +58,24 @@ All notable changes to knvs will be documented in this file.
 
 ### Changed
 
-- **BREAKING:** Impact Callouts werden jetzt inline unter BMC-Dimensionen eingebettet statt in separater `## Impact Context` Sektion
-- Inline Impacts nutzen Obsidian-Callout-Syntax (`> [!impact]`) — degradiert zu Blockquote in anderen Markdown-Viewern
-- Feldspezifische Begruendung: Jeder Callout zeigt nur den Druck auf die jeweilige Dimension
+- **BREAKING:** Impact callouts are now embedded inline under BMC dimensions instead of a separate `## Impact Context` section
+- Inline impacts use Obsidian callout syntax (`> [!impact]`) — degrades to blockquote in other Markdown viewers
+- Field-specific reasoning: each callout only shows the pressure on the relevant dimension
 
 ### Added
 
-- Inline Callout-Generierung in `/knvs:ideate` (automatisch bei Canvas-Erstellung aus Research mit Impacts)
-- `/knvs:sync` erkennt deprecated `## Impact Context` Format und verwaiste Inline-Impact-Links
+- Inline callout generation in `/knvs:ideate` (automatic when creating canvas from research with impacts)
+- `/knvs:sync` detects deprecated `## Impact Context` format and orphaned inline impact links
 
 ### Removed
 
-- `## Impact Context` Sektion aus kanonischem IDEATE Canvas Template
+- `## Impact Context` section from canonical IDEATE canvas template
 
 ### Migration
 
-- **Neue Canvases:** Automatisch inline Format via `/knvs:ideate`
-- **Bestehende Canvases:** Funktionieren weiter, `/knvs:sync` warnt optional
-- **Manuelle Migration:** Impacts als Callouts unter betroffene Dimensionen verschieben, alte Sektion loeschen
+- **New canvases:** Automatically inline format via `/knvs:ideate`
+- **Existing canvases:** Continue to work, `/knvs:sync` warns optionally
+- **Manual migration:** Move impacts as callouts under affected dimensions, delete old section
 
 ---
 
@@ -130,24 +143,24 @@ All notable changes to knvs will be documented in this file.
 
 ### Removed
 
-- **sync-config skill**: Entfernt (existierte nur fuer Source-Tracking-Infrastruktur)
-- **config-schema.json**: Custom-Convention entfernt (nicht von Claude Code genutzt)
-- **config-manager Utility**: Verwaiste `.claude-plugin/utils/config-manager/` entfernt
-- **Verbosity-System**: quiet/normal/verbose Output-Level aus allen Skills entfernt
-- **Output Guidelines Boilerplate**: Identische Sections aus 6 Skills entfernt (bereits in CLAUDE.md abgedeckt)
-- **WebFetch Version-Check**: Netzwerk-Abhaengigkeit aus /knvs:start entfernt
-- **Config v3.0 Infrastruktur**: Source-Tracking, Migration-Ketten, ui.verbosity entfernt
+- **sync-config skill**: Removed (only existed for source-tracking infrastructure)
+- **config-schema.json**: Custom convention removed (not used by Claude Code)
+- **config-manager utility**: Orphaned `.claude-plugin/utils/config-manager/` removed
+- **Verbosity system**: quiet/normal/verbose output levels removed from all skills
+- **Output guidelines boilerplate**: Identical sections removed from 6 skills (already covered in CLAUDE.md)
+- **WebFetch version-check**: Network dependency removed from `/knvs:start`
+- **Config v3.0 infrastructure**: Source-tracking, migration chains, `ui.verbosity` removed
 
 ### Changed
 
-- **Config vereinfacht**: Von v3.0 (8 Felder) auf flat JSON `{ "targetPath": "./" }` (analog trips)
-- **Setup-Logik inline**: config-manager Pseudo-API-Referenzen durch direkte Anweisungen ersetzt
-- **/knvs:review**: CLI-Flags (`--list`, `--view`) durch Natural Language ersetzt
+- **Config simplified**: From v3.0 (8 fields) to flat JSON `{ "targetPath": "./" }` (analogous to trips)
+- **Setup logic inline**: config-manager pseudo-API references replaced with direct instructions
+- **`/knvs:review`**: CLI flags (`--list`, `--view`) replaced with natural language
 
 ### Why
 
-ADR-008 Compliance: Plugin = Instruktionsschicht, keine Infrastruktur.
-Gleicher Cleanup wie trips v0.4.0.
+ADR-008 compliance: Plugin = instruction layer, no infrastructure.
+Same cleanup as trips v0.4.0.
 
 ---
 
@@ -155,9 +168,9 @@ Gleicher Cleanup wie trips v0.4.0.
 
 ### Changed
 
-- Version reset: Alle Plugins auf realistische 0.x Versionen zurueckgesetzt
-- Vorherige Versionen (1.0-2.1) spiegelten nicht den tatsaechlichen Reifegrad wider
-- Versionsanzeige in /knvs:start Header eingefuehrt
+- Version reset: All plugins set to realistic 0.x versions
+- Previous versions (1.0-2.1) did not reflect actual maturity
+- Version display introduced in `/knvs:start` header
 
 ---
 

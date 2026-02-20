@@ -43,7 +43,7 @@ pre-configured `targetPath` value - no interactive setup needed:
 ```
 User: /knvs:start
 Claude: Welcome to knvs!
-        [targetPath aus Projekt-Defaults uebernommen]
+        [targetPath taken from project defaults]
 
         Created:
         ├── research/
@@ -216,7 +216,7 @@ Claude: knvs Status
 | 🔴 | Immediate action needed |
 | 🟡 | Monitor closely |
 | 🟢 | On track |
-| 🔵 | Recherche-Auftrag offen (Hypothese) |
+| 🔵 | Research assignment open (Hypothesis) |
 
 ---
 
@@ -227,8 +227,8 @@ Claude: knvs Status
 | RESEARCH `status: verified` without impacts | "X verified → /knvs:impact to extract impacts" |
 | RESEARCH `status: verified` with impacts | "X verified + impacts → /knvs:ideate to create canvas" |
 | RESEARCH `status: draft` | "X draft → /knvs:impact to extract impacts" |
-| RESEARCH `status: hypothesis` aelter als 14 Tage | "Hypothese X stale → recherchieren oder verwerfen" |
-| RESEARCH `status: hypothesis` + passender `-verified` Report existiert | "Hypothese X moeglicherweise durch Research Y geloest → pruefen und loeschen" |
+| RESEARCH `status: hypothesis` older than 14 days | "Hypothesis X stale → research or discard" |
+| RESEARCH `status: hypothesis` + matching `-verified` report exists | "Hypothesis X possibly resolved by Research Y → verify and delete" |
 | IMPACTS exist but no IDEATE canvas links them | "X impacts unused → /knvs:ideate with impact context" |
 | IDEATE `progress: READY FOR EXPLORE` | "X is READY → /knvs:explore" |
 | IDEATE item > 30 days old | "X stale → decide: explore or archive" |

@@ -37,7 +37,7 @@ User: Y
 Claude: Available research:
         1. AI Bookkeeping Analysis [VERIFIED]
         2. Fitness Market Study [DRAFT]
-        3. Vendor X KI-Wandel [HYPOTHESIS] (nicht verfuegbar)
+        3. Vendor X KI-Wandel [HYPOTHESIS] (not available)
 
         Which research report?
 User: 1
@@ -83,24 +83,24 @@ When creating a BMC from research, the skill automatically surfaces related Impa
 4. Displays impact summary, then generates canvas with inline callouts:
 
 ```
-Claude: Erstelle BMC aus research/machine-customers-verified.md...
+Claude: Creating BMC from research/machine-customers-verified.md...
 
-        3 Impact Atoms gefunden fuer diese Research:
+        3 Impact Atoms found for this research:
         - vector-search-mandatory -> Value Prop, Key Resources
         - agent-negotiation -> Value Prop
         - algorithmic-pricing -> Revenue Streams
 
-        Bewerte Severity fuer diesen Canvas...
-        [Severity Assessment fuer jeden Impact, siehe oben]
+        Assessing severity for this canvas...
+        [Severity Assessment for each impact, see below]
 
-        Generiere Canvas mit inline Impact-Callouts...
+        Generating canvas with inline impact callouts...
 
-        Value Proposition: 2 Impacts eingebettet (1x HIGH, 1x MEDIUM)
-        Key Resources: 1 Impact eingebettet (HIGH)
-        Revenue Streams: 1 Impact eingebettet (MEDIUM)
-        Andere Dimensionen: Keine Impacts
+        Value Proposition: 2 impacts embedded (1x HIGH, 1x MEDIUM)
+        Key Resources: 1 impact embedded (HIGH)
+        Revenue Streams: 1 impact embedded (MEDIUM)
+        Other dimensions: No impacts
 
-        Canvas erstellt: ideate/machine-customers.md
+        Canvas created: ideate/machine-customers.md
 ```
 
 5. For each impact: assesses severity in context of THIS specific BMC (see Severity Assessment below)
@@ -112,197 +112,197 @@ After canvas creation, the skill checks if any referenced vendor/partner in the 
 has a corresponding Network Canvas in `network/`. If yes, a `[!vendor-risk]` callout
 is generated under the relevant BMC field.
 
-**Erkennung:** Wenn in Key Partnerships, Key Resources oder anderen Feldern eine
-Organisation genannt wird die als `entity` in einem `network/*.md` vorkommt.
+**Detection:** When Key Partnerships, Key Resources, or other fields mention an
+organization that exists as `entity` in a `network/*.md` file.
 
-**Prozess:**
-1. Scant alle BMC-Felder des neuen Canvas auf bekannte Vendor/Partner-Namen
-2. Gleicht mit `network/*.md` Dateien ab (`entity`-Feld im Frontmatter)
-3a. Wenn Treffer: `[!vendor-risk]`-Callout unter dem betroffenen Feld einfügen
-3b. Wenn kein Treffer (Org bekannt, aber kein Network Canvas): Anlegen anbieten
+**Process:**
+1. Scans all BMC fields of the new canvas for known vendor/partner names
+2. Matches against `network/*.md` files (`entity` field in frontmatter)
+3a. On match: insert `[!vendor-risk]` callout under the affected field
+3b. No match (org known, but no Network Canvas): offer to create one
 
-**Callout-Format:**
+**Callout format:**
 ```markdown
-> [!vendor-risk]- [Entity]: [relationship] mit offenen Impacts ([[network/<slug>]])
-> Aktuelle Situation: [optionale Kurzzusammenfassung des Vendor-Status]
+> [!vendor-risk]- [Entity]: [relationship] with open impacts ([[network/<slug>]])
+> Current situation: [optional brief summary of vendor status]
 ```
 
-**Beispiel - Network Canvas vorhanden:**
+**Example - Network Canvas exists:**
 ```
-Claude: "Vendor Corp/PlatformX" in Key Partnerships gefunden.
-        Network Canvas gefunden: network/vendor-corp.md (2 Impacts)
+Claude: "Vendor Corp/PlatformX" found in Key Partnerships.
+        Network Canvas found: network/vendor-corp.md (2 impacts)
 
-        -> [!vendor-risk]-Callout in Key Partnerships eingefügt:
+        -> [!vendor-risk] callout inserted in Key Partnerships:
 
-        > [!vendor-risk]- Vendor Corp/PlatformX: Vendor unter Druck ([[network/vendor-corp]])
-        > Aktuelle Situation: 2 Impacts auf Vendor-Modell (1 HIGH, 1 MEDIUM).
+        > [!vendor-risk]- Vendor Corp/PlatformX: Vendor under pressure ([[network/vendor-corp]])
+        > Current situation: 2 impacts on vendor model (1 HIGH, 1 MEDIUM).
 ```
 
-**Beispiel - Network Canvas fehlt:**
+**Example - Network Canvas missing:**
 ```
-Claude: "Cloud Vendor" in Key Partnerships erwähnt.
-        Kein Network Canvas für Cloud Vendor gefunden.
+Claude: "Cloud Vendor" mentioned in Key Partnerships.
+        No Network Canvas found for Cloud Vendor.
 
-        Network Canvas anlegen?
-        [J] Jetzt anlegen (leer, ohne Impacts)
-        [N] Später - /knvs:impact auf Cloud-Vendor-Research anwenden
-        [A] Ignorieren (kein Vendor-Tracking für Cloud Vendor)
+        Create Network Canvas?
+        [Y] Create now (empty, no impacts)
+        [N] Later - apply /knvs:impact to Cloud Vendor research
+        [A] Ignore (no vendor tracking for Cloud Vendor)
 
-User: J
+User: Y
 
-Claude: Beziehung zu Cloud Vendor?
+Claude: Relationship to Cloud Vendor?
         [1] vendor [2] partner [3] customer [4] competitor [5] industry
 User: 1
 
-Claude: Network Canvas erstellt: network/cloud-vendor.md (leer)
-        -> Tipp: /knvs:impact auf Research über Cloud Vendor anwenden um Impacts einzubetten.
-        -> [!vendor-risk]-Callout in Key Partnerships eingefügt (keine Impacts bisher).
+Claude: Network Canvas created: network/cloud-vendor.md (empty)
+        -> Tip: apply /knvs:impact to research about Cloud Vendor to embed impacts.
+        -> [!vendor-risk] callout inserted in Key Partnerships (no impacts yet).
 ```
 
-`[!vendor-risk]` ist KEIN Impact Atom. Es erscheint NICHT in `impacts/`.
-Die eigentlichen Impacts leben im Network Canvas (`network/vendor-corp.md`).
+`[!vendor-risk]` is NOT an Impact Atom. It does NOT appear in `impacts/`.
+The actual impacts live in the Network Canvas (`network/vendor-corp.md`).
 
 ### No Impacts Available
 
 If no impacts exist for the selected research, the skill proceeds normally:
 
 ```
-Claude: Keine Impact Atoms fuer diese Research gefunden.
-        Tipp: /knvs:impact nutzen um Impacts vor der BMC-Erstellung zu extrahieren.
-        Fortfahren ohne Impact-Kontext...
+Claude: No Impact Atoms found for this research.
+        Tip: use /knvs:impact to extract impacts before BMC creation.
+        Proceeding without impact context...
 ```
 
 ---
 
 ## Severity Assessment
 
-Impact Atoms enthalten **keine Severity**. Severity wird erst hier vergeben - im Kontext des konkreten BMC.
+Impact Atoms contain **no severity**. Severity is assigned here - in the context of the specific BMC.
 
-### Warum hier und nicht im Impact?
+### Why here and not in the impact?
 
-Ein Impact beschreibt WAS passiert (Fakt). Wie schwer das wiegt, haengt vom konkreten Geschaeftsmodell ab:
-- "Algorithmische Preisvergleiche" ist **High** fuer eine B2C-Preisvergleichs-Plattform (Kern-Value-Prop betroffen)
-- Derselbe Impact ist **Low** fuer B2B Enterprise SaaS (feste Jahresvertraege, kein Spot-Pricing)
+An impact describes WHAT happens (fact). How severe it is depends on the specific business model:
+- "Algorithmic price comparison" is **High** for a B2C price-comparison platform (core value prop affected)
+- The same impact is **Low** for B2B Enterprise SaaS (fixed annual contracts, no spot-pricing)
 
-### Severity-Kriterien (BMC-kontextspezifisch)
+### Severity Criteria (BMC-context-specific)
 
-| Severity | Kriterium |
+| Severity | Criterion |
 |----------|-----------|
-| **High** | Existenzbedrohend fuer DIESES Geschaeftsmodell. Kernelemente des Canvas direkt betroffen. |
-| **Medium** | Wettbewerbsnachteil fuer DIESES Geschaeftsmodell. Anpassung noetig, aber kein Totalausfall. |
-| **Low** | Optimierungspotenzial fuer DIESES Geschaeftsmodell. Nice-to-have, nicht geschaeftskritisch. |
+| **High** | Existential threat for THIS business model. Core canvas elements directly affected. |
+| **Medium** | Competitive disadvantage for THIS business model. Adaptation needed, but not total failure. |
+| **Low** | Optimization potential for THIS business model. Nice-to-have, not business-critical. |
 
-### Prozess
+### Process
 
-1. Fuer jeden Impact Atom: Analysiere wie er die konkreten BMC-Dimensionen dieses Canvas betrifft
-2. Beruecksichtige: Value Proposition, Customer Segments, Revenue Streams des Canvas
-3. Schlage Severity vor mit Begruendung
-4. User bestaetigt oder aendert
+1. For each Impact Atom: analyze how it affects the specific BMC dimensions of this canvas
+2. Consider: Value Proposition, Customer Segments, Revenue Streams of the canvas
+3. Propose severity with reasoning
+4. User confirms or changes
 
-### Beispiel
-
-```
-Claude: 3 Impact Atoms gefunden fuer diese Research.
-        Bewerte Severity fuer diesen Canvas (B2C Preisvergleichs-Plattform)...
-
-        Impact 1: Algorithmische Preisvergleiche
-        BMC-Felder: Revenue Streams, Channels
-        Analyse: Transparenz ist Kern-Value-Prop. Algorithmische Kaeufer
-                 umgehen die UI und damit das Provisionsmodell.
-        Vorgeschlagene Severity: HIGH
-
-        -> Uebernehmen? [J/n/bearbeiten]
-
-User: J
-
-Claude: Impact 2: Vektor-Suche wird Standard
-        BMC-Felder: Key Resources
-        Analyse: Plattform basiert auf strukturierten Produktdaten,
-                 nicht auf Freitext-Suche. Vektor-Kompetenz ist nice-to-have.
-        Vorgeschlagene Severity: LOW
-
-        -> Uebernehmen? [J/n/bearbeiten]
-```
-
-### Severity-Dispute: Hypothesen-Erfassung
-
-Wenn der User die Severity ablehnt und seine Begruendung auf einer
-unverifizierten Marktannahme basiert:
-
-1. Annahme identifizieren und als Einzeiler formulieren
-2. Fragen: "Das ist keine gesicherte Erkenntnis aus der Research.
-   Soll ich eine Hypothese als Recherche-Auftrag erfassen?"
-3. Bei Ja: Datei in `research/<slug>.md` mit `status: hypothesis` erstellen
-   (siehe Hypothese-Template unten)
-4. Severity des Users im Canvas uebernehmen
-5. Im Callout-Reasoning Backlink ergaenzen:
-   `(Severity basiert auf Hypothese: [[research/<slug>]])`
-
-Hypothesen-Erfassung NUR anbieten wenn die Begruendung eine unbestaetigte
-Marktannahme enthaelt, nicht bei Meinungsverschiedenheit zur Analyse.
+### Example
 
 ```
-Claude: Impact 2: Vektor-Suche wird Standard
-        Vorgeschlagene Severity: LOW
-        -> Uebernehmen? [J/n/bearbeiten]
+Claude: 3 Impact Atoms found for this research.
+        Assessing severity for this canvas (B2C price-comparison platform)...
 
-User:   n - HIGH, weil Vendor X den KI-Wandel verschlaeft
+        Impact 1: Algorithmic price comparison
+        BMC Fields: Revenue Streams, Channels
+        Analysis: Transparency is the core value prop. Algorithmic buyers
+                  bypass the UI and thus the commission model.
+        Proposed severity: HIGH
 
-Claude: Diese Einstufung basiert auf einer unverifizierten Annahme:
-        "Vendor X verschlaeft den KI-Wandel"
+        -> Accept? [Y/n/edit]
 
-        Soll ich eine Hypothese als Recherche-Auftrag erfassen?
-        [J] Hypothese erfassen + Severity uebernehmen
-        [N] Severity ohne Erfassung uebernehmen
-        [A] Bei LOW bleiben
+User: Y
 
-User:   J
+Claude: Impact 2: Vector search becomes standard
+        BMC Fields: Key Resources
+        Analysis: Platform is based on structured product data,
+                  not on free-text search. Vector expertise is nice-to-have.
+        Proposed severity: LOW
 
-Claude: -> research/vendor-x-ki-wandel.md erstellt
-        -> Severity HIGH uebernommen (mit Hypothese-Backlink im Callout)
+        -> Accept? [Y/n/edit]
+```
+
+### Severity Dispute: Hypothesis Capture
+
+When the user rejects the severity and their reasoning is based on
+an unverified market assumption:
+
+1. Identify the assumption and formulate it as a single line
+2. Ask: "This is not a confirmed finding from the research.
+   Should I capture a hypothesis as a research assignment?"
+3. If yes: create file in `research/<slug>.md` with `status: hypothesis`
+   (see Hypothesis Template below)
+4. Apply the user's severity in the canvas
+5. Add backlink to the callout reasoning:
+   `(Severity based on hypothesis: [[research/<slug>]])`
+
+Only offer hypothesis capture when the reasoning contains an unconfirmed
+market assumption - not when there is a disagreement about the analysis.
+
+```
+Claude: Impact 2: Vector search becomes standard
+        Proposed severity: LOW
+        -> Accept? [Y/n/edit]
+
+User:   n - HIGH, because Vendor X is missing the AI shift
+
+Claude: This assessment is based on an unverified assumption:
+        "Vendor X is missing the AI shift"
+
+        Should I capture a hypothesis as a research assignment?
+        [Y] Capture hypothesis + apply severity
+        [N] Apply severity without capture
+        [A] Stay with LOW
+
+User:   Y
+
+Claude: -> research/vendor-x-ki-wandel.md created
+        -> Severity HIGH applied (with hypothesis backlink in callout)
 ```
 
 ---
 
-## Hypothese-Template
+## Hypothesis Template
 
-Kanonisches Template fuer Hypothesen-Dateien in `research/`:
+Canonical template for hypothesis files in `research/`:
 
 ```markdown
 ---
 type: research
-title: "Vendor X verschlaeft den KI-Wandel"
+title: "Vendor X is missing the AI shift"
 status: hypothesis
 created: YYYY-MM-DD
-claim: "Vendor X verschlaeft den KI-Wandel und verliert dadurch Relevanz am Markt"
+claim: "Vendor X is missing the AI shift and is losing market relevance as a result"
 bmc_fields:
   - Key Partnerships
   - Value Proposition
-origin_impact: impacts/vektor-suche-standard.md
+origin_impact: impacts/vector-search-standard.md
 ---
 
-# Hypothese: Vendor X verschlaeft den KI-Wandel
+# Hypothesis: Vendor X is missing the AI shift
 
-**Status:** HYPOTHESE (unbestaetigt - kein Research-Finding)
+**Status:** HYPOTHESIS (unconfirmed - not a research finding)
 
-## Behauptung
+## Claim
 
-Vendor X verschlaeft den KI-Wandel und verliert dadurch Relevanz am Markt.
-Das haette direkte Auswirkungen auf Key Partnerships und Value Proposition,
-weil [Kontext und Nuancen die ueber den claim hinausgehen].
+Vendor X is missing the AI shift and is losing market relevance as a result.
+This would have direct effects on Key Partnerships and Value Proposition,
+because [context and nuances beyond the claim].
 
-## Kontext
+## Context
 
-**Entstanden bei:** /knvs:ideate Severity-Bewertung
-**Canvas:** ideate/mein-canvas.md
-**Impact:** impacts/vektor-suche-standard.md
-**Severity-Entscheidung:** HIGH gesetzt (statt vorgeschlagenem LOW)
+**Created during:** /knvs:ideate severity assessment
+**Canvas:** ideate/my-canvas.md
+**Impact:** impacts/vector-search-standard.md
+**Severity decision:** Set to HIGH (instead of proposed LOW)
 
-## Recherche-Auftrag
+## Research Assignment
 
-- [ ] Vendor X Produktstrategie und KI-Roadmap pruefen
-- [ ] Branchenanalysten-Einschaetzungen einholen
-- [ ] Wettbewerber-Positionierung vergleichen
+- [ ] Review Vendor X product strategy and AI roadmap
+- [ ] Gather industry analyst assessments
+- [ ] Compare competitor positioning
 ```
 
 ---
@@ -322,9 +322,9 @@ When creating a BMC from research with related impacts, embed callouts directly 
    > [!impact]- [Impact Title from frontmatter] ([SEVERITY])
    > **Driver:** [[research/source-slug from driver field]]
    >
-   > [Field-specific reasoning from "Der Druck" bullet for this dimension]
+   > [Field-specific reasoning from "Pressure on business models" bullet for this dimension]
    >
-   > _Quelle: [[impacts/impact-filename]]_
+   > _Source: [[impacts/impact-filename]]_
    ```
 
 3. **Multiple impacts per dimension:**
@@ -336,45 +336,45 @@ When creating a BMC from research with related impacts, embed callouts directly 
 
 ### Field-Specific Reasoning Extraction
 
-Extract the relevant bullet from impact atom's "Der Druck auf Geschaeftsmodelle" section.
+Extract the relevant bullet from impact atom's "Pressure on business models" section.
 
 **Example impact atom body:**
 ```markdown
-**Der Druck auf Geschaeftsmodelle:**
-* **Value Proposition:** Systeme, die nur "Visuals" liefern, werden unsichtbar.
-* **Key Resources:** Vektor-Datenbanken werden Pflicht.
+**Pressure on business models:**
+* **Value Proposition:** Systems that only deliver "visuals" become invisible.
+* **Key Resources:** Vector databases become mandatory.
 ```
 
 **Generated under `## Value Proposition`:**
 ```markdown
-> [!impact]- Semantische Vektoren statt Bilder (HIGH)
+> [!impact]- Semantic Vectors Instead of Images (HIGH)
 > **Driver:** [[research/machine-customers-verified]]
 >
-> Systeme, die nur "Visuals" liefern, werden unsichtbar.
+> Systems that only deliver "visuals" become invisible.
 >
-> _Quelle: [[impacts/machine-customers--vector-search-mandatory]]_
+> _Source: [[impacts/machine-customers--vector-search-mandatory]]_
 ```
 
 **Generated under `## Key Resources`:**
 ```markdown
-> [!impact]- Semantische Vektoren statt Bilder (HIGH)
+> [!impact]- Semantic Vectors Instead of Images (HIGH)
 > **Driver:** [[research/machine-customers-verified]]
 >
-> Vektor-Datenbanken werden Pflicht.
+> Vector databases become mandatory.
 >
-> _Quelle: [[impacts/machine-customers--vector-search-mandatory]]_
+> _Source: [[impacts/machine-customers--vector-search-mandatory]]_
 ```
 
 ### Edge Cases
 
 **Missing field-specific reasoning:**
-If impact atom lists a BMC field in `bmc_fields` but has no matching bullet under "Der Druck":
-Fallback to "Das Szenario" text from the impact atom.
+If impact atom lists a BMC field in `bmc_fields` but has no matching bullet under "Pressure on business models":
+Fallback to "The scenario" text from the impact atom.
 
 **Multi-driver impacts:**
 Show all drivers comma-separated:
 ```markdown
-> [!impact]- Titel (HIGH)
+> [!impact]- Title (HIGH)
 > **Driver:** [[research/source1]], [[research/source2]]
 ```
 
@@ -438,7 +438,7 @@ Example:
 >
 > Field-specific reasoning explaining pressure on this BMC dimension.
 >
-> _Quelle: [[impacts/impact-slug]]_
+> _Source: [[impacts/impact-slug]]_
 
 Multiple impacts stack vertically, sorted by severity (HIGH > MEDIUM > LOW).
 -->
@@ -477,4 +477,3 @@ Multiple impacts stack vertically, sorted by severity (HIGH > MEDIUM > LOW).
 ## Next Steps
 - [ ]
 ```
-

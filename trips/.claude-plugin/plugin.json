@@ -1,7 +1,7 @@
 {
   "version": "0.4.0",
   "name": "trips",
-  "description": "Dienstreisen-Tracking fuer deutsche Steuererklaerung - Reisen erfassen, auflisten, Finanzamt-Report generieren",
+  "description": "Business travel tracking for German tax returns - record trips, list them, generate Finanzamt-ready reports",
   "author": {
     "name": "zuhcya",
     "url": "https://github.com/ZUHcYa"

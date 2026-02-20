@@ -1,292 +1,292 @@
-# knvs: Plugin-spezifische Regeln
+# knvs: Plugin-Specific Rules
 
 ## Vision
 
-**knvs** ist ein Template fuer Innovation Manager basierend auf dem Strategyzer "Testing Business Ideas" Prozess.
+**knvs** is a template for Innovation Managers based on the Strategyzer "Testing Business Ideas" process.
 
-### Strikte Regeln
+### Strict Rules
 
-- **Nur Entwicklungs-Support** fuer knvs (Code-Gen, Docs, Tests, Automation)
-- **Keine User-Features** die Innovation Manager direkt nutzen wuerden
-- **Keine automatischen Deployments** ohne Review
+- **Development support only** for knvs (code gen, docs, tests, automation)
+- **No user features** that Innovation Managers would use directly
+- **No automatic deployments** without review
 
-### Warnsignal-Check
+### Warning Signal Check
 
-**Vor jeder Aufgabe fragen:**
-1. Hilft dies bei der **Entwicklung von knvs**?
-2. Ist es **kein User-Feature** fuer knvs-Endnutzer?
+**Before every task, ask:**
+1. Does this help with the **development of knvs**?
+2. Is it **not a user feature** for knvs end users?
 
-**Bei Zweifeln:** SOFORT den Entwickler fragen!
-
----
-
-## Markdown-Generierung
-
-**WICHTIG:** Innovation Manager nutzen Markdown-Viewer (Obsidian, Notion, VS Code) UND Claude Code liest die Inhalte.
-
-**Zielgruppe:**
-- **Primaer:** Innovation Manager (Menschen mit Markdown-Viewer)
-- **Sekundaer:** Claude Code / KI (muss Inhalte parsen koennen)
-
-Alle generierten Dateien muessen in beiden Kontexten gut funktionieren.
+**When in doubt:** Ask the developer IMMEDIATELY!
 
 ---
 
-## Dateinamen-Konventionen
+## Markdown Generation
 
-| Typ | Format | Beispiel |
+**IMPORTANT:** Innovation Managers use Markdown viewers (Obsidian, Notion, VS Code) AND Claude Code reads the contents.
+
+**Target audience:**
+- **Primary:** Innovation Managers (humans with a Markdown viewer)
+- **Secondary:** Claude Code / AI (must be able to parse the contents)
+
+All generated files must work well in both contexts.
+
+---
+
+## File Naming Conventions
+
+| Type | Format | Example |
 |-----|--------|---------|
-| Canvas (alle Phasen) | `[slug].md` | `ai-bookkeeping.md` |
+| Canvas (all phases) | `[slug].md` | `ai-bookkeeping.md` |
 | Research Report | `[slug].md` | `machine-customers-verified.md` |
 | Impact Atom | `[slug].md` | `vector-search-mandatory.md` |
 | Network Canvas | `[entity-slug].md` | `vendor-corp.md` |
 
-**Regel:** KEIN Datumspräfix. KEINE Nummerierung. Nur kebab-case Slug.
+**Rule:** NO date prefix. NO numbering. kebab-case slug only.
 CORRECT: `ai-bookkeeping-app.md` — WRONG: `20260220-001-ai-bookkeeping-app.md`
 
 ---
 
-## Business Model Canvas: Pflichtfelder
+## Business Model Canvas: Required Fields
 
-Jeder Canvas MUSS diese 9 Kernfelder enthalten (Osterwalder/Pigneur), als `##` Headings:
+Every Canvas MUST contain these 9 core fields (Osterwalder/Pigneur), as `##` headings:
 
-- **Value Proposition** - Welchen Wert liefern wir? Welches Problem loesen wir?
-- **Customer Segments** - Fuer wen schaffen wir Wert?
-- **Channels** - Wie erreichen wir unsere Kunden?
-- **Customer Relationships** - Welche Beziehung erwartet jedes Segment?
-- **Revenue Streams** - Wofuer sind Kunden bereit zu zahlen?
-- **Key Resources** - Welche Ressourcen braucht unser Wertversprechen?
-- **Key Activities** - Welche Aktivitaeten braucht unser Wertversprechen?
-- **Key Partnerships** - Wer sind unsere wichtigsten Partner und Lieferanten?
-- **Cost Structure** - Was sind die wichtigsten Kosten?
+- **Value Proposition** - What value do we deliver? What problem do we solve?
+- **Customer Segments** - For whom are we creating value?
+- **Channels** - How do we reach our customers?
+- **Customer Relationships** - What relationship does each segment expect?
+- **Revenue Streams** - For what are customers willing to pay?
+- **Key Resources** - What resources does our value proposition require?
+- **Key Activities** - What activities does our value proposition require?
+- **Key Partnerships** - Who are our most important partners and suppliers?
+- **Cost Structure** - What are the most important costs?
 
-**Fehlende Felder = ungueltiger Canvas.** `/knvs:sync` prueft dies.
+**Missing fields = invalid Canvas.** `/knvs:sync` checks for this.
 
-**Impact Callouts (optional):** Unter jedem BMC-Feld koennen Impact Atoms als inline Callouts eingebettet werden. Format: Obsidian-Callout-Syntax `> [!impact]`. Siehe `skills/ideate/SKILL.md` fuer Details.
+**Impact Callouts (optional):** Under each BMC field, Impact Atoms can be embedded as inline callouts. Format: Obsidian callout syntax `> [!impact]`. See `skills/ideate/SKILL.md` for details.
 
-### Phasen-spezifische Erweiterungen
+### Phase-Specific Extensions
 
-Zusaetzlich zu den 9 Kernfeldern kommen pro Phase weitere Pflicht-Elemente hinzu:
+In addition to the 9 core fields, each phase adds further required elements:
 
 - **IDEATE:** Frontmatter `status`, `progress`, `created`, `updated`. Sections: Notes, Next Steps
-- **EXPLORE:** Frontmatter zusaetzlich `innovation_risk`, `potential_revenue`. Sections: Hypotheses, Experiments
-- **EXPLOIT:** Frontmatter zusaetzlich `next_review`, `disruption_risk`, `revenue_score`. Sections: Reviews
+- **EXPLORE:** Frontmatter additionally `innovation_risk`, `potential_revenue`. Sections: Hypotheses, Experiments
+- **EXPLOIT:** Frontmatter additionally `next_review`, `disruption_risk`, `revenue_score`. Sections: Reviews
 
-Kanonische Templates fuer jede Phase stehen in den jeweiligen `skills/*/SKILL.md` unter `## Canvas Template`.
+Canonical templates for each phase are in the respective `skills/*/SKILL.md` under `## Canvas Template`.
 
 ---
 
-## Research Report: Struktur
+## Research Report: Structure
 
-Forschungsberichte in `research/` sind PRE-IDEATE Dokumente. Sie sind KEINE Business Model Canvases.
+Research reports in `research/` are PRE-IDEATE documents. They are NOT Business Model Canvases.
 
-**Pflichtfelder (Frontmatter):**
+**Required fields (frontmatter):**
 - `type: research`
 - `title`
 - `status` (hypothesis | draft | verified)
 - `created`
-- `verified` (YYYY-MM-DD, wenn status=verified)
+- `verified` (YYYY-MM-DD, when status=verified)
 
-**Optionale Felder:**
-- `source_report` (Referenz auf Originaldokument)
-- `vendor` (Name der externen Organisation, wenn Report auf einen konkreten Vendor, Partner oder Wettbewerber fokussiert)
+**Optional fields:**
+- `source_report` (reference to the original document)
+- `vendor` (name of the external organization, when the report focuses on a specific vendor, partner, or competitor)
 
-**Hinweis:** `status: verified` kann manuell gesetzt werden, wenn der Forschungsbericht
-bereits extern geprüft wurde. Das `verified`-Datumsfeld ist auch bei manueller Verifizierung
-Pflicht (eigenes Prüfdatum eintragen).
+**Note:** `status: verified` can be set manually when the research report has already been
+reviewed externally. The `verified` date field is also required for manual verification
+(enter your own review date).
 
 **Required Sections:**
-- Zusammenfassung
-- Forschungskontext (Problemraum, Marktkontext, Zielgruppe)
-- Kernbefunde (mit Quellen)
-- Stuetzende Daten
-- Implikationen fuer Geschaeftsmodell
-- Naechste Schritte
+- Summary
+- Research Context (Problem Space, Market Context, Target Audience)
+- Key Findings (with sources)
+- Supporting Data
+- Implications for Business Model
+- Next Steps
 
-**Optionale Sections:**
-- Limitationen
-- Quellenverzeichnis
+**Optional Sections:**
+- Limitations
+- Bibliography
 
-Research Reports werden via `/knvs:impact` zu Impact Atoms und via `/knvs:ideate` zu BMC Canvases transformiert.
+Research Reports are transformed via `/knvs:impact` into Impact Atoms and via `/knvs:ideate` into BMC Canvases.
 
 ### Research Report Template
 
 ```markdown
 ---
 type: research
-title: "[Forschungsthema]"
+title: "[Research Topic]"
 status: verified
 created: YYYY-MM-DD
 verified: YYYY-MM-DD
-source_report: "[Originaldateiname]"  # optional
+source_report: "[Original filename]"  # optional
 ---
 
-# Forschungsbericht: [Titel]
+# Research Report: [Title]
 
-## Zusammenfassung
+## Summary
 
-[Ueberblick ueber die Forschungsergebnisse]
-
----
-
-## Forschungskontext
-
-### Problemraum
-[Welches Problem adressiert diese Forschung?]
-
-### Marktkontext
-[Marktgroesse, Trends, Dynamiken]
-
-### Zielgruppe
-[Wer ist von diesem Problem betroffen?]
+[Overview of the research findings]
 
 ---
 
-## Kernbefunde
+## Research Context
 
-### Befund 1: [Titel]
-[Inhalt]
+### Problem Space
+[What problem does this research address?]
 
-**Quellen:**
-- [Zitat 1 mit Link]
+### Market Context
+[Market size, trends, dynamics]
 
----
-
-## Stuetzende Daten
-
-### Marktstatistiken
-[Statistiken mit Quellen]
-
-### Wettbewerbslandschaft
-[Wettbewerbsanalyse]
-
-### Technische Machbarkeit
-[Technische Einschaetzungen]
+### Target Audience
+[Who is affected by this problem?]
 
 ---
 
-## Implikationen fuer Geschaeftsmodell
+## Key Findings
 
-[Einschaetzungen wie diese Forschung ein Geschaeftsmodell informieren koennte]
+### Finding 1: [Title]
+[Content]
 
-Potenzielle BMC-Felder:
-- **Value Proposition:** [Aus Problemraum und Befunden]
-- **Customer Segments:** [Aus Zielgruppenanalyse]
-- **Revenue Streams:** [Aus Marktkontext]
+**Sources:**
+- [Citation 1 with link]
 
 ---
 
-## Naechste Schritte
+## Supporting Data
 
-- [ ] /knvs:impact um Impact Atoms zu extrahieren
-- [ ] /knvs:ideate fuer Business Model Canvas
+### Market Statistics
+[Statistics with sources]
+
+### Competitive Landscape
+[Competitive analysis]
+
+### Technical Feasibility
+[Technical assessments]
+
+---
+
+## Implications for Business Model
+
+[Assessments of how this research could inform a business model]
+
+Potential BMC fields:
+- **Value Proposition:** [From problem space and findings]
+- **Customer Segments:** [From target audience analysis]
+- **Revenue Streams:** [From market context]
+
+---
+
+## Next Steps
+
+- [ ] /knvs:impact to extract Impact Atoms
+- [ ] /knvs:ideate for Business Model Canvas
 ```
 
-### Hypothese (Research-Vorlaeuferstufe)
+### Hypothesis (Research Predecessor Stage)
 
-Hypothesen sind UNBESTAETIGTE BEHAUPTUNGEN die waehrend der Arbeit entstehen.
-Sie sind Recherche-Auftraege, keine Fakten.
+Hypotheses are UNCONFIRMED CLAIMS that arise during the work.
+They are research assignments, not facts.
 
-**Wann erfassen?**
-Wenn der User eine Behauptung trifft, die:
-- Nicht aus verifizierter Research stammt
-- Business-Model-Entscheidungen beeinflusst (z.B. Severity, Canvas-Design)
-- Validierung durch externe Recherche braucht
+**When to capture?**
+When the user makes a claim that:
+- Does not originate from verified research
+- Influences business model decisions (e.g. severity, canvas design)
+- Requires validation through external research
 
-Jeder Skill, der auf eine unbestaetigte Marktannahme stoesst, bietet
-Hypothesen-Erfassung an. Der User kann Hypothesen auch manuell anlegen.
+Every skill that encounters an unconfirmed market assumption offers
+hypothesis capture. Users can also create hypotheses manually.
 
-**Pflichtfelder (Frontmatter):**
+**Required fields (frontmatter):**
 - `type: research`
 - `title`
 - `status: hypothesis`
 - `created`
-- `claim` (Einzeiler: die zu pruefende Behauptung)
-- `bmc_fields` (Array betroffener BMC-Felder, kanonische englische Namen)
+- `claim` (single line: the claim to be tested)
+- `bmc_fields` (array of affected BMC fields, canonical English names)
 
-**Optionale Felder:**
-- `origin_impact` (Pfad zum Impact Atom, bei Severity-Dispute)
+**Optional fields:**
+- `origin_impact` (path to the Impact Atom, in case of a severity dispute)
 
 **Required Sections:**
-- Behauptung (erweitert claim mit Kontext und Nuancen)
-- Kontext (Entstehung, betroffener Canvas, Severity-Entscheidung)
-- Recherche-Auftrag (Checkliste konkreter Aufgaben)
+- Claim (expands on the claim with context and nuance)
+- Context (origin, affected canvas, severity decision)
+- Research Assignment (checklist of concrete tasks)
 
-Hypothesen enthalten KEINE Befunde, Quellen oder Korrekturprotokoll.
+Hypotheses contain NO findings, sources, or correction logs.
 
-**Lebenszyklus:**
+**Lifecycle:**
 
-| Ergebnis | Aktion |
-|----------|--------|
-| Bestaetigt | Research in research/ mit status: verified ablegen -> /knvs:impact -> Hypothese loeschen |
-| Widerlegt | Severity im Canvas korrigieren -> Hypothese loeschen |
-| Nicht relevant | Hypothese loeschen |
-| Nicht recherchiert (>14 Tage) | /knvs:sync warnt |
+| Outcome | Action |
+|---------|--------|
+| Confirmed | File research in research/ with status: verified -> /knvs:impact -> delete hypothesis |
+| Refuted | Correct severity in canvas -> delete hypothesis |
+| Not relevant | Delete hypothesis |
+| Not researched (>14 days) | /knvs:sync warns |
 
-Hypothesen sind working documents. Nach Recherche oder Verwerfung loeschen.
-Kanonisches Template steht in `skills/ideate/SKILL.md` unter `## Hypothese-Template`.
+Hypotheses are working documents. Delete after research or rejection.
+Canonical template is in `skills/ideate/SKILL.md` under `## Hypothesis Template`.
 
 ---
 
-## Impact Atom: Struktur
+## Impact Atom: Structure
 
-Impact Atoms in `impacts/` sind PRE-IDEATE Dokumente. Sie stehen zwischen Research und BMC.
-Jeder Impact beschreibt EINEN spezifischen Druck oder eine Chance fuer Geschaeftsmodelle.
+Impact Atoms in `impacts/` are PRE-IDEATE documents. They sit between Research and BMC.
+Each Impact describes ONE specific pressure or opportunity for business models.
 
-**Pflichtfelder (Frontmatter):**
-- `type: impact-atom` (fest)
+**Required fields (frontmatter):**
+- `type: impact-atom` (fixed)
 - `title`
-- `tags` (Array, Kategorisierung)
-- `driver` (Wiki-Link zu Research, oder Array bei mehreren Quellen)
-- `bmc_fields` (Array der betroffenen BMC-Felder, kanonische englische Namen)
+- `tags` (array, categorization)
+- `driver` (wiki link to research, or array for multiple sources)
+- `bmc_fields` (array of affected BMC fields, canonical English names)
 - `created` (YYYY-MM-DD)
 
 **Required Sections:**
-- Titel mit `[IMPACT]` Prefix
-- Das Szenario (Was passiert?)
-- Der Druck auf Geschaeftsmodelle (Bullet pro betroffenem BMC-Feld)
-- Quelle (Wiki-Link zum Research-Report)
+- Title with `[IMPACT]` prefix
+- The scenario (What is happening?)
+- Pressure on business models (bullet per affected BMC field)
+- Source (wiki link to the Research Report)
 
-**Regeln:**
-- Impact Atoms sind nach Erstellung unveraenderlich (immutable)
-- **Keine Severity im Atom.** Severity wird kontextspezifisch bei Canvas-Einbettung (`/knvs:ideate`) vergeben.
-- Dateiname: `<impact-slug>.md`
-- BMC-Feldnamen muessen exakt den 9 kanonischen Namen entsprechen
-- Multi-Driver: `driver` kann Array sein bei gleicher Erkenntnis aus mehreren Quellen
+**Rules:**
+- Impact Atoms are immutable after creation
+- **No severity in the atom.** Severity is assigned context-specifically during canvas embedding (`/knvs:ideate`).
+- Filename: `<impact-slug>.md`
+- BMC field names must exactly match the 9 canonical names
+- Multi-driver: `driver` can be an array when the same insight comes from multiple sources
 
-Kanonisches Template steht in `skills/impact/SKILL.md` unter `## Impact Atom Template`.
-Impact Atoms werden via `/knvs:ideate` als inline Callouts in BMC Canvases eingebettet und via `/knvs:review` als Challenge-Grundlage genutzt.
+Canonical template is in `skills/impact/SKILL.md` under `## Impact Atom Template`.
+Impact Atoms are embedded via `/knvs:ideate` as inline callouts in BMC Canvases and used via `/knvs:review` as a basis for challenges.
 
 ---
 
-## Network Canvas: Struktur
+## Network Canvas: Structure
 
-Network Canvases in `network/` bilden Geschäftsmodelle externer Parteien ab (Vendors,
-Partner, Kunden, Wettbewerber). Sie dienen als **Heimatort für indirekte Impacts** - Impacts
-die primär das externe Modell betreffen und erst sekundär auf unsere Canvases wirken.
+Network Canvases in `network/` map the business models of external parties (vendors,
+partners, customers, competitors). They serve as the **home for indirect impacts** - impacts
+that primarily affect the external model and only secondarily affect our canvases.
 
-**Warum getrennt?** Beim Betrachten unseres Canvas sollen externe Impacts nicht als
-vollständige `[!impact]`-Callouts erscheinen. Stattdessen zeigt unser Canvas nur einen
-leichtgewichtigen `[!vendor-risk]`-Verweis zum Network Canvas.
+**Why separate?** When viewing our canvas, external impacts should not appear as
+full `[!impact]` callouts. Instead, our canvas shows only a lightweight `[!vendor-risk]`
+reference to the Network Canvas.
 
-**Pflichtfelder (Frontmatter):**
-- `type: network-canvas` (fest)
-- `entity` (offizieller Name der externen Organisation)
+**Required fields (frontmatter):**
+- `type: network-canvas` (fixed)
+- `entity` (official name of the external organization)
 - `relationship` (vendor | partner | customer | competitor | industry)
-- `snapshot_date` (YYYY-MM-DD - wann war dieser Stand aktuell?)
+- `snapshot_date` (YYYY-MM-DD - when was this state current?)
 
-**Optionale Felder:**
-- `product` (Produkt/Plattform wenn relevant, z.B. "STEP")
-- `source_research` (Wiki-Link zum Research Report der Grundlage war)
+**Optional fields:**
+- `product` (product/platform if relevant, e.g. "STEP")
+- `source_research` (wiki link to the Research Report that was the basis)
 
-**BMC-Felder:** Nur die analytisch relevanten Felder befüllen - kein Zwang zu allen 9.
-Impact-Callouts werden wie im eigenen Canvas eingebettet (`> [!impact]`), beschreiben
-aber den Druck auf das EXTERNE Modell, nicht auf unseres.
+**BMC fields:** Only fill in the analytically relevant fields - no obligation to fill all 9.
+Impact callouts are embedded as in our own canvas (`> [!impact]`), but describe
+the pressure on the EXTERNAL model, not on ours.
 
-**Kein Lifecycle:** Keine IDEATE/EXPLORE/EXPLOIT-Phasen, kein `next_review`, kein
-`innovation_risk`. Network Canvases sind Analyse-Snapshots, keine Innovation-Objekte.
+**No lifecycle:** No IDEATE/EXPLORE/EXPLOIT phases, no `next_review`, no
+`innovation_risk`. Network Canvases are analysis snapshots, not innovation objects.
 
-**Staleness:** `/knvs:sync` warnt wenn `snapshot_date` älter als 90 Tage ist.
+**Staleness:** `/knvs:sync` warns when `snapshot_date` is older than 90 days.
 
 ### Network Canvas Template
 
@@ -297,96 +297,96 @@ entity: "Vendor Corp AG"
 product: "PlatformX"
 relationship: vendor
 snapshot_date: YYYY-MM-DD
-source_research: "[[research/vendor-corp-analyse]]"  # optional
+source_research: "[[research/vendor-corp-analysis]]"  # optional
 ---
 
 # Vendor Corp/PlatformX - Vendor Model Snapshot
 
 ## Value Proposition
 
-> [!impact]- KI-gestützte ERP-Alternativen setzen VP unter Druck (HIGH)
-> **Driver:** [[research/vendor-corp-analyse]]
+> [!impact]- AI-powered ERP alternatives put VP under pressure (HIGH)
+> **Driver:** [[research/vendor-corp-analysis]]
 >
-> GenAI-native Konkurrenten bieten vergleichbare ERP-Plattform-Funktionalität...
+> GenAI-native competitors offer comparable ERP platform functionality...
 >
-> _Quelle: [[research/vendor-corp-analyse]]_
+> _Source: [[research/vendor-corp-analysis]]_
 
-[Was Vendor Corp anbietet - nur bekannte / relevante Aspekte]
+[What Vendor Corp offers - only known / relevant aspects]
 
 ## Key Resources
-[Was Vendor Corp als Key Resource hat]
+[What Vendor Corp has as a Key Resource]
 
 ## Revenue Streams
-[Wie Vendor Corp verdient - relevant für unsere Cost Structure]
+[How Vendor Corp earns - relevant to our Cost Structure]
 ```
 
-### `[!vendor-risk]`-Callout im eigenen Canvas
+### `[!vendor-risk]` Callout in Our Own Canvas
 
-Wenn unser Canvas einen Vendor/Partner referenziert der in `network/` dokumentiert ist,
-wird ein `[!vendor-risk]`-Callout direkt unter dem betroffenen BMC-Feld eingefügt:
+When our canvas references a vendor/partner documented in `network/`,
+a `[!vendor-risk]` callout is inserted directly under the affected BMC field:
 
 ```markdown
 ## Key Partnerships
 
-> [!vendor-risk]- Vendor Corp/PlatformX: Vendor aktuell unter Druck ([[network/vendor-corp]])
-> Aktuelle Situation: 2 HIGH, 1 MEDIUM Impacts auf Vendor-Modell.
-> Risiko: Planungssicherheit in diesem Bereich eingeschränkt.
+> [!vendor-risk]- Vendor Corp/PlatformX: Vendor currently under pressure ([[network/vendor-corp]])
+> Current situation: 2 HIGH, 1 MEDIUM impacts on vendor model.
+> Risk: Planning reliability in this area is limited.
 
-**Vendor Corp/PlatformX** ist unser primärer ERP-Plattform-Provider...
+**Vendor Corp/PlatformX** is our primary ERP platform provider...
 ```
 
-`[!vendor-risk]` ist kein Impact Atom - es ist ein Referenz-Indikator. Die Impacts
-selbst leben im Network Canvas, nicht in `impacts/` und nicht direkt in unserem Canvas.
+`[!vendor-risk]` is not an Impact Atom - it is a reference indicator. The impacts
+themselves live in the Network Canvas, not in `impacts/` and not directly in our canvas.
 
 ---
 
-## Namespace-Strategie
+## Namespace Strategy
 
-| Element | Format | Beispiel |
-|---------|--------|----------|
-| Skills | `/knvs:` Prefix | `/knvs:impact`, `/knvs:ideate`, `/knvs:start` |
-| Skill-Dateien | `<skill>/SKILL.md` | `ideate/SKILL.md`, `start/SKILL.md` |
-| Konfiguration | `.knvs/` Ordner | `.knvs/config.json` |
-| Phasen-Ordner | Kurz, eindeutig | `research/`, `impacts/`, `ideate/`, `explore/`, `exploit/` |
+| Element | Format | Example |
+|---------|--------|---------|
+| Skills | `/knvs:` prefix | `/knvs:impact`, `/knvs:ideate`, `/knvs:start` |
+| Skill files | `<skill>/SKILL.md` | `ideate/SKILL.md`, `start/SKILL.md` |
+| Configuration | `.knvs/` folder | `.knvs/config.json` |
+| Phase folders | Short, unambiguous | `research/`, `impacts/`, `ideate/`, `explore/`, `exploit/` |
 
-### Konfliktvermeidung
+### Conflict Avoidance
 
-- Keine generischen Dateinamen (`config.json`, `settings.md`)
-- Keine Ueberschreibung von Standard-Dateien
-- Klare Abgrenzung durch Prefixes/Namespaces
-- Phasen-Ordner sind kurz aber spezifisch genug
-
----
-
-## Emoji-Nutzung
-
-**Regel:** Emojis nur wenn sie echten Mehrwert bieten - nicht als Dekoration.
-
-### Erlaubt
-- Status-Indikatoren wo Text allein unklar waere (z.B. in kompakten Tabellen)
-- Phasen-Symbole zur schnellen visuellen Orientierung
-
-### Verboten
-- Dekorative Emojis ohne Funktion
-- Mehrere Emojis pro Zeile/Ueberschrift
-- Emojis in Fliesstext
-- "AI-Slop" Style (uebertriebene Emoji-Nutzung)
+- No generic file names (`config.json`, `settings.md`)
+- No overwriting of standard files
+- Clear separation through prefixes/namespaces
+- Phase folders are short but specific enough
 
 ---
 
-## Tool-Agnostisch: Manueller Workflow immer moeglich
+## Emoji Usage
 
-**Kernprinzip:** Der Nutzer muss immer in der Lage sein, den knvs-Prozess **manuell ohne Skills** durchzufuehren. Das gewaehlte Markdown-Tool (Obsidian, VS Code, Notion, etc.) darf keine Rolle spielen.
+**Rule:** Emojis only when they provide real value - not as decoration.
 
-**Regeln:**
-- Keine Features bauen, die nur mit spezifischen Tools funktionieren
-- Alle Dateien sind reines Markdown mit Standard-Frontmatter
-- Skills sind Helfer, nicht Voraussetzung
-- Nutzer koennen Dateien manuell erstellen, verschieben, bearbeiten
-- Ordnerstruktur und Dateiformat sind selbsterklaerend
+### Allowed
+- Status indicators where text alone would be unclear (e.g. in compact tables)
+- Phase symbols for quick visual orientation
 
-**Verboten:**
-- Obsidian-spezifische Plugins oder Dataview-Queries als Kernfunktion
-- Proprietaere Dateiformate
-- Features, die nur mit Claude Code funktionieren
-- Abhaengigkeiten von externen APIs oder Services
+### Forbidden
+- Decorative emojis without function
+- Multiple emojis per line/heading
+- Emojis in body text
+- "AI-slop" style (excessive emoji use)
+
+---
+
+## Tool-Agnostic: Manual Workflow Always Possible
+
+**Core principle:** The user must always be able to carry out the knvs process **manually without skills**. The chosen Markdown tool (Obsidian, VS Code, Notion, etc.) must play no role.
+
+**Rules:**
+- Do not build features that only work with specific tools
+- All files are pure Markdown with standard frontmatter
+- Skills are helpers, not a prerequisite
+- Users can create, move, and edit files manually
+- Folder structure and file format are self-explanatory
+
+**Forbidden:**
+- Obsidian-specific plugins or Dataview queries as core functionality
+- Proprietary file formats
+- Features that only work with Claude Code
+- Dependencies on external APIs or services

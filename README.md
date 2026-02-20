@@ -42,12 +42,13 @@ Add this marketplace, then install individual plugins:
 | [**compass**](compass/) | Session Goal Alignment - Vision tracking and drift detection | Stable |
 | [**music-production**](music-production/) | Music Production Workflow Companion | Scaffold |
 | [**knvs**](knvs/) | Business Model Innovation - Testing Business Ideas with Claude Code | Stable |
-| [**trips**](trips/) | Dienstreisen-Tracking - Reisekosten und Kilometerpauschale fuer die Steuererklaerung | Stable |
+| [**trips**](trips/) | Business Travel Tracker - Record Dienstreisen and generate Finanzamt reports | Stable |
 
 See each plugin's README for details:
 - [compass/README.md](compass/README.md)
 - [music-production/README.md](music-production/README.md)
 - [knvs/README.md](knvs/README.md)
+- [trips/README.md](trips/README.md)
 
 ---
 

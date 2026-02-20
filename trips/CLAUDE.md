@@ -1,34 +1,34 @@
-# trips: Plugin-spezifische Regeln
+# trips: Plugin-Specific Rules
 
 ## Vision
 
-Dienstreisen-Tracking fuer die deutsche Steuererklaerung. Reisen erfassen, auflisten
-und Finanzamt-taugliche Reports generieren. Kein Lifecycle - reine Erfassung und Auswertung.
+Business travel tracking (Dienstreisen) for the German tax return (Steuererklaerung). Record trips, list
+them, and generate Finanzamt-ready reports. No lifecycle - pure data entry and reporting.
 
-Eine Markdown-Datei pro Reise ist das zentrale Format. YAML-Frontmatter ist die Single
-Source of Truth, der Markdown-Body bietet menschenlesbare Darstellung plus Notizen.
+One Markdown file per trip is the central format. YAML frontmatter is the single
+source of truth; the Markdown body provides a human-readable view plus notes.
 
-### Strikte Regeln
+### Strict Rules
 
-- **Nur Entwicklungs-Support** fuer trips (Code-Gen, Docs, Automation)
-- **Keine User-Features** die Endnutzer direkt nutzen wuerden
-- **Keine automatischen Deployments** ohne Review
+- **No infrastructure features** without explicit review (no automated deployments, no background services)
+- **No scope creep** - trips is a recording and reporting tool, not a full accounting system
+- **No external dependencies** beyond the optional MCP server for PDF export
 
-### Warnsignal-Check
+### Warning-Signal Check
 
-**Vor jeder Aufgabe fragen:**
-1. Hilft dies bei der **Entwicklung von trips**?
-2. Ist es **kein User-Feature** fuer Endnutzer?
+**Before each task, ask:**
+1. Does this help users **record or report business trips**?
+2. Does this stay within the established data format and folder structure?
 
-**Bei Zweifeln:** SOFORT den Entwickler fragen!
+**When in doubt:** Ask the developer immediately!
 
 ---
 
-## Datenstruktur
+## Data Structure
 
-### Konfiguration
+### Configuration
 
-Eine Datei: `.trips/config.json` (nur shared/team-Daten)
+One file: `.trips/config.json` (shared/team data only)
 
 ```json
 {
@@ -37,15 +37,15 @@ Eine Datei: `.trips/config.json` (nur shared/team-Daten)
 }
 ```
 
-**Setup:** `/trips:start` fragt `dataDir` und `company` ab. Projekt-CLAUDE.md kann
-`## Trips Defaults` mit beiden Werten bereitstellen - dann ist kein Setup noetig.
+**Setup:** `/trips:start` asks for `dataDir` and `company`. A project CLAUDE.md can provide
+`## Trips Defaults` with both values - in that case no setup is needed.
 
-### Mitarbeitername
+### Employee Name
 
-Kommt aus dem Claude-Kontext (User Preferences / `~/.claude/CLAUDE.md`), nicht aus der Config.
-Falls der Name nicht aus dem Kontext bekannt ist: den User fragen.
+Comes from the Claude context (User Preferences / `~/.claude/CLAUDE.md`), not from config.
+If the name is not available from context: ask the user.
 
-### Datenverzeichnis (vom User konfiguriert)
+### Data Directory (user-configured)
 
 ```
 <dataDir>/
@@ -61,157 +61,157 @@ Falls der Name nicht aus dem Kontext bekannt ist: den User fragen.
         2026-02-03_berlin.md
 ```
 
-### Pfad-Konstruktion
+### Path Construction
 
-Alle Reisedateien und Reports leben im Mitarbeiter-Ordner:
+All trip files and reports live in the employee folder:
 
 ```
 <dataDir>/<YYYY>/<MM - YYYY>/<FirstName LastName>/
 ```
 
-- `<YYYY>`: 4-stelliges Jahr
-- `<MM - YYYY>`: Zweistelliger Monat + ` - ` + Jahr (z.B. `01 - 2026`). Fuehrende Null.
-- `<FirstName LastName>`: Aus Claude-Kontext (User Preferences), Originalschreibweise.
-- Ordner erstellen falls noetig (mkdir -p Aequivalent).
+- `<YYYY>`: 4-digit year
+- `<MM - YYYY>`: Two-digit month + ` - ` + year (e.g. `01 - 2026`). Leading zero.
+- `<FirstName LastName>`: From Claude context (User Preferences), original spelling.
+- Create folders if needed (mkdir -p equivalent).
 
-`dataDir` ist relativ zum Workspace-Root (cwd). Forward Slashes verwenden.
+`dataDir` is relative to the workspace root (cwd). Use forward slashes.
 
-### Pfad-Handling
+### Path Handling
 
-- **Bash-Befehle:** Pfade IMMER quoten (`"pfad mit leerzeichen"`)
-- **Write/Read/Edit/Glob:** Handlen Leerzeichen korrekt, kein Quoting noetig
-- Nach Write-Aufruf NICHT per Bash/ls verifizieren (falsche "nicht gefunden"-Meldungen)
+- **Bash commands:** Always quote paths (`"path with spaces"`)
+- **Write/Read/Edit/Glob:** Handle spaces correctly, no quoting needed
+- Do NOT verify via Bash/ls after Write calls (can produce false "not found" errors)
 
-### Reisedatei-Format
+### Trip File Format
 
-YAML-Frontmatter = Single Source of Truth. Body = Tabelle + Notizen.
+YAML frontmatter = single source of truth. Body = table + notes.
 
-Felder pro Reise:
-- name (string, required) - Kurze Beschreibung der Reise
-- startDate (YYYY-MM-DD, required) - Startdatum
-- endDate (YYYY-MM-DD, required) - Enddatum
-- destination (string, required) - Zielort
-- purpose (string, required) - Geschaeftlicher Zweck
-- startTime (HH:MM, optional) - Abfahrtszeit
-- endTime (HH:MM, optional) - Rueckkunftszeit
-- distanceKm (number, optional) - Gefahrene Kilometer
-- reimbursementEur (number, optional) - Km-Erstattung (distanceKm x 0,30)
-- created (YYYY-MM-DD, auto) - Erstellungsdatum
+Fields per trip:
+- name (string, required) - Short trip description
+- startDate (YYYY-MM-DD, required) - Start date
+- endDate (YYYY-MM-DD, required) - End date
+- destination (string, required) - Destination
+- purpose (string, required) - Business purpose
+- startTime (HH:MM, optional) - Departure time
+- endTime (HH:MM, optional) - Return time
+- distanceKm (number, optional) - Distance driven in km
+- reimbursementEur (number, optional) - Km reimbursement (distanceKm x 0.30)
+- created (YYYY-MM-DD, auto) - Creation date
 
-### Berechnungen
+### Calculations
 
-**Kilometerpauschale:** distanceKm x 0,30 EUR/km (§ 9 Abs. 1 Satz 3 Nr. 4a EStG).
-Rechenweg immer sichtbar im Body: `580 km x 0,30 EUR/km = 174,00 EUR`.
-Ergebnis als `reimbursementEur` im YAML gespeichert.
+**Kilometerpauschale:** distanceKm x 0.30 EUR/km (§ 9 Abs. 1 Satz 3 Nr. 4a EStG).
+Always show the calculation in the body: `580 km x 0.30 EUR/km = 174.00 EUR`.
+Store the result as `reimbursementEur` in YAML.
 
-**Reisetage:** Kalendertage von startDate bis endDate inklusive.
-Gleicher Tag = 1 Reisetag. 10.02. bis 12.02. = 3 Reisetage.
+**Travel days (Reisetage):** Calendar days from startDate to endDate inclusive.
+Same day = 1 travel day. Feb 10 to Feb 12 = 3 travel days.
 
-### Dateibenennungsregel
+### File Naming Rule
 
-`YYYY-MM-DD_<ziel-kebab-case>.md`
+`YYYY-MM-DD_<destination-kebab-case>.md`
 
-Beispiele:
+Examples:
 - `2026-02-03_berlin.md`
 - `2026-01-20_muenchen.md`
 - `2026-03-15_frankfurt-am-main.md`
 
-Regeln: Kleinbuchstaben, keine Umlaute (ue statt ue), Bindestriche statt Leerzeichen.
+Rules: Lowercase, no umlauts (use ue instead of ü), hyphens instead of spaces.
 
-### Report-Dateien
+### Report Files
 
-`.md` ist Source of Truth. `.pdf` ist generiertes Exportformat (via MCP, siehe unten).
+`.md` is the source of truth. `.pdf` is the generated export format (via MCP, see below).
 
-| Scope | Markdown | PDF | Ablageort |
-|-------|----------|-----|-----------|
-| Monatsreport | `_report-YYYY-MM.md` | `_report-YYYY-MM.pdf` | `<dataDir>/<YYYY>/<MM - YYYY>/<Name>/` |
+| Scope | Markdown | PDF | Location |
+|-------|----------|-----|----------|
+| Monthly report | `_report-YYYY-MM.md` | `_report-YYYY-MM.pdf` | `<dataDir>/<YYYY>/<MM - YYYY>/<Name>/` |
 
 ---
 
-## MCP-Server: markdown2pdf
+## MCP Server: markdown2pdf
 
-Das Plugin bringt einen MCP-Server mit (`trips/.mcp.json`), der automatisch startet
-wenn das Plugin aktiviert ist. Er konvertiert Markdown-Reports zu PDF.
+The plugin ships with an MCP server (`trips/.mcp.json`) that starts automatically
+when the plugin is activated. It converts Markdown reports to PDF.
 
 **Server:** `markdown2pdf-mcp` (Node.js + Puppeteer, on-demand via npx)
 **Tool:** `create_pdf_from_markdown`
-**Verwendung:** Automatisch durch `/trips:report` nach dem Speichern der .md-Datei.
+**Usage:** Automatically called by `/trips:report` after saving the .md file.
 
-MCP ist ein Automatisierungslayer - kein Kernbestandteil (siehe ADR-007).
-Ohne MCP bleibt der Markdown-Report vollstaendig nutzbar.
+MCP is an automation layer - not a core component (see ADR-007).
+Without MCP, the Markdown report remains fully usable.
 
-**WICHTIG:** `outputFilename` akzeptiert NUR Dateinamen (z.B. `_report-2026-02.pdf`), keine Pfade.
-Das Tool speichert in `M2P_OUTPUT_DIR` (default: HOME). PDF danach in den Zielordner verschieben.
+**IMPORTANT:** `outputFilename` accepts ONLY filenames (e.g. `_report-2026-02.pdf`), not paths.
+The tool saves to `M2P_OUTPUT_DIR` (default: HOME). Move the PDF to the target folder afterwards.
 
-**Voraussetzungen fuer PDF-Export:**
-- Node.js 18+ und npm (fuer npx)
-- Puppeteer laedt beim ersten Start ~170 MB Chromium herunter
-- Ohne Node.js: PDF-Export wird uebersprungen, alle anderen Features funktionieren normal
+**Prerequisites for PDF export:**
+- Node.js 18+ and npm (for npx)
+- Puppeteer downloads ~170 MB Chromium on first start
+- Without Node.js: PDF export is skipped, all other features work normally
 
-**Version-Pflege:** Version ist in `.mcp.json` gepinnt. Bei Bedarf pruefen:
-`npm view markdown2pdf-mcp version` -- bei neuer Version `.mcp.json` aktualisieren.
-
----
-
-## Namespace-Strategie
-
-| Element | Format | Beispiel |
-|---------|--------|----------|
-| Skills | `/trips:` Prefix | `/trips:start`, `/trips:new` |
-| Skill-Dateien | `skills/<skill>/SKILL.md` | `skills/start/SKILL.md` |
-| Konfiguration | `.trips/` Ordner | `.trips/config.json` |
-| Reisedateien | `YYYY-MM-DD_ziel.md` | `2026-02-03_berlin.md` |
-
-### Konfliktvermeidung
-
-- State-Dateien in `.trips/` (versteckter Ordner, gitignored)
-- Klare Abgrenzung durch `/trips:` Namespace
-- Datenverzeichnis vom User frei waehlbar
+**Version maintenance:** Version is pinned in `.mcp.json`. Check when needed:
+`npm view markdown2pdf-mcp version` — update `.mcp.json` when a new version is available.
 
 ---
 
-## Markdown-Generierung
+## Namespace Strategy
 
-**WICHTIG:** Nutzer und Steuerberater lesen Reisedateien in Markdown-Viewern (Obsidian,
-VS Code) UND Claude Code verarbeitet sie.
+| Element | Format | Example |
+|---------|--------|---------|
+| Skills | `/trips:` prefix | `/trips:start`, `/trips:new` |
+| Skill files | `skills/<skill>/SKILL.md` | `skills/start/SKILL.md` |
+| Configuration | `.trips/` folder | `.trips/config.json` |
+| Trip files | `YYYY-MM-DD_destination.md` | `2026-02-03_berlin.md` |
 
-**Zielgruppe:**
-- **Primaer:** Nutzer / Steuerberater (Menschen mit Markdown-Viewer)
-- **Sekundaer:** Claude Code / KI (muss YAML-Frontmatter parsen koennen)
+### Conflict Avoidance
 
-Alle generierten Dateien muessen in beiden Kontexten gut funktionieren.
-
----
-
-## Emoji-Nutzung
-
-**Regel:** Emojis nur wenn sie echten Mehrwert bieten - nicht als Dekoration.
-
-### Erlaubt
-- Status-Indikatoren wo Text allein unklar waere (z.B. in kompakten Tabellen)
-
-### Verboten
-- Dekorative Emojis ohne Funktion
-- Mehrere Emojis pro Zeile/Ueberschrift
-- Emojis in Fliesstext
-- "AI-Slop" Style
+- State files in `.trips/` (hidden folder, gitignored)
+- Clear separation via `/trips:` namespace
+- Data directory freely configurable by the user
 
 ---
 
-## Tool-Agnostisch: Manueller Workflow immer moeglich
+## Markdown Generation
 
-**Kernprinzip:** Der Nutzer muss immer in der Lage sein, Dienstreisen **manuell ohne
-Skills** zu erfassen. Das gewaehlte Tool (Obsidian, VS Code, etc.) darf keine Rolle spielen.
+**IMPORTANT:** Users and tax advisors (Steuerberater) read trip files in Markdown viewers
+(Obsidian, VS Code) AND Claude Code processes them.
 
-**Regeln:**
-- Keine Features bauen, die nur mit spezifischen Tools funktionieren
-- Alle Dateien sind reines Markdown mit Standard-Frontmatter
-- Skills sind Helfer, nicht Voraussetzung
-- Nutzer koennen Dateien manuell erstellen und bearbeiten
-- Ordnerstruktur und Dateiformat sind selbsterklaerend
+**Audience:**
+- **Primary:** User / Steuerberater (humans with Markdown viewer)
+- **Secondary:** Claude Code / AI (must be able to parse YAML frontmatter)
 
-**Verboten:**
-- Obsidian-spezifische Plugins oder Dataview-Queries als Kernfunktion
-- Proprietaere Dateiformate
-- Features, die nur mit Claude Code funktionieren
-- Abhaengigkeiten von externen APIs oder Services
+All generated files must work well in both contexts.
+
+---
+
+## Emoji Usage
+
+**Rule:** Emojis only where they add real value - not as decoration.
+
+### Allowed
+- Status indicators where text alone would be unclear (e.g. in compact tables)
+
+### Forbidden
+- Decorative emojis without function
+- Multiple emojis per line/heading
+- Emojis in body text
+- "AI-slop" style
+
+---
+
+## Tool-Agnostic: Manual Workflow Always Possible
+
+**Core principle:** The user must always be able to record Dienstreisen **manually without
+skills**. The chosen tool (Obsidian, VS Code, etc.) must not matter.
+
+**Rules:**
+- Do not build features that only work with specific tools
+- All files are pure Markdown with standard frontmatter
+- Skills are helpers, not prerequisites
+- Users can create and edit files manually
+- Folder structure and file format are self-explanatory
+
+**Forbidden:**
+- Obsidian-specific plugins or Dataview queries as core functionality
+- Proprietary file formats
+- Features that only work with Claude Code
+- Dependencies on external APIs or services
