@@ -1,0 +1,17 @@
+{
+  "description": "Trips session hook - reminds user to track business travel at session start",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "Check if .trips/config.json exists in the current working directory.\n\nIf .trips/config.json does NOT exist:\n  - approve immediately with no output\n\nIf .trips/config.json exists:\n  1. Read .trips/config.json to get the dataDir\n  2. Try to find the most recently modified trip file in the dataDir:\n     - Look for files matching YYYY-MM-DD_*.md (NOT _report-*.md files) in the employee subfolders\n     - Find the one with the most recent startDate in frontmatter, or the most recently modified file\n  3. If a recent trip is found:\n     - Output: '[trips] Last trip: <destination> on <startDate> | /trips:new to record another'\n  4. If dataDir doesn't exist or no trip files found:\n     - Output: '[trips] No trips recorded yet. Use /trips:new to start.'\n  5. Return 'approve'\n\nIMPORTANT: This hook is read-only. Do NOT write files. Do NOT ask questions.\nAlways approve. If any error occurs (missing folder, unreadable file), approve silently.",
+            "timeout": 30
+          }
+        ]
+      }
+    ]
+  }
+}
