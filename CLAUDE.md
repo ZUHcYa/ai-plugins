@@ -38,7 +38,7 @@ Niemals direkt auf main arbeiten. Bei jeder Aufgabe automatisch Feature-Branch e
 
 - Commit -> SOFORT Push (kein lokaler Commit ohne Push)
 - WIP-Commits erlaubt: `WIP: Beschreibung`
-- Direct merge zu main erlaubt (kein PR noetig)
+- Direct merge zu main erlaubt (kein PR noetig) — Claude merged automatisch nach Push
 
 **Commit-Format:**
 ```
