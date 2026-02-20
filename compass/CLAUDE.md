@@ -10,6 +10,18 @@ Kritischer Begleiter fuer Session-Alignment. Haelt die Richtung, erkennt Drift, 
 - **Keine User-Features** die Endnutzer direkt nutzen wuerden
 - **Keine automatischen Deployments** ohne Review
 
+### Versionierung
+
+`CHANGELOG.md` ist die einzige Wahrheitsquelle fuer die Version. `plugin.json` wird automatisch
+per Git Pre-commit Hook synchronisiert — niemals manuell bearbeiten.
+
+| Aenderungstyp | Version-Bump |
+|---------------|-------------|
+| Neues Feature, Breaking Change in Skills/Commands | Minor (`0.x.0`) |
+| Bugfix, Docs-Korrektur | Patch (`0.x.1`) |
+
+Vor jedem Commit immer einen `## [x.y.z] - YYYY-MM-DD` Eintrag in `CHANGELOG.md` anlegen.
+
 ### Warnsignal-Check
 
 **Vor jeder Aufgabe fragen:**
