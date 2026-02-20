@@ -17,6 +17,16 @@
       "name": "compass",
       "source": "./compass",
       "description": "Session Goal Alignment - Vision tracking, automatic drift detection, and strategic challenging"
+    },
+    {
+      "name": "knvs",
+      "source": "./knvs",
+      "description": "Business Model Innovation Management - Testing Business Ideas with Claude Code"
+    },
+    {
+      "name": "trips",
+      "source": "./trips",
+      "description": "Dienstreisen-Tracking fuer deutsche Steuererklaerung - Reisen erfassen, auflisten, Finanzamt-Report generieren"
     }
   ]
 }

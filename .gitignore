@@ -44,6 +44,9 @@ Thumbs.db
 # Music Production - Private config
 .music-production/
 
+# knvs - Private business model state
+.knvs/
+
 # Trips - Private trip tracking config
 .trips/
 

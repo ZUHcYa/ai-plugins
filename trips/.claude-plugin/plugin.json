@@ -1,0 +1,12 @@
+{
+  "version": "0.4.0",
+  "name": "trips",
+  "description": "Dienstreisen-Tracking fuer deutsche Steuererklaerung - Reisen erfassen, auflisten, Finanzamt-Report generieren",
+  "author": {
+    "name": "zuhcya",
+    "url": "https://github.com/ZUHcYa"
+  },
+  "repository": "https://github.com/ZUHcYa/ai-plugins",
+  "keywords": ["dienstreisen", "business-travel", "tax", "finanzamt", "reisekosten", "kilometerpauschale"],
+  "mcpServers": "../.mcp.json"
+}

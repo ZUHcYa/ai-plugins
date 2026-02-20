@@ -1,0 +1,11 @@
+{
+  "version": "0.12.0",
+  "name": "knvs",
+  "description": "Business Model Innovation Management - Testing Business Ideas with Claude Code",
+  "author": {
+    "name": "zuhcya",
+    "url": "https://github.com/ZUHcYa"
+  },
+  "repository": "https://github.com/ZUHcYa/ai-plugins",
+  "keywords": ["innovation", "strategyzer", "business-model-canvas", "testing-business-ideas", "impact-analysis"]
+}

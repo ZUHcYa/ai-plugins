@@ -5,8 +5,8 @@
 Jedes Plugin hat seinen eigenen Ordner im Root (z.B. `compass/`).
 Plugin-spezifische Regeln stehen in der jeweiligen `CLAUDE.md` des Plugin-Ordners.
 
-**Plugins:** compass (Session Alignment), music-production (Music Production Lifecycle)
-**State-Dirs:** `.compass/`, `.music-production/` (alle gitignored)
+**Plugins:** compass (Session Alignment), music-production (Music Production Lifecycle), knvs (Business Model Innovation), trips (Dienstreisen-Tracking)
+**State-Dirs:** `.compass/`, `.music-production/`, `.knvs/`, `.trips/` (alle gitignored)
 
 ## NIH-Check
 

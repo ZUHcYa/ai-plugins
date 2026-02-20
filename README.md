@@ -5,7 +5,8 @@
 A marketplace of specialized plugins covering various domains:
 - **Creative workflows** (Music Production)
 - **Productivity & alignment** (Session Goal Tracking)
-- _...and more to come_
+- **Business innovation** (Business Model Canvas)
+- **Finance & compliance** (Dienstreisen / Business Travel)
 
 Each plugin follows a tool-agnostic philosophy: all workflows work with plain Markdown in any editor (Obsidian, VS Code, Notion). Claude Code skills are optional helpers, never requirements.
 
@@ -28,6 +29,8 @@ Add this marketplace, then install individual plugins:
 ```bash
 /plugin install compass@ai-plugins
 /plugin install music-production@ai-plugins
+/plugin install knvs@ai-plugins
+/plugin install trips@ai-plugins
 ```
 
 ---
@@ -38,10 +41,13 @@ Add this marketplace, then install individual plugins:
 |--------|-------------|--------|
 | [**compass**](compass/) | Session Goal Alignment - Vision tracking and drift detection | Stable |
 | [**music-production**](music-production/) | Music Production Workflow Companion | Scaffold |
+| [**knvs**](knvs/) | Business Model Innovation - Testing Business Ideas with Claude Code | Stable |
+| [**trips**](trips/) | Dienstreisen-Tracking - Reisekosten und Kilometerpauschale fuer die Steuererklaerung | Stable |
 
 See each plugin's README for details:
 - [compass/README.md](compass/README.md)
 - [music-production/README.md](music-production/README.md)
+- [knvs/README.md](knvs/README.md)
 
 ---
 
@@ -58,6 +64,16 @@ ai-plugins/
 │   ├── skills/
 │   └── hooks/
 ├── music-production/         # Music Production (scaffold)
+│   ├── .claude-plugin/
+│   │   └── plugin.json
+│   ├── CLAUDE.md
+│   └── skills/
+├── knvs/                     # Business Model Innovation
+│   ├── .claude-plugin/
+│   │   └── plugin.json
+│   ├── CLAUDE.md
+│   └── skills/
+├── trips/                    # Dienstreisen-Tracking
 │   ├── .claude-plugin/
 │   │   └── plugin.json
 │   ├── CLAUDE.md
