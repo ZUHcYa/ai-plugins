@@ -4,6 +4,21 @@ All notable changes to knvs will be documented in this file.
 
 ---
 
+## [0.13.0] - 2026-02-20
+
+### Changed
+
+- **BREAKING:** Impact callouts now include a direction symbol prefix in the title: `▼` (Threat), `▲` (Opportunity), `▼▲` (Both)
+- **Severity Assessment** renamed to **Severity & Direction Assessment** in `/knvs:ideate` — direction is proposed together with severity in a single step
+- Direction is context-specific (same impact can be ▼ Threat for one model and ▲ Opportunity for another) and is NOT stored in the Impact Atom
+- Hypothesis backlink wording updated to "Severity + Direction based on hypothesis: ..."
+
+### Migration
+
+Existing callouts without a direction symbol remain valid. Add the symbol during the next `/knvs:ideate` or `/knvs:review` session on the affected canvas.
+
+---
+
 ## [0.12.0] - 2026-02-20
 
 ### Changed

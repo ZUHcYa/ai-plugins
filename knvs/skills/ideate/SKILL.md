@@ -174,15 +174,15 @@ Claude: No Impact Atoms found for this research.
 
 ---
 
-## Severity Assessment
+## Severity & Direction Assessment
 
-Impact Atoms contain **no severity**. Severity is assigned here - in the context of the specific BMC.
+Impact Atoms contain **no severity and no direction**. Both are assigned here - in the context of the specific BMC.
 
 ### Why here and not in the impact?
 
-An impact describes WHAT happens (fact). How severe it is depends on the specific business model:
-- "Algorithmic price comparison" is **High** for a B2C price-comparison platform (core value prop affected)
-- The same impact is **Low** for B2B Enterprise SaaS (fixed annual contracts, no spot-pricing)
+An impact describes WHAT happens (fact). How severe it is — and whether it is a threat or opportunity — depends on the specific business model:
+- "Algorithmic price comparison" is **High ▼ Threat** for a B2C price-comparison platform (core value prop undermined)
+- The same impact is **Low ▲ Opportunity** for a B2B analytics SaaS (data signal to improve recommendations)
 
 ### Severity Criteria (BMC-context-specific)
 
@@ -192,24 +192,32 @@ An impact describes WHAT happens (fact). How severe it is depends on the specifi
 | **Medium** | Competitive disadvantage for THIS business model. Adaptation needed, but not total failure. |
 | **Low** | Optimization potential for THIS business model. Nice-to-have, not business-critical. |
 
+### Direction Criteria (BMC-context-specific)
+
+| Symbol | Direction | Criterion |
+|--------|-----------|-----------|
+| **▼** | Threat | Impact exerts pressure — the business model must react or face disadvantage. |
+| **▲** | Opportunity | Impact creates an opening — the business model could exploit it for advantage. |
+| **▼▲** | Both | Ambivalent — threatens current model but simultaneously enables a strategic pivot. |
+
 ### Process
 
 1. For each Impact Atom: analyze how it affects the specific BMC dimensions of this canvas
 2. Consider: Value Proposition, Customer Segments, Revenue Streams of the canvas
-3. Propose severity with reasoning
+3. Propose **severity + direction** together with reasoning
 4. User confirms or changes
 
 ### Example
 
 ```
 Claude: 3 Impact Atoms found for this research.
-        Assessing severity for this canvas (B2C price-comparison platform)...
+        Assessing severity & direction for this canvas (B2C price-comparison platform)...
 
         Impact 1: Algorithmic price comparison
         BMC Fields: Revenue Streams, Channels
         Analysis: Transparency is the core value prop. Algorithmic buyers
                   bypass the UI and thus the commission model.
-        Proposed severity: HIGH
+        Proposed: HIGH ▼ Threat
 
         -> Accept? [Y/n/edit]
 
@@ -218,15 +226,16 @@ User: Y
 Claude: Impact 2: Vector search becomes standard
         BMC Fields: Key Resources
         Analysis: Platform is based on structured product data,
-                  not on free-text search. Vector expertise is nice-to-have.
-        Proposed severity: LOW
+                  not on free-text search. Vector expertise is nice-to-have,
+                  but early adoption could extend platform reach.
+        Proposed: LOW ▲ Opportunity
 
         -> Accept? [Y/n/edit]
 ```
 
-### Severity Dispute: Hypothesis Capture
+### Severity/Direction Dispute: Hypothesis Capture
 
-When the user rejects the severity and their reasoning is based on
+When the user rejects the severity or direction and their reasoning is based on
 an unverified market assumption:
 
 1. Identify the assumption and formulate it as a single line
@@ -234,32 +243,32 @@ an unverified market assumption:
    Should I capture a hypothesis as a research assignment?"
 3. If yes: create file in `research/<slug>.md` with `status: hypothesis`
    (see Hypothesis Template below)
-4. Apply the user's severity in the canvas
+4. Apply the user's severity and direction in the canvas
 5. Add backlink to the callout reasoning:
-   `(Severity based on hypothesis: [[research/<slug>]])`
+   `(Severity + Direction based on hypothesis: [[research/<slug>]])`
 
 Only offer hypothesis capture when the reasoning contains an unconfirmed
 market assumption - not when there is a disagreement about the analysis.
 
 ```
 Claude: Impact 2: Vector search becomes standard
-        Proposed severity: LOW
+        Proposed: LOW ▲ Opportunity
         -> Accept? [Y/n/edit]
 
-User:   n - HIGH, because Vendor X is missing the AI shift
+User:   n - HIGH ▼ Threat, because [Vendor] is missing the AI shift
 
 Claude: This assessment is based on an unverified assumption:
-        "Vendor X is missing the AI shift"
+        "[Vendor] is missing the AI shift"
 
         Should I capture a hypothesis as a research assignment?
-        [Y] Capture hypothesis + apply severity
-        [N] Apply severity without capture
-        [A] Stay with LOW
+        [Y] Capture hypothesis + apply severity & direction
+        [N] Apply severity & direction without capture
+        [A] Stay with LOW ▲ Opportunity
 
 User:   Y
 
-Claude: -> research/vendor-x-ki-wandel.md created
-        -> Severity HIGH applied (with hypothesis backlink in callout)
+Claude: -> research/vendor-ki-shift.md created
+        -> HIGH ▼ Threat applied (with hypothesis backlink in callout)
 ```
 
 ---
@@ -319,13 +328,15 @@ When creating a BMC from research with related impacts, embed callouts directly 
 
 2. **Callout structure:**
    ```markdown
-   > [!impact]- [Impact Title from frontmatter] ([SEVERITY])
+   > [!impact]- ▼ [Impact Title from frontmatter] ([SEVERITY])
    > **Driver:** [[research/source-slug from driver field]]
    >
    > [Field-specific reasoning from "Pressure on business models" bullet for this dimension]
    >
    > _Source: [[impacts/impact-filename]]_
    ```
+
+   Direction symbol prefix: `▼` (Threat), `▲` (Opportunity), `▼▲` (Both)
 
 3. **Multiple impacts per dimension:**
    - Stack vertically (separate callouts, blank line between)
@@ -347,7 +358,7 @@ Extract the relevant bullet from impact atom's "Pressure on business models" sec
 
 **Generated under `## Value Proposition`:**
 ```markdown
-> [!impact]- Semantic Vectors Instead of Images (HIGH)
+> [!impact]- ▼ Semantic Vectors Instead of Images (HIGH)
 > **Driver:** [[research/machine-customers-verified]]
 >
 > Systems that only deliver "visuals" become invisible.
@@ -357,7 +368,7 @@ Extract the relevant bullet from impact atom's "Pressure on business models" sec
 
 **Generated under `## Key Resources`:**
 ```markdown
-> [!impact]- Semantic Vectors Instead of Images (HIGH)
+> [!impact]- ▼ Semantic Vectors Instead of Images (HIGH)
 > **Driver:** [[research/machine-customers-verified]]
 >
 > Vector databases become mandatory.
@@ -374,7 +385,7 @@ Fallback to "The scenario" text from the impact atom.
 **Multi-driver impacts:**
 Show all drivers comma-separated:
 ```markdown
-> [!impact]- Title (HIGH)
+> [!impact]- ▼ Title (HIGH)
 > **Driver:** [[research/source1]], [[research/source2]]
 ```
 

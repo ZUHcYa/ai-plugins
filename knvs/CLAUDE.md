@@ -304,7 +304,7 @@ source_research: "[[research/vendor-corp-analysis]]"  # optional
 
 ## Value Proposition
 
-> [!impact]- AI-powered ERP alternatives put VP under pressure (HIGH)
+> [!impact]- ▼ AI-powered ERP alternatives put VP under pressure (HIGH)
 > **Driver:** [[research/vendor-corp-analysis]]
 >
 > GenAI-native competitors offer comparable ERP platform functionality...
