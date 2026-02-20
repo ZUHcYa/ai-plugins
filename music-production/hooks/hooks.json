@@ -1,0 +1,29 @@
+{
+  "description": "music-production hooks - session status overview, song file update reminder",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "Check if .music-production/config.json exists in the current working directory.\n\nIf .music-production/config.json does NOT exist:\n  - approve immediately with no output\n\nIf .music-production/config.json exists:\n  1. Scan 01_Projects/ - count song folders (if folder doesn't exist, count = 0)\n  2. Scan 02_Vault/ - count song folders (if folder doesn't exist, count = 0)\n     - For each vault song, quickly check its .md frontmatter for status: release\n  3. Build a compact status line:\n     '[music-production] Projects: N active | Vault: N waiting'\n  4. If any vault song has status: release:\n     - Append ' | RELEASE READY: X' (X = count of release-ready songs)\n  5. Output the status line\n  6. Return 'approve'\n\nIMPORTANT: This hook is read-only. Do NOT write files. Do NOT ask questions. Always approve.",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "Evaluate if music-production files may have been modified during this session.\n\n## Fast Path (approve immediately, no output)\n- No .music-production/config.json exists: approve immediately\n- The session was purely about reading or asking questions: approve immediately\n- No song lifecycle commands (/music-production:new, /music-production:vault, /music-production:release, /music-production:catalog) were mentioned: approve immediately\n\n## Check Path\nIf song lifecycle commands were mentioned or used:\n  - Output: '[music-production] Reminder: Make sure your song .md file is up to date before closing.'\n  - approve\n\nIMPORTANT: ALWAYS approve. Be brief. Run silently for most sessions.",
+            "timeout": 30
+          }
+        ]
+      }
+    ]
+  }
+}
