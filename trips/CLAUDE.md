@@ -14,6 +14,18 @@ source of truth; the Markdown body provides a human-readable view plus notes.
 - **No scope creep** - trips is a recording and reporting tool, not a full accounting system
 - **No external dependencies** beyond the optional MCP server for PDF export
 
+### Versioning
+
+`CHANGELOG.md` is the single source of truth for the version. `plugin.json` is synced automatically
+via git pre-commit hook — never edit it manually.
+
+| Change type | Version bump |
+|-------------|-------------|
+| New feature, Breaking change in Skills/Commands | Minor (`0.x.0`) |
+| Bugfix, docs correction | Patch (`0.x.1`) |
+
+Always add a `## [x.y.z] - YYYY-MM-DD` entry to `CHANGELOG.md` before committing.
+
 ### Warning-Signal Check
 
 **Before each task, ask:**

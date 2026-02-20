@@ -142,4 +142,4 @@ During `/knvs:start`, you can specify a custom target folder. All knvs files (ph
 
 ---
 
-**Version:** 0.12.0
+**Version:** 0.13.0

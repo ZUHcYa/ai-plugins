@@ -26,7 +26,7 @@ A lifecycle companion for music production that guides songs from idea to catalo
 
 ```
 01_Projects/     ->  02_Vault/      ->  Release-Prep     ->  03_Catalog/
-Produktion           Fertig, wartet     Texte & Meta          Veroeffentlicht
+Production           Finished           Texts & Meta          Published
 
 /mp:new              /mp:vault          /mp:release           /mp:catalog
                                         /mp:generate
@@ -62,3 +62,18 @@ Each song lives in its own folder with a central `<Ordnername>.md` file (named e
 Config lives in `.music-production/config.json` (created automatically on first run).
 
 Files are plain markdown with YAML frontmatter - readable in any editor, no Claude Code required.
+
+## Automatic Hooks
+
+| Hook | When | What it does |
+|------|------|--------------|
+| **SessionStart** | Every session | Shows active songs and vault status at a glance |
+| **Stop** | After each response | Reminds you to update the song `.md` file if lifecycle commands were used |
+
+Hooks are advisory only — they inform, never block.
+
+## Documentation
+
+- [QUICKSTART.md](QUICKSTART.md) - 5-minute getting started guide
+- [STRUCTURE.md](STRUCTURE.md) - Folder structure and file format reference
+- [CHANGELOG.md](CHANGELOG.md) - Version history

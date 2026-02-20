@@ -62,17 +62,14 @@ Claude: compass (v0.1.0) - .compass/ already exists:
 
 ## What the Skill Does
 
-1. Read version from `compass/.claude-plugin/plugin.json` (= installed version)
-2. Version-Check: WebFetch `https://raw.githubusercontent.com/ZUHcYa/ai-plugins/main/compass/.claude-plugin/plugin.json`, JSON parsen, `version` Feld extrahieren (= latest version).
-   - Wenn latest > installed: Update-Hinweis merken fuer Ausgabe
-   - Wenn gleich oder Fetch fehlschlaegt: kein Hinweis
-3. Check if `.compass/` directory exists in the current working directory
-4. If it already exists:
-   a. Display version in output header (mit Update-Hinweis falls vorhanden: `compass (v0.1.0 - Update verfuegbar: v0.2.0)`)
+1. Read version from `compass/.claude-plugin/plugin.json` for display in status output
+2. Check if `.compass/` directory exists in the current working directory
+3. If it already exists:
+   a. Display version in output header
    b. Report current state (files, last updated, active rules count)
    c. Ask if user wants to reset (destructive - requires confirmation)
    d. If no reset: suggest `/compass:check` instead
-5. If it does not exist:
+4. If it does not exist:
    a. Ask three questions interactively:
       - **Goal:** "What is the overarching goal of this project?"
       - **Anti-Goals:** "What should this project explicitly NOT do?"
@@ -81,7 +78,7 @@ Claude: compass (v0.1.0) - .compass/ already exists:
    c. Create `VISION.md` from template, populated with user answers
    d. Create `rules.md` with default rules
    e. Create empty `session.md` placeholder
-6. Confirm setup and remind about SessionStart hook
+5. Confirm setup and remind about SessionStart hook
 
 ## VISION.md Template
 

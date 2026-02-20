@@ -66,3 +66,8 @@ All state lives in `.compass/` in your project root:
 ```
 
 Files are plain markdown with YAML frontmatter - readable in any editor, version-controllable with git.
+
+## Documentation
+
+- [QUICKSTART.md](QUICKSTART.md) - 5-minute getting started guide
+- [CHANGELOG.md](CHANGELOG.md) - Version history
