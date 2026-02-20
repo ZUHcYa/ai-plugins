@@ -40,6 +40,9 @@ Niemals direkt auf main arbeiten. Bei jeder Aufgabe automatisch Feature-Branch e
 - WIP-Commits erlaubt: `WIP: Beschreibung`
 - Direct merge zu main erlaubt (kein PR noetig) — Claude merged automatisch nach Push
 
+**Achtung:** Pre-commit hook prueft Branch zum Zeitpunkt des Bash-Calls.
+`git checkout -b feature` und `git commit` immer in SEPARATEN Bash-Calls ausfuehren.
+
 **Commit-Format:**
 ```
 <Typ>: <Kurze Beschreibung>
