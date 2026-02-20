@@ -140,18 +140,15 @@ Claude: Music-Production Status (v0.3.0)
 
 ### After Setup (Overview)
 
-1. Read version from `music-production/.claude-plugin/plugin.json` (= installed version)
-2. Version-Check: WebFetch `https://raw.githubusercontent.com/ZUHcYa/ai-plugins/main/music-production/.claude-plugin/plugin.json`, JSON parsen, `version` Feld extrahieren (= latest version).
-   - Wenn latest > installed: im Header anzeigen: `Music-Production Status (v0.x.0 - Update verfuegbar: v0.y.0)` und am Ende "Update: Plugin neu installieren fuer vX.Y.Z"
-   - Wenn gleich oder Fetch fehlschlaegt: nur `Music-Production Status (v0.x.0)` zeigen
-3. Read config from `.music-production/config.json`
-4. Scan phase folders:
+1. Read version from `music-production/.claude-plugin/plugin.json` for display in the status header
+2. Read config from `.music-production/config.json`
+3. Scan phase folders:
    - `01_Projects/` - list all song folders, read `<Ordnername>.md` frontmatter
    - `02_Vault/` - list all song folders, read `<Ordnername>.md` frontmatter
    - `03_Catalog/` - list all catalog entries
-5. Calculate staleness (days since folder creation/modification)
-6. Display status grouped by phase
-7. Generate actionable suggestions
+4. Calculate staleness (days since folder creation/modification)
+5. Display status grouped by phase
+6. Generate actionable suggestions
 
 ---
 
