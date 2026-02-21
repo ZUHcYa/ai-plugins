@@ -17,13 +17,13 @@ trips uses a dynamic folder hierarchy based on your configured `dataDir`:
             └── _report-YYYY-MM.md           ← monthly report
 ```
 
-**Example with `dataDir: "O/5 Support Processes/53 Backoffice/Auslagen"`:**
+**Example with `dataDir: "Documents/Expenses"`:**
 
 ```
-O/5 Support Processes/53 Backoffice/Auslagen/
+Documents/Expenses/
 └── 2026/
     └── 02 - 2026/
-        └── Friedrich Wagner/
+        └── Max Mustermann/
             ├── 2026-02-03_berlin.md
             ├── 2026-02-10_munich.md
             ├── 2026-02-17_hamburg.md
@@ -66,7 +66,7 @@ name: Client meeting Berlin
 startDate: 2026-02-03
 endDate: 2026-02-03
 destination: Berlin
-purpose: Q1 planning meeting with [Kunde]
+purpose: Q1 planning meeting with [Client]
 startTime: 09:00
 endTime: 18:00
 distanceKm: 320
@@ -80,7 +80,7 @@ created: 2026-02-03
 |-------|-------|
 | Date | 2026-02-03 |
 | Destination | Berlin |
-| Purpose | Q1 planning meeting with [Kunde] |
+| Purpose | Q1 planning meeting with [Client] |
 | Distance | 320 km |
 | Reimbursement | €96.00 |
 ```
@@ -112,8 +112,8 @@ created: 2026-02-03
 
 ```json
 {
-  "dataDir": "O/5 Support Processes/53 Backoffice/Auslagen",
-  "company": "Acme GmbH"
+  "dataDir": "Documents/Expenses",
+  "company": "Muster GmbH"
 }
 ```
 
@@ -126,13 +126,13 @@ Employee name is read from Claude's User Preferences (not stored in config).
 Multiple team members can record to the same `dataDir`. Each person gets their own subfolder named `<FirstName LastName>`. This allows a shared organizational filing system where individual records are cleanly separated.
 
 ```
-Auslagen/
+Expenses/
 └── 2026/
     └── 02 - 2026/
-        ├── Friedrich Wagner/
+        ├── Max Mustermann/
         │   ├── 2026-02-03_berlin.md
         │   └── _report-2026-02.md
-        └── Maria Mueller/
+        └── Erika Mustermann/
             ├── 2026-02-05_hamburg.md
             └── _report-2026-02.md
 ```

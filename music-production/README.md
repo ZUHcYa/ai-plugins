@@ -28,8 +28,8 @@ A lifecycle companion for music production that guides songs from idea to catalo
 01_Projects/     ->  02_Vault/      ->  Release-Prep     ->  03_Catalog/
 Production           Finished           Texts & Meta          Published
 
-/mp:new              /mp:vault          /mp:release           /mp:catalog
-                                        /mp:generate
+/music-production:new   /music-production:vault   /music-production:release   /music-production:catalog
+                                                  /music-production:generate
 ```
 
 ## Skills

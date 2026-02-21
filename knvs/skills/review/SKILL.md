@@ -167,31 +167,31 @@ The skill determines "new" impacts by comparing:
 - `review_date` of the most recent review file in `reviews/<canvas-name>/`
 - If no previous review exists, ALL impacts are considered "new"
 
-### Quellen fuer den Impact-Dialog
+### Sources for the Impact Dialog
 
-Der Interview-Dialog nutzt **zwei Quellen**:
+The interview dialog uses **two sources**:
 
-**1. Canvas Inline-Callouts (Severity)**
-- Enthaelt die kontextspezifische Severity fuer DIESEN Canvas
-- Severity wurde bei Canvas-Erstellung (`/knvs:ideate`) im BMC-Kontext vergeben
-- Wird im Dialog angezeigt (wenn vorhanden)
+**1. Canvas Inline Callouts (Severity)**
+- Contains the context-specific severity for THIS canvas
+- Severity was assigned during canvas creation (`/knvs:ideate`) in the BMC context
+- Displayed in the dialog (when present)
 
-**2. Impact Atoms in impacts/ (Vollstaendigkeit)**
-- Listet ALLE verfuegbaren Impacts fuer diese Research
-- Erkennt Impacts die noch nicht im Canvas eingebettet sind (kein Callout)
-- Impact Atoms enthalten KEINE Severity (nur Fakten)
+**2. Impact Atoms in impacts/ (Completeness)**
+- Lists ALL available impacts for this research
+- Detects impacts not yet embedded in the canvas (no callout)
+- Impact atoms contain NO severity (facts only)
 
-**Dialog-Logik:**
-1. Scanne `impacts/` nach allen Atoms die diesen Canvas betreffen koennten (via `driver` + `bmc_fields`)
-2. Fuer JEDEN Impact: Pruefe ob Canvas-Callout existiert
-3. Severity aus Canvas-Callout lesen (wenn vorhanden)
-4. Bei fehlendem Callout: Im Dialog erwaehnen, Einbettung via `/knvs:ideate` empfehlen
-5. User-Einschaetzung im Dialog besprechen, keine automatische Bewertung
+**Dialog logic:**
+1. Scan `impacts/` for all atoms that could affect this canvas (via `driver` + `bmc_fields`)
+2. For EACH impact: check whether a canvas callout exists
+3. Read severity from canvas callout (when present)
+4. If no callout exists: mention in dialog, recommend embedding via `/knvs:ideate`
+5. Discuss user assessment in dialog, no automatic evaluation
 
-**Wichtig:** Der Review veraendert den Canvas NICHT. Anpassungen erfolgen separat via `/knvs:ideate`.
+**Important:** The review does NOT modify the canvas. Adjustments are made separately via `/knvs:ideate`.
 
-Falls waehrend des Dialogs unbestaetigte Marktannahmen entstehen
-(z.B. "Wettbewerber X wird den Markt verlassen"), siehe
+If unconfirmed market assumptions arise during the dialog
+(e.g. "Competitor X will exit the market"), see
 "Hypothese (Research-Vorlaeuferstufe)" in CLAUDE.md.
 
 ---

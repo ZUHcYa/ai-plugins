@@ -26,7 +26,7 @@ Claude: Report fuer welchen Monat? [2026-02]
 
 User: [Enter]
 Claude: Dienstreisen-Report Februar 2026
-        Friedrich Wagner | ACME GmbH
+        Max Mustermann | Muster GmbH
         ======================================
 
         Erstattung
@@ -40,11 +40,11 @@ Claude: Dienstreisen-Report Februar 2026
         | 1 | 03.02. | Berlin – Praesentation Q1 | 580 | 174,00 |
         | 2 | 10.-12.02. | Muenchen – Team Workshop | - | - |
 
-        Report speichern als ...\2026\02 - 2026\Friedrich Wagner\_report-2026-02.md? [y/N]
+        Report speichern als ...\2026\02 - 2026\Max Mustermann\_report-2026-02.md? [y/N]
 
 User: y
-Claude: Gespeichert: ...\2026\02 - 2026\Friedrich Wagner\_report-2026-02.md
-        PDF erzeugt: ...\2026\02 - 2026\Friedrich Wagner\_report-2026-02.pdf
+Claude: Gespeichert: ...\2026\02 - 2026\Max Mustermann\_report-2026-02.md
+        PDF erzeugt: ...\2026\02 - 2026\Max Mustermann\_report-2026-02.pdf
 ```
 
 ---
@@ -56,27 +56,27 @@ Claude: Gespeichert: ...\2026\02 - 2026\Friedrich Wagner\_report-2026-02.md
 3. Determine scope:
    - No argument: ask for month (default: current year-month, e.g. `2026-02`)
    - `YYYY-MM`: monthly report for that month
-4. **Pfad konstruieren** - diese Variable fuer alle weiteren Schritte verwenden:
+4. **Construct path** — use this variable for all subsequent steps:
    `employeeDir = <dataDir>/<YYYY>/<MM - YYYY>/<FirstName LastName>/`
-   Beispiel: `O/5 Support Processes/53 Backoffice/Auslagen/2026/02 - 2026/Friedrich Wagner/`
-   **WICHTIG: NICHT den Monatsordner verwenden. Der Employee-Unterordner ist PFLICHT.**
+   Example: `Documents/Expenses/2026/02 - 2026/Max Mustermann/`
+   **IMPORTANT: Do NOT use the month folder directly. The employee subfolder is MANDATORY.**
 5. Read all trip files from `{employeeDir}` (skip `_report-*.md`), parse YAML frontmatter
 6. Calculate totals: km, reimbursementEur
 7. Create chronological list of all trips (numbered)
 8. Display report with employee header (`<Name> | <Company>`) and Erstattung block
 9. Optionally save to `{employeeDir}/_report-YYYY-MM.md`
-    - **Wenn Write-Tool fehlschlaegt:** Explizit melden: "Datei konnte nicht gespeichert werden (Dateisystem nicht verfuegbar). Der Report oben ist vollstaendig - bitte manuell kopieren." PDF-Schritt ueberspringen (ohne Dateisystem sinnlos). Report-Anzeige gilt als Erfolg.
-10. **PFLICHT: PDF generieren.** Unmittelbar nach erfolgreichem Speichern ausfuehren - niemals stillschweigend ueberspringen.
-    - MCP-Tool `create_pdf_from_markdown` aufrufen mit:
-      - `markdown`: vollstaendiger Markdown-Inhalt (ohne YAML-Frontmatter)
+    - **If Write tool fails:** Explicitly inform: "File could not be saved (filesystem unavailable). The report above is complete — please copy manually." Skip PDF step (pointless without filesystem). Report display counts as success.
+10. **STANDARD: Generate PDF.** Execute immediately after successful save — never skip silently.
+    - Call MCP tool `create_pdf_from_markdown` with:
+      - `markdown`: full Markdown content (without YAML frontmatter)
       - `paperFormat`: "a4"
       - `paperOrientation`: "landscape"
       - `paperBorder`: "2cm"
       - `showPageNumbers`: true
-      - `outputFilename`: `_report-YYYY-MM.pdf` (NUR Dateiname, KEIN Pfad! Das MCP-Tool konkateniert intern das Output-Verzeichnis.)
-    - Nach erfolgreicher PDF-Erzeugung: Datei vom MCP-Output-Verzeichnis (Standard: HOME-Verzeichnis) nach `{employeeDir}/_report-YYYY-MM.pdf` verschieben
-    - **Wenn MCP-Tool nicht verfuegbar:** Explizit melden: "PDF uebersprungen: MCP nicht verfuegbar. Markdown-Report ist vollstaendig."
-    - **Wenn MCP-Tool fehlschlaegt:** Fehler anzeigen, aber Report-Erstellung als erfolgreich werten.
+      - `outputFilename`: `_report-YYYY-MM.pdf` (filename ONLY, NO path! The MCP tool internally concatenates the output directory.)
+    - After successful PDF generation: move file from MCP output directory (default: HOME directory) to `{employeeDir}/_report-YYYY-MM.pdf`
+    - **If MCP tool not available:** Explicitly inform: "PDF skipped: MCP not available. Markdown report is complete."
+    - **If MCP tool fails:** Show error, but treat report creation as successful.
 
 ---
 
@@ -90,9 +90,9 @@ type: trips-report
 month: "2026-02"
 generated: "2026-02-28"
 employee:
-  firstName: "Friedrich"
-  lastName: "Wagner"
-  company: "ACME GmbH"
+  firstName: "Max"
+  lastName: "Mustermann"
+  company: "Muster GmbH"
 totalTrips: 2
 totalKm: 580
 totalReimbursementEur: 174.00
@@ -100,7 +100,7 @@ totalReimbursementEur: 174.00
 
 # Dienstreisen-Report Februar 2026
 
-Friedrich Wagner | ACME GmbH
+Max Mustermann | Muster GmbH
 
 [... same markdown content as displayed ...]
 ```
@@ -113,7 +113,7 @@ Friedrich Wagner | ACME GmbH
 
 The `_` prefix sorts generated files before trip files and signals they are not data sources.
 PDF is generated automatically via MCP when the markdown report is saved.
-**Niemals direkt im Monatsordner speichern - immer im Employee-Unterordner.**
+**Never save directly in the month folder — always use the employee subfolder.**
 
 ---
 
@@ -146,7 +146,7 @@ show both: total from YAML and recalculated value, flag the discrepancy.
 | 11 | November |
 | 12 | Dezember |
 
-Use ASCII-safe German (Maerz not Maerz) consistent with the codebase.
+Use ASCII-safe German (Maerz not März) consistent with the codebase.
 
 ---
 
@@ -159,7 +159,7 @@ Use ASCII-safe German (Maerz not Maerz) consistent with the codebase.
 | Mixed trips (some with km, some without) | Show `-` for trips without km |
 | Regenerating existing report | Overwrite previous `_report-*.md` and `_report-*.pdf` |
 | MCP tool not available | Inform user: "PDF uebersprungen: MCP nicht verfuegbar." Continue with .md |
-| Write-Tool fehlschlaegt | Fehler melden, Report in Konversation ist vollstaendig. PDF ueberspringen. |
+| Write tool fails | Report error, report in conversation is complete. Skip PDF. |
 
 ---
 
@@ -173,23 +173,23 @@ Reports are automatically converted to PDF when saved, using the MCP tool `creat
 - `paperOrientation`: "landscape"
 - `paperBorder`: "2cm"
 - `showPageNumbers`: true
-- `outputFilename`: NUR der Dateiname (z.B. `_report-2026-02.pdf`), KEIN voller Pfad
+- `outputFilename`: filename ONLY (e.g. `_report-2026-02.pdf`), NO full path
 
-**WICHTIG:** `outputFilename` akzeptiert nur Dateinamen. Das MCP-Tool konkateniert intern
-sein Output-Verzeichnis (`M2P_OUTPUT_DIR`, default: HOME) mit dem Dateinamen.
-Nach Erzeugung die PDF vom Output-Verzeichnis nach `{employeeDir}` verschieben.
+**IMPORTANT:** `outputFilename` accepts only filenames. The MCP tool internally concatenates
+its output directory (`M2P_OUTPUT_DIR`, default: HOME) with the filename.
+After generation, move the PDF from the output directory to `{employeeDir}`.
 
 **Graceful degradation:** If the MCP tool is not available (e.g. user runs without Claude Code,
 or MCP server is not configured), inform the user ("PDF uebersprungen: MCP nicht verfuegbar.
 Markdown-Report ist vollstaendig.") and continue. The markdown report is the primary output
 and fully self-contained.
 
-**Degradation-Hierarchie:**
-1. Vollstaendig: Report anzeigen + .md speichern + .pdf erzeugen
-2. Ohne MCP: Report anzeigen + .md speichern (PDF uebersprungen)
-3. Ohne Dateisystem: Report anzeigen (Speichern + PDF uebersprungen)
+**Degradation hierarchy:**
+1. Full: display report + save .md + generate .pdf
+2. Without MCP: display report + save .md (PDF skipped)
+3. Without filesystem: display report (save + PDF skipped)
 
-In allen drei Faellen gilt der Report als erfolgreich erstellt.
+In all three cases, the report is considered successfully created.
 
 ---
 

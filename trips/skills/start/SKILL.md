@@ -34,8 +34,8 @@ User: /trips:start
 Claude: Welcome to trips!
         [dataDir und Firma aus Projekt-Defaults uebernommen]
 
-        Created: .trips/config.json (dataDir: O/5 Support.../Auslagen, Firma: Acme GmbH)
-        Created: O/5 Support.../Auslagen/02 - 2026/Max Mustermann/
+        Created: .trips/config.json (dataDir: Documents/Expenses, Firma: Muster GmbH)
+        Created: Documents/Expenses/02 - 2026/Max Mustermann/
 
         Ready! Run /trips:new to record your first trip.
 ```
@@ -49,21 +49,21 @@ User: /trips:start
 Claude: Welcome to trips!
 
         Firma?
-User: ACME GmbH
+User: Muster GmbH
 
 Claude: Wo sollen die Reisedaten gespeichert werden?
-        (Relativer Pfad vom Workspace, z.B. "O/5 Support Processes/53 Backoffice/Auslagen")
+        (Relativer Pfad vom Workspace, z.B. "Documents/Expenses")
 
-User: O/5 Support Processes/53 Backoffice/Auslagen
+User: Documents/Expenses
 Claude: Setting up...
 
         Created: .trips/config.json
-        Created: O/5 Support.../Auslagen/2026/02 - 2026/Friedrich Wagner/
+        Created: Documents/Expenses/2026/02 - 2026/Max Mustermann/
 
         Ready! Run /trips:new to record your first trip.
 ```
 
-Employee name (here: "Friedrich Wagner") comes from Claude context (user preferences),
+Employee name (here: "Max Mustermann") comes from Claude context (user preferences),
 not from config. If unknown, Claude asks.
 
 ---

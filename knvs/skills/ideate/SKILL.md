@@ -334,7 +334,7 @@ because [context and nuances beyond the claim].
 
 ## Deep Research Prompt
 
-*Bereit zum Kopieren in Gemini/GPT für Deep Research*
+*Ready to copy into Gemini/GPT for Deep Research*
 
 ```
 Research this claim with engineering-grade rigor:

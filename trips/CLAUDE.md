@@ -44,8 +44,8 @@ One file: `.trips/config.json` (shared/team data only)
 
 ```json
 {
-  "dataDir": "O/5 Support Processes/53 Backoffice/Auslagen",
-  "company": "Acme GmbH"
+  "dataDir": "Documents/Expenses",
+  "company": "Muster GmbH"
 }
 ```
 
@@ -63,13 +63,13 @@ If the name is not available from context: ask the user.
 <dataDir>/
   2026/
     01 - 2026/
-      Friedrich Wagner/
+      Max Mustermann/
         2026-01-15_berlin.md
         2026-01-20_muenchen.md
         _report-2026-01.md
         _report-2026-01.pdf
     02 - 2026/
-      Friedrich Wagner/
+      Max Mustermann/
         2026-02-03_berlin.md
 ```
 
