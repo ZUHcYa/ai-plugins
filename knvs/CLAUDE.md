@@ -73,7 +73,17 @@ Every Canvas MUST contain these 9 core fields (Osterwalder/Pigneur), as `##` hea
 
 **Missing fields = invalid Canvas.** `/knvs:sync` checks for this.
 
-**Impact Callouts (optional):** Under each BMC field, Impact Atoms can be embedded as inline callouts. Format: Obsidian callout syntax `> [!impact]`. See `skills/ideate/SKILL.md` for details.
+**3-Tier Signal System:** Each BMC dimension carries signals at three levels:
+
+| Tier | Signal | Visual |
+|------|--------|--------|
+| 1 | No signal | Nothing rendered |
+| 2 | Open hypothesis (`status: hypothesis`, `canvas` matches) | `[!note]-` callout (subtle) |
+| 3 | Confirmed MEDIUM or HIGH impact | `[!impact]` callout (full) |
+
+LOW impacts are never rendered as individual callouts — they appear only in the overflow line.
+HIGH ▲ Opportunities are always Tier 3 (filter is on severity, not direction).
+See `skills/ideate/SKILL.md` for generation rules, same-driver merging, and callout format.
 
 ### Phase-Specific Extensions
 
@@ -214,6 +224,7 @@ hypothesis capture. Users can also create hypotheses manually.
 - `created`
 - `claim` (single line: the claim to be tested)
 - `bmc_fields` (array of affected BMC fields, canonical English names)
+- `canvas` (path to the originating canvas, e.g. `ideate/my-canvas.md`; auto-populated by `/knvs:ideate`)
 
 **Optional fields:**
 - `origin_impact` (path to the Impact Atom, in case of a severity dispute)

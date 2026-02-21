@@ -204,8 +204,11 @@ An impact describes WHAT happens (fact). How severe it is — and whether it is 
 
 1. For each Impact Atom: analyze how it affects the specific BMC dimensions of this canvas
 2. Consider: Value Proposition, Customer Segments, Revenue Streams of the canvas
-3. Propose **severity + direction** together with reasoning
-4. User confirms or changes
+3. **Before assessing individually:** Group impact atoms by `driver` field per dimension.
+   If ≥2 MEDIUM/HIGH impacts share the same driver AND the same dimension,
+   present them together and offer merging (see "Same-Driver Merging" in callout format section).
+4. Propose **severity + direction** together with reasoning
+5. User confirms or changes
 
 ### Example
 
@@ -242,7 +245,9 @@ an unverified market assumption:
 2. Ask: "This is not a confirmed finding from the research.
    Should I capture a hypothesis as a research assignment?"
 3. If yes: create file in `research/<slug>.md` with `status: hypothesis`
-   (see Hypothesis Template below)
+   (see Hypothesis Template below).
+   Auto-populate `canvas` field with the path of the currently active canvas file
+   (e.g. `canvas: ideate/my-canvas.md`).
 4. Apply the user's severity and direction in the canvas
 5. Add backlink to the callout reasoning:
    `(Severity + Direction based on hypothesis: [[research/<slug>]])`
@@ -300,6 +305,7 @@ claim: "Vendor X is missing the AI shift and is losing market relevance as a res
 bmc_fields:
   - Key Partnerships
   - Value Proposition
+canvas: ideate/my-canvas.md          # Path to originating canvas (auto-populated by /knvs:ideate)
 origin_impact: impacts/vector-search-standard.md
 ---
 
@@ -365,11 +371,46 @@ When creating a BMC from research with related impacts, embed callouts directly 
 
 ### Generation Rules
 
-1. **For each BMC dimension (`##` heading):**
-   - Check if any impact atom has this dimension in `bmc_fields` array
-   - If yes: generate inline callout immediately after the `##` heading, BEFORE the comment hint and content
+**3-Tier Signal System:** Each BMC dimension carries at most three signal levels:
+- **Tier 1 — No signal:** Nothing rendered (dimension is clean or not yet analyzed)
+- **Tier 2 — Open hypothesis:** `[!note]-` callout (subtle, unconfirmed)
+- **Tier 3 — Confirmed MEDIUM/HIGH impact:** `[!impact]` callout (full)
 
-2. **Callout structure:**
+LOW impacts are NEVER rendered as individual callouts — they appear only in the overflow line.
+HIGH ▲ Opportunities are always Tier 3 (the filter is on severity, not direction).
+
+1. **For each BMC dimension (`##` heading):**
+
+   **Step A — Hypothesis check (Tier 2):**
+   Scan `research/` for hypothesis files where ALL of:
+   - `status: hypothesis`
+   - `canvas` matches the current canvas file path
+   - `bmc_fields` includes this dimension
+   If found: render ONE `[!note]-` callout per matching hypothesis, immediately after the `##` heading:
+   ```markdown
+   > [!note]- Hypothesis open: [[research/<slug>]]
+   > Unverified — severity basis pending research.
+   ```
+
+   **Step B — Impact callouts (Tier 3 only):**
+   Only generate `[!impact]` callouts for impacts with severity MEDIUM or HIGH.
+   Apply `impact_cap` (from canvas frontmatter, default: 3) to MEDIUM/HIGH callouts only.
+   See "Same-Driver Merging" below before generating individual callouts.
+
+   **Step C — Overflow line:**
+   If ANY of the following are true, append one line after the last callout (blank line before):
+   - LOW impacts exist for this dimension (any direction)
+   - MEDIUM/HIGH impacts exceed `impact_cap`
+   Format: `*+ X weitere Impacts — siehe [[impacts/]]*`
+   X = count of suppressed LOW impacts + count of MEDIUM/HIGH impacts beyond the cap.
+
+2. **Callout ordering per dimension:**
+   1. `[!note]-` callouts (open hypotheses, one per matching hypothesis)
+   2. `[!impact]` callouts: HIGH → MEDIUM (up to `impact_cap`)
+   3. Overflow line (if needed)
+   4. `[!vendor-risk]-` callouts (always shown, unchanged)
+
+3. **Callout structure:**
    ```markdown
    > [!impact]- ▼ [Impact Title from frontmatter] ([SEVERITY])
    > **Driver:** [[research/source-slug from driver field]]
@@ -381,15 +422,7 @@ When creating a BMC from research with related impacts, embed callouts directly 
 
    Direction symbol prefix: `▼` (Threat), `▲` (Opportunity), `▼▲` (Both)
 
-3. **Multiple impacts per dimension:**
-   - Stack vertically (separate callouts, blank line between)
-   - Order by severity: HIGH → MEDIUM → LOW
-   - **Cap:** Show at most `impact_cap` callouts per dimension (read from canvas frontmatter; default: 3).
-   - If more impacts exist than the cap: append one line after the last callout (blank line before):
-     `*+ X weitere Impacts — siehe [[impacts/]]*`
-     where X = total count for this dimension minus `impact_cap`.
-
-4. **Dimensions without impacts:**
+4. **Dimensions without impacts or hypotheses:**
    - Leave unchanged (only comment hint, no placeholder)
 
 ### Field-Specific Reasoning Extraction
@@ -435,6 +468,39 @@ Show all drivers comma-separated:
 > [!impact]- ▼ Title (HIGH)
 > **Driver:** [[research/source1]], [[research/source2]]
 ```
+
+### Same-Driver Merging
+
+Before generating individual callouts for a dimension, group MEDIUM/HIGH impact atoms by their `driver` field. If ≥2 impacts share the **same driver** AND the **same dimension**:
+
+During severity assessment, present them together and offer merging:
+```
+Claude: These 2 impacts both come from [[research/market-analysis]] for Key Resources:
+        - "Vendor X loses AI relevance"
+        - "New entrants with AI-native platforms"
+
+        Assess together and merge into one callout? [Y/n]
+```
+
+**If merged → generate ONE combined callout:**
+```markdown
+> [!impact]- ▼ AI-Shift Pressure on Platform (HIGH)
+> **Driver:** [[research/market-analysis]]
+>
+> · Vendor X roadmap shows no AI investment (market share risk).
+> · New entrants build AI-native alternatives (substitution risk).
+>
+> _Source: [[impacts/vendor-ki-shift]], [[impacts/ai-native-entrants]]_
+```
+
+**Merged callout rules:**
+- **Title:** Claude synthesizes a concise title covering both pressures
+- **Severity:** Highest of the merged impacts
+- **Direction:** If mixed (▼ and ▲), use ▼▲
+- **Reasoning:** Bullet list, one line per merged impact
+- **Source:** All impact slugs comma-separated in `_Source:_` line
+
+**If not merged:** Generate separate callouts as usual.
 
 ---
 
