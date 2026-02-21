@@ -79,7 +79,7 @@ Every Canvas MUST contain these 9 core fields (Osterwalder/Pigneur), as `##` hea
 
 In addition to the 9 core fields, each phase adds further required elements:
 
-- **IDEATE:** Frontmatter `status`, `progress`, `created`, `updated`. Sections: Notes, Next Steps
+- **IDEATE:** Frontmatter `status`, `progress`, `created`, `updated`. Optional: `source_research`, `impact_cap` (default: 3, max callouts per BMC dimension). Sections: Notes, Next Steps
 - **EXPLORE:** Frontmatter additionally `innovation_risk`, `potential_revenue`. Sections: Hypotheses, Experiments
 - **EXPLOIT:** Frontmatter additionally `next_review`, `disruption_risk`, `revenue_score`. Sections: Reviews
 

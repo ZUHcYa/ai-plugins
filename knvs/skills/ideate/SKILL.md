@@ -384,6 +384,10 @@ When creating a BMC from research with related impacts, embed callouts directly 
 3. **Multiple impacts per dimension:**
    - Stack vertically (separate callouts, blank line between)
    - Order by severity: HIGH → MEDIUM → LOW
+   - **Cap:** Show at most `impact_cap` callouts per dimension (read from canvas frontmatter; default: 3).
+   - If more impacts exist than the cap: append one line after the last callout (blank line before):
+     `*+ X weitere Impacts — siehe [[impacts/]]*`
+     where X = total count for this dimension minus `impact_cap`.
 
 4. **Dimensions without impacts:**
    - Leave unchanged (only comment hint, no placeholder)
@@ -468,7 +472,7 @@ After creating your canvas:
 
 Canonical template for new IDEATE canvases.
 
-> **STRICT:** Use ONLY the frontmatter fields listed below — do NOT add extra fields.
+> **STRICT:** Use ONLY the frontmatter fields listed below — do NOT add fields beyond the optional ones listed.
 > Follow the structure exactly: do not rename sections, change heading levels, or add sections.
 
 ```markdown
@@ -477,7 +481,8 @@ status: IDEATE
 progress: WIP
 created: YYYY-MM-DD
 updated: YYYY-MM-DD
-source_research: research/filename.md  # ONLY include when created from research. DELETE this line otherwise.
+source_research: research/filename.md  # Optional: only when created from research. Delete otherwise.
+impact_cap: 3                          # Optional: max callouts per BMC dimension (default: 3). Raise for dense canvases.
 ---
 
 # Business Model Canvas: [Name]
