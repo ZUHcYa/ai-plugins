@@ -173,7 +173,13 @@ Claude: Das ist eine Mastering-Frage mit Mixing-Implikationen.
 2. Scanne `01_Projects/` nach Song-Ordnern mit `status: production`.
 3. Liste anzeigen. Nutzer waehlt Song ODER skippt (freie Beratung).
 4. Falls Song gewaehlt: `<Ordnername>.md` komplett lesen (Frontmatter, Referenzen, Notizen, TODOs).
-5. Focus-Area-Picker anzeigen (A/H/S/R/M/X) ODER freie Problembeschreibung akzeptieren.
+5. **Strategy-Kontext laden:** Falls `.music-production/strategy.md` existiert, lies es und wende an:
+   - `## Sound`: Aesthetische Identitaet — Beratung im Stil dieser Identitaet geben, nicht generisch. Referenzen aus Strategy als stilistischen Anker nutzen.
+   - `## Constraints`: Feste Produktionsregeln (z.B. Stereo-only, kein Multitrack) als harte Grenzen in Vorschlaegen beruecksichtigen. Nie etwas vorschlagen, das gegen Constraints verstoesst.
+   - `## Hardware`: Vorschlaege auf vorhandenes Equipment beziehen. Statt "nimm einen Kompressor" sag "auf dem Tonverk koenntest du den Compressor-Effekt auf Track X nutzen".
+   - `anti_genre` aus Frontmatter: Nie in Richtung der Anti-Genres beraten. Wenn eine Idee danach klingt, explizit darauf hinweisen.
+   - Ohne Strategy: Skill funktioniert weiterhin generisch (wie bisher).
+6. Focus-Area-Picker anzeigen (A/H/S/R/M/X) ODER freie Problembeschreibung akzeptieren.
 6. Falls Freitext: relevante Focus-Areas aus der Beschreibung ableiten.
 7. Focused Consultation fuehren. Guiding Questions als Geruest nutzen (nicht als starre Checkliste). An das anpassen, was der Nutzer tatsaechlich braucht.
 8. Song-Kontext verwenden (Referenzen, Notizen, Genre, Key, BPM falls vorhanden) fuer spezifische statt generische Beratung.

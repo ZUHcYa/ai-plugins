@@ -52,7 +52,18 @@ Claude: Reading 2026-02-Nightfall.md...
    - `## Song-Beschreibung` section (primary input for generation)
    - `## Referenzen` section (used as stylistic context)
    - `## Notizen` section (used as additional context)
-5. Generate all three release texts from the collected data:
+5. **Strategy-Kontext laden:** Falls `.music-production/strategy.md` existiert, lies es und wende an:
+   - `artist_name` → Im YouTube-Footer verwenden statt `[Artist Name]` Platzhalter
+   - `## Distribution > Metadata-Syntax` → YouTube-Titel-Format und Bandcamp-Titel-Format uebernehmen (falls definiert)
+   - `## Distribution > Beschreibungs-Template` → YouTube-Description-Struktur anpassen (falls definiert)
+   - `## Distribution > Tags > Erlaubt` → Bevorzugt in Bandcamp-Tags einfliessen lassen
+   - `## Distribution > Tags > Verboten` → Nie in Bandcamp-Tags verwenden
+   - `forbidden_platforms` → Keine Links oder Referenzen zu verbotenen Plattformen generieren
+   - `## Visual Identity` → Cover-Art-Prompt mit Aesthetik-Keywords und Stil-Richtung anreichern
+   - `## Visual Identity > Cover-Art Keywords` → Als Basis-Keywords in jeden Cover-Art-Prompt integrieren
+   - `## Hardware` → Im YouTube-Description Signal-Chain-Block verwenden (Geraete mit Rollen auflisten)
+   - Ohne Strategy: Skill funktioniert weiterhin generisch (wie bisher).
+6. Generate all three release texts from the collected data:
    - YouTube title and description
    - Bandcamp title, description, and tags
    - Cover art prompt

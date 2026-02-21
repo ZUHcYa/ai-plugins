@@ -142,7 +142,12 @@ Claude: Music-Production Status (v0.3.0)
 
 1. Read version from `music-production/.claude-plugin/plugin.json` for display in the status header
 2. Read config from `.music-production/config.json`
-3. Scan phase folders:
+3. Check if `.music-production/strategy.md` exists:
+   - **If exists:** Read `artist_name` from frontmatter and show it in the status header:
+     `Music-Production Status (v0.5.0) — The Hardware Sculptor`
+   - **If not exists:** Show hint after status table:
+     `Tipp: /music-production:strategy einrichten fuer personalisierte Beratung und Release-Texte.`
+4. Scan phase folders:
    - `01_Projects/` - list all song folders, read `<FolderName>.md` frontmatter
    - `02_Vault/` - list all song folders, read `<FolderName>.md` frontmatter
    - `03_Catalog/` - list all catalog entries

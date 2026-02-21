@@ -6,8 +6,9 @@ A lifecycle companion for music production that guides songs from idea to catalo
 
 **music-production** manages your song lifecycle through structured phases:
 
+- **Defining** your artist identity, distribution strategy, and production philosophy
 - **Creating** new song projects with consistent templates
-- **Advising** on production decisions (arrangement, harmony, mixing, mastering)
+- **Advising** on production decisions with identity-aware consultation
 - **Moving** finished productions to vault for release preparation
 - **Enriching** songs with metadata, release texts, and cover art prompts
 - **Archiving** released songs to your catalog with sequential numbering
@@ -16,11 +17,12 @@ A lifecycle companion for music production that guides songs from idea to catalo
 
 ```
 /music-production:start       Setup on first run, overview afterwards
+/music-production:strategy    Define artist identity, distribution & production philosophy
 /music-production:new         Create a new song project
-/music-production:produce     Production consultation (arrangement, harmony, mixing, mastering)
+/music-production:produce     Production consultation (identity-aware)
 /music-production:vault       Move finished song to vault
-/music-production:release     Prepare song for release (metadata + sections)
-/music-production:generate    Generate release texts and cover art prompt
+/music-production:release     Prepare song for release (metadata + optional video/artwork)
+/music-production:generate    Generate release texts and cover art prompt (strategy-aware)
 /music-production:catalog     Archive to catalog with catalog number
 ```
 
@@ -40,11 +42,12 @@ Production           Finished           Texts & Meta          Published
 | Skill | Purpose |
 |-------|---------|
 | `/music-production:start` | Smart entry point - setup on first run, overview afterwards |
+| `/music-production:strategy` | Define artist identity, distribution strategy, production philosophy |
 | `/music-production:new` | Create a new song project in `01_Projects/` |
-| `/music-production:produce` | Production consultation - arrangement, harmony, sound design, mixing, mastering |
+| `/music-production:produce` | Production consultation - identity-aware advice on arrangement, harmony, mixing, mastering |
 | `/music-production:vault` | Move finished song from `01_Projects/` to `02_Vault/` |
-| `/music-production:release` | Enrich song file with metadata (BPM, Key, Mood) and release sections |
-| `/music-production:generate` | Generate YouTube/Bandcamp descriptions and cover art prompt |
+| `/music-production:release` | Enrich song file with metadata (BPM, Key, Mood) and optional video/artwork status |
+| `/music-production:generate` | Generate YouTube/Bandcamp descriptions and cover art prompt (strategy-aware) |
 | `/music-production:catalog` | Move released song to `03_Catalog/` with catalog number (e.g. FW004) |
 
 ## Folder Structure
@@ -64,6 +67,7 @@ Each song lives in its own folder with a central `<Ordnername>.md` file (named e
 ## State
 
 Config lives in `.music-production/config.json` (created automatically on first run).
+Artist strategy lives in `.music-production/strategy.md` (created by `/music-production:strategy`).
 
 Files are plain markdown with YAML frontmatter - readable in any editor, no Claude Code required.
 

@@ -1,11 +1,11 @@
 {
-  "version": "0.4.0",
+  "version": "0.5.0",
   "name": "music-production",
-  "description": "Music Production Workflow Companion - Song lifecycle from idea to catalog",
+  "description": "Music Production Workflow Companion - Song lifecycle from idea to catalog, with artist identity and strategy layer",
   "author": {
     "name": "zuhcya",
     "url": "https://github.com/ZUHcYa"
   },
   "repository": "https://github.com/ZUHcYa/ai-plugins",
-  "keywords": ["music", "production", "workflow", "song", "release", "catalog", "lifecycle"]
+  "keywords": ["music", "production", "workflow", "song", "release", "catalog", "lifecycle", "strategy", "identity"]
 }

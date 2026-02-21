@@ -77,7 +77,20 @@ Claude: Release prepared!
    - `## Song-Beschreibung` — filled with the user's description
    - `## Release-Texte` — empty subsections for YouTube and Bandcamp
    - `## Cover Art` — empty prompt and style references
-9. Do NOT increment `nextNumber` in config (that happens in `/music-production:catalog`).
+9. **Optional: Video und Artwork Status abfragen:**
+   ```
+   Claude: Ist fuer diesen Release ein Video geplant?
+           [J] Ja  [N] Nein  [S] Spaeter entscheiden
+
+   Claude: Cover Art Status?
+           [G] Prompt generieren lassen (/music-production:generate)
+           [V] Eigenes Artwork vorhanden
+           [S] Spaeter
+   ```
+   - Falls Video = Ja: `## Video` Sektion anhaengen (siehe Template unten)
+   - Falls Artwork = Vorhanden: `## Artwork` Sektion mit Status `vorhanden` anhaengen
+   - Falls Spaeter oder Nein: Nichts anhaengen. Sektionen koennen jederzeit manuell ergaenzt werden.
+10. Do NOT increment `nextNumber` in config (that happens in `/music-production:catalog`).
 
 ## Metadata Fields
 
@@ -138,6 +151,31 @@ These sections are appended to the existing song file content:
 **Prompt:**
 **Stil-Referenzen:**
 ```
+
+---
+
+## Optional Sections Templates
+
+### Video Section (appended when user confirms video is planned)
+
+```markdown
+## Video
+**Status:** geplant
+**Konzept:**
+**Footage:**
+**Export:** [ ] 16:9 | [ ] 9:16
+```
+
+### Artwork Section (appended when user has own artwork)
+
+```markdown
+## Artwork
+**Status:** vorhanden
+**Datei:**
+**Notizen:**
+```
+
+These sections are optional and only appended when the user explicitly requests them. They are never a blocker for the release workflow.
 
 ---
 

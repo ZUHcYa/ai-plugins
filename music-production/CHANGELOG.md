@@ -4,6 +4,25 @@ All notable changes to music-production will be documented in this file.
 
 ---
 
+## [0.5.0] - 2026-02-21
+
+### Added
+
+- New skill: `/music-production:strategy` - guided setup for artist identity, distribution strategy, and production philosophy
+- Persistent strategy document (`.music-production/strategy.md`) with machine-readable frontmatter
+- Covers 5 blocks: Artist Identity, Distribution, Constraints, Hardware & Visual, Release Cycle
+- Re-runnable: update individual sections or start fresh
+
+### Changed
+
+- `/music-production:start` now detects `strategy.md` and shows artist name in status header (or hints at strategy setup)
+- `/music-production:produce` loads strategy context for identity-aware consultation (genre constraints, hardware-specific advice, anti-genre filtering)
+- `/music-production:generate` applies distribution rules from strategy (metadata syntax, tag filtering, cover art keywords, artist name in footer)
+- `/music-production:release` now optionally collects Video and Artwork status, appending dedicated sections to the song file
+- SessionStart hook shows `artist_name` from strategy in the status line
+
+---
+
 ## [0.4.0] - 2026-02-21
 
 ### Added
