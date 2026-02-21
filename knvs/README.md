@@ -219,6 +219,11 @@ Reviews canvas changes and flags inconsistencies on demand.
 
 **When to use:** After editing files in Obsidian, to ensure everything is consistent.
 
+### `/knvs:finalize` - Finalize Research Report
+Incorporates a Maengelprotokoll (deficiency audit) into a draft research report. Applies strict editing protocol (delete hallucinations, precise context gaps, keep verified claims) and sets `status: verified`.
+
+**When to use:** After an external audit of a draft research report, before `/knvs:impact`.
+
 ---
 
 ## File Structure
