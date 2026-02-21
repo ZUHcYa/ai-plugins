@@ -1,0 +1,11 @@
+{
+  "version": "0.1.0",
+  "name": "journal",
+  "description": "Personal Journal - daily reflections, thoughts, and learnings with timestamps",
+  "author": {
+    "name": "zuhcya",
+    "url": "https://github.com/ZUHcYa"
+  },
+  "repository": "https://github.com/ZUHcYa/ai-plugins",
+  "keywords": ["journal", "daily", "reflection", "notes", "personal", "timestamps"]
+}

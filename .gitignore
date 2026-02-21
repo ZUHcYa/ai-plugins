@@ -47,5 +47,8 @@ Thumbs.db
 # Trips - Private trip tracking config
 .trips/
 
+# Journal - Private journal config
+.journal/
+
 # Roadmap - Private planning
 ROADMAP.md
