@@ -79,6 +79,9 @@ Claude: Scanning for changes...
 | Resolved Hypothesis | Hypothesis slug has matching `<slug>-verified.md`? | Hypothesis possibly resolved - review and delete |
 | Invalid Hypothesis | Hypothesis file has draft/verified-only fields (`source_report`, `deficiency_list`, `corrections_applied`)? | Invalid hypothesis format |
 | Hypothesis Missing Claim | Hypothesis without `claim` field? | Missing required field |
+| Hypothesis Missing Canvas | Hypothesis without `canvas` field? | Missing required field - add canvas path |
+| Hypothesis Canvas Broken | Hypothesis `canvas` field points to non-existent canvas file? | Broken canvas reference — update or delete |
+| Hypothesis Not Reflected | Hypothesis `canvas` + `bmc_fields` match an existing canvas, but no `[!note]` referencing this hypothesis exists under those dimensions? | Advisory: Hypothesis not visible in canvas — re-run /knvs:ideate or add manually |
 | Stale Network Canvas | `network/*.md` with `snapshot_date` older than 90 days? | Stale vendor snapshot - review or update |
 | Missing Snapshot Date | `type: network-canvas` without `snapshot_date` field? | Missing required field |
 | Broken Vendor Risk Ref | `[!vendor-risk]` callout links to non-existent `network/` file? | Broken vendor reference - create or remove |
