@@ -235,6 +235,7 @@ Claude: knvs Status
 | EXPLORE with HIGH risk | "X needs focus → accelerate testing" |
 | EXPLORE all hypotheses validated | "X ready → /knvs:exploit" |
 | EXPLOIT `next_review` within 7 days | "X review due → /knvs:review" |
+| RESEARCH `status: draft` with matching `-audit.md` | "X has audit ready → /knvs:finalize" |
 | No items exist | "Run /knvs:ideate to capture your first idea" |
 
 ---

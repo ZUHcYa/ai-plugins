@@ -104,7 +104,8 @@ These folders contain skill documentation. Do not modify.
 │   ├── explore/SKILL.md     # Validate hypotheses
 │   ├── exploit/SKILL.md     # Scale business model
 │   ├── review/SKILL.md      # Disruption review
-│   └── sync/SKILL.md        # Check for changes
+│   ├── sync/SKILL.md        # Check for changes
+│   └── finalize/SKILL.md   # Finalize draft with audit
 ├── CLAUDE.md                 # Claude instructions
 ├── README.md                 # Process documentation
 ├── QUICKSTART.md             # Getting started guide

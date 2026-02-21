@@ -4,6 +4,19 @@ All notable changes to knvs will be documented in this file.
 
 ---
 
+## [0.14.0] - 2026-02-21
+
+### Added
+
+- **NEW SKILL:** `/knvs:finalize` — incorporates external Maengelprotokoll into draft research reports
+  - Strict editing protocol: RED (delete), AMBER (precise), GREEN (keep)
+  - Tolerant audit parsing (German labels, emoji markers, flexible structure)
+  - Includes copyable Audit Generation Prompt for extended-thinking sessions
+  - 2 new sync checks: orphaned audits + draft-with-audit ready
+  - Suggested action in `/knvs:start` for draft+audit pairs
+
+---
+
 ## [0.13.0] - 2026-02-20
 
 ### Changed

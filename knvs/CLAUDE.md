@@ -116,6 +116,13 @@ Research reports in `research/` are PRE-IDEATE documents. They are NOT Business 
 reviewed externally. The `verified` date field is also required for manual verification
 (enter your own review date).
 
+**Finalization workflow:** For AI-generated research drafts, the recommended path is:
+1. External AI generates draft (`status: draft`)
+2. Separate AI session creates a Maengelprotokoll (`research/<slug>-audit.md`)
+3. `/knvs:finalize` incorporates audit findings and sets `status: verified`
+
+See `skills/finalize/SKILL.md` for the editing protocol and audit format.
+
 **Required Sections:**
 - Summary
 - Research Context (Problem Space, Market Context, Target Audience)

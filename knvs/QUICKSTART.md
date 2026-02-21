@@ -67,7 +67,19 @@ See [STRUCTURE.md](STRUCTURE.md) for complete folder documentation.
 
 ---
 
-## 2. (Optional) Extract Impact Atoms
+## 2a. (Optional) Finalize Draft Research
+
+If your research was AI-generated and externally audited:
+
+```
+/knvs:finalize
+```
+
+Claude reads the draft and audit file, applies corrections (deletes hallucinations, precises context gaps), and sets the report to `verified`.
+
+---
+
+## 2b. (Optional) Extract Impact Atoms
 
 After verifying research, extract atomic impacts:
 

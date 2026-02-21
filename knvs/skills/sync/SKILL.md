@@ -86,6 +86,8 @@ Claude: Scanning for changes...
 | Missing Snapshot Date | `type: network-canvas` without `snapshot_date` field? | Missing required field |
 | Broken Vendor Risk Ref | `[!vendor-risk]` callout links to non-existent `network/` file? | Broken vendor reference - create or remove |
 | Invalid Network Canvas | .md file in `network/` without `type: network-canvas`? | Invalid network canvas format |
+| Orphaned Audit | `research/*-audit.md` exists but matching draft is already `status: verified`? | Stale audit — consider deleting |
+| Draft With Audit | `research/<slug>.md` with `status: draft` has matching `<slug>-audit.md`? | Ready for finalization — run /knvs:finalize |
 
 ## Notes
 
