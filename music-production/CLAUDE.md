@@ -28,8 +28,9 @@ Die Song-Datei (`<Ordnername>.md`) ist das zentrale Begleitdokument und waechst 
 Produktion               Fertig, wartet      Texte & Meta             Veroeffentlicht
 
 /music-production:new    :vault              :release                 :catalog
-erstellt                 verschiebt          reichert an              verschiebt &
-<Ordnername>.md          + status update     + generiert              nummeriert
+:produce (beratend)      verschiebt          reichert an              verschiebt &
+erstellt                 + status update     + generiert              nummeriert
+<Ordnername>.md
 
                                              :generate
                                              Release-Texte

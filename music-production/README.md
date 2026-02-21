@@ -7,6 +7,7 @@ A lifecycle companion for music production that guides songs from idea to catalo
 **music-production** manages your song lifecycle through structured phases:
 
 - **Creating** new song projects with consistent templates
+- **Advising** on production decisions (arrangement, harmony, mixing, mastering)
 - **Moving** finished productions to vault for release preparation
 - **Enriching** songs with metadata, release texts, and cover art prompts
 - **Archiving** released songs to your catalog with sequential numbering
@@ -16,6 +17,7 @@ A lifecycle companion for music production that guides songs from idea to catalo
 ```
 /music-production:start       Setup on first run, overview afterwards
 /music-production:new         Create a new song project
+/music-production:produce     Production consultation (arrangement, harmony, mixing, mastering)
 /music-production:vault       Move finished song to vault
 /music-production:release     Prepare song for release (metadata + sections)
 /music-production:generate    Generate release texts and cover art prompt
@@ -28,8 +30,9 @@ A lifecycle companion for music production that guides songs from idea to catalo
 01_Projects/     ->  02_Vault/      ->  Release-Prep     ->  03_Catalog/
 Production           Finished           Texts & Meta          Published
 
-/music-production:new   /music-production:vault   /music-production:release   /music-production:catalog
-                                                  /music-production:generate
+/music-production:new      /music-production:vault   /music-production:release   /music-production:catalog
+/music-production:produce                            /music-production:generate
+(advisory)
 ```
 
 ## Skills
@@ -38,6 +41,7 @@ Production           Finished           Texts & Meta          Published
 |-------|---------|
 | `/music-production:start` | Smart entry point - setup on first run, overview afterwards |
 | `/music-production:new` | Create a new song project in `01_Projects/` |
+| `/music-production:produce` | Production consultation - arrangement, harmony, sound design, mixing, mastering |
 | `/music-production:vault` | Move finished song from `01_Projects/` to `02_Vault/` |
 | `/music-production:release` | Enrich song file with metadata (BPM, Key, Mood) and release sections |
 | `/music-production:generate` | Generate YouTube/Bandcamp descriptions and cover art prompt |

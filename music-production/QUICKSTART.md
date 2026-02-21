@@ -94,7 +94,40 @@ Claude: Created: 01_Projects/2026-02-Nightfall/
 
 ---
 
-## 3. Move to Vault When Finished
+## 3. Get Production Help (Optional)
+
+```
+/music-production:produce
+```
+
+Need help finishing a song? Get advisory consultation on arrangement, harmony, sound design, mixing, or mastering:
+
+```
+User: /music-production:produce
+Claude: An welchem Song arbeitest du?
+
+        01_Projects/
+        1. 2026-02-Nightfall    [production] - 3 Tage
+
+        [S] Skip - kein bestimmter Song / allgemeine Frage
+
+User: 1
+Claude: Woran moechtest du arbeiten?
+
+        [A] Arrangement  [H] Harmony & Theory  [S] Sound Design
+        [R] Rhythm & Groove  [M] Mixing  [X] Mastering
+
+        Oder beschreib dein Problem in eigenen Worten.
+
+User: Der Chorus klingt duenn
+Claude: [Konkrete Vorschlaege basierend auf Song-Kontext und Referenzen]
+
+        Action Items in Song-TODOs uebernehmen? [J/n]
+```
+
+---
+
+## 4. Move to Vault When Finished
 
 ```
 /music-production:vault
@@ -104,7 +137,7 @@ When production is complete, move the song to `02_Vault/` and mark it as waiting
 
 ---
 
-## 4. Prepare for Release
+## 5. Prepare for Release
 
 ```
 /music-production:release
@@ -120,7 +153,7 @@ Generates release texts for YouTube, Bandcamp descriptions, and a cover art prom
 
 ---
 
-## 5. Catalog the Song
+## 6. Catalog the Song
 
 ```
 /music-production:catalog
@@ -145,8 +178,9 @@ Claude: Assigned: FW004
 ```
 01_Projects/  ->  02_Vault/  ->  Release-Prep  ->  03_Catalog/
      |               |              |               |
-  /music-production:new   /music-production:vault   /music-production:release   /music-production:catalog
-                                                   /music-production:generate
+  /mp:new          /mp:vault     /mp:release      /mp:catalog
+  /mp:produce                    /mp:generate
+  (advisory)
 ```
 
 ---
@@ -190,6 +224,7 @@ Claude: Music-Production Status (v0.3.0)
 |-------|-------------|
 | `/music-production:start` | Setup (first run) or status overview |
 | `/music-production:new` | Start a new song project |
+| `/music-production:produce` | Production consultation (arrangement, harmony, mixing, mastering) |
 | `/music-production:vault` | Song is finished, move to waiting |
 | `/music-production:release` | Add release metadata |
 | `/music-production:generate` | Generate release texts |

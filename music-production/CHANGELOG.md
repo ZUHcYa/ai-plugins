@@ -4,6 +4,18 @@ All notable changes to music-production will be documented in this file.
 
 ---
 
+## [0.4.0] - 2026-02-21
+
+### Added
+
+- New skill: `/music-production:produce` - advisory production companion for songs in progress
+- Covers 6 focus areas: Arrangement, Harmony & Theory, Sound Design, Rhythm & Groove, Mixing, Mastering
+- Song-linked mode (reads song file for context) and free consultation mode
+- Guiding Questions tables per focus area (usable as standalone manual checklist)
+- Optional writing of action items to song TODOs and consultation notes to Notizen
+
+---
+
 ## [0.3.0] - 2026-02-20
 
 ### Added
