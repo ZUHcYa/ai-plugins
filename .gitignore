@@ -38,9 +38,6 @@ yarn-error.log*
 .DS_Store
 Thumbs.db
 
-# Compass - Private vision tracking
-.compass/
-
 # Music Production - Private config
 .music-production/
 

@@ -13,12 +13,7 @@
       "source": "./music-production",
       "description": "Music Production Workflow Companion - Song lifecycle from idea to catalog"
     },
-    {
-      "name": "compass",
-      "source": "./compass",
-      "description": "Session Goal Alignment - Vision tracking, automatic drift detection, and strategic challenging"
-    },
-    {
+{
       "name": "knvs",
       "source": "./knvs",
       "description": "Business Model Innovation Management - Testing Business Ideas with Claude Code"

@@ -4,7 +4,6 @@
 
 A marketplace of specialized plugins covering various domains:
 - **Creative workflows** (Music Production)
-- **Productivity & alignment** (Session Goal Tracking)
 - **Business innovation** (Business Model Canvas)
 - **Finance & compliance** (Dienstreisen / Business Travel)
 
@@ -27,7 +26,6 @@ Add this marketplace, then install individual plugins:
 ### Install a Plugin
 
 ```bash
-/plugin install compass@ai-plugins
 /plugin install music-production@ai-plugins
 /plugin install knvs@ai-plugins
 /plugin install trips@ai-plugins
@@ -39,13 +37,11 @@ Add this marketplace, then install individual plugins:
 
 | Plugin | Description | Status |
 |--------|-------------|--------|
-| [**compass**](compass/) | Session Goal Alignment - Vision tracking and drift detection | Stable |
 | [**music-production**](music-production/) | Music Production Workflow Companion | Stable |
 | [**knvs**](knvs/) | Business Model Innovation - Testing Business Ideas with Claude Code | Stable |
 | [**trips**](trips/) | Business Travel Tracker - Record Dienstreisen and generate Finanzamt reports | Stable |
 
 See each plugin's README for details:
-- [compass/README.md](compass/README.md)
 - [music-production/README.md](music-production/README.md)
 - [knvs/README.md](knvs/README.md)
 - [trips/README.md](trips/README.md)
@@ -58,12 +54,6 @@ See each plugin's README for details:
 ai-plugins/
 ├── .claude-plugin/
 │   └── marketplace.json      # Plugin registry (marketplace)
-├── compass/                  # Session Goal Alignment
-│   ├── .claude-plugin/
-│   │   └── plugin.json
-│   ├── CLAUDE.md
-│   ├── skills/
-│   └── hooks/
 ├── music-production/         # Music Production
 │   ├── .claude-plugin/
 │   │   └── plugin.json
