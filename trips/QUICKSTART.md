@@ -48,13 +48,13 @@ User: /trips:start
 Claude: Welcome to trips!
 
         Where should trip files be stored?
-        (e.g. "O/Backoffice/Auslagen" or "./trips-data")
+        (e.g. "Documents/Expenses" or "./trips-data")
 
-User: O/5 Support Processes/53 Backoffice/Auslagen
+User: Documents/Expenses
 
 Claude: What's your company name?
 
-User: Acme GmbH
+User: Muster GmbH
 
 Claude: Created: .trips/config.json
 
@@ -87,13 +87,13 @@ User: Berlin
 
 Claude: Business purpose?
 
-User: Q1 planning meeting with [Kunde]
+User: Q1 planning meeting with [Client]
 
 Claude: Distance driven (km)? Leave empty if none.
 
 User: 320
 
-Claude: Created: O/5 Support Processes/53 Backoffice/Auslagen/2026/02 - 2026/Friedrich Wagner/2026-02-03_berlin.md
+Claude: Created: Documents/Expenses/2026/02 - 2026/Max Mustermann/2026-02-03_berlin.md
 
         Trip recorded:
         - 1 travel day
@@ -112,7 +112,7 @@ Lists all trips for a given month or date range:
 
 ```
 User: /trips:list
-Claude: February 2026 — Friedrich Wagner
+Claude: February 2026 — Max Mustermann
 
         2026-02-03  Berlin          Client meeting          320 km  €96.00
         2026-02-10  Munich          Partner workshop        410 km  €123.00
@@ -145,7 +145,7 @@ Generates a monthly summary ready for your tax return:
 User: /trips:report
 Claude: Generated: _report-2026-02.md
 
-        February 2026 | Friedrich Wagner | Acme GmbH
+        February 2026 | Max Mustermann | Muster GmbH
         -----------------------------------------------
         3 trips | 1,020 km | €306.00 total reimbursement
 

@@ -15,10 +15,10 @@ Single entry point for music-production. Automatically detects context:
 
 ```
 01_Projects/     ->  02_Vault/      ->  Release-Prep     ->  03_Catalog/
-Produktion          Fertig, wartet      Texte & Meta          Veroeffentlicht
+Production          Finished, waiting   Texts & Meta          Published
 
-/mp:new             /mp:vault           /mp:release           /mp:catalog
-                                        /mp:generate
+/music-production:new   /music-production:vault   /music-production:release   /music-production:catalog
+                                                  /music-production:generate
 ```
 
 ## When to Use
@@ -143,8 +143,8 @@ Claude: Music-Production Status (v0.3.0)
 1. Read version from `music-production/.claude-plugin/plugin.json` for display in the status header
 2. Read config from `.music-production/config.json`
 3. Scan phase folders:
-   - `01_Projects/` - list all song folders, read `<Ordnername>.md` frontmatter
-   - `02_Vault/` - list all song folders, read `<Ordnername>.md` frontmatter
+   - `01_Projects/` - list all song folders, read `<FolderName>.md` frontmatter
+   - `02_Vault/` - list all song folders, read `<FolderName>.md` frontmatter
    - `03_Catalog/` - list all catalog entries
 4. Calculate staleness (days since folder creation/modification)
 5. Display status grouped by phase

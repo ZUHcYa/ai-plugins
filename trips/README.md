@@ -44,7 +44,7 @@ Each trip is a file in your configured data directory:
 <dataDir>/
   2026/
     02 - 2026/
-      Friedrich Wagner/
+      Max Mustermann/
         2026-02-03_berlin.md
         2026-02-15_muenchen.md
         _report-2026-02.md

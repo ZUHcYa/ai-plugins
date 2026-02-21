@@ -55,7 +55,7 @@ Claude: Geaendert: purpose "Kundenpraesentation Q1" -> "Projektvorstellung Q1"
         Weiteres Feld aendern? (Nummer, oder "done")
 
 User: done
-Claude: Gespeichert: ...\2026\02 - 2026\Friedrich Wagner\2026-02-03_berlin.md
+Claude: Gespeichert: ...\2026\02 - 2026\Max Mustermann\2026-02-03_berlin.md
         Geaendert: purpose
 ```
 

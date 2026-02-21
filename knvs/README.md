@@ -34,21 +34,6 @@
 
 Done! The plugin is ready to use.
 
-### Option 2: Clone the Repository
-
-```bash
-git clone https://github.com/ZUHcYa/knvs.git
-cd knvs
-```
-
-Claude Code will automatically detect the plugin.
-
-### Option 3: Use as GitHub Template
-
-1. Go to the [knvs repository](https://github.com/ZUHcYa/knvs)
-2. Click "Use this template"
-3. Create your own repository
-4. Open with Claude Code
 
 ---
 

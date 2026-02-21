@@ -73,7 +73,7 @@ Claude: Scanning for changes...
 | Missing BMC Fields | Canvas lacks one of the 9 core BMC `##` headings? | Incomplete canvas |
 | Invalid Canvas | .md file without valid frontmatter? | Invalid canvas |
 | Deprecated Impact Section | Canvas has `## Impact Context` section instead of inline callouts? | Deprecated format - consider migrating |
-| Orphaned Inline Impact | Inline impact `_Quelle: [[impacts/slug]]_` references non-existent file? | Broken impact reference |
+| Orphaned Inline Impact | Inline impact `_Source: [[impacts/slug]]_` references non-existent file? | Broken impact reference |
 | Stale Hypothesis | RESEARCH `status: hypothesis` older than 14 days? | Stale hypothesis - research or delete |
 | Orphaned Hypothesis | Hypothesis `origin_impact` points to non-existent file? | Broken reference - remove field or delete |
 | Resolved Hypothesis | Hypothesis slug has matching `<slug>-verified.md`? | Hypothesis possibly resolved - review and delete |

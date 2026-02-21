@@ -45,7 +45,7 @@ Claude: Entfernung in km? [optional, "-" = skip]
 User: 580
 Claude: Reise erfasst!
 
-        Datei: ...\Auslagen\2026\02 - 2026\Friedrich Wagner\2026-02-03_berlin.md
+        Datei: ...\Expenses\2026\02 - 2026\Max Mustermann\2026-02-03_berlin.md
         Reise: Kundentermin Berlin
         Datum: 03.02.2026
         Ziel:  Berlin (580 km)
