@@ -1,8 +1,45 @@
 # knvs: Plugin-Specific Rules
 
+## Design-Boundary: Strategyzer-Konzept als Leitplanke
+
+**Harte Regel fuer alle Aenderungen am KNVS-Plugin:**
+
+Jedes neue Feature, jeder neue Skill, jede Erweiterung muss gegen den Strategyzer-Loop geprueft werden, bevor sie umgesetzt wird:
+
+```
+Ideate (BMC) → Hypothesize (D/F/V) → Prioritize (Evidence × Importance)
+→ Experiment → Learn (Insights) → Decide (Persevere / Pivot / Kill)
+```
+
+**Prueffragen bei neuen Features:**
+1. Welchem Schritt im Loop gehoert dieses Feature?
+2. Ist es in "Testing Business Ideas" oder "The Invincible Company" verankert?
+3. Macht es den Loop klarer oder komplexer?
+4. Koennte es den Loop verzerren oder einen Schritt ueberproportional aufblaehen?
+
+**Wenn ein Feature keinem Loop-Schritt zugeordnet werden kann → nicht umsetzen.**
+**Wenn ein Feature den Loop verkompliziert statt vereinfacht → hinterfragen.**
+
+---
+
 ## Vision
 
-**knvs** is a template for Innovation Managers based on the Strategyzer "Testing Business Ideas" process.
+**knvs** is a template for Innovation Managers based on the Strategyzer "Testing Business Ideas" and "The Invincible Company" process.
+
+### The Strategyzer Loop
+
+```
+IDEATE → HYPOTHESIZE → PRIORITIZE → EXPERIMENT → LEARN → DECIDE
+  BMC      D/F/V      Evidence ×     Run tests    Extract   Persevere
+                      Importance                  Insights  Pivot / Kill
+```
+
+**Phases (The Invincible Company):**
+- **IDEATE** — Create Business Model Canvas. Ideas being researched.
+- **EXPLORE** — Validate hypotheses through experiments. Higher risk, not yet proven.
+- **EXPLOIT** — Validated, running business models. Lower risk, established.
+
+The validation loop (Hypothesize → Experiment → Learn → Decide) runs within the EXPLORE phase.
 
 ### Strict Rules
 
@@ -16,18 +53,10 @@
 
 | Change type | Version bump |
 |-------------|-------------|
-| New feature, Breaking change in Skills/Commands | Minor (`0.x.0`) |
-| Bugfix, docs correction | Patch (`0.x.1`) |
+| New feature, Breaking change in Skills | Minor (`x.y.0`) |
+| Bugfix, docs correction | Patch (`x.y.z`) |
 
 Always add a `## [x.y.z] - YYYY-MM-DD` entry to `CHANGELOG.md` before committing.
-
-### Warning Signal Check
-
-**Before every task, ask:**
-1. Does this help with the **development of knvs**?
-2. Is it **not a user feature** for knvs end users?
-
-**When in doubt:** Ask the developer IMMEDIATELY!
 
 ---
 
@@ -48,9 +77,9 @@ All generated files must work well in both contexts.
 | Type | Format | Example |
 |-----|--------|---------|
 | Canvas (all phases) | `[slug].md` | `ai-bookkeeping.md` |
-| Research Report | `[slug].md` | `machine-customers-verified.md` |
-| Impact Atom | `[slug].md` | `vector-search-mandatory.md` |
-| Network Canvas | `[entity-slug].md` | `vendor-corp.md` |
+| Hypothesis | `[slug].md` | `customers-will-pay-monthly.md` |
+| Experiment | `[slug].md` | `pricing-survey-freelancers.md` |
+| Insight | `[slug].md` | `freelancers-prefer-annual.md` |
 
 **Rule:** NO date prefix. NO numbering. kebab-case slug only.
 CORRECT: `ai-bookkeeping-app.md` — WRONG: `20260220-001-ai-bookkeeping-app.md`
@@ -73,300 +102,297 @@ Every Canvas MUST contain these 9 core fields (Osterwalder/Pigneur), as `##` hea
 
 **Missing fields = invalid Canvas.** `/knvs:sync` checks for this.
 
-**3-Tier Signal System:** Each BMC dimension carries signals at three levels:
-
-| Tier | Signal | Visual |
-|------|--------|--------|
-| 1 | No signal | Nothing rendered |
-| 2 | Open hypothesis (`status: hypothesis`, `canvas` matches) | `[!note]-` callout (subtle) |
-| 3 | Confirmed MEDIUM or HIGH impact | `[!impact]` callout (full) |
-
-LOW impacts are never rendered as individual callouts — they appear only in the overflow line.
-HIGH ▲ Opportunities are always Tier 3 (filter is on severity, not direction).
-See `skills/ideate/SKILL.md` for generation rules, same-driver merging, and callout format.
-
 ### Phase-Specific Extensions
 
-In addition to the 9 core fields, each phase adds further required elements:
-
-- **IDEATE:** Frontmatter `status`, `progress`, `created`, `updated`. Optional: `source_research`, `impact_cap` (default: 3, max callouts per BMC dimension). Sections: Notes, Next Steps
-- **EXPLORE:** Frontmatter additionally `innovation_risk`, `potential_revenue`. Sections: Hypotheses, Experiments
-- **EXPLOIT:** Frontmatter additionally `next_review`, `disruption_risk`, `revenue_score`. Sections: Reviews
+- **IDEATE:** Frontmatter `status`, `progress`, `created`, `updated`. Optional: `pivot_from`. Sections: Decisions, Notes, Next Steps
+- **EXPLORE:** Frontmatter additionally `innovation_risk`, `potential_revenue`. Sections: Decisions, Next Steps
+- **EXPLOIT:** Frontmatter additionally `next_review`, `disruption_risk`, `revenue_score`. Sections: Reviews, Decisions, Next Steps
 
 Canonical templates for each phase are in the respective `skills/*/SKILL.md` under `## Canvas Template`.
 
 ---
 
-## Research Report: Structure
+## Hypothesis: Structure
 
-Research reports in `research/` are PRE-IDEATE documents. They are NOT Business Model Canvases.
+Hypotheses are testable assumptions extracted from a Business Model Canvas.
+Each hypothesis belongs to one of three categories (Strategyzer):
 
-**Required fields (frontmatter):**
-- `type: research`
-- `title`
-- `status` (hypothesis | draft | verified)
-- `created`
-- `verified` (YYYY-MM-DD, when status=verified)
+| Category | BMC Fields | Core Question |
+|----------|-----------|---------------|
+| **Desirability** | Value Proposition, Customer Segments, Channels, Customer Relationships | Do customers want this? |
+| **Feasibility** | Key Resources, Key Activities, Key Partnerships | Can we build/deliver this? |
+| **Viability** | Revenue Streams, Cost Structure | Is this financially sustainable? |
 
-**Optional fields:**
-- `source_report` (reference to the original document)
-- `vendor` (name of the external organization, when the report focuses on a specific vendor, partner, or competitor)
+### Prioritization (2x2 Matrix via Frontmatter)
 
-**Note:** `status: verified` can be set manually when the research report has already been
-reviewed externally. The `verified` date field is also required for manual verification
-(enter your own review date).
+Hypotheses are prioritized by two dimensions:
 
-**Finalization workflow:** For AI-generated research drafts, the recommended path is:
-1. External AI generates draft (`status: draft`)
-2. Separate AI session creates a Maengelprotokoll (`research/<slug>-audit.md`)
-3. `/knvs:finalize` incorporates audit findings and sets `status: verified`
+| Field | Values | Meaning |
+|-------|--------|---------|
+| `evidence` | none / weak / strong | How much evidence do we have? |
+| `importance` | low / medium / high | How critical is this for the business model? |
 
-See `skills/finalize/SKILL.md` for the editing protocol and audit format.
+**Priority rule:** Test hypotheses with `importance: high` + `evidence: none` first.
 
-**Required Sections:**
-- Summary
-- Research Context (Problem Space, Market Context, Target Audience)
-- Key Findings (with sources)
-- Supporting Data
-- Implications for Business Model
-- Next Steps
+### Required Fields (Frontmatter)
 
-**Optional Sections:**
-- Limitations
-- Bibliography
-
-Research Reports are transformed via `/knvs:impact` into Impact Atoms and via `/knvs:ideate` into BMC Canvases.
-
-### Research Report Template
-
-```markdown
----
-type: research
-title: "[Research Topic]"
-status: verified
-created: YYYY-MM-DD
-verified: YYYY-MM-DD
-source_report: "[Original filename]"  # optional
----
-
-# Research Report: [Title]
-
-## Summary
-
-[Overview of the research findings]
-
----
-
-## Research Context
-
-### Problem Space
-[What problem does this research address?]
-
-### Market Context
-[Market size, trends, dynamics]
-
-### Target Audience
-[Who is affected by this problem?]
-
----
-
-## Key Findings
-
-### Finding 1: [Title]
-[Content]
-
-**Sources:**
-- [Citation 1 with link]
-
----
-
-## Supporting Data
-
-### Market Statistics
-[Statistics with sources]
-
-### Competitive Landscape
-[Competitive analysis]
-
-### Technical Feasibility
-[Technical assessments]
-
----
-
-## Implications for Business Model
-
-[Assessments of how this research could inform a business model]
-
-Potential BMC fields:
-- **Value Proposition:** [From problem space and findings]
-- **Customer Segments:** [From target audience analysis]
-- **Revenue Streams:** [From market context]
-
----
-
-## Next Steps
-
-- [ ] /knvs:impact to extract Impact Atoms
-- [ ] /knvs:ideate for Business Model Canvas
-```
-
-### Hypothesis (Research Predecessor Stage)
-
-Hypotheses are UNCONFIRMED CLAIMS that arise during the work.
-They are research assignments, not facts.
-
-**When to capture?**
-When the user makes a claim that:
-- Does not originate from verified research
-- Influences business model decisions (e.g. severity, canvas design)
-- Requires validation through external research
-
-Every skill that encounters an unconfirmed market assumption offers
-hypothesis capture. Users can also create hypotheses manually.
-
-**Required fields (frontmatter):**
-- `type: research`
-- `title`
-- `status: hypothesis`
-- `created`
-- `claim` (single line: the claim to be tested)
+- `type: hypothesis`
+- `title` (testable statement)
+- `canvas` (path to the canvas, e.g. `explore/my-canvas.md`)
+- `category` (desirability | feasibility | viability)
 - `bmc_fields` (array of affected BMC fields, canonical English names)
-- `canvas` (path to the originating canvas, e.g. `ideate/my-canvas.md`; auto-populated by `/knvs:ideate`)
-
-**Optional fields:**
-- `origin_impact` (path to the Impact Atom, in case of a severity dispute)
-
-**Required Sections:**
-- Claim (expands on the claim with context and nuance)
-- Context (origin, affected canvas, severity decision)
-- Research Assignment (checklist of concrete tasks)
-- Deep Research Prompt (ready-to-copy prompt for Gemini/GPT, generated from claim + context)
-
-Hypotheses contain NO findings, sources, or correction logs.
-
-**Lifecycle:**
-
-| Outcome | Action |
-|---------|--------|
-| Confirmed | File research in research/ with status: verified -> /knvs:impact -> delete hypothesis |
-| Refuted | Correct severity in canvas -> delete hypothesis |
-| Not relevant | Delete hypothesis |
-| Not researched (>14 days) | /knvs:sync warns |
-
-Hypotheses are working documents. Delete after research or rejection.
-Canonical template is in `skills/ideate/SKILL.md` under `## Hypothesis Template`.
-
----
-
-## Impact Atom: Structure
-
-Impact Atoms in `impacts/` are PRE-IDEATE documents. They sit between Research and BMC.
-Each Impact describes ONE specific pressure or opportunity for business models.
-
-**Required fields (frontmatter):**
-- `type: impact-atom` (fixed)
-- `title`
-- `tags` (array, categorization)
-- `driver` (wiki link to research, or array for multiple sources)
-- `bmc_fields` (array of affected BMC fields, canonical English names)
+- `evidence` (none | weak | strong)
+- `importance` (low | medium | high)
+- `status` (open | testing | validated | invalidated)
 - `created` (YYYY-MM-DD)
+- `updated` (YYYY-MM-DD)
 
-**Required Sections:**
-- Title with `[IMPACT]` prefix
-- The scenario (What is happening?)
-- Pressure on business models (bullet per affected BMC field)
-- Source (wiki link to the Research Report)
+### Required Sections
 
-**Rules:**
-- Impact Atoms are immutable after creation
-- **No severity in the atom.** Severity is assigned context-specifically during canvas embedding (`/knvs:ideate`).
-- Filename: `<impact-slug>.md`
-- BMC field names must exactly match the 9 canonical names
-- Multi-driver: `driver` can be an array when the same insight comes from multiple sources
+- Claim (testable statement with context)
+- Context (why this matters, which BMC dimensions are affected)
+- Evidence (summary of evidence gathered, updated after experiments)
+- Related Experiments (links to experiment files)
 
-Canonical template is in `skills/impact/SKILL.md` under `## Impact Atom Template`.
-Impact Atoms are embedded via `/knvs:ideate` as inline callouts in BMC Canvases and used via `/knvs:review` as a basis for challenges.
-
----
-
-## Network Canvas: Structure
-
-Network Canvases in `network/` map the business models of external parties (vendors,
-partners, customers, competitors). They serve as the **home for indirect impacts** - impacts
-that primarily affect the external model and only secondarily affect our canvases.
-
-**Why separate?** When viewing our canvas, external impacts should not appear as
-full `[!impact]` callouts. Instead, our canvas shows only a lightweight `[!vendor-risk]`
-reference to the Network Canvas.
-
-**Required fields (frontmatter):**
-- `type: network-canvas` (fixed)
-- `entity` (official name of the external organization)
-- `relationship` (vendor | partner | customer | competitor | industry)
-- `snapshot_date` (YYYY-MM-DD - when was this state current?)
-
-**Optional fields:**
-- `product` (product/platform if relevant, e.g. "STEP")
-- `source_research` (wiki link to the Research Report that was the basis)
-
-**BMC fields:** Only fill in the analytically relevant fields - no obligation to fill all 9.
-Impact callouts are embedded as in our own canvas (`> [!impact]`), but describe
-the pressure on the EXTERNAL model, not on ours.
-
-**No lifecycle:** No IDEATE/EXPLORE/EXPLOIT phases, no `next_review`, no
-`innovation_risk`. Network Canvases are analysis snapshots, not innovation objects.
-
-**Staleness:** `/knvs:sync` warns when `snapshot_date` is older than 90 days.
-
-### Network Canvas Template
+### Hypothesis Template
 
 ```markdown
 ---
-type: network-canvas
-entity: "Vendor Corp AG"
-product: "PlatformX"
-relationship: vendor
-snapshot_date: YYYY-MM-DD
-source_research: "[[research/vendor-corp-analysis]]"  # optional
+type: hypothesis
+title: "Customers will pay EUR 15-30/month for automated bookkeeping"
+canvas: explore/ai-bookkeeping.md
+category: viability
+bmc_fields:
+  - Revenue Streams
+  - Customer Segments
+evidence: none
+importance: high
+status: open
+created: YYYY-MM-DD
+updated: YYYY-MM-DD
 ---
 
-# Vendor Corp/PlatformX - Vendor Model Snapshot
+# Hypothesis: Customers will pay EUR 15-30/month
 
-## Value Proposition
+## Claim
 
-> [!impact]- ▼ AI-powered ERP alternatives put VP under pressure (HIGH)
-> **Driver:** [[research/vendor-corp-analysis]]
->
-> GenAI-native competitors offer comparable ERP platform functionality...
->
-> _Source: [[research/vendor-corp-analysis]]_
+Freelancers in Germany are willing to pay EUR 15-30/month for an AI-powered
+bookkeeping solution that automates receipt categorization and tax preparation.
 
-[What Vendor Corp offers - only known / relevant aspects]
+## Context
 
-## Key Resources
-[What Vendor Corp has as a Key Resource]
+Revenue Streams in the BMC assume a subscription model at this price point.
+If freelancers are not willing to pay this amount, the entire revenue model
+needs rethinking.
 
-## Revenue Streams
-[How Vendor Corp earns - relevant to our Cost Structure]
+## Evidence
+
+No evidence yet. Requires pricing experiment.
+
+## Related Experiments
+
+(none yet)
 ```
 
-### `[!vendor-risk]` Callout in Our Own Canvas
+Canonical template is in `skills/hypothesize/SKILL.md`.
 
-When our canvas references a vendor/partner documented in `network/`,
-a `[!vendor-risk]` callout is inserted directly under the affected BMC field:
+---
+
+## Experiment: Structure
+
+Experiments test hypotheses through structured methods. The plugin offers predefined
+experiment types from "Testing Business Ideas" and allows custom types.
+
+### Predefined Experiment Types
+
+| Category | Types |
+|----------|-------|
+| **Discovery** | Customer Interview, Online Survey, Landing Page / Smoke Test, Data Analysis, Paper Prototype |
+| **Validation** | Concierge MVP, Wizard of Oz, Single Feature MVP, Pre-Sale, Crowdfunding |
+| **Custom** | Any user-defined experiment type |
+
+### Required Fields (Frontmatter)
+
+- `type: experiment`
+- `title`
+- `canvas` (path to the canvas)
+- `hypothesis` (path to the hypothesis file)
+- `experiment_type` (predefined or custom string)
+- `status` (designed | running | completed)
+- `created` (YYYY-MM-DD)
+- `completed` (YYYY-MM-DD, when done)
+- `success_criteria` (measurable outcome)
+- `duration` (timeframe)
+- `result` (success | failure | inconclusive, after completion)
+
+### Required Sections
+
+- Setup (what we are testing and how)
+- Success Criteria (measurable outcomes)
+- Process (steps to run the experiment)
+- Results (raw data and observations, filled after completion)
+- Conclusion (does this validate or invalidate the hypothesis?)
+
+### Experiment Template
 
 ```markdown
-## Key Partnerships
+---
+type: experiment
+title: "Pricing Survey with 50 Freelancers"
+canvas: explore/ai-bookkeeping.md
+hypothesis: hypotheses/ai-bookkeeping/customers-will-pay-monthly.md
+experiment_type: online-survey
+status: designed
+created: YYYY-MM-DD
+success_criteria: ">60% of respondents willing to pay EUR 15+"
+duration: "2 weeks"
+---
 
-> [!vendor-risk]- Vendor Corp/PlatformX: Vendor currently under pressure ([[network/vendor-corp]])
-> Current situation: 2 HIGH, 1 MEDIUM impacts on vendor model.
-> Risk: Planning reliability in this area is limited.
+# Experiment: Pricing Survey with 50 Freelancers
 
-**Vendor Corp/PlatformX** is our primary ERP platform provider...
+## Setup
+
+Online survey targeting freelancers in Germany to validate willingness
+to pay for AI-powered bookkeeping.
+
+## Success Criteria
+
+- >60% of respondents indicate willingness to pay EUR 15+/month
+- Sample size: minimum 50 respondents
+- Target group: German freelancers with annual revenue < EUR 100k
+
+## Process
+
+1. Create survey with pricing questions
+2. Distribute via freelancer communities and LinkedIn
+3. Collect responses over 2 weeks
+4. Analyze results
+
+## Results
+
+(to be filled after experiment completion)
+
+## Conclusion
+
+(to be filled after experiment completion)
 ```
 
-`[!vendor-risk]` is not an Impact Atom - it is a reference indicator. The impacts
-themselves live in the Network Canvas, not in `impacts/` and not directly in our canvas.
+Canonical template is in `skills/experiment/SKILL.md`.
+
+---
+
+## Insight: Structure
+
+Insights are key learnings distilled from completed experiments.
+Each insight is a standalone file, reusable across canvas boundaries.
+
+### Required Fields (Frontmatter)
+
+- `type: insight`
+- `title` (key learning, concise)
+- `source_experiment` (path to the experiment file)
+- `canvas` (path to the canvas)
+- `bmc_fields` (array of affected BMC fields)
+- `created` (YYYY-MM-DD)
+- `tags` (array, categorization)
+
+### Required Sections
+
+- Learning (what we learned)
+- Evidence (data/observations that support this)
+- Implications (how this affects the business model)
+- Source (link to experiment)
+
+### Insight Template
+
+```markdown
+---
+type: insight
+title: "Freelancers prefer annual billing with discount"
+source_experiment: experiments/ai-bookkeeping/pricing-survey-freelancers.md
+canvas: explore/ai-bookkeeping.md
+bmc_fields:
+  - Revenue Streams
+created: YYYY-MM-DD
+tags: [pricing, customer-preference]
+---
+
+# Insight: Freelancers prefer annual billing with discount
+
+## Learning
+
+72% of surveyed freelancers prefer annual billing (EUR 149/year)
+over monthly billing (EUR 15/month). The 17% discount is perceived
+as significant value.
+
+## Evidence
+
+- Survey: 50 respondents, 72% chose annual option
+- Common feedback: "Monthly subscriptions add up"
+- Price sensitivity highest in EUR 20-30/month range
+
+## Implications
+
+Revenue Streams should offer both monthly and annual pricing,
+with annual as the default/recommended option. This may affect
+cash flow projections in the BMC.
+
+## Source
+
+[[experiments/ai-bookkeeping/pricing-survey-freelancers.md]]
+```
+
+Canonical template is in `skills/learn/SKILL.md`.
+
+---
+
+## Decision Log: Format
+
+Decisions are documented in a `## Decisions` section directly in the canvas file.
+Each decision records the Persevere/Pivot/Kill outcome with reasoning.
+
+### Decision Entry Format
+
+```markdown
+### YYYY-MM-DD — [Persevere|Pivot|Kill]
+
+**Kontext:** [Summary of evidence and hypothesis status]
+**Entscheidung:** [Reasoning for the decision]
+**Naechste Schritte:** [What happens next]
+```
+
+### Pivot Mechanics
+
+When a Pivot decision is made:
+1. A new canvas is created in `ideate/` with `pivot_from: explore/original.md` in frontmatter
+2. The original canvas is moved to `archive/`
+3. The decision is logged in the new canvas
+
+### Kill Mechanics
+
+When a Kill decision is made:
+1. The canvas is moved to `archive/`
+2. Hypotheses, experiments, and insights remain for reference
+
+---
+
+## Folder Structure
+
+```
+.knvs/config.json
+ideate/              — BMCs in ideation phase
+explore/             — BMCs in the validation loop
+exploit/             — Validated, running business models
+hypotheses/          — Hypotheses, grouped by canvas
+  <canvas-slug>/
+experiments/         — Experiments, grouped by canvas
+  <canvas-slug>/
+insights/            — Insights, grouped by canvas
+  <canvas-slug>/
+reviews/             — Disruption reviews
+  <canvas-slug>/
+archive/             — Killed/pivoted canvases
+```
 
 ---
 
@@ -374,17 +400,11 @@ themselves live in the Network Canvas, not in `impacts/` and not directly in our
 
 | Element | Format | Example |
 |---------|--------|---------|
-| Skills | `/knvs:` prefix | `/knvs:impact`, `/knvs:ideate`, `/knvs:start` |
-| Skill files | `<skill>/SKILL.md` | `ideate/SKILL.md`, `start/SKILL.md` |
+| Skills | `/knvs:` prefix | `/knvs:ideate`, `/knvs:hypothesize`, `/knvs:start` |
+| Skill files | `<skill>/SKILL.md` | `ideate/SKILL.md`, `hypothesize/SKILL.md` |
 | Configuration | `.knvs/` folder | `.knvs/config.json` |
-| Phase folders | Short, unambiguous | `research/`, `impacts/`, `ideate/`, `explore/`, `exploit/` |
-
-### Conflict Avoidance
-
-- No generic file names (`config.json`, `settings.md`)
-- No overwriting of standard files
-- Clear separation through prefixes/namespaces
-- Phase folders are short but specific enough
+| Phase folders | Short, unambiguous | `ideate/`, `explore/`, `exploit/` |
+| Data folders | Descriptive | `hypotheses/`, `experiments/`, `insights/`, `archive/` |
 
 ---
 
@@ -400,16 +420,14 @@ themselves live in the Network Canvas, not in `impacts/` and not directly in our
 - Decorative emojis without function
 - Multiple emojis per line/heading
 - Emojis in body text
-- "AI-slop" style (excessive emoji use)
 
 ---
 
 ## Tool-Agnostic: Manual Workflow Always Possible
 
-**Core principle:** The user must always be able to carry out the knvs process **manually without skills**. The chosen Markdown tool (Obsidian, VS Code, Notion, etc.) must play no role.
+**Core principle:** The user must always be able to carry out the knvs process **manually without skills**.
 
 **Rules:**
-- Do not build features that only work with specific tools
 - All files are pure Markdown with standard frontmatter
 - Skills are helpers, not a prerequisite
 - Users can create, move, and edit files manually

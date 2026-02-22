@@ -1,17 +1,17 @@
 ---
 name: "explore"
-description: "Move canvas to EXPLORE phase with hypothesis generation"
+description: "Move canvas to EXPLORE phase for hypothesis-driven validation"
 ---
 
 # /knvs:explore
 
 ## Purpose
 
-Moves a canvas from `ideate/` to `explore/` and generates hypotheses with test suggestions.
+Moves a canvas from `ideate/` to `explore/` to begin the validation loop.
 
 ## When to Use
 
-- When your idea research is complete and you're ready to validate your assumptions
+- When your idea research is complete and you're ready to validate assumptions
 - Transitioning from IDEATE to EXPLORE phase
 
 ## Workflow
@@ -24,63 +24,38 @@ Claude: Which idea do you want to explore?
         2. Fitness App for Seniors [WIP]
 
 User: 1
-Claude: Analyzing Business Model Canvas...
-
-        I've identified 4 critical hypotheses from your canvas:
-
-        ### Hypothesis 1: Customers will pay EUR 15-30/month
-        **Recommended Test:** Pricing survey (50+ freelancers)
-
-        ### Hypothesis 2: AI can categorize receipts accurately
-        **Recommended Test:** Prototype with 100 sample receipts
-
-        [...]
-
-        Canvas moved: ideate/ai-bookkeeping.md -> explore/ai-bookkeeping.md
+Claude: Canvas moved: ideate/ai-bookkeeping.md -> explore/ai-bookkeeping.md
         Status: EXPLORE
-        Hypotheses: 4 identified with test suggestions
+
+        Next step: Run /knvs:hypothesize to extract and prioritize
+        hypotheses from your Business Model Canvas.
 ```
 
 ## What the Skill Does
 
 1. Lists all canvases in `ideate/` folder (prioritizes READY FOR EXPLORE)
 2. User selects which idea to explore
-3. Analyzes BMC for critical assumptions:
-   - Value Proposition -> Desirability hypotheses
-   - Revenue Streams -> Willingness to pay
-   - Customer Segments -> Target market fit
-   - Channels -> Reachability
-   - Cost Structure -> Feasibility
-4. Generates 3 test suggestions per hypothesis
-5. **Moves file from `ideate/` to `explore/`**
-6. Updates canvas status to EXPLORE
-7. Adds hypotheses section with suggested tests
-
-## Test Types
-
-Based on Strategyzer methodology:
-
-| Category | Test Types |
-|----------|------------|
-| **Discovery** | Interviews, Surveys, Desk Research |
-| **Validation** | Landing Page, Smoke Test, Pre-orders |
-| **Efficiency** | A/B Test, Prototype, Concierge MVP |
+3. **Moves file from `ideate/` to `explore/`**
+4. Updates canvas status to EXPLORE
+5. Removes `progress` field (only used in IDEATE phase)
+6. Adds `innovation_risk` and `potential_revenue` fields
+7. Points user to `/knvs:hypothesize` as the next step
 
 ## Notes
 
 - File is physically moved from `ideate/` to `explore/`
 - Status in frontmatter changes from IDEATE to EXPLORE
 - Progress field is removed (only used in IDEATE phase)
-- Hypotheses are generated based on BMC content analysis
+- Creates `hypotheses/<canvas-slug>/` folder for future hypotheses
 
 ## Next Steps
 
-After hypotheses are generated:
-1. Choose a test method for each hypothesis
-2. Run the experiments (surveys, landing pages, prototypes, etc.)
-3. Document results in the canvas (VALIDATED / INVALIDATED)
-4. When all critical hypotheses are validated: `/knvs:exploit`
-5. View your portfolio overview with `/knvs:start`
+After moving to EXPLORE:
+1. Run `/knvs:hypothesize` to extract hypotheses from your BMC
+2. Prioritize hypotheses (importance × evidence)
+3. Design experiments for high-priority hypotheses with `/knvs:experiment`
+4. Run experiments and extract insights with `/knvs:learn`
+5. Make decisions with `/knvs:decide` (Persevere / Pivot / Kill)
 
 ---
 
@@ -119,73 +94,9 @@ potential_revenue: 5 # 1-10
 
 ---
 
-## Hypotheses
-
-### 1. [Hypothesis]
-- **Status:** PENDING | TESTING | VALIDATED | INVALIDATED
-- **Result:**
-
-**Suggested Tests:**
-1. [Test A] - [Type: Interview/Survey/Landing Page/Prototype/etc.]
-2. [Test B] - [Type]
-3. [Test C] - [Type]
-
-**Selected Test:**
-- **Test:**
-- **Success Criteria:**
-- **Duration:**
-
----
-
-### 2. [Hypothesis]
-- **Status:** PENDING
-- **Result:**
-
-**Suggested Tests:**
-1. [Test A] - [Type]
-2. [Test B] - [Type]
-3. [Test C] - [Type]
-
-**Selected Test:**
-- **Test:**
-- **Success Criteria:**
-- **Duration:**
-
----
-
-## Experiments
-
-| Experiment | Hypothesis | Status | Result |
-|------------|------------|--------|--------|
-| | | | |
+## Decisions
+<!-- Decision log entries will be added here by /knvs:decide -->
 
 ## Next Steps
 - [ ]
 ```
-
----
-
-## Experiment Structure
-
-When documenting experiments, use this structure:
-
-```markdown
-# Experiment: [Name]
-
-**Canvas:** [Link]
-**Hypothesis:** [What is being tested?]
-**Status:** Planned | Running | Completed
-
-## Goal
-## Experiment Design
-- Test method
-- Participants/Sample
-- Duration
-- Success criteria
-
-## Results
-## Conclusion
-- Hypothesis validated? Yes | No | Partially
-- Next steps
-```
-

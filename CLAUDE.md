@@ -5,8 +5,8 @@
 Jedes Plugin hat seinen eigenen Ordner im Root (z.B. `music-production/`).
 Plugin-spezifische Regeln stehen in der jeweiligen `CLAUDE.md` des Plugin-Ordners.
 
-**Plugins:** music-production (Music Production Lifecycle), knvs (Business Model Innovation), trips (Dienstreisen-Tracking)
-**State-Dirs:** `.music-production/`, `.knvs/`, `.trips/` (alle gitignored)
+**Plugins:** music-production (Music Production Lifecycle), knvs (Business Model Innovation), trips (Dienstreisen-Tracking), research (Structured Research Pipeline)
+**State-Dirs:** `.music-production/`, `.knvs/`, `.trips/`, `.research/` (alle gitignored)
 
 ## NIH-Check
 

@@ -54,4 +54,3 @@ Each idea shows:
 
 - Ideas with READY FOR EXPLORE status are candidates for `/knvs:explore`
 - Use this skill to decide which idea to work on next
-

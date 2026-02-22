@@ -1,13 +1,13 @@
 ---
 name: "sync"
-description: "Check for file changes (file system only, no Git)"
+description: "Check for file changes and consistency (file system only, no Git)"
 ---
 
 # /knvs:sync
 
 ## Purpose
 
-Reviews canvas changes and flags inconsistencies on demand.
+Reviews canvas and data file changes and flags inconsistencies on demand.
 
 ## When to Use
 
@@ -48,9 +48,9 @@ Claude: Scanning for changes...
 
 ## What the Skill Does
 
-1. Scans `research/`, `impacts/`, `network/`, `ideate/`, `explore/`, `exploit/` folders
+1. Scans `ideate/`, `explore/`, `exploit/`, `hypotheses/`, `experiments/`, `insights/`, `archive/` folders
 2. Detects modified/new/deleted files using file timestamps
-3. Reads frontmatter from each canvas
+3. Reads frontmatter from each file
 4. Runs consistency checks
 5. Reports findings grouped by type
 6. Offers to fix detected issues
@@ -59,39 +59,23 @@ Claude: Scanning for changes...
 
 | Check | Description | Warning |
 |-------|-------------|---------|
-| Stale Research | RESEARCH `status: draft` older than 14 days? | Stale research |
-| Orphaned Research | RESEARCH `status: verified` without matching IDEATE canvas >30 days? | Unused research |
-| Orphaned Impact | Impact atom with `driver` pointing to non-existent research file? | Orphaned impact |
-| Impact Missing Fields | Impact atom without `bmc_fields` array? | Missing field |
-| Stale Driver | Impact `driver` links to research with `status: draft`? | Driver unverified (advisory) |
-| Duplicate Impact | Two atoms with identical `title` and overlapping `bmc_fields`? | Potential duplicate |
-| Invalid Impact | File in `impacts/` without `type: impact-atom`? | Invalid impact |
 | Folder <-> Status | Canvas in `ideate/` has `status: EXPLORE`? | Status/Folder Mismatch |
+| Missing BMC Fields | Canvas lacks one of the 9 core BMC `##` headings? | Incomplete canvas |
 | Missing Fields | EXPLORE without `innovation_risk`? | Missing field |
 | Stale WIP | IDEATE WIP older than 30 days? | Stale idea |
 | Overdue Review | EXPLOIT `next_review` in past? | Review overdue |
-| Missing BMC Fields | Canvas lacks one of the 9 core BMC `##` headings? | Incomplete canvas |
 | Invalid Canvas | .md file without valid frontmatter? | Invalid canvas |
-| Deprecated Impact Section | Canvas has `## Impact Context` section instead of inline callouts? | Deprecated format - consider migrating |
-| Orphaned Inline Impact | Inline impact `_Source: [[impacts/slug]]_` references non-existent file? | Broken impact reference |
-| Stale Hypothesis | RESEARCH `status: hypothesis` older than 14 days? | Stale hypothesis - research or delete |
-| Orphaned Hypothesis | Hypothesis `origin_impact` points to non-existent file? | Broken reference - remove field or delete |
-| Resolved Hypothesis | Hypothesis slug has matching `<slug>-verified.md`? | Hypothesis possibly resolved - review and delete |
-| Invalid Hypothesis | Hypothesis file has draft/verified-only fields (`source_report`, `deficiency_list`, `corrections_applied`)? | Invalid hypothesis format |
-| Hypothesis Missing Claim | Hypothesis without `claim` field? | Missing required field |
-| Hypothesis Missing Canvas | Hypothesis without `canvas` field? | Missing required field - add canvas path |
-| Hypothesis Canvas Broken | Hypothesis `canvas` field points to non-existent canvas file? | Broken canvas reference — update or delete |
-| Hypothesis Not Reflected | Hypothesis `canvas` + `bmc_fields` match an existing canvas, but no `[!note]` referencing this hypothesis exists under those dimensions? | Advisory: Hypothesis not visible in canvas — re-run /knvs:ideate or add manually |
-| Stale Network Canvas | `network/*.md` with `snapshot_date` older than 90 days? | Stale vendor snapshot - review or update |
-| Missing Snapshot Date | `type: network-canvas` without `snapshot_date` field? | Missing required field |
-| Broken Vendor Risk Ref | `[!vendor-risk]` callout links to non-existent `network/` file? | Broken vendor reference - create or remove |
-| Invalid Network Canvas | .md file in `network/` without `type: network-canvas`? | Invalid network canvas format |
-| Orphaned Audit | `research/*-audit.md` exists but matching draft is already `status: verified`? | Stale audit — consider deleting |
-| Draft With Audit | `research/<slug>.md` with `status: draft` has matching `<slug>-audit.md`? | Ready for finalization — run /knvs:finalize |
+| Orphaned Hypothesis | Hypothesis `canvas` points to non-existent canvas file? | Broken reference |
+| Hypothesis Missing Claim | Hypothesis without required sections (Claim, Context)? | Incomplete hypothesis |
+| Hypothesis Testing No Experiment | Hypothesis `status: testing` but no experiment in `experiments/`? | No running experiment |
+| Experiment No Hypothesis | Experiment `hypothesis` points to non-existent file? | Broken reference |
+| Experiment Stale | Experiment `status: running` older than 30 days? | Stale experiment |
+| Completed Experiment No Insights | Experiment `status: completed` with no insights in `insights/`? | Missing insights — run /knvs:learn |
+| Insight No Experiment | Insight `source_experiment` points to non-existent file? | Broken reference |
+| Orphaned Data Folder | `hypotheses/<slug>/` or `experiments/<slug>/` without matching canvas? | Orphaned data — archive or delete |
 
 ## Notes
 
 - Sync is on-demand, not automatic
 - User has full control over when to check for changes
 - Claude offers to fix detected issues but waits for confirmation
-

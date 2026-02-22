@@ -14,12 +14,21 @@ Single entry point for knvs. Automatically detects context:
 ## Phase Lifecycle
 
 ```
-research/        ->  impacts/         ->  ideate/          ->  explore/         ->  exploit/
-Pre-Ideate          Impact Analysis     Research            Validation          Scaling
+ideate/          ->  explore/                                    ->  exploit/
+Ideation            Validation Loop                                Scaling
 
-/knvs:impact        /knvs:ideate        /knvs:explore       /knvs:exploit   /knvs:review
-extracts            creates             moves &             moves &         quarterly
-atomic impacts      new file            adds hypotheses     adds reviews    disruption check
+/knvs:ideate        /knvs:explore    /knvs:hypothesize           /knvs:exploit   /knvs:review
+creates             moves &          extracts D/F/V              moves &         quarterly
+new BMC             begins loop      hypotheses                  adds reviews    disruption check
+
+                                     /knvs:experiment
+                                     designs & runs tests
+
+                                     /knvs:learn
+                                     extracts insights
+
+                                     /knvs:decide
+                                     persevere / pivot / kill
 ```
 
 ## When to Use
@@ -46,20 +55,20 @@ Claude: Welcome to knvs!
         [targetPath taken from project defaults]
 
         Created:
-        ├── research/
-        ├── impacts/
         ├── ideate/
         ├── explore/
         ├── exploit/
+        ├── hypotheses/
+        ├── experiments/
+        ├── insights/
         ├── reviews/
-        └── .knvs/config.json (targetPath: O/Innovation)
+        ├── archive/
+        └── .knvs/config.json
 
-        Ready! Run /knvs:impact or /knvs:ideate to get started.
+        Ready! Run /knvs:ideate to capture your first business idea.
 ```
 
 ### Without Project Defaults
-
-If no `## KNVS Defaults` in CLAUDE.md, ask interactively:
 
 ```
 User: /knvs:start
@@ -71,38 +80,17 @@ User: Y
 Claude: Setting up your innovation workspace...
 
         Created:
-        ├── research/
-        ├── impacts/
         ├── ideate/
         ├── explore/
         ├── exploit/
+        ├── hypotheses/
+        ├── experiments/
+        ├── insights/
         ├── reviews/
+        ├── archive/
         └── .knvs/config.json
 
-        Ready! Run /knvs:impact or /knvs:ideate to get started.
-```
-
-### Custom Location
-
-If user answers "n":
-
-```
-Claude: Enter target folder path:
-
-User: ./innovation
-Claude: Setting up your innovation workspace in ./innovation...
-
-        Created:
-        ./innovation/
-        ├── research/
-        ├── impacts/
-        ├── ideate/
-        ├── explore/
-        ├── exploit/
-        ├── reviews/
-        └── .knvs/config.json
-
-        Ready! Run /knvs:impact or /knvs:ideate to get started.
+        Ready! Run /knvs:ideate to capture your first business idea.
 ```
 
 ---
@@ -116,27 +104,15 @@ User: /knvs:start
 Claude: knvs Status
         ======================================
 
-        RESEARCH (3)
-        ------------
-        🟢 AI Bookkeeping Analysis [VERIFIED]
-        🟡 Fitness Market Study [DRAFT]
-        🔵 Vendor X KI-Wandel [HYPOTHESIS]
-
-        IMPACTS (3)
-        -----------
-        Machine Customers -> 3 atoms (2 High, 1 Medium)
-        AI Commerce Trends -> 0 atoms (unprocessed)
-
-        IDEATE (3)
+        IDEATE (2)
         ----------
         🔴 AI Bookkeeping [WIP] - 45 days stale
-        🟡 Fitness App [WIP] - 12 days
         🟢 Invoice Tool [READY] - run /knvs:explore
 
         EXPLORE (2)
         -----------
-        🔴 B2B SaaS - HIGH risk, 2/5 hypotheses validated
-        🟢 Mobile App - all hypotheses validated
+        🔴 B2B SaaS - 2/5 hypotheses validated, 1 experiment stale
+        🟢 Mobile App - all hypotheses validated → /knvs:exploit
 
         EXPLOIT (1)
         -----------
@@ -144,28 +120,10 @@ Claude: knvs Status
 
         Suggested Actions
         -----------------
-        1. AI Commerce Trends verified → /knvs:impact to extract impacts
-        2. 3 impacts unused → /knvs:ideate with impact context
-        3. Invoice Tool is READY → /knvs:explore
-        3. AI Bookkeeping stale → decide: explore or archive
-        4. B2B SaaS needs focus → accelerate testing
-```
-
-### Empty Project
-
-```
-User: /knvs:start
-Claude: knvs Status
-        ======================================
-
-        IDEATE (0)
-        EXPLORE (0)
-        EXPLOIT (0)
-
-        Get Started
-        -----------
-        Add research to research/ and run /knvs:impact to extract impacts,
-        or /knvs:ideate to capture your first business idea!
+        1. Invoice Tool is READY → /knvs:explore
+        2. B2B SaaS: stale experiment → check progress
+        3. Mobile App: all validated → /knvs:exploit
+        4. AI Bookkeeping stale → decide: explore or archive
 ```
 
 ---
@@ -177,25 +135,28 @@ Claude: knvs Status
 1. Check if `.knvs/config.json` exists
 2. If NOT:
    a. Search CLAUDE.md for `## KNVS Defaults` section
-      - If found: extract `targetPath` (no interactive setup needed)
-      - If not found: ask for target path interactively (default: `./`)
+      - If found: extract `targetPath`
+      - If not found: ask interactively (default: `./`)
    b. Write `.knvs/config.json` with `targetPath`
 3. Create folder structure at `targetPath`:
-   - `research/` - External research reports (pre-ideate, verified or draft)
-   - `impacts/` - Atomic impact analysis from verified research
-   - `ideate/` - New ideas and research
-   - `explore/` - Ideas being validated
-   - `exploit/` - Validated business models
+   - `ideate/` - New ideas being researched
+   - `explore/` - Ideas being validated with experiments
+   - `exploit/` - Validated business models being scaled
+   - `hypotheses/` - Hypotheses grouped by canvas
+   - `experiments/` - Experiments grouped by canvas
+   - `insights/` - Insights grouped by canvas
    - `reviews/` - Disruption review history
+   - `archive/` - Killed/pivoted canvases
 
 ### After Setup (Overview + Portfolio)
 
 1. Read `.knvs/config.json`
-2. Scan folders (`research/`, `impacts/`, `ideate/`, `explore/`, `exploit/`)
-3. Read frontmatter from each canvas
-4. Calculate priority per phase (see Priority Logic below)
-5. Display status grouped by phase
-6. Generate actionable suggestions
+2. Scan folders (`ideate/`, `explore/`, `exploit/`)
+3. For EXPLORE canvases: scan `hypotheses/<slug>/` and `experiments/<slug>/` for status
+4. Read frontmatter from each canvas
+5. Calculate priority per phase (see Priority Logic below)
+6. Display status grouped by phase
+7. Generate actionable suggestions
 
 ---
 
@@ -203,10 +164,8 @@ Claude: knvs Status
 
 | Phase | Priority Calculation | Indicators |
 |-------|---------------------|------------|
-| RESEARCH | `status (VERIFIED > DRAFT > HYPOTHESIS)` | 🟢 VERIFIED, 🟡 DRAFT, 🔵 HYPOTHESIS |
-| IMPACTS | `severity_count * unlinked_ratio` | Count per research, severity breakdown |
 | IDEATE | `age_days * (progress == WIP ? 1.5 : 1.0)` | 🔴 >30 days stale, 🟡 active, 🟢 READY |
-| EXPLORE | `innovation_risk * potential_revenue` | 🔴 HIGH risk, 🟡 MEDIUM, 🟢 LOW/validated |
+| EXPLORE | `hypothesis_validation_ratio + stale_experiments` | 🔴 stale experiments, 🟡 testing, 🟢 all validated |
 | EXPLOIT | `disruption_risk * next_review proximity` | 🔴 review overdue, 🟡 soon, 🟢 on track |
 
 ### Status Indicators
@@ -216,7 +175,6 @@ Claude: knvs Status
 | 🔴 | Immediate action needed |
 | 🟡 | Monitor closely |
 | 🟢 | On track |
-| 🔵 | Research assignment open (Hypothesis) |
 
 ---
 
@@ -224,18 +182,14 @@ Claude: knvs Status
 
 | Condition | Suggestion |
 |-----------|------------|
-| RESEARCH `status: verified` without impacts | "X verified → /knvs:impact to extract impacts" |
-| RESEARCH `status: verified` with impacts | "X verified + impacts → /knvs:ideate to create canvas" |
-| RESEARCH `status: draft` | "X draft → /knvs:impact to extract impacts" |
-| RESEARCH `status: hypothesis` older than 14 days | "Hypothesis X stale → research or discard" |
-| RESEARCH `status: hypothesis` + matching `-verified` report exists | "Hypothesis X possibly resolved by Research Y → verify and delete" |
-| IMPACTS exist but no IDEATE canvas links them | "X impacts unused → /knvs:ideate with impact context" |
 | IDEATE `progress: READY FOR EXPLORE` | "X is READY → /knvs:explore" |
 | IDEATE item > 30 days old | "X stale → decide: explore or archive" |
-| EXPLORE with HIGH risk | "X needs focus → accelerate testing" |
+| EXPLORE with no hypotheses | "X has no hypotheses → /knvs:hypothesize" |
+| EXPLORE with open hypotheses, no experiment | "X has untested hypotheses → /knvs:experiment" |
+| EXPLORE with completed experiment, no insights | "X has experiment results → /knvs:learn" |
+| EXPLORE with stale experiment | "X has stale experiment → check progress" |
 | EXPLORE all hypotheses validated | "X ready → /knvs:exploit" |
 | EXPLOIT `next_review` within 7 days | "X review due → /knvs:review" |
-| RESEARCH `status: draft` with matching `-audit.md` | "X has audit ready → /knvs:finalize" |
 | No items exist | "Run /knvs:ideate to capture your first idea" |
 
 ---
@@ -256,17 +210,17 @@ Claude: knvs Status
 
 ```
 <targetPath>/
-├── research/
-├── impacts/
 ├── ideate/
 ├── explore/
 ├── exploit/
+├── hypotheses/
+├── experiments/
+├── insights/
 ├── reviews/
+├── archive/
 └── .knvs/
     └── config.json
 ```
-
-Template files are generated on-demand from the canonical templates embedded in each skill's SKILL.md.
 
 ---
 

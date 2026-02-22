@@ -1,0 +1,11 @@
+{
+  "version": "1.0.0",
+  "name": "research",
+  "description": "Structured research pipeline - draft, audit, and verify research reports",
+  "author": {
+    "name": "zuhcya",
+    "url": "https://github.com/ZUHcYa"
+  },
+  "repository": "https://github.com/ZUHcYa/ai-plugins",
+  "keywords": ["research", "audit", "verification", "maengelprotokoll", "deep-research"]
+}

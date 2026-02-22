@@ -25,12 +25,8 @@ Get started with knvs in 5 minutes.
 
 ### Option B: Manual Setup
 
-1. Copy the knvs template files to your project
-2. Create the folder structure manually (see below)
-
-### Updates
-
-To get the latest version, pull the latest changes from the repository or re-download the template files.
+1. Create folders: `ideate/`, `explore/`, `exploit/`, `hypotheses/`, `experiments/`, `insights/`, `reviews/`, `archive/`
+2. Create `.knvs/config.json` with `{ "targetPath": "./" }`
 
 ---
 
@@ -43,71 +39,35 @@ To get the latest version, pull the latest changes from the repository or re-dow
 On first run, knvs automatically sets up your workspace:
 
 ```
-User: /knvs:start
-Claude: Welcome to knvs!
+Created:
+├── ideate/
+├── explore/
+├── exploit/
+├── hypotheses/
+├── experiments/
+├── insights/
+├── reviews/
+├── archive/
+└── .knvs/config.json
 
-        Install here (./)? [Y/n]
-
-User: Y
-Claude: Setting up your innovation workspace...
-
-        Created:
-        ├── research/
-        ├── impacts/
-        ├── ideate/
-        ├── explore/
-        ├── exploit/
-        ├── reviews/
-        └── .knvs/config.json
-
-        Ready! Run /knvs:impact or /knvs:ideate to get started.
+Ready! Run /knvs:ideate to capture your first business idea.
 ```
-
-See [STRUCTURE.md](STRUCTURE.md) for complete folder documentation.
 
 ---
 
-## 2a. (Optional) Finalize Draft Research
-
-If your research was AI-generated and externally audited:
-
-```
-/knvs:finalize
-```
-
-Claude reads the draft and audit file, applies corrections (deletes hallucinations, precises context gaps), and sets the report to `verified`.
-
----
-
-## 2b. (Optional) Extract Impact Atoms
-
-After verifying research, extract atomic impacts:
-
-```
-/knvs:impact
-```
-
-Claude reads the verified research, proposes individual impacts, and lets you confirm each one.
-Impact atoms help structure how research findings pressure specific BMC areas.
-
----
-
-## 3. Capture Your First Idea
+## 2. Capture Your First Idea
 
 ```
 /knvs:ideate
 ```
 
-Describe your idea. Claude creates a Business Model Canvas with:
-- All BMC sections (Value Proposition, Customer Segments, etc.)
-- Status: IDEATE
-- Progress: WIP
+Describe your idea. Claude creates a Business Model Canvas with all 9 BMC dimensions.
 
 **Then:** Open the file and fill out all sections.
 
 ---
 
-## 4. Validate Your Idea
+## 3. Start Validation
 
 When your canvas is complete, set `progress: READY FOR EXPLORE` and run:
 
@@ -115,58 +75,77 @@ When your canvas is complete, set `progress: READY FOR EXPLORE` and run:
 /knvs:explore
 ```
 
-Claude generates hypotheses from your canvas with test suggestions:
-- Pricing hypotheses
-- Customer segment assumptions
-- Value proposition validation
-
-**Then:** Run the experiments and document results (VALIDATED / INVALIDATED).
+Canvas moves to `explore/` phase.
 
 ---
 
-## 5. Scale Your Business Model
-
-When all critical hypotheses are validated:
+## 4. Extract Hypotheses
 
 ```
-/knvs:exploit
+/knvs:hypothesize
 ```
 
-Claude moves your canvas to the EXPLOIT phase and initializes:
-- Review schedule
-- Disruption risk monitoring
+Claude analyzes your BMC and extracts testable hypotheses:
+- **Desirability** — Do customers want this?
+- **Feasibility** — Can we build this?
+- **Viability** — Is this financially sustainable?
+
+Each hypothesis is prioritized by importance × evidence.
+
+---
+
+## 5. Design Experiments
+
+```
+/knvs:experiment
+```
+
+Pick a high-priority hypothesis and design an experiment:
+- Customer Interview, Survey, Landing Page, Prototype, etc.
+- Define success criteria and duration
+
+---
+
+## 6. Extract Insights
+
+After running your experiment:
+
+```
+/knvs:learn
+```
+
+Claude extracts key learnings and updates hypothesis evidence levels.
+
+---
+
+## 7. Make a Decision
+
+```
+/knvs:decide
+```
+
+Based on your evidence: **Persevere**, **Pivot**, or **Kill**.
 
 ---
 
 ## The Complete Lifecycle
 
 ```
-/knvs:start → /knvs:impact → /knvs:ideate → fill canvas → /knvs:explore → run tests → /knvs:exploit
-     |              |              |              |              |              |             |
-   Setup         Extract          Create       Research       Validate       Document       Scale
-               (optional)     (optional)
+/knvs:start → /knvs:ideate → fill canvas → /knvs:explore → /knvs:hypothesize
+     |              |              |              |                |
+   Setup        Create BMC     Research       Begin loop      Extract D/F/V
+
+→ /knvs:experiment → run test → /knvs:learn → /knvs:decide → /knvs:exploit
+        |                |            |              |              |
+    Design test      Execute     Insights     Persevere/      Scale
+                                              Pivot/Kill
 ```
 
 ---
 
 ## Check Your Status
 
-Run `/knvs:start` anytime to see your portfolio status and suggested next actions:
-
-```
-User: /knvs:start
-Claude: knvs Status
-        ======================================
-
-        IDEATE (3)
-        ----------
-        🔴 AI Bookkeeping [WIP] - 45 days stale
-        🟢 Invoice Tool [READY] - run /knvs:explore
-
-        Suggested Actions
-        -----------------
-        1. Invoice Tool is READY → /knvs:explore
-```
+Run `/knvs:start` anytime to see your portfolio and suggested actions.
 
 ---
 
@@ -174,23 +153,27 @@ Claude: knvs Status
 
 | Skill | When to use |
 |-------|-------------|
-| `/knvs:start` | Setup (first run) or overview + portfolio (after setup) |
-| `/knvs:impact` | Extract atomic impacts from verified research |
+| `/knvs:start` | Setup or portfolio overview |
 | `/knvs:ideas` | List all open ideas |
+| `/knvs:hypothesize` | Extract hypotheses from BMC |
+| `/knvs:experiment` | Design a validation test |
+| `/knvs:learn` | Extract insights from results |
+| `/knvs:decide` | Persevere / Pivot / Kill |
 | `/knvs:review` | Disruption check for EXPLOIT |
-| `/knvs:sync` | Check for changes |
+| `/knvs:sync` | Check for inconsistencies |
 
 ---
 
 ## Manual Workflow (No Skills)
 
-knvs works without Claude Code skills too:
+knvs works without Claude Code:
 
-1. Create folders: `research/`, `impacts/`, `ideate/`, `explore/`, `exploit/`, `reviews/`
-2. Create file: `ideate/my-idea.md`
-3. Add frontmatter: `status: IDEATE`, `progress: WIP`
-4. Fill out BMC sections
-5. Move file: `ideate/` to `explore/`
-6. Update status: `status: EXPLORE`
+1. Create folders: `ideate/`, `explore/`, `exploit/`, `hypotheses/`, `experiments/`, `insights/`, `reviews/`, `archive/`
+2. Create file: `ideate/my-idea.md` with frontmatter
+3. Fill out BMC sections
+4. Move file to `explore/`, create hypothesis files in `hypotheses/my-idea/`
+5. Create experiment files in `experiments/my-idea/`
+6. Document results, create insight files in `insights/my-idea/`
+7. Add decision to canvas `## Decisions` section
 
-All files are standard Markdown - use any editor (Obsidian, VS Code, Notion, etc.).
+All files are standard Markdown — use any editor.
