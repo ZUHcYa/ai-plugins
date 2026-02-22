@@ -1,0 +1,17 @@
+{
+  "description": "knvs hooks - shows business model innovation status at session start",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "Check if .knvs/config.json exists in the current working directory.\n\nIf .knvs/config.json does NOT exist:\n  - approve immediately with no output\n\nIf .knvs/config.json exists:\n  1. Read .knvs/config.json to get the targetPath (default './')\n  2. Count canvases in <targetPath>/explore/ — read each .md file's frontmatter for status (draft or testing)\n  3. Count canvases in <targetPath>/exploit/ (these have status: scaling)\n  4. For each testing canvas: count hypothesis files in <targetPath>/hypotheses/<canvas-slug>/ by status (open, testing, validated, invalidated)\n  5. Build a compact status line:\n     - If canvases exist: '[knvs] Explore: N (M testing) | Exploit: X | /knvs:start for details'\n       - If any testing canvas has all hypotheses validated, append: '| ready for exploit'\n       - If no exploit canvases, omit that segment\n     - If no canvases in explore/ or exploit/: '[knvs] No canvases yet. Use /knvs:start to begin.'\n  6. Return 'approve'\n\nIMPORTANT: This hook is read-only. Do NOT write files. Do NOT ask questions. Always approve.\nIf any error occurs (missing folder, unreadable file), approve silently.",
+            "timeout": 30
+          }
+        ]
+      }
+    ]
+  }
+}

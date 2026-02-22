@@ -1,0 +1,17 @@
+{
+  "description": "research hooks - shows research pipeline status at session start",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "Check if .research/config.json exists in the current working directory.\n\nIf .research/config.json does NOT exist:\n  - approve immediately with no output\n\nIf .research/config.json exists:\n  1. Read .research/config.json to get the targetPath (default './')\n  2. Scan <targetPath>/research/ for .md files, excluding files ending in -audit.md\n  3. For each report file, read YAML frontmatter for status (draft or verified)\n  4. For each draft report, check if a matching -audit.md file exists (e.g. topic.md -> topic-audit.md)\n  5. Count: total reports, verified count, draft count, audit-ready count (drafts with matching audit file)\n  6. Build a compact status line:\n     - If reports exist: '[research] N reports (X verified, Y audit ready) | /research:start for details'\n       - If no audit-ready drafts, omit that segment\n       - If all verified: '[research] N reports (all verified) | /research:start for details'\n     - If no report files found: '[research] No reports yet. Use /research:start to begin.'\n  7. Return 'approve'\n\nIMPORTANT: This hook is read-only. Do NOT write files. Do NOT ask questions. Always approve.\nIf any error occurs (missing folder, unreadable file), approve silently.",
+            "timeout": 30
+          }
+        ]
+      }
+    ]
+  }
+}
