@@ -11,12 +11,12 @@
     {
       "name": "music-production",
       "source": "./music-production",
-      "description": "Music Production Workflow Companion - Song lifecycle from idea to catalog"
+      "description": "Music Production Workflow Companion - Song lifecycle from idea to catalog, with artist identity and strategy layer"
     },
     {
       "name": "knvs",
       "source": "./knvs",
-      "description": "Business Model Innovation Management - Testing Business Ideas with Claude Code"
+      "description": "Business Model Innovation - Testing Business Ideas with the Strategyzer Loop"
     },
     {
       "name": "trips",
