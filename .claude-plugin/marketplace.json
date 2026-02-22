@@ -13,7 +13,7 @@
       "source": "./music-production",
       "description": "Music Production Workflow Companion - Song lifecycle from idea to catalog"
     },
-{
+    {
       "name": "knvs",
       "source": "./knvs",
       "description": "Business Model Innovation Management - Testing Business Ideas with Claude Code"
@@ -22,6 +22,16 @@
       "name": "trips",
       "source": "./trips",
       "description": "Business travel tracking for German tax returns - record trips, list them, generate Finanzamt-ready reports"
+    },
+    {
+      "name": "journal",
+      "source": "./journal",
+      "description": "Personal Journal - daily reflections, thoughts, and learnings with timestamps"
+    },
+    {
+      "name": "research",
+      "source": "./research",
+      "description": "Structured research pipeline - draft, audit, and verify research reports"
     }
   ]
 }
