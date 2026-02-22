@@ -117,7 +117,7 @@ Every Canvas MUST contain these 9 core fields (Osterwalder/Pigneur), as `##` hea
 
 - **Draft (explore/):** Frontmatter `status: draft`, `created`, `updated`. Optional: `pivot_from`. Sections: Decisions, Notes, Next Steps
 - **Testing (explore/):** Frontmatter additionally `innovation_risk`, `potential_revenue`. Sections: Decisions, Next Steps
-- **Scaling (exploit/):** Frontmatter additionally `next_review`, `disruption_risk`, `revenue_score`, `performance_score`, `last_assessment`. Sections: Reviews, Decisions, Next Steps
+- **Scaling (exploit/):** Frontmatter additionally `next_review`, `disruption_risk`, `revenue_score`, `performance_score`, `trend_score`, `last_assessment`. Sections: Reviews, Decisions, Next Steps
 
 Canonical templates for each phase are in the respective `skills/*/SKILL.md` under `## Canvas Template`.
 
@@ -364,10 +364,14 @@ Canonical template is in `skills/learn/SKILL.md`.
 
 **Assessments apply exclusively to EXPLOIT canvases.** EXPLORE canvases use the hypothesis loop instead.
 
-Performance Assessments score a business model across 10 dimensions from -3 to +3,
-producing a total Performance Score (-30 to +30). Based on "The Invincible Company".
+Two assessment types form the axes of the Portfolio Map ("The Invincible Company"):
 
-### The 10 Dimensions
+- **Performance** (Y-axis) — Current business model health. 10 BMC-mapped dimensions.
+- **Trend** (X-axis) — Future threats and opportunities. 10 external trend dimensions.
+
+Each assessment scores 10 dimensions from -3 to +3, total score: -30 to +30.
+
+### Performance Assessment: 10 Dimensions
 
 Each dimension maps to a BMC field:
 
@@ -384,21 +388,44 @@ Each dimension maps to a BMC field:
 | 9 | **Cost Structure** | Costs grew faster than revenues, less effective than competitors | Costs shrunk vs revenue, more effective than competitors |
 | 10 | **Margins** | Margins shrunk 50%+ and/or 50%+ lower than competition | Margins increased 50%+ and/or 50%+ higher than competition |
 
+### Trend Assessment: 10 Dimensions
+
+Each dimension assesses an external threat or opportunity:
+
+| # | Dimension | -3 Statement | +3 Statement |
+|---|-----------|-------------|-------------|
+| 1 | **Substitution Risk** | New entrants gaining traction with cheaper/better/substitute products | Competition shrinking, products likely to gain traction |
+| 2 | **Market Trajectory** | Markets projected to shrink significantly | Markets projected to grow significantly |
+| 3 | **Customer Friction** | Trends reducing friction for customers to leave | Trends increasing friction for customers to leave |
+| 4 | **Social/Cultural Trends** | Growing trends driving customers away (sustainability, fashion, etc.) | Trends making it harder for customers to desert us |
+| 5 | **Technology Trends** | Tech trends undermining/making model obsolete | Tech trends strengthening model |
+| 6 | **Regulatory Environment** | New regulations making model more expensive/impossible | New regulations making model cheaper/easier |
+| 7 | **Supply Chain** | Suppliers/value chain changing to put model at risk | Suppliers/value chain changing to strengthen model |
+| 8 | **Economic Resilience** | Economic downturn would be lethal | Model is resilient, would benefit from downturn |
+| 9 | **Geopolitical Dependencies** | Model depends on geopolitically affected resources | Model doesn't depend on geopolitically affected resources |
+| 10 | **VC/Startup Activity** | Significant VC funding startups in our arena, growing | Little to no VC funding in our arena |
+
 ### Required Fields (Frontmatter)
 
 - `type: assessment`
-- `assessment_type: performance`
+- `assessment_type` (`performance` or `trend`)
 - `canvas` (path to the exploit canvas)
-- `performance_score` (integer, -30 to +30)
+- `performance_score` or `trend_score` (integer, -30 to +30)
 - `date` (YYYY-MM-DD)
+
+### File Naming Convention
+
+Assessment filenames include the type suffix:
+- `YYYY-MM-DD-performance.md`
+- `YYYY-MM-DD-trend.md`
 
 ### Required Sections
 
 - Scores (table with Dimension, Score, Note)
 - Trends (comparison with previous assessment, if available)
-- Summary (narrative of overall health)
+- Summary (narrative of health or risk assessment)
 
-### Assessment Template
+### Performance Assessment Template
 
 ```markdown
 ---
@@ -441,7 +468,50 @@ YYYY-MM-DD
 [Brief narrative of overall business model health and key observations]
 ```
 
-Canonical template is in `skills/assess/SKILL.md`.
+### Trend Assessment Template
+
+```markdown
+---
+type: assessment
+assessment_type: trend
+canvas: exploit/canvas-slug.md
+trend_score: 2
+date: YYYY-MM-DD
+---
+
+# Trend Assessment: [Canvas Title]
+
+## Date
+
+YYYY-MM-DD
+
+## Scores
+
+| # | Dimension | Score | Note |
+|---|-----------|-------|------|
+| 1 | Substitution Risk | -2 | |
+| 2 | Market Trajectory | +2 | |
+| 3 | Customer Friction | +1 | |
+| 4 | Social/Cultural Trends | 0 | |
+| 5 | Technology Trends | -1 | |
+| 6 | Regulatory Environment | +1 | |
+| 7 | Supply Chain | 0 | |
+| 8 | Economic Resilience | +1 | |
+| 9 | Geopolitical Dependencies | +2 | |
+| 10 | VC/Startup Activity | -2 | |
+
+**Trend Score: +2**
+
+## Trends
+
+(compared to previous assessment, if available)
+
+## Summary
+
+[Brief narrative of external threats, opportunities, and disruption risk]
+```
+
+Canonical templates are in `skills/assess/SKILL.md`.
 
 ---
 
@@ -489,7 +559,7 @@ insights/            — Insights, grouped by canvas
   <canvas-slug>/
 reviews/             — Disruption reviews
   <canvas-slug>/
-assessments/         — Performance assessments
+assessments/         — Performance & Trend assessments
   <canvas-slug>/
 archive/             — Killed/pivoted canvases
 ```

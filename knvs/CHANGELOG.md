@@ -4,6 +4,20 @@ All notable changes to knvs will be documented in this file.
 
 ---
 
+## [2.4.0] - 2026-02-22
+
+### Added
+
+- **Trend Assessment** mode in `/knvs:assess` — 10 future-oriented dimensions (-3 to +3) for Death & Disruption Risk (Portfolio Map X-axis). Based on "The Invincible Company"
+- **`trend_score`** frontmatter field for EXPLOIT canvases
+
+### Changed
+
+- `/knvs:assess` now offers mode selection: **[P] Performance** or **[T] Trend**
+- Assessment filenames now include type suffix: `YYYY-MM-DD-performance.md`, `YYYY-MM-DD-trend.md`
+
+---
+
 ## [2.3.0] - 2026-02-22
 
 ### Added
