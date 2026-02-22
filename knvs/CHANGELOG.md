@@ -4,11 +4,19 @@ All notable changes to knvs will be documented in this file.
 
 ---
 
+## [2.4.1] - 2026-02-23
+
+### Fixed
+
+- Correct assessment descriptions: Performance = current snapshot (Ist-Aufnahme), Trend = future projection (Zukunftsprojektion). Removed incorrect axis labels.
+
+---
+
 ## [2.4.0] - 2026-02-22
 
 ### Added
 
-- **Trend Assessment** mode in `/knvs:assess` — 10 future-oriented dimensions (-3 to +3) for Death & Disruption Risk (Portfolio Map X-axis). Based on "The Invincible Company"
+- **Trend Assessment** mode in `/knvs:assess` — 10 future-oriented dimensions (-3 to +3) for Death & Disruption Risk (future projection). Based on "The Invincible Company"
 - **`trend_score`** frontmatter field for EXPLOIT canvases
 
 ### Changed

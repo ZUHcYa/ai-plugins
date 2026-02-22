@@ -8,10 +8,10 @@ description: "Run a Performance or Trend Assessment on an EXPLOIT canvas (10 dim
 ## Purpose
 
 Runs structured assessments on EXPLOIT canvases based on "The Invincible Company"
-methodology. Two assessment types form the axes of the Portfolio Map:
+methodology. Two assessment types provide complementary perspectives:
 
-- **Performance** — Current business model health (Y-axis). 10 BMC-mapped dimensions.
-- **Trend** — Future threats and opportunities (X-axis). 10 external trend dimensions.
+- **Performance** — Current snapshot (Ist-Aufnahme). 10 BMC-mapped dimensions.
+- **Trend** — Future projection (Zukunftsprojektion). 10 external trend dimensions.
 
 Each assessment scores 10 dimensions from -3 to +3, producing a total score (-30 to +30).
 
@@ -103,10 +103,10 @@ Claude: ━━━━━━━━━━━━━━━━━━━━━━━━
         |   | TREND SCORE            |    +2 |
 
         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-        PORTFOLIO MAP POSITION
+        ASSESSMENT OVERVIEW
         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-        Performance Score: +8 (2026-01-15)
-        Trend Score:       +2 (2026-02-22)
+        Performance (current snapshot): +8 (2026-01-15)
+        Trend (future projection):      +2 (2026-02-22)
 
         Saved: assessments/ai-bookkeeping/2026-02-22-trend.md
         Updated: exploit/ai-bookkeeping.md (trend_score, last_assessment)
@@ -123,7 +123,7 @@ Claude: ━━━━━━━━━━━━━━━━━━━━━━━━
    - User optionally adds a note for context
 5. Calculates total score (sum of all 10 scores)
 6. If a previous assessment of the same type exists, shows trend comparison
-7. If both assessment types exist, shows Portfolio Map position
+7. If both assessment types exist, shows combined overview
 8. Creates assessment file in `assessments/<canvas-slug>/YYYY-MM-DD-<type>.md`
 9. Updates canvas frontmatter: `performance_score` or `trend_score` + `last_assessment`
 
@@ -187,25 +187,18 @@ Each dimension assesses an external threat or opportunity. The scale runs from -
 
 ---
 
-## Portfolio Map Position
+## Combined View
 
 When both assessments exist for a canvas, the skill shows the combined position:
 
 ```
-PORTFOLIO MAP POSITION
-━━━━━━━━━━━━━━━━━━━━━━
-Performance Score (Y-axis): +8
-Trend Score (X-axis):       +2
-
-Quadrant: Moderate Performance / Moderate Risk
+ASSESSMENT OVERVIEW
+━━━━━━━━━━━━━━━━━━
+Performance Score (current snapshot):    +8
+Trend Score (future projection):         +2
 ```
 
-The Portfolio Map has four quadrants:
-
-| | Low Trend Score (high risk) | High Trend Score (low risk) |
-|---|---|---|
-| **High Performance** | Vulnerable — strong today but threats ahead | Star — strong and well-positioned |
-| **Low Performance** | Critical — weak and under threat | Restructure — weak but environment is favorable |
+Together they answer: **How well is the business doing today, and what does the future look like?**
 
 ---
 

@@ -364,10 +364,10 @@ Canonical template is in `skills/learn/SKILL.md`.
 
 **Assessments apply exclusively to EXPLOIT canvases.** EXPLORE canvases use the hypothesis loop instead.
 
-Two assessment types form the axes of the Portfolio Map ("The Invincible Company"):
+Two assessment types provide complementary perspectives ("The Invincible Company"):
 
-- **Performance** (Y-axis) — Current business model health. 10 BMC-mapped dimensions.
-- **Trend** (X-axis) — Future threats and opportunities. 10 external trend dimensions.
+- **Performance** — Current snapshot (Ist-Aufnahme). 10 BMC-mapped dimensions.
+- **Trend** — Future projection (Zukunftsprojektion). 10 external trend dimensions.
 
 Each assessment scores 10 dimensions from -3 to +3, total score: -30 to +30.
 
