@@ -4,6 +4,16 @@ All notable changes to knvs will be documented in this file.
 
 ---
 
+## [2.2.0] - 2026-02-22
+
+### Added
+
+- **`/knvs:hypothesize`** — "From Research" mode: generate hypotheses from verified research reports against an existing BMC. Evidence starts at `weak` (audited source exists)
+- **`source_research`** — Optional frontmatter field for hypotheses derived from external research
+- **Health Check #10** — Validates `source_research` references point to existing verified reports
+
+---
+
 ## [2.1.0] - 2026-02-22
 
 ### Changed

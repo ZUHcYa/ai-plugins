@@ -155,6 +155,7 @@ Hypotheses are prioritized by two dimensions:
 - `status` (open | testing | validated | invalidated)
 - `created` (YYYY-MM-DD)
 - `updated` (YYYY-MM-DD)
+- `source_research` (optional, path to verified research report — only for hypotheses derived from external research)
 
 ### Required Sections
 

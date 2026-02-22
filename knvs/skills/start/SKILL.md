@@ -202,6 +202,7 @@ If no issues exist, the Health section is omitted entirely.
 | 7 | Experiment → Hypothesis | `experiments/` | `hypothesis` frontmatter points to non-existent file | `"Hypothesis X not found"` |
 | 8 | Insight → Experiment | `insights/` | `source_experiment` points to non-existent file | `"Experiment X not found"` |
 | 9 | Orphaned Data Folder | `hypotheses/`, `experiments/` | Subfolder `<slug>/` has no matching canvas in `explore/` or `exploit/` | `"No matching canvas for <slug>/"` |
+| 10 | Hypothesis → Research | `hypotheses/` | `source_research` points to non-existent or non-verified file | `"Research X not found or not verified"` |
 
 ---
 
