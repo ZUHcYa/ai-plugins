@@ -4,6 +4,16 @@ All notable changes to knvs will be documented in this file.
 
 ---
 
+## [2.3.0] - 2026-02-22
+
+### Added
+
+- **`/knvs:assess`** — Performance Assessment for EXPLOIT canvases. 10 dimensions (-3 to +3), total Performance Score (-30 to +30). Based on "The Invincible Company"
+- **`assessments/`** folder for assessment history, grouped by canvas slug
+- **`performance_score`** and **`last_assessment`** frontmatter fields for EXPLOIT canvases
+
+---
+
 ## [2.2.1] - 2026-02-22
 
 ### Changed

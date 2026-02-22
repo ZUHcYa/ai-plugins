@@ -38,7 +38,7 @@ IDEATE → HYPOTHESIZE → PRIORITIZE → EXPERIMENT → LEARN → DECIDE
 
 **Phases (The Invincible Company):**
 - **EXPLORE** — Create Business Model Canvas (draft), then validate hypotheses through experiments. The full Strategyzer Loop applies here.
-- **EXPLOIT** — Validated, running business models. No hypothesis loop — own mechanisms (Disruption Reviews, scaling optimization).
+- **EXPLOIT** — Validated, running business models. No hypothesis loop — own mechanisms (Performance Assessments via `/knvs:assess`, Disruption Reviews via `/knvs:review`).
 
 New canvases start as `status: draft` in `explore/`. When the BMC is complete, the user sets `status: testing` to begin the validation loop (Hypothesize → Experiment → Learn → Decide). This validation loop is exclusive to the Explore phase.
 
@@ -117,7 +117,7 @@ Every Canvas MUST contain these 9 core fields (Osterwalder/Pigneur), as `##` hea
 
 - **Draft (explore/):** Frontmatter `status: draft`, `created`, `updated`. Optional: `pivot_from`. Sections: Decisions, Notes, Next Steps
 - **Testing (explore/):** Frontmatter additionally `innovation_risk`, `potential_revenue`. Sections: Decisions, Next Steps
-- **Scaling (exploit/):** Frontmatter additionally `next_review`, `disruption_risk`, `revenue_score`. Sections: Reviews, Decisions, Next Steps
+- **Scaling (exploit/):** Frontmatter additionally `next_review`, `disruption_risk`, `revenue_score`, `performance_score`, `last_assessment`. Sections: Reviews, Decisions, Next Steps
 
 Canonical templates for each phase are in the respective `skills/*/SKILL.md` under `## Canvas Template`.
 
@@ -360,6 +360,91 @@ Canonical template is in `skills/learn/SKILL.md`.
 
 ---
 
+## Assessment: Structure
+
+**Assessments apply exclusively to EXPLOIT canvases.** EXPLORE canvases use the hypothesis loop instead.
+
+Performance Assessments score a business model across 10 dimensions from -3 to +3,
+producing a total Performance Score (-30 to +30). Based on "The Invincible Company".
+
+### The 10 Dimensions
+
+Each dimension maps to a BMC field:
+
+| # | Dimension | -3 Statement | +3 Statement |
+|---|-----------|-------------|-------------|
+| 1 | **Value Proposition** | Products/services perform worse than competition | Highly differentiated and loved by customers |
+| 2 | **Customer Segments** | Lost 20%+ of customer base in last 6 months | Increased customer base by 50%+ in last 6 months |
+| 3 | **Channels** | 100% dependent on intermediaries, difficult market access | Direct market access, fully own customer relationship |
+| 4 | **Customer Relationships** | Customers could leave immediately, no switching costs | Customers locked in for years, significant switching costs |
+| 5 | **Key Resources** | Inferior to competitors, deteriorated. New entrants with better/cheaper resources | Can't be copied/emulated for years, competitive advantage (IP, brand) |
+| 6 | **Key Activities** | Inferior to competitors, deteriorated. New entrants with better/cheaper activities | Can't be copied/emulated for years, competitive advantage (cost effectiveness, scale) |
+| 7 | **Key Partnerships** | Lost access to key partners in last 6 months | Key partners locked in for years |
+| 8 | **Revenue Streams** | Lost 20%+ of revenues in last 6 months | Doubled revenues in last 6 months, growing faster than competitors |
+| 9 | **Cost Structure** | Costs grew faster than revenues, less effective than competitors | Costs shrunk vs revenue, more effective than competitors |
+| 10 | **Margins** | Margins shrunk 50%+ and/or 50%+ lower than competition | Margins increased 50%+ and/or 50%+ higher than competition |
+
+### Required Fields (Frontmatter)
+
+- `type: assessment`
+- `assessment_type: performance`
+- `canvas` (path to the exploit canvas)
+- `performance_score` (integer, -30 to +30)
+- `date` (YYYY-MM-DD)
+
+### Required Sections
+
+- Scores (table with Dimension, Score, Note)
+- Trends (comparison with previous assessment, if available)
+- Summary (narrative of overall health)
+
+### Assessment Template
+
+```markdown
+---
+type: assessment
+assessment_type: performance
+canvas: exploit/canvas-slug.md
+performance_score: 8
+date: YYYY-MM-DD
+---
+
+# Performance Assessment: [Canvas Title]
+
+## Date
+
+YYYY-MM-DD
+
+## Scores
+
+| # | Dimension | Score | Note |
+|---|-----------|-------|------|
+| 1 | Value Proposition | +2 | |
+| 2 | Customer Segments | +1 | |
+| 3 | Channels | -1 | |
+| 4 | Customer Relationships | 0 | |
+| 5 | Key Resources | +2 | |
+| 6 | Key Activities | +1 | |
+| 7 | Key Partnerships | +1 | |
+| 8 | Revenue Streams | +2 | |
+| 9 | Cost Structure | -1 | |
+| 10 | Margins | +1 | |
+
+**Performance Score: +8**
+
+## Trends
+
+(compared to previous assessment, if available)
+
+## Summary
+
+[Brief narrative of overall business model health and key observations]
+```
+
+Canonical template is in `skills/assess/SKILL.md`.
+
+---
+
 ## Decision Log: Format
 
 Decisions are documented in a `## Decisions` section directly in the canvas file.
@@ -403,6 +488,8 @@ experiments/         — Experiments, grouped by canvas
 insights/            — Insights, grouped by canvas
   <canvas-slug>/
 reviews/             — Disruption reviews
+  <canvas-slug>/
+assessments/         — Performance assessments
   <canvas-slug>/
 archive/             — Killed/pivoted canvases
 ```
