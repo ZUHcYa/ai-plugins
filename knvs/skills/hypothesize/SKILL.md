@@ -9,6 +9,7 @@ description: "Extract and prioritize hypotheses from a BMC or verified research"
 
 Extracts testable hypotheses from a Business Model Canvas and categorizes them
 into Desirability, Feasibility, and Viability (Strategyzer methodology).
+**Only applicable to EXPLORE canvases.** EXPLOIT canvases do not use hypotheses.
 
 Two modes:
 - **From BMC** — analyze canvas for implicit assumptions (default)
@@ -16,10 +17,11 @@ Two modes:
 
 ## When to Use
 
-- After setting a canvas to `status: testing`
+- After setting an EXPLORE canvas to `status: testing`
 - When you want to systematically identify assumptions in your BMC
-- When adding new hypotheses to an existing canvas
-- When a verified research report has findings relevant to a canvas
+- When adding new hypotheses to an existing EXPLORE canvas
+- When a verified research report has findings relevant to an EXPLORE canvas
+- **NOT for EXPLOIT canvases** — these have their own mechanisms (Disruption Reviews)
 
 ## Workflow
 

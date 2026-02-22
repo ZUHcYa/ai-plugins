@@ -9,12 +9,14 @@ description: "Make a Persevere/Pivot/Kill decision based on experiment evidence"
 
 Presents the current evidence state for an EXPLORE canvas and facilitates
 a Persevere/Pivot/Kill decision. Documents the decision in the canvas.
+**Only applicable to EXPLORE canvases.** EXPLOIT canvases do not use Persevere/Pivot/Kill decisions.
 
 ## When to Use
 
 - After running experiments and extracting insights
-- When you want to evaluate your business model based on evidence
+- When you want to evaluate your EXPLORE business model based on evidence
 - At regular checkpoints during the EXPLORE phase
+- **NOT for EXPLOIT canvases** — these have their own mechanisms (Disruption Reviews)
 
 ## Workflow
 

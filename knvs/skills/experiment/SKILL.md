@@ -9,12 +9,14 @@ description: "Design and document an experiment to test a hypothesis"
 
 Designs and documents an experiment to test a specific hypothesis.
 Offers predefined experiment types from "Testing Business Ideas" and allows custom types.
+**Only applicable to EXPLORE canvases.** EXPLOIT canvases do not use experiments.
 
 ## When to Use
 
 - After extracting hypotheses with `/knvs:hypothesize`
-- When you want to test a specific assumption
+- When you want to test a specific assumption in an EXPLORE canvas
 - When designing a validation experiment
+- **NOT for EXPLOIT canvases** — these have their own mechanisms (Disruption Reviews)
 
 ## Workflow
 

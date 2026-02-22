@@ -26,7 +26,7 @@ Ideate (BMC) → Hypothesize (D/F/V) → Prioritize (Evidence × Importance)
 
 **knvs** is a template for Innovation Managers based on the Strategyzer "Testing Business Ideas" and "The Invincible Company" process.
 
-### The Strategyzer Loop
+### The Strategyzer Loop (EXPLORE only)
 
 ```
 IDEATE → HYPOTHESIZE → PRIORITIZE → EXPERIMENT → LEARN → DECIDE
@@ -34,11 +34,13 @@ IDEATE → HYPOTHESIZE → PRIORITIZE → EXPERIMENT → LEARN → DECIDE
                       Importance                  Insights  Pivot / Kill
 ```
 
-**Phases (The Invincible Company):**
-- **EXPLORE** — Create Business Model Canvas (draft), then validate hypotheses through experiments.
-- **EXPLOIT** — Validated, running business models. Lower risk, established.
+**This loop applies exclusively to EXPLORE canvases.** EXPLOIT canvases do not use hypotheses, experiments, insights, or Persevere/Pivot/Kill decisions — they have their own mechanisms (e.g. Disruption Reviews via `/knvs:review`).
 
-New canvases start as `status: draft` in `explore/`. When the BMC is complete, the user sets `status: testing` to begin the validation loop (Hypothesize → Experiment → Learn → Decide).
+**Phases (The Invincible Company):**
+- **EXPLORE** — Create Business Model Canvas (draft), then validate hypotheses through experiments. The full Strategyzer Loop applies here.
+- **EXPLOIT** — Validated, running business models. No hypothesis loop — own mechanisms (Disruption Reviews, scaling optimization).
+
+New canvases start as `status: draft` in `explore/`. When the BMC is complete, the user sets `status: testing` to begin the validation loop (Hypothesize → Experiment → Learn → Decide). This validation loop is exclusive to the Explore phase.
 
 ### Strict Rules
 
@@ -122,6 +124,8 @@ Canonical templates for each phase are in the respective `skills/*/SKILL.md` und
 ---
 
 ## Hypothesis: Structure
+
+**Hypotheses apply exclusively to EXPLORE canvases.** EXPLOIT canvases do not use hypotheses — they have their own mechanisms.
 
 Hypotheses are testable assumptions extracted from a Business Model Canvas.
 Each hypothesis belongs to one of three categories (Strategyzer):

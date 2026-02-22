@@ -4,6 +4,14 @@ All notable changes to knvs will be documented in this file.
 
 ---
 
+## [2.2.1] - 2026-02-22
+
+### Changed
+
+- Clarify: hypothesis loop (hypothesize → experiment → learn → decide) only applies to Explore BMCs, not Exploit. Exploit BMCs have their own mechanisms.
+
+---
+
 ## [2.2.0] - 2026-02-22
 
 ### Added
