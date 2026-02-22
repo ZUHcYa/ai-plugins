@@ -100,6 +100,7 @@ Every Canvas MUST contain these 9 core fields (Osterwalder/Pigneur), as `##` hea
 - **Cost Structure** - What are the most important costs?
 
 **Missing fields = invalid Canvas.** `/knvs:start` checks for this (Health Checks).
+**No callouts on Canvas files.** Callouts (`[!note]`, `[!warning]`, etc.) are not part of the BMC spec. Canvas content = YAML frontmatter + 9 BMC headings + optional sections (Decisions, Notes, Next Steps).
 
 ### Status Values
 
