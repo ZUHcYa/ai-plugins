@@ -25,7 +25,7 @@ Get started with knvs in 5 minutes.
 
 ### Option B: Manual Setup
 
-1. Create folders: `ideate/`, `explore/`, `exploit/`, `hypotheses/`, `experiments/`, `insights/`, `reviews/`, `archive/`
+1. Create folders: `explore/`, `exploit/`, `hypotheses/`, `experiments/`, `insights/`, `reviews/`, `archive/`
 2. Create `.knvs/config.json` with `{ "targetPath": "./" }`
 
 ---
@@ -40,7 +40,6 @@ On first run, knvs automatically sets up your workspace:
 
 ```
 Created:
-├── ideate/
 ├── explore/
 ├── exploit/
 ├── hypotheses/
@@ -61,21 +60,15 @@ Ready! Run /knvs:ideate to capture your first business idea.
 /knvs:ideate
 ```
 
-Describe your idea. Claude creates a Business Model Canvas with all 9 BMC dimensions.
+Describe your idea. Claude creates a Business Model Canvas as draft in `explore/`.
 
-**Then:** Open the file and fill out all sections.
+**Then:** Open the file and fill out all BMC sections.
 
 ---
 
 ## 3. Start Validation
 
-When your canvas is complete, set `progress: READY FOR EXPLORE` and run:
-
-```
-/knvs:explore
-```
-
-Canvas moves to `explore/` phase.
+When your canvas is complete, set `status: testing` in frontmatter.
 
 ---
 
@@ -90,7 +83,7 @@ Claude analyzes your BMC and extracts testable hypotheses:
 - **Feasibility** — Can we build this?
 - **Viability** — Is this financially sustainable?
 
-Each hypothesis is prioritized by importance × evidence.
+Each hypothesis is prioritized by importance x evidence.
 
 ---
 
@@ -131,9 +124,9 @@ Based on your evidence: **Persevere**, **Pivot**, or **Kill**.
 ## The Complete Lifecycle
 
 ```
-/knvs:start → /knvs:ideate → fill canvas → /knvs:explore → /knvs:hypothesize
-     |              |              |              |                |
-   Setup        Create BMC     Research       Begin loop      Extract D/F/V
+/knvs:start → /knvs:ideate → fill canvas → set status: testing → /knvs:hypothesize
+     |              |              |              |                       |
+   Setup       Create BMC      Research      Begin loop           Extract D/F/V
 
 → /knvs:experiment → run test → /knvs:learn → /knvs:decide → /knvs:exploit
         |                |            |              |              |
@@ -154,11 +147,12 @@ Run `/knvs:start` anytime to see your portfolio and suggested actions.
 | Skill | When to use |
 |-------|-------------|
 | `/knvs:start` | Setup or portfolio overview |
-| `/knvs:ideas` | List all open ideas |
+| `/knvs:ideate` | Create a new BMC as draft |
 | `/knvs:hypothesize` | Extract hypotheses from BMC |
 | `/knvs:experiment` | Design a validation test |
 | `/knvs:learn` | Extract insights from results |
 | `/knvs:decide` | Persevere / Pivot / Kill |
+| `/knvs:exploit` | Move validated canvas to scaling |
 | `/knvs:review` | Disruption check for EXPLOIT |
 | `/knvs:sync` | Check for inconsistencies |
 
@@ -168,10 +162,10 @@ Run `/knvs:start` anytime to see your portfolio and suggested actions.
 
 knvs works without Claude Code:
 
-1. Create folders: `ideate/`, `explore/`, `exploit/`, `hypotheses/`, `experiments/`, `insights/`, `reviews/`, `archive/`
-2. Create file: `ideate/my-idea.md` with frontmatter
+1. Create folders: `explore/`, `exploit/`, `hypotheses/`, `experiments/`, `insights/`, `reviews/`, `archive/`
+2. Create file: `explore/my-idea.md` with `status: draft` frontmatter
 3. Fill out BMC sections
-4. Move file to `explore/`, create hypothesis files in `hypotheses/my-idea/`
+4. Set `status: testing`, create hypothesis files in `hypotheses/my-idea/`
 5. Create experiment files in `experiments/my-idea/`
 6. Document results, create insight files in `insights/my-idea/`
 7. Add decision to canvas `## Decisions` section

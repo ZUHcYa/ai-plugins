@@ -4,6 +4,46 @@ All notable changes to knvs will be documented in this file.
 
 ---
 
+## [2.0.0] - 2026-02-22
+
+### Breaking Changes
+
+- **`ideate/` folder removed** — `/knvs:ideate` now writes directly to `explore/` with `status: draft`
+- **`/knvs:explore` skill removed** — No more file moving between folders. User sets `status: testing` manually when ready
+- **`/knvs:ideas` skill removed** — `/knvs:start` shows drafts in portfolio overview
+- **Status model simplified** — `explore/`: draft | testing | validated. `exploit/`: scaling
+- **`progress` field removed** — Replaced by status values (draft = WIP, testing = active)
+
+### Changed
+
+- **`/knvs:ideate`** — Creates BMC in `explore/` with `status: draft` instead of `ideate/` with `status: IDEATE`
+- **`/knvs:start`** — Portfolio groups by DRAFTS / TESTING / EXPLOIT instead of IDEATE / EXPLORE / EXPLOIT
+- **`/knvs:decide`** — Pivot creates new canvas in `explore/` (was `ideate/`)
+- **`/knvs:exploit`** — Sets `status: scaling` (was `status: EXPLOIT`)
+- **`/knvs:sync`** — Updated consistency checks for new status model
+- **`/knvs:hypothesize`** — Lists all `explore/` canvases regardless of status
+- **All docs** — Updated for 2-folder structure (explore/ + exploit/)
+
+### Removed
+
+- `ideate/` folder (replaced by `explore/` with `status: draft`)
+- `/knvs:explore` skill (status change replaces file move)
+- `/knvs:ideas` skill (redundant with `/knvs:start` portfolio)
+- `progress` frontmatter field (replaced by status values)
+- `READY FOR EXPLORE` concept
+
+### Migration
+
+**From 1.0.0 to 2.0.0:**
+
+1. Move files from `ideate/` to `explore/` and set `status: draft`
+2. Update canvas frontmatter: replace `status: IDEATE` with `status: draft`, remove `progress` field
+3. Update canvas frontmatter: replace `status: EXPLORE` with `status: testing`
+4. Update canvas frontmatter: replace `status: EXPLOIT` with `status: scaling`
+5. Delete empty `ideate/` folder
+
+---
+
 ## [1.0.0] - 2026-02-22
 
 ### Breaking Changes

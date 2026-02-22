@@ -35,11 +35,10 @@ IDEATE → HYPOTHESIZE → PRIORITIZE → EXPERIMENT → LEARN → DECIDE
 ```
 
 **Phases (The Invincible Company):**
-- **IDEATE** — Create Business Model Canvas. Ideas being researched.
-- **EXPLORE** — Validate hypotheses through experiments. Higher risk, not yet proven.
+- **EXPLORE** — Create Business Model Canvas (draft), then validate hypotheses through experiments.
 - **EXPLOIT** — Validated, running business models. Lower risk, established.
 
-The validation loop (Hypothesize → Experiment → Learn → Decide) runs within the EXPLORE phase.
+New canvases start as `status: draft` in `explore/`. When the BMC is complete, the user sets `status: testing` to begin the validation loop (Hypothesize → Experiment → Learn → Decide).
 
 ### Strict Rules
 
@@ -102,11 +101,20 @@ Every Canvas MUST contain these 9 core fields (Osterwalder/Pigneur), as `##` hea
 
 **Missing fields = invalid Canvas.** `/knvs:sync` checks for this.
 
+### Status Values
+
+| Status | Folder | Description |
+|--------|--------|-------------|
+| `draft` | `explore/` | BMC being filled out, not yet in validation |
+| `testing` | `explore/` | Actively validating hypotheses through experiments |
+| `validated` | `explore/` | All critical hypotheses validated, ready for EXPLOIT |
+| `scaling` | `exploit/` | Validated business model being scaled |
+
 ### Phase-Specific Extensions
 
-- **IDEATE:** Frontmatter `status`, `progress`, `created`, `updated`. Optional: `pivot_from`. Sections: Decisions, Notes, Next Steps
-- **EXPLORE:** Frontmatter additionally `innovation_risk`, `potential_revenue`. Sections: Decisions, Next Steps
-- **EXPLOIT:** Frontmatter additionally `next_review`, `disruption_risk`, `revenue_score`. Sections: Reviews, Decisions, Next Steps
+- **Draft (explore/):** Frontmatter `status: draft`, `created`, `updated`. Optional: `pivot_from`. Sections: Decisions, Notes, Next Steps
+- **Testing (explore/):** Frontmatter additionally `innovation_risk`, `potential_revenue`. Sections: Decisions, Next Steps
+- **Scaling (exploit/):** Frontmatter additionally `next_review`, `disruption_risk`, `revenue_score`. Sections: Reviews, Decisions, Next Steps
 
 Canonical templates for each phase are in the respective `skills/*/SKILL.md` under `## Canvas Template`.
 
@@ -364,7 +372,7 @@ Each decision records the Persevere/Pivot/Kill outcome with reasoning.
 ### Pivot Mechanics
 
 When a Pivot decision is made:
-1. A new canvas is created in `ideate/` with `pivot_from: explore/original.md` in frontmatter
+1. A new canvas is created in `explore/` with `status: draft` and `pivot_from: explore/original.md` in frontmatter
 2. The original canvas is moved to `archive/`
 3. The decision is logged in the new canvas
 
@@ -380,9 +388,8 @@ When a Kill decision is made:
 
 ```
 .knvs/config.json
-ideate/              — BMCs in ideation phase
-explore/             — BMCs in the validation loop
-exploit/             — Validated, running business models
+explore/             — BMCs (draft and testing)
+exploit/             — Validated, running business models (scaling)
 hypotheses/          — Hypotheses, grouped by canvas
   <canvas-slug>/
 experiments/         — Experiments, grouped by canvas
@@ -401,9 +408,9 @@ archive/             — Killed/pivoted canvases
 | Element | Format | Example |
 |---------|--------|---------|
 | Skills | `/knvs:` prefix | `/knvs:ideate`, `/knvs:hypothesize`, `/knvs:start` |
-| Skill files | `<skill>/SKILL.md` | `ideate/SKILL.md`, `hypothesize/SKILL.md` |
+| Skill files | `<skill>/SKILL.md` | `skills/ideate/SKILL.md`, `skills/hypothesize/SKILL.md` |
 | Configuration | `.knvs/` folder | `.knvs/config.json` |
-| Phase folders | Short, unambiguous | `ideate/`, `explore/`, `exploit/` |
+| Phase folders | Short, unambiguous | `explore/`, `exploit/` |
 | Data folders | Descriptive | `hypotheses/`, `experiments/`, `insights/`, `archive/` |
 
 ---

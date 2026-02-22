@@ -28,27 +28,27 @@ Claude: Scanning for changes...
 
         Modified (3):
           - explore/ai-bookkeeping.md - updated 2h ago
-          - ideate/fitness-app.md - updated yesterday
+          - explore/fitness-app.md - updated yesterday
           - exploit/core-business.md - updated 3d ago
 
         New (1):
-          - ideate/new-idea.md - created today
+          - explore/new-idea.md - created today
 
         Removed (0):
           none
 
         Issues (2):
-          - ideate/old-idea.md has progress: READY but is 30+ days old
-            -> Consider: run /knvs:explore or archive
-          - explore/moved-idea.md has status: IDEATE (folder mismatch)
-            -> Should I update to EXPLORE?
+          - explore/old-idea.md has status: draft and is 30+ days old
+            -> Consider: set status: testing or archive
+          - explore/moved-idea.md has status: scaling (should be in exploit/)
+            -> Should I move to exploit/?
 
         Sync complete!
 ```
 
 ## What the Skill Does
 
-1. Scans `ideate/`, `explore/`, `exploit/`, `hypotheses/`, `experiments/`, `insights/`, `archive/` folders
+1. Scans `explore/`, `exploit/`, `hypotheses/`, `experiments/`, `insights/`, `archive/` folders
 2. Detects modified/new/deleted files using file timestamps
 3. Reads frontmatter from each file
 4. Runs consistency checks
@@ -59,10 +59,10 @@ Claude: Scanning for changes...
 
 | Check | Description | Warning |
 |-------|-------------|---------|
-| Folder <-> Status | Canvas in `ideate/` has `status: EXPLORE`? | Status/Folder Mismatch |
+| Status <-> Folder | Canvas in `explore/` has `status: scaling`? | Status/Folder Mismatch |
 | Missing BMC Fields | Canvas lacks one of the 9 core BMC `##` headings? | Incomplete canvas |
-| Missing Fields | EXPLORE without `innovation_risk`? | Missing field |
-| Stale WIP | IDEATE WIP older than 30 days? | Stale idea |
+| Missing Fields | Testing canvas without `innovation_risk`? | Missing field |
+| Stale Draft | Draft older than 30 days? | Stale idea |
 | Overdue Review | EXPLOIT `next_review` in past? | Review overdue |
 | Invalid Canvas | .md file without valid frontmatter? | Invalid canvas |
 | Orphaned Hypothesis | Hypothesis `canvas` points to non-existent canvas file? | Broken reference |

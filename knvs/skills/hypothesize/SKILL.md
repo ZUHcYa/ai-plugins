@@ -12,9 +12,9 @@ into Desirability, Feasibility, and Viability (Strategyzer methodology).
 
 ## When to Use
 
-- After moving a canvas to EXPLORE phase (`/knvs:explore`)
+- After setting a canvas to `status: testing`
 - When you want to systematically identify assumptions in your BMC
-- When adding new hypotheses to an existing EXPLORE canvas
+- When adding new hypotheses to an existing canvas
 
 ## Workflow
 
@@ -85,7 +85,7 @@ Claude: Saved: hypotheses/ai-bookkeeping/customers-will-pay-monthly.md
 
 ## What the Skill Does
 
-1. Lists canvases in `explore/` (or `ideate/` with READY FOR EXPLORE)
+1. Lists canvases in `explore/`
 2. User selects canvas
 3. Reads BMC content and identifies implicit assumptions per dimension
 4. Categorizes each assumption:

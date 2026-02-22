@@ -6,18 +6,17 @@ Overview of the knvs folder organization.
 
 ## Phase Folders (Your Content)
 
-These folders contain your business model canvases. Files move between phases as ideas progress.
+These folders contain your business model canvases.
 
-| Folder | Purpose | Status |
-|--------|---------|--------|
-| `ideate/` | New ideas being researched | IDEATE |
-| `explore/` | Ideas being validated with experiments | EXPLORE |
-| `exploit/` | Validated business models being scaled | EXPLOIT |
-| `archive/` | Killed or pivoted canvases (reference) | ARCHIVED |
+| Folder | Purpose | Status Values |
+|--------|---------|---------------|
+| `explore/` | BMCs being developed and validated | `draft`, `testing`, `validated` |
+| `exploit/` | Validated business models being scaled | `scaling` |
+| `archive/` | Killed or pivoted canvases (reference) | — |
 
-**Lifecycle:** `/knvs:ideate` → `ideate/` → `/knvs:explore` → `explore/` → `/knvs:exploit` → `exploit/`
+**Lifecycle:** `/knvs:ideate` → `explore/` (draft) → set `status: testing` → validate → `/knvs:exploit` → `exploit/`
 
-**Pivot:** `explore/` → `archive/` (old) + `ideate/` (new variant)
+**Pivot:** `explore/` → `archive/` (old) + `explore/` (new variant as draft)
 
 **Kill:** `explore/` → `archive/`
 
@@ -33,7 +32,7 @@ These folders contain hypotheses, experiments, and insights grouped by canvas.
 | `experiments/<canvas-slug>/` | Experiment designs and results | `/knvs:experiment` |
 | `insights/<canvas-slug>/` | Key learnings from experiments | `/knvs:learn` |
 
-Each canvas in `explore/` has corresponding subfolders in these directories.
+Each canvas in `explore/` (with `status: testing`) has corresponding subfolders in these directories.
 
 ---
 
@@ -78,9 +77,8 @@ reviews/
 <targetPath>/
 ├── .knvs/
 │   └── config.json              # Configuration
-├── ideate/                      # Your IDEATE canvases
-├── explore/                     # Your EXPLORE canvases
-├── exploit/                     # Your EXPLOIT canvases
+├── explore/                     # Your BMCs (draft + testing)
+├── exploit/                     # Your scaling business models
 ├── archive/                     # Killed/pivoted canvases
 ├── hypotheses/                  # Hypotheses per canvas
 │   └── <canvas-slug>/
@@ -93,8 +91,6 @@ reviews/
 ├── skills/
 │   ├── start/SKILL.md
 │   ├── ideate/SKILL.md
-│   ├── ideas/SKILL.md
-│   ├── explore/SKILL.md
 │   ├── hypothesize/SKILL.md
 │   ├── experiment/SKILL.md
 │   ├── learn/SKILL.md
@@ -123,4 +119,4 @@ reviews/
 
 ---
 
-**Version:** 1.0.0
+**Version:** 2.0.0

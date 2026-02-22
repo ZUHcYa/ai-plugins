@@ -1,13 +1,13 @@
 ---
 name: "ideate"
-description: "Create a new Business Model Canvas in the IDEATE phase"
+description: "Create a new Business Model Canvas as draft in explore/"
 ---
 
 # /knvs:ideate
 
 ## Purpose
 
-Creates a new Business Model Canvas in the `ideate/` folder.
+Creates a new Business Model Canvas in the `explore/` folder with `status: draft`.
 
 ## When to Use
 
@@ -24,8 +24,8 @@ User: /knvs:ideate
 Claude: What's your idea? Describe your initial thoughts...
 User: [Describes idea]
 Claude: Business Model Canvas created: "[Title]"
-        File: ideate/[slug].md
-        Status: IDEATE | Progress: WIP
+        File: explore/[slug].md
+        Status: draft
 ```
 
 ### From Pivot
@@ -38,8 +38,8 @@ Claude: Creating new BMC variant based on pivot decision...
         Pivot reason: [from decision log]
 
         Business Model Canvas created: "Original Idea v2"
-        File: ideate/original-idea-v2.md
-        Status: IDEATE | Progress: WIP
+        File: explore/original-idea-v2.md
+        Status: draft
         Pivot from: explore/original-idea.md
 ```
 
@@ -47,31 +47,21 @@ Claude: Creating new BMC variant based on pivot decision...
 
 1. Asks for idea description (or receives pivot context from `/knvs:decide`)
 2. Automatically extracts appropriate title
-3. Creates file in `ideate/` folder as `[slug].md` — slug is kebab-case derived from the title.
+3. Creates file in `explore/` folder as `[slug].md` — slug is kebab-case derived from the title.
    NEVER add a date prefix or sequential number.
    CORRECT: `ai-bookkeeping-app.md`
    WRONG:   `20260220-001-ai-bookkeeping-app.md`
-4. Initializes BMC template in IDEATE phase (Progress: WIP)
+4. Initializes BMC template with `status: draft`
 5. If pivot: sets `pivot_from` frontmatter field
 6. Adds initial thoughts as notes
 
-## Progress States
-
-IDEATE phase has two progress states:
-
-| State | Description |
-|-------|-------------|
-| **WIP** | Work in progress, still researching/brainstorming |
-| **READY FOR EXPLORE** | Research complete, ready to validate hypotheses |
-
-> **STRICT:** Only these two values are valid for `progress`. Do NOT invent percentages or sub-states.
-
 ## Notes
 
-- File is created in `ideate/` folder
+- File is created in `explore/` folder
 - Filename: ONLY `[title-as-slug].md` — no date prefix, no sequential number
-- Initial progress is always WIP
-- Use `/knvs:explore` when ready to move to validation phase
+- Initial status is always `draft`
+- When the BMC is complete, set `status: testing` to begin the validation loop
+- Then run `/knvs:hypothesize` to extract hypotheses
 
 ## Next Steps
 
@@ -79,21 +69,20 @@ After creating your canvas:
 1. Open the file in your Markdown editor (Obsidian, VS Code, etc.)
 2. Fill out all BMC sections (Value Proposition, Customer Segments, etc.)
 3. Research and document your assumptions
-4. When research is complete, set `progress: READY FOR EXPLORE`
-5. Move to validation with `/knvs:explore`
+4. When ready to validate: set `status: testing`
+5. Run `/knvs:hypothesize` to extract hypotheses
 
 ---
 
 ## Canvas Template
 
-Canonical template for new IDEATE canvases.
+Canonical template for new draft canvases.
 
 > **STRICT:** Use ONLY the frontmatter fields listed below — do NOT add fields beyond the optional ones listed.
 
 ```markdown
 ---
-status: IDEATE
-progress: WIP
+status: draft
 created: YYYY-MM-DD
 updated: YYYY-MM-DD
 pivot_from: explore/original.md   # Optional: only when created from pivot. Delete otherwise.

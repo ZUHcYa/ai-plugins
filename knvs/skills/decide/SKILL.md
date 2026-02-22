@@ -96,7 +96,7 @@ User: The channel strategy needs a complete rethink. Instead of
 Claude: Creating pivot canvas...
 
         Original: explore/ai-bookkeeping.md → archived
-        New canvas: ideate/ai-bookkeeping-b2b.md
+        New canvas: explore/ai-bookkeeping-b2b.md
         Pivot from: explore/ai-bookkeeping.md
 
         Decision logged in both canvases.
@@ -110,9 +110,9 @@ Claude: Creating pivot canvas...
         **Naechste Schritte:** Fill B2B canvas, rethink partnerships
 
         Next steps:
-        - Edit ideate/ai-bookkeeping-b2b.md with B2B model
-        - Set progress: READY FOR EXPLORE when done
-        - /knvs:explore to begin new validation loop
+        - Edit explore/ai-bookkeeping-b2b.md with B2B model
+        - Set status: testing when done
+        - /knvs:hypothesize to extract hypotheses
 ```
 
 ### Kill Flow
@@ -148,7 +148,7 @@ Claude: Canvas archived: explore/ai-bookkeeping.md → archive/ai-bookkeeping.md
    - Key insights list
 6. User makes decision:
    - **Persevere:** Identifies next hypotheses to test. Canvas stays in `explore/`. Decision logged.
-   - **Pivot:** Creates new canvas in `ideate/` with `pivot_from` reference. Original moves to `archive/`. Decision logged in both.
+   - **Pivot:** Creates new canvas in `explore/` with `status: draft` and `pivot_from` reference. Original moves to `archive/`. Decision logged in both.
    - **Kill:** Moves canvas to `archive/`. Decision logged.
 7. Adds decision entry to `## Decisions` section in canvas
 
@@ -168,7 +168,7 @@ However, it can suggest based on patterns:
 ## Notes
 
 - Decisions are documented in the canvas `## Decisions` section
-- Pivot creates a new canvas in `ideate/` — the old one is archived
+- Pivot creates a new canvas in `explore/` with `status: draft` — the old one is archived
 - Kill archives the canvas but keeps hypotheses/experiments/insights
 - The `archive/` folder is for reference, not deletion
 - Multiple decisions can be logged over time (the section is append-only)

@@ -46,15 +46,12 @@ IDEATE → HYPOTHESIZE → PRIORITIZE → EXPERIMENT → LEARN → DECIDE
 
 ```
 +----------------------------------------------------------+
-| IDEATE: Create Business Model Canvas                      |
-|  - Capture your business idea systematically              |
+| EXPLORE: Create and validate Business Model Canvas        |
+|  - Create BMC as draft (/knvs:ideate)                     |
 |  - Fill in all 9 BMC dimensions                           |
-+----------------------------------------------------------+
-                           |
-+----------------------------------------------------------+
-| EXPLORE: Validate through the Loop                        |
+|  - Set status: testing when ready                         |
 |  - Extract D/F/V hypotheses from BMC                      |
-|  - Prioritize by importance × evidence                    |
+|  - Prioritize by importance x evidence                    |
 |  - Design and run experiments                             |
 |  - Extract insights from results                          |
 |  - Decide: Persevere, Pivot, or Kill                      |
@@ -85,11 +82,9 @@ IDEATE → HYPOTHESIZE → PRIORITIZE → EXPERIMENT → LEARN → DECIDE
 /knvs:ideate
 ```
 
-### 3. Move to Validation
+### 3. Fill Out BMC and Set Status
 
-```
-/knvs:explore
-```
+Fill out all 9 BMC sections, then set `status: testing` in frontmatter.
 
 ### 4. Extract Hypotheses
 
@@ -123,13 +118,7 @@ IDEATE → HYPOTHESIZE → PRIORITIZE → EXPERIMENT → LEARN → DECIDE
 Setup (first run) or portfolio overview (after setup).
 
 ### `/knvs:ideate` - Create New Idea
-Creates a new Business Model Canvas in the IDEATE phase.
-
-### `/knvs:ideas` - List Open Ideas
-Shows all canvases in IDEATE phase with progress status.
-
-### `/knvs:explore` - Start Validation
-Moves canvas from IDEATE to EXPLORE phase.
+Creates a new Business Model Canvas as draft in `explore/`.
 
 ### `/knvs:hypothesize` - Extract Hypotheses
 Analyzes BMC and extracts Desirability/Feasibility/Viability hypotheses.
@@ -144,7 +133,7 @@ Distills key learnings from completed experiments.
 Presents evidence dashboard and documents the decision.
 
 ### `/knvs:exploit` - Scale Business Model
-Moves validated canvas from EXPLORE to EXPLOIT phase.
+Moves validated canvas from `explore/` to `exploit/`.
 
 ### `/knvs:review` - Disruption Review
 Quarterly review of EXPLOIT canvases for risks and opportunities.
@@ -164,8 +153,6 @@ knvs/
 |- skills/
 |   |- start/SKILL.md
 |   |- ideate/SKILL.md
-|   |- ideas/SKILL.md
-|   |- explore/SKILL.md
 |   |- hypothesize/SKILL.md
 |   |- experiment/SKILL.md
 |   |- learn/SKILL.md
@@ -174,18 +161,17 @@ knvs/
 |   |- review/SKILL.md
 |   |- sync/SKILL.md
 |
-|- ideate/                      # Ideas in research phase
-|- explore/                     # Ideas being validated
-|- exploit/                     # Validated & scaling
-|- hypotheses/                  # Hypotheses per canvas
+|- explore/                    # BMCs (draft and testing)
+|- exploit/                    # Validated & scaling
+|- hypotheses/                 # Hypotheses per canvas
 |   |- canvas-slug/
-|- experiments/                 # Experiments per canvas
+|- experiments/                # Experiments per canvas
 |   |- canvas-slug/
-|- insights/                    # Insights per canvas
+|- insights/                   # Insights per canvas
 |   |- canvas-slug/
-|- reviews/                     # Disruption review history
+|- reviews/                    # Disruption review history
 |   |- canvas-slug/
-|- archive/                     # Killed/pivoted canvases
+|- archive/                    # Killed/pivoted canvases
 |
 |- CLAUDE.md
 |- README.md

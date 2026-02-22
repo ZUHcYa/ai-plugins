@@ -14,21 +14,21 @@ Single entry point for knvs. Automatically detects context:
 ## Phase Lifecycle
 
 ```
-ideate/          ->  explore/                                    ->  exploit/
-Ideation            Validation Loop                                Scaling
+explore/                                                    exploit/
+(status: draft -> testing)                                  (status: scaling)
 
-/knvs:ideate        /knvs:explore    /knvs:hypothesize           /knvs:exploit   /knvs:review
-creates             moves &          extracts D/F/V              moves &         quarterly
-new BMC             begins loop      hypotheses                  adds reviews    disruption check
+/knvs:ideate        /knvs:hypothesize     /knvs:exploit     /knvs:review
+creates BMC         extracts D/F/V        moves &           quarterly
+as draft            hypotheses            adds reviews      disruption check
 
-                                     /knvs:experiment
-                                     designs & runs tests
+                    /knvs:experiment
+                    designs & runs tests
 
-                                     /knvs:learn
-                                     extracts insights
+                    /knvs:learn
+                    extracts insights
 
-                                     /knvs:decide
-                                     persevere / pivot / kill
+                    /knvs:decide
+                    persevere / pivot / kill
 ```
 
 ## When to Use
@@ -55,7 +55,6 @@ Claude: Welcome to knvs!
         [targetPath taken from project defaults]
 
         Created:
-        ├── ideate/
         ├── explore/
         ├── exploit/
         ├── hypotheses/
@@ -80,7 +79,6 @@ User: Y
 Claude: Setting up your innovation workspace...
 
         Created:
-        ├── ideate/
         ├── explore/
         ├── exploit/
         ├── hypotheses/
@@ -104,12 +102,12 @@ User: /knvs:start
 Claude: knvs Status
         ======================================
 
-        IDEATE (2)
+        DRAFTS (2)
         ----------
-        🔴 AI Bookkeeping [WIP] - 45 days stale
-        🟢 Invoice Tool [READY] - run /knvs:explore
+        🔴 AI Bookkeeping [draft] - 45 days stale
+        🟢 Invoice Tool [draft] - created 3 days ago
 
-        EXPLORE (2)
+        TESTING (2)
         -----------
         🔴 B2B SaaS - 2/5 hypotheses validated, 1 experiment stale
         🟢 Mobile App - all hypotheses validated → /knvs:exploit
@@ -120,10 +118,9 @@ Claude: knvs Status
 
         Suggested Actions
         -----------------
-        1. Invoice Tool is READY → /knvs:explore
+        1. Mobile App: all validated → /knvs:exploit
         2. B2B SaaS: stale experiment → check progress
-        3. Mobile App: all validated → /knvs:exploit
-        4. AI Bookkeeping stale → decide: explore or archive
+        3. AI Bookkeeping stale → set status: testing or archive
 ```
 
 ---
@@ -139,8 +136,7 @@ Claude: knvs Status
       - If not found: ask interactively (default: `./`)
    b. Write `.knvs/config.json` with `targetPath`
 3. Create folder structure at `targetPath`:
-   - `ideate/` - New ideas being researched
-   - `explore/` - Ideas being validated with experiments
+   - `explore/` - Business Model Canvases (draft and testing)
    - `exploit/` - Validated business models being scaled
    - `hypotheses/` - Hypotheses grouped by canvas
    - `experiments/` - Experiments grouped by canvas
@@ -151,21 +147,22 @@ Claude: knvs Status
 ### After Setup (Overview + Portfolio)
 
 1. Read `.knvs/config.json`
-2. Scan folders (`ideate/`, `explore/`, `exploit/`)
-3. For EXPLORE canvases: scan `hypotheses/<slug>/` and `experiments/<slug>/` for status
-4. Read frontmatter from each canvas
-5. Calculate priority per phase (see Priority Logic below)
-6. Display status grouped by phase
-7. Generate actionable suggestions
+2. Scan `explore/` and `exploit/` folders
+3. Group `explore/` canvases by status (`draft` vs `testing`)
+4. For testing canvases: scan `hypotheses/<slug>/` and `experiments/<slug>/` for status
+5. Read frontmatter from each canvas
+6. Calculate priority per group (see Priority Logic below)
+7. Display status grouped by phase
+8. Generate actionable suggestions
 
 ---
 
 ## Priority Logic
 
-| Phase | Priority Calculation | Indicators |
+| Group | Priority Calculation | Indicators |
 |-------|---------------------|------------|
-| IDEATE | `age_days * (progress == WIP ? 1.5 : 1.0)` | 🔴 >30 days stale, 🟡 active, 🟢 READY |
-| EXPLORE | `hypothesis_validation_ratio + stale_experiments` | 🔴 stale experiments, 🟡 testing, 🟢 all validated |
+| DRAFTS | `age_days` | 🔴 >30 days stale, 🟡 active, 🟢 recent |
+| TESTING | `hypothesis_validation_ratio + stale_experiments` | 🔴 stale experiments, 🟡 testing, 🟢 all validated |
 | EXPLOIT | `disruption_risk * next_review proximity` | 🔴 review overdue, 🟡 soon, 🟢 on track |
 
 ### Status Indicators
@@ -182,13 +179,12 @@ Claude: knvs Status
 
 | Condition | Suggestion |
 |-----------|------------|
-| IDEATE `progress: READY FOR EXPLORE` | "X is READY → /knvs:explore" |
-| IDEATE item > 30 days old | "X stale → decide: explore or archive" |
-| EXPLORE with no hypotheses | "X has no hypotheses → /knvs:hypothesize" |
-| EXPLORE with open hypotheses, no experiment | "X has untested hypotheses → /knvs:experiment" |
-| EXPLORE with completed experiment, no insights | "X has experiment results → /knvs:learn" |
-| EXPLORE with stale experiment | "X has stale experiment → check progress" |
-| EXPLORE all hypotheses validated | "X ready → /knvs:exploit" |
+| Draft > 30 days old | "X stale → set status: testing or archive" |
+| Testing with no hypotheses | "X has no hypotheses → /knvs:hypothesize" |
+| Testing with open hypotheses, no experiment | "X has untested hypotheses → /knvs:experiment" |
+| Testing with completed experiment, no insights | "X has experiment results → /knvs:learn" |
+| Testing with stale experiment | "X has stale experiment → check progress" |
+| Testing all hypotheses validated | "X ready → /knvs:exploit" |
 | EXPLOIT `next_review` within 7 days | "X review due → /knvs:review" |
 | No items exist | "Run /knvs:ideate to capture your first idea" |
 
@@ -210,7 +206,6 @@ Claude: knvs Status
 
 ```
 <targetPath>/
-├── ideate/
 ├── explore/
 ├── exploit/
 ├── hypotheses/
