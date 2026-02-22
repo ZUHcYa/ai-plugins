@@ -97,7 +97,6 @@ reviews/
 │   ├── decide/SKILL.md
 │   ├── exploit/SKILL.md
 │   ├── review/SKILL.md
-│   └── sync/SKILL.md
 ├── CLAUDE.md
 ├── README.md
 ├── QUICKSTART.md

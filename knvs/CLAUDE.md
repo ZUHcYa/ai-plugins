@@ -99,7 +99,7 @@ Every Canvas MUST contain these 9 core fields (Osterwalder/Pigneur), as `##` hea
 - **Key Partnerships** - Who are our most important partners and suppliers?
 - **Cost Structure** - What are the most important costs?
 
-**Missing fields = invalid Canvas.** `/knvs:sync` checks for this.
+**Missing fields = invalid Canvas.** `/knvs:start` checks for this (Health Checks).
 
 ### Status Values
 

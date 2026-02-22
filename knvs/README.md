@@ -115,7 +115,7 @@ Fill out all 9 BMC sections, then set `status: testing` in frontmatter.
 ## Available Skills
 
 ### `/knvs:start` - Smart Entry Point
-Setup (first run) or portfolio overview (after setup).
+Setup (first run) or portfolio overview with health checks (after setup).
 
 ### `/knvs:ideate` - Create New Idea
 Creates a new Business Model Canvas as draft in `explore/`.
@@ -138,9 +138,6 @@ Moves validated canvas from `explore/` to `exploit/`.
 ### `/knvs:review` - Disruption Review
 Quarterly review of EXPLOIT canvases for risks and opportunities.
 
-### `/knvs:sync` - Check Consistency
-Scans all files for inconsistencies and broken references.
-
 ---
 
 ## File Structure
@@ -159,7 +156,6 @@ knvs/
 |   |- decide/SKILL.md
 |   |- exploit/SKILL.md
 |   |- review/SKILL.md
-|   |- sync/SKILL.md
 |
 |- explore/                    # BMCs (draft and testing)
 |- exploit/                    # Validated & scaling

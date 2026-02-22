@@ -116,6 +116,12 @@ Claude: knvs Status
         -----------
         🟢 Core Business - next review in 3 weeks
 
+        Health (2 issues)
+        -----------------
+        - explore/ai-bookkeeping.md: Missing BMC field "Key Partnerships"
+        - hypotheses/old-idea/price-sensitivity.md: Canvas not found
+          → Orphaned hypothesis — archive or delete?
+
         Suggested Actions
         -----------------
         1. Mobile App: all validated → /knvs:exploit
@@ -152,8 +158,10 @@ Claude: knvs Status
 4. For testing canvases: scan `hypotheses/<slug>/` and `experiments/<slug>/` for status
 5. Read frontmatter from each canvas
 6. Calculate priority per group (see Priority Logic below)
-7. Display status grouped by phase
-8. Generate actionable suggestions
+7. Run Health Checks (see Health Checks below)
+8. Display status grouped by phase
+9. Show Health issues (if any — omit section when 0 issues)
+10. Generate actionable suggestions
 
 ---
 
@@ -172,6 +180,28 @@ Claude: knvs Status
 | 🔴 | Immediate action needed |
 | 🟡 | Monitor closely |
 | 🟢 | On track |
+
+---
+
+## Health Checks
+
+After the portfolio overview, start runs structural integrity checks.
+Issues are shown in a **Health** section before Suggested Actions.
+If no issues exist, the Health section is omitted entirely.
+
+**Important:** Check 1 (Invalid Canvas) runs first. If a file has invalid frontmatter, skip remaining checks for that file.
+
+| # | Check | Scans | Condition | Message |
+|---|-------|-------|-----------|---------|
+| 1 | Invalid Canvas | `explore/`, `exploit/` | `.md` without valid YAML frontmatter | `"Invalid frontmatter"` |
+| 2 | Status ↔ Folder | `explore/`, `exploit/` | Canvas folder does not match status | `"Status X does not match folder Y"` |
+| 3 | Missing BMC Fields | `explore/`, `exploit/` | Canvas lacks one of the 9 core `##` headings | `"Missing BMC field: X"` |
+| 4 | Missing Frontmatter | `explore/` (testing) | Testing canvas without `innovation_risk` | `"Missing field: innovation_risk"` |
+| 5 | Hypothesis Missing Sections | `hypotheses/` | Without `## Claim` or `## Context` | `"Missing section: X"` |
+| 6 | Orphaned Hypothesis | `hypotheses/` | `canvas` frontmatter points to non-existent file | `"Canvas X not found"` |
+| 7 | Experiment → Hypothesis | `experiments/` | `hypothesis` frontmatter points to non-existent file | `"Hypothesis X not found"` |
+| 8 | Insight → Experiment | `insights/` | `source_experiment` points to non-existent file | `"Experiment X not found"` |
+| 9 | Orphaned Data Folder | `hypotheses/`, `experiments/` | Subfolder `<slug>/` has no matching canvas in `explore/` or `exploit/` | `"No matching canvas for <slug>/"` |
 
 ---
 

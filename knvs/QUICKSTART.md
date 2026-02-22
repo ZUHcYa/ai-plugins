@@ -154,7 +154,6 @@ Run `/knvs:start` anytime to see your portfolio and suggested actions.
 | `/knvs:decide` | Persevere / Pivot / Kill |
 | `/knvs:exploit` | Move validated canvas to scaling |
 | `/knvs:review` | Disruption check for EXPLOIT |
-| `/knvs:sync` | Check for inconsistencies |
 
 ---
 

@@ -4,6 +4,18 @@ All notable changes to knvs will be documented in this file.
 
 ---
 
+## [2.1.0] - 2026-02-22
+
+### Changed
+
+- **`/knvs:start`** — Now includes Health Checks section (schema validation, reference integrity, folder consistency)
+
+### Removed
+
+- **`/knvs:sync` skill** — All valuable checks consolidated into `/knvs:start` Health section. File-timestamp tracking dropped (required state file)
+
+---
+
 ## [2.0.0] - 2026-02-22
 
 ### Breaking Changes
