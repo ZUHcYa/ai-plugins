@@ -1,5 +1,5 @@
 {
-  "version": "0.4.0",
+  "version": "0.4.1",
   "name": "trips",
   "description": "Business travel tracking for German tax returns - record trips, list them, generate Finanzamt-ready reports",
   "author": {

@@ -4,6 +4,14 @@ All notable changes to trips will be documented in this file.
 
 ---
 
+## [0.4.1] - 2026-02-23
+
+### Fixed
+
+- **`/trips:start`** — Corrected path example in "With Project Defaults" dialog (was missing `<YYYY>/` year folder level)
+
+---
+
 ## [0.4.0] - 2026-02-20
 
 ### Added

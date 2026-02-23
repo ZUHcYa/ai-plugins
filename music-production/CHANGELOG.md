@@ -4,6 +4,16 @@ All notable changes to music-production will be documented in this file.
 
 ---
 
+## [0.5.1] - 2026-02-23
+
+### Fixed
+
+- **CLAUDE.md** — Added missing Versioning section (was the only plugin without it)
+- **`/music-production:produce`** — Fixed duplicate step number 6 in "What the Skill Does" (renumbered 6-13)
+- **`/music-production:generate`** — Fixed duplicate step number 6 in "What the Skill Does" (renumbered 7-8)
+
+---
+
 ## [0.5.0] - 2026-02-21
 
 ### Added

@@ -4,6 +4,20 @@ All notable changes to knvs will be documented in this file.
 
 ---
 
+## [4.0.1] - 2026-02-23
+
+### Fixed
+
+- **EXPLOIT canvas template** — Removed stale `revenue_score` field, added `performance_score`, `trend_score`, `last_assessment` (expected by `/knvs:assess` and `/knvs:start` health checks)
+- **Trend Assessment dimension 4** — +3 statement was copy-pasted from dimension 3 (Customer Friction). Corrected to Social/Cultural-specific statement in both `assess/SKILL.md` and `CLAUDE.md`
+- **`/knvs:learn` result ownership** — Removed duplicate `result` field write (already set by `/knvs:capture`). Removed undocumented "Partial success" from status update logic
+- **Kill flow orphan prevention** — Kill now moves related subfolders (`hypotheses/`, `experiments/`, `insights/`, `learning-cards/`, `assessments/`) to `archive/` to prevent persistent Health Check #9 warnings
+- **Namespace Strategy table** — Now lists all 9 skills (was 4)
+- **Decision Log labels** — Changed from German to English for language consistency
+- **Folder Structure** — Added cross-plugin read note for `research/` dependency
+
+---
+
 ## [4.0.0] - 2026-02-23
 
 ### Breaking Changes

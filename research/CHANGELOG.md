@@ -4,6 +4,14 @@ All notable changes to research will be documented in this file.
 
 ---
 
+## [1.0.1] - 2026-02-23
+
+### Fixed
+
+- **CLAUDE.md** — Added missing Warning-Signal Check and Emoji Usage sections for consistency with all other plugins
+
+---
+
 ## [1.0.0] - 2026-02-22
 
 ### Added
