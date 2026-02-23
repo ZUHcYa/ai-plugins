@@ -227,6 +227,30 @@ Here is the draft report to audit:
 
 ---
 
+## Warning-Signal Check
+
+**Before every task, ask:**
+1. Does this help with **developing research** (code, docs, automation)?
+2. Is it **not a user feature** for end users?
+
+**If in doubt:** IMMEDIATELY ask the developer!
+
+---
+
+## Emoji Usage
+
+**Rule:** Emojis only when they provide real value - not as decoration.
+
+### Allowed
+- Status indicators where text alone would be unclear (e.g. in compact tables)
+
+### Forbidden
+- Decorative emojis without function
+- Multiple emojis per line/heading
+- Emojis in body text
+
+---
+
 ## Namespace Strategy
 
 | Element | Format | Example |
