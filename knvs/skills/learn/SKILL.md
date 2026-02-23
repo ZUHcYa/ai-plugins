@@ -106,9 +106,9 @@ Claude: Confidence: — → moderate
         - cloud-hosting-costs (open, LOW, —)
 
         Next steps:
-        - /knvs:card to create a Learning Card from this experiment
+        - /knvs:card [E] to create an Experiment Learning Card
+        - /knvs:card [H] to conclude a hypothesis testing cycle
         - /knvs:experiment for untested hypotheses
-        - /knvs:decide when ready for a decision
 ```
 
 ## What the Skill Does

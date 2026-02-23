@@ -29,12 +29,14 @@ Ideate (BMC) → Hypothesize (D/F/V) → Prioritize (Confidence × Importance)
 ### The Strategyzer Loop (EXPLORE only)
 
 ```
-IDEATE → HYPOTHESIZE → PRIORITIZE → EXPERIMENT → LEARN → DECIDE
-  BMC      D/F/V      Confidence ×   Run tests    Extract   Persevere
-                      Importance                  Insights  Pivot / Kill
+IDEATE → HYPOTHESIZE → PRIORITIZE → EXPERIMENT → LEARN → CARD (DECIDE)
+  BMC      D/F/V      Confidence ×   Run tests    Extract   Learning Card
+                      Importance                  Insights  Persevere/Pivot/Kill
 ```
 
 **This loop applies exclusively to EXPLORE canvases.** EXPLOIT canvases do not use hypotheses, experiments, insights, or Persevere/Pivot/Kill decisions — they have their own mechanisms (Performance & Trend Assessments via `/knvs:assess`).
+
+**DECIDE is embedded in the Learning Card.** The Hypothesis Learning Card (`/knvs:card [H]`) concludes the testing cycle of one hypothesis and includes the strategic decision (Persevere/Pivot/Kill) with its consequences (archive, pivot).
 
 **Phases (The Invincible Company):**
 - **EXPLORE** — Create Business Model Canvas (draft), then validate hypotheses through experiments. The full Strategyzer Loop applies here.
@@ -81,7 +83,8 @@ All generated files must work well in both contexts.
 | Hypothesis | `[slug].md` | `customers-will-pay-monthly.md` |
 | Experiment | `[slug].md` | `pricing-survey-freelancers.md` |
 | Insight | `[slug].md` | `freelancers-prefer-annual.md` |
-| Learning Card | `[experiment-slug].md` | `pricing-survey-freelancers.md` |
+| Learning Card (experiment) | `[experiment-slug].md` | `pricing-survey-freelancers.md` |
+| Learning Card (hypothesis) | `[hypothesis-slug].md` | `customers-will-pay-monthly.md` |
 
 **Rule:** NO date prefix. NO numbering. kebab-case slug only.
 CORRECT: `ai-bookkeeping-app.md` — WRONG: `20260220-001-ai-bookkeeping-app.md`
@@ -390,31 +393,45 @@ Canonical template is in `skills/learn/SKILL.md`.
 
 **Learning Cards apply exclusively to EXPLORE canvases.** They synthesize hypothesis, experiment results, and insights into the classic "Testing Business Ideas" 4-part narrative.
 
-One learning card per experiment (1:1 relationship). Created after `/knvs:learn` (insights must exist).
+Two scopes:
 
-### Required Fields (Frontmatter)
+- **Experiment Card** (`scope: experiment`) — One card per experiment (1:1). Created after `/knvs:learn`.
+- **Hypothesis Card** (`scope: hypothesis`) — One card per hypothesis. Concludes the testing cycle with a Persevere/Pivot/Kill decision. Replaces the former `/knvs:decide` skill.
+
+### Common Fields (Both Scopes)
 
 - `type: learning-card`
-- `title` (experiment title)
+- `scope` (experiment | hypothesis)
+- `title`
 - `canvas` (path to the canvas)
 - `hypothesis` (path to the hypothesis file)
-- `experiment` (path to the experiment file)
 - `insights` (array of paths to insight files)
-- `result` (success | failure | inconclusive)
 - `created` (YYYY-MM-DD)
+
+### Experiment Card — Additional Fields
+
+- `experiment` (path to the experiment file, singular)
+- `result` (success | failure | inconclusive)
+
+### Hypothesis Card — Additional Fields
+
+- `experiments` (array of paths to experiment files)
+- `decision` (persevere | pivot | kill)
+- `confidence` (very-low | low | moderate | high)
 
 ### Required Sections
 
 - We believed that... (from hypothesis claim)
-- We observed... (from experiment results/conclusion)
+- We observed... (from experiment results/conclusion — aggregated for hypothesis cards)
 - From that we learned... (synthesized from insight(s))
-- Therefore we will... (user-provided next action)
+- Therefore we will... (free text for experiment cards; Persevere/Pivot/Kill + reasoning for hypothesis cards)
 
-### Learning Card Template
+### Experiment Card Template
 
 ```markdown
 ---
 type: learning-card
+scope: experiment
 title: "[Experiment title]"
 canvas: explore/canvas-slug.md
 hypothesis: hypotheses/canvas-slug/hypothesis-slug.md
@@ -445,7 +462,48 @@ created: YYYY-MM-DD
 [User input — next action based on the learning]
 ```
 
-Canonical template is in `skills/card/SKILL.md`.
+### Hypothesis Card Template
+
+```markdown
+---
+type: learning-card
+scope: hypothesis
+title: "[Hypothesis title]"
+canvas: explore/canvas-slug.md
+hypothesis: hypotheses/canvas-slug/hypothesis-slug.md
+experiments:
+  - experiments/canvas-slug/exp-1.md
+  - experiments/canvas-slug/exp-2.md
+insights:
+  - insights/canvas-slug/insight-1.md
+  - insights/canvas-slug/insight-2.md
+decision: persevere | pivot | kill
+confidence: very-low | low | moderate | high
+created: YYYY-MM-DD
+---
+
+# Learning Card: [Hypothesis Title]
+
+## We believed that...
+
+[From hypothesis claim — the testable assumption]
+
+## We observed...
+
+[Aggregated evidence from all experiments — what actually happened]
+
+## From that we learned...
+
+[Synthesized from all insight(s) — key learnings]
+
+## Therefore we will...
+
+**[Persevere|Pivot|Kill]**
+
+[User reasoning for the decision and what happens next]
+```
+
+Canonical templates are in `skills/card/SKILL.md`.
 
 ---
 

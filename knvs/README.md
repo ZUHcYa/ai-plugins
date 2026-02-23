@@ -39,9 +39,9 @@ Done! The plugin is ready to use.
 ## The Strategyzer Loop
 
 ```
-IDEATE → HYPOTHESIZE → PRIORITIZE → EXPERIMENT → LEARN → DECIDE
-  BMC      D/F/V      Confidence ×   Run tests    Extract   Persevere
-                      Importance                  Insights  Pivot / Kill
+IDEATE → HYPOTHESIZE → PRIORITIZE → EXPERIMENT → LEARN → CARD (DECIDE)
+  BMC      D/F/V      Confidence ×   Run tests    Extract   Learning Card
+                      Importance                  Insights  Persevere/Pivot/Kill
 ```
 
 ```
@@ -54,7 +54,7 @@ IDEATE → HYPOTHESIZE → PRIORITIZE → EXPERIMENT → LEARN → DECIDE
 |  - Prioritize by importance x confidence                   |
 |  - Design and run experiments                             |
 |  - Extract insights from results                          |
-|  - Decide: Persevere, Pivot, or Kill                      |
+|  - Learning Card: conclude with Persevere, Pivot, or Kill |
 +----------------------------------------------------------+
                            |
 +----------------------------------------------------------+
@@ -111,16 +111,10 @@ Fill out all 9 BMC sections, then set `status: testing` in frontmatter.
 /knvs:learn
 ```
 
-### 8. Create Learning Card (Optional)
+### 8. Create Learning Card and Decide
 
 ```
 /knvs:card
-```
-
-### 9. Make a Decision
-
-```
-/knvs:decide
 ```
 
 ---
@@ -145,11 +139,8 @@ Starts a designed experiment (designed → running) or documents results after e
 ### `/knvs:learn` - Extract Insights
 Distills key learnings from completed experiments.
 
-### `/knvs:card` - Create Learning Card
-Creates a standalone Learning Card from a completed experiment — the classic "Testing Business Ideas" format: We believed / We observed / We learned / Therefore we will.
-
-### `/knvs:decide` - Persevere/Pivot/Kill
-Presents confidence dashboard and documents the decision.
+### `/knvs:card` - Create Learning Card and Decide
+Creates Learning Cards in the classic "Testing Business Ideas" format: We believed / We observed / We learned / Therefore we will. Two modes: [E] Experiment Card (per experiment) and [H] Hypothesis Card (concludes testing cycle with Persevere/Pivot/Kill decision).
 
 ### `/knvs:exploit` - Scale Business Model
 Moves validated canvas from `explore/` to `exploit/`.
@@ -174,7 +165,6 @@ knvs/
 |   |- capture/SKILL.md
 |   |- learn/SKILL.md
 |   |- card/SKILL.md
-|   |- decide/SKILL.md
 |   |- exploit/SKILL.md
 |   |- assess/SKILL.md
 |

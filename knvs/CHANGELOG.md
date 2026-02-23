@@ -4,6 +4,34 @@ All notable changes to knvs will be documented in this file.
 
 ---
 
+## [4.0.0] - 2026-02-23
+
+### Breaking Changes
+
+- **`/knvs:decide` skill removed** — Hypothesis Learning Cards in `/knvs:card` fully replace the decide skill. Cards now include Persevere/Pivot/Kill decisions with full action execution (archive, pivot)
+- **Learning Card `scope` field** — New required field distinguishes `experiment` (existing) and `hypothesis` (new) cards
+
+### Added
+
+- **Hypothesis Learning Cards** in `/knvs:card` [H] mode — conclude the testing cycle of one hypothesis with aggregated evidence, synthesized insights, and a strategic decision (Persevere/Pivot/Kill)
+- **Hypothesis Dashboard** shown during card creation (same as former decide dashboard)
+- **`scope`** frontmatter field on learning cards (`experiment` | `hypothesis`)
+- **`decision`** frontmatter field on hypothesis cards (`persevere` | `pivot` | `kill`)
+- **`experiments`** frontmatter field (array) on hypothesis cards
+
+### Changed
+
+- **`/knvs:card`** — Mode selection: [E] Experiment Card, [H] Hypothesis Card
+- Experiment cards get `scope: experiment` field (backwards compatible — cards without `scope` are treated as experiment)
+
+### Migration
+
+1. Existing learning cards continue to work (no `scope` field = experiment card)
+2. Replace `/knvs:decide` usage with `/knvs:card` [H] mode
+3. Existing decision log entries in canvases remain valid
+
+---
+
 ## [3.2.0] - 2026-02-23
 
 ### Breaking Changes

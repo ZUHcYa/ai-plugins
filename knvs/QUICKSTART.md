@@ -122,27 +122,22 @@ Claude extracts key learnings and updates hypothesis confidence levels.
 
 ---
 
-## 8. Create Learning Card (Optional)
+## 8. Create Learning Card and Decide
 
 ```
 /knvs:card
 ```
 
-Synthesize your experiment into a standalone Learning Card — the classic "Testing Business Ideas" format:
+Two modes:
+
+- **[E] Experiment Card** — Synthesize one experiment into a standalone Learning Card
+- **[H] Hypothesis Card** — Conclude the testing cycle of one hypothesis with a Persevere/Pivot/Kill decision
+
+The classic "Testing Business Ideas" format:
 - **We believed that...** (hypothesis)
 - **We observed...** (experiment results)
 - **From that we learned...** (insights)
-- **Therefore we will...** (next action)
-
----
-
-## 9. Make a Decision
-
-```
-/knvs:decide
-```
-
-Based on your evidence: **Persevere**, **Pivot**, or **Kill**.
+- **Therefore we will...** (next action or strategic decision)
 
 ---
 
@@ -153,10 +148,10 @@ Based on your evidence: **Persevere**, **Pivot**, or **Kill**.
      |              |              |              |                       |
    Setup       Create BMC      Research      Begin loop           Extract D/F/V
 
-→ /knvs:experiment → /knvs:capture → /knvs:learn → /knvs:card → /knvs:decide → /knvs:exploit
-        |                  |              |            |             |              |
-    Design test     Start & document   Insights   Learning      Persevere/      Scale
-                      results                      Card          Pivot/Kill
+→ /knvs:experiment → /knvs:capture → /knvs:learn → /knvs:card → /knvs:exploit
+        |                  |              |            |              |
+    Design test     Start & document   Insights   Learning Card    Scale
+                      results                     + Decision
 ```
 
 ---
@@ -177,8 +172,7 @@ Run `/knvs:start` anytime to see your portfolio and suggested actions.
 | `/knvs:experiment` | Design a validation test |
 | `/knvs:capture` | Start experiment or document results |
 | `/knvs:learn` | Extract insights from results |
-| `/knvs:card` | Create Learning Card from experiment |
-| `/knvs:decide` | Persevere / Pivot / Kill |
+| `/knvs:card` | Learning Card + Decision (Persevere/Pivot/Kill) |
 | `/knvs:exploit` | Move validated canvas to scaling |
 | `/knvs:assess` | Performance & Trend assessment for EXPLOIT |
 

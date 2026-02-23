@@ -31,7 +31,7 @@ These folders contain hypotheses, experiments, and insights grouped by canvas.
 | `hypotheses/<canvas-slug>/` | Testable assumptions from BMC | `/knvs:hypothesize` |
 | `experiments/<canvas-slug>/` | Experiment designs and results | `/knvs:experiment`, `/knvs:capture` |
 | `insights/<canvas-slug>/` | Key learnings from experiments | `/knvs:learn` |
-| `learning-cards/<canvas-slug>/` | Learning Cards (Testing Business Ideas format) | `/knvs:card` |
+| `learning-cards/<canvas-slug>/` | Learning Cards — Experiment Cards + Hypothesis Cards (incl. decision) | `/knvs:card` |
 | `assessments/<canvas-slug>/` | Performance & Trend assessments | `/knvs:assess` |
 
 Each canvas in `explore/` (with `status: testing`) has corresponding subfolders in these directories.
@@ -81,7 +81,6 @@ Each canvas in `explore/` (with `status: testing`) has corresponding subfolders 
 │   ├── capture/SKILL.md
 │   ├── learn/SKILL.md
 │   ├── card/SKILL.md
-│   ├── decide/SKILL.md
 │   ├── exploit/SKILL.md
 │   ├── assess/SKILL.md
 ├── CLAUDE.md
@@ -101,10 +100,11 @@ Each canvas in `explore/` (with `status: testing`) has corresponding subfolders 
 | Hypothesis files | kebab-case slug | `customers-will-pay-monthly.md` |
 | Experiment files | kebab-case slug | `pricing-survey-freelancers.md` |
 | Insight files | kebab-case slug | `freelancers-prefer-annual.md` |
-| Learning Card files | experiment-slug | `pricing-survey-freelancers.md` |
+| Learning Card (experiment) | experiment-slug | `pricing-survey-freelancers.md` |
+| Learning Card (hypothesis) | hypothesis-slug | `customers-will-pay-monthly.md` |
 | Skills | `<skill>/SKILL.md` | `hypothesize/SKILL.md` |
 | Config | Standard name | `config.json` |
 
 ---
 
-**Version:** 3.1.0
+**Version:** 4.0.0

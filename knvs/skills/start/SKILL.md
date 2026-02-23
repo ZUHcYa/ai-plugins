@@ -28,10 +28,8 @@ as draft            hypotheses            scales            trend assessment
                     extracts insights
 
                     /knvs:card
-                    creates learning card
-
-                    /knvs:decide
-                    persevere / pivot / kill
+                    learning card + decision
+                    (persevere / pivot / kill)
 ```
 
 ## When to Use
@@ -209,7 +207,7 @@ If no issues exist, the Health section is omitted entirely.
 | 8 | Insight → Experiment | `insights/` | `source_experiment` points to non-existent file | `"Experiment X not found"` |
 | 9 | Orphaned Data Folder | `hypotheses/`, `experiments/` | Subfolder `<slug>/` has no matching canvas in `explore/` or `exploit/` | `"No matching canvas for <slug>/"` |
 | 10 | Hypothesis → Research | `hypotheses/` | `source_research` points to non-existent or non-verified file | `"Research X not found or not verified"` |
-| 11 | Learning Card → Experiment | `learning-cards/` | `experiment` frontmatter points to non-existent file | `"Experiment X not found"` |
+| 11 | Learning Card → Experiment | `learning-cards/` | `experiment` (singular) or `experiments` (array) frontmatter points to non-existent file | `"Experiment X not found"` |
 
 ---
 

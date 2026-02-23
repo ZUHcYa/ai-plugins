@@ -31,7 +31,7 @@ Claude: Business Model Canvas created: "[Title]"
 ### From Pivot
 
 ```
-User: /knvs:ideate (during /knvs:decide pivot)
+User: /knvs:ideate (during /knvs:card pivot)
 Claude: Creating new BMC variant based on pivot decision...
 
         Original canvas: explore/original-idea.md (archived)
@@ -45,7 +45,7 @@ Claude: Creating new BMC variant based on pivot decision...
 
 ## What the Skill Does
 
-1. Asks for idea description (or receives pivot context from `/knvs:decide`)
+1. Asks for idea description (or receives pivot context from `/knvs:card`)
 2. Automatically extracts appropriate title
 3. Creates file in `explore/` folder as `[slug].md` — slug is kebab-case derived from the title.
    NEVER add a date prefix or sequential number.
@@ -120,7 +120,7 @@ pivot_from: explore/original.md   # Optional: only when created from pivot. Dele
 ---
 
 ## Decisions
-<!-- Decision log entries will be added here by /knvs:decide -->
+<!-- Decision log entries will be added here by /knvs:card -->
 
 ## Notes
 <!-- Initial thoughts, research notes, open questions -->
