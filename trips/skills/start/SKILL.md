@@ -35,7 +35,7 @@ Claude: Welcome to trips!
         [dataDir und Firma aus Projekt-Defaults uebernommen]
 
         Created: .trips/config.json (dataDir: Documents/Expenses, Firma: Muster GmbH)
-        Created: Documents/Expenses/02 - 2026/Max Mustermann/
+        Created: Documents/Expenses/2026/02 - 2026/Max Mustermann/
 
         Ready! Run /trips:new to record your first trip.
 ```
