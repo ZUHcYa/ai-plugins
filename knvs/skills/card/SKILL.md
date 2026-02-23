@@ -325,8 +325,10 @@ Claude: ━━━━━━━━━━━━━━━━━━━━━━━━
         **Decision:** Market too small for viable business model.
         **Next Steps:** None — archived.
 
-        Hypotheses, experiments, and insights remain in their folders
-        for reference.
+        Related folders moved to archive/:
+        - hypotheses/ai-bookkeeping/ → archive/hypotheses/ai-bookkeeping/
+        - experiments/ai-bookkeeping/ → archive/experiments/ai-bookkeeping/
+        - insights/ai-bookkeeping/ → archive/insights/ai-bookkeeping/
 ```
 
 ### What the Hypothesis Card Does
@@ -347,7 +349,7 @@ Claude: ━━━━━━━━━━━━━━━━━━━━━━━━
 11. Executes decision consequences:
     - **Persevere:** Suggests next steps (remaining hypotheses, experiments)
     - **Pivot:** Creates new canvas in `explore/` with `status: draft` and `pivot_from` reference. Original moves to `archive/`. Decision logged in both.
-    - **Kill:** Moves canvas to `archive/`. Hypotheses, experiments, insights remain for reference.
+    - **Kill:** Moves canvas to `archive/`. Moves related subfolders (`hypotheses/<canvas-slug>/`, `experiments/<canvas-slug>/`, `insights/<canvas-slug>/`, `learning-cards/<canvas-slug>/`, `assessments/<canvas-slug>/`) to matching `archive/` subfolders to prevent orphan warnings in `/knvs:start`.
 
 ### Decision Criteria Guidance
 
