@@ -25,7 +25,7 @@ Get started with knvs in 5 minutes.
 
 ### Option B: Manual Setup
 
-1. Create folders: `explore/`, `exploit/`, `hypotheses/`, `experiments/`, `insights/`, `assessments/`, `archive/`
+1. Create folders: `explore/`, `exploit/`, `hypotheses/`, `experiments/`, `insights/`, `learning-cards/`, `assessments/`, `archive/`
 2. Create `.knvs/config.json` with `{ "targetPath": "./" }`
 
 ---
@@ -45,6 +45,7 @@ Created:
 ├── hypotheses/
 ├── experiments/
 ├── insights/
+├── learning-cards/
 ├── assessments/
 ├── archive/
 └── .knvs/config.json
@@ -121,7 +122,21 @@ Claude extracts key learnings and updates hypothesis evidence levels.
 
 ---
 
-## 8. Make a Decision
+## 8. Create Learning Card (Optional)
+
+```
+/knvs:card
+```
+
+Synthesize your experiment into a standalone Learning Card — the classic "Testing Business Ideas" format:
+- **We believed that...** (hypothesis)
+- **We observed...** (experiment results)
+- **From that we learned...** (insights)
+- **Therefore we will...** (next action)
+
+---
+
+## 9. Make a Decision
 
 ```
 /knvs:decide
@@ -138,10 +153,10 @@ Based on your evidence: **Persevere**, **Pivot**, or **Kill**.
      |              |              |              |                       |
    Setup       Create BMC      Research      Begin loop           Extract D/F/V
 
-→ /knvs:experiment → /knvs:capture → /knvs:learn → /knvs:decide → /knvs:exploit
-        |                  |              |              |              |
-    Design test     Start & document   Insights     Persevere/      Scale
-                      results                       Pivot/Kill
+→ /knvs:experiment → /knvs:capture → /knvs:learn → /knvs:card → /knvs:decide → /knvs:exploit
+        |                  |              |            |             |              |
+    Design test     Start & document   Insights   Learning      Persevere/      Scale
+                      results                      Card          Pivot/Kill
 ```
 
 ---
@@ -162,6 +177,7 @@ Run `/knvs:start` anytime to see your portfolio and suggested actions.
 | `/knvs:experiment` | Design a validation test |
 | `/knvs:capture` | Start experiment or document results |
 | `/knvs:learn` | Extract insights from results |
+| `/knvs:card` | Create Learning Card from experiment |
 | `/knvs:decide` | Persevere / Pivot / Kill |
 | `/knvs:exploit` | Move validated canvas to scaling |
 | `/knvs:assess` | Performance & Trend assessment for EXPLOIT |
@@ -172,12 +188,13 @@ Run `/knvs:start` anytime to see your portfolio and suggested actions.
 
 knvs works without Claude Code:
 
-1. Create folders: `explore/`, `exploit/`, `hypotheses/`, `experiments/`, `insights/`, `assessments/`, `archive/`
+1. Create folders: `explore/`, `exploit/`, `hypotheses/`, `experiments/`, `insights/`, `learning-cards/`, `assessments/`, `archive/`
 2. Create file: `explore/my-idea.md` with `status: draft` frontmatter
 3. Fill out BMC sections
 4. Set `status: testing`, create hypothesis files in `hypotheses/my-idea/`
 5. Create experiment files in `experiments/my-idea/`
 6. Document results, create insight files in `insights/my-idea/`
-7. Add decision to canvas `## Decisions` section
+7. Create learning card files in `learning-cards/my-idea/` (optional)
+8. Add decision to canvas `## Decisions` section
 
 All files are standard Markdown — use any editor.

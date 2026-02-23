@@ -98,6 +98,7 @@ Claude: Saved: insights/ai-bookkeeping/mobile-upload-expected.md
         - cloud-hosting-costs (open, LOW, NONE)
 
         Next steps:
+        - /knvs:card to create a Learning Card from this experiment
         - /knvs:experiment for untested hypotheses
         - /knvs:decide when ready for a decision
 ```

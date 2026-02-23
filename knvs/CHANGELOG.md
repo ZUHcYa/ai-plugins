@@ -4,6 +4,16 @@ All notable changes to knvs will be documented in this file.
 
 ---
 
+## [3.1.0] - 2026-02-23
+
+### Added
+
+- **NEW SKILL:** `/knvs:card` — Create standalone Learning Cards from completed experiments. Synthesizes hypothesis (We believed), experiment results (We observed), insights (We learned), and next action (Therefore we will) into the classic "Testing Business Ideas" 4-part format
+- **`learning-cards/`** folder for Learning Cards, grouped by canvas slug
+- **Health Check #11** — Validates Learning Card `experiment` references point to existing experiment files
+
+---
+
 ## [3.0.0] - 2026-02-23
 
 ### Breaking Changes

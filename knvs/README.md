@@ -111,7 +111,13 @@ Fill out all 9 BMC sections, then set `status: testing` in frontmatter.
 /knvs:learn
 ```
 
-### 8. Make a Decision
+### 8. Create Learning Card (Optional)
+
+```
+/knvs:card
+```
+
+### 9. Make a Decision
 
 ```
 /knvs:decide
@@ -139,6 +145,9 @@ Starts a designed experiment (designed → running) or documents results after e
 ### `/knvs:learn` - Extract Insights
 Distills key learnings from completed experiments.
 
+### `/knvs:card` - Create Learning Card
+Creates a standalone Learning Card from a completed experiment — the classic "Testing Business Ideas" format: We believed / We observed / We learned / Therefore we will.
+
 ### `/knvs:decide` - Persevere/Pivot/Kill
 Presents evidence dashboard and documents the decision.
 
@@ -164,6 +173,7 @@ knvs/
 |   |- experiment/SKILL.md
 |   |- capture/SKILL.md
 |   |- learn/SKILL.md
+|   |- card/SKILL.md
 |   |- decide/SKILL.md
 |   |- exploit/SKILL.md
 |   |- assess/SKILL.md
@@ -175,6 +185,8 @@ knvs/
 |- experiments/                # Experiments per canvas
 |   |- canvas-slug/
 |- insights/                   # Insights per canvas
+|   |- canvas-slug/
+|- learning-cards/             # Learning Cards per canvas
 |   |- canvas-slug/
 |- assessments/                # Performance & Trend assessments
 |   |- canvas-slug/

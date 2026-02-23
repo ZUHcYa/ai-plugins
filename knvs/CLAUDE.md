@@ -81,6 +81,7 @@ All generated files must work well in both contexts.
 | Hypothesis | `[slug].md` | `customers-will-pay-monthly.md` |
 | Experiment | `[slug].md` | `pricing-survey-freelancers.md` |
 | Insight | `[slug].md` | `freelancers-prefer-annual.md` |
+| Learning Card | `[experiment-slug].md` | `pricing-survey-freelancers.md` |
 
 **Rule:** NO date prefix. NO numbering. kebab-case slug only.
 CORRECT: `ai-bookkeeping-app.md` — WRONG: `20260220-001-ai-bookkeeping-app.md`
@@ -362,6 +363,69 @@ Canonical template is in `skills/learn/SKILL.md`.
 
 ---
 
+## Learning Card: Structure
+
+**Learning Cards apply exclusively to EXPLORE canvases.** They synthesize hypothesis, experiment results, and insights into the classic "Testing Business Ideas" 4-part narrative.
+
+One learning card per experiment (1:1 relationship). Created after `/knvs:learn` (insights must exist).
+
+### Required Fields (Frontmatter)
+
+- `type: learning-card`
+- `title` (experiment title)
+- `canvas` (path to the canvas)
+- `hypothesis` (path to the hypothesis file)
+- `experiment` (path to the experiment file)
+- `insights` (array of paths to insight files)
+- `result` (success | failure | inconclusive)
+- `created` (YYYY-MM-DD)
+
+### Required Sections
+
+- We believed that... (from hypothesis claim)
+- We observed... (from experiment results/conclusion)
+- From that we learned... (synthesized from insight(s))
+- Therefore we will... (user-provided next action)
+
+### Learning Card Template
+
+```markdown
+---
+type: learning-card
+title: "[Experiment title]"
+canvas: explore/canvas-slug.md
+hypothesis: hypotheses/canvas-slug/hypothesis-slug.md
+experiment: experiments/canvas-slug/experiment-slug.md
+insights:
+  - insights/canvas-slug/insight-1.md
+  - insights/canvas-slug/insight-2.md
+result: success | failure | inconclusive
+created: YYYY-MM-DD
+---
+
+# Learning Card: [Experiment Title]
+
+## We believed that...
+
+[Drawn from hypothesis claim — the testable assumption]
+
+## We observed...
+
+[Drawn from experiment results and conclusion — what actually happened]
+
+## From that we learned...
+
+[Synthesized from insight(s) — key learning with supporting evidence]
+
+## Therefore we will...
+
+[User input — next action based on the learning]
+```
+
+Canonical template is in `skills/card/SKILL.md`.
+
+---
+
 ## Assessment: Structure
 
 **Assessments apply exclusively to EXPLOIT canvases.** EXPLORE canvases use the hypothesis loop instead.
@@ -559,6 +623,8 @@ experiments/         — Experiments, grouped by canvas
   <canvas-slug>/
 insights/            — Insights, grouped by canvas
   <canvas-slug>/
+learning-cards/      — Learning Cards, grouped by canvas
+  <canvas-slug>/
 assessments/         — Performance & Trend assessments
   <canvas-slug>/
 archive/             — Killed/pivoted canvases
@@ -570,7 +636,7 @@ archive/             — Killed/pivoted canvases
 
 | Element | Format | Example |
 |---------|--------|---------|
-| Skills | `/knvs:` prefix | `/knvs:ideate`, `/knvs:hypothesize`, `/knvs:start` |
+| Skills | `/knvs:` prefix | `/knvs:ideate`, `/knvs:hypothesize`, `/knvs:card`, `/knvs:start` |
 | Skill files | `<skill>/SKILL.md` | `skills/ideate/SKILL.md`, `skills/hypothesize/SKILL.md` |
 | Configuration | `.knvs/` folder | `.knvs/config.json` |
 | Phase folders | Short, unambiguous | `explore/`, `exploit/` |

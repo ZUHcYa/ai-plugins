@@ -27,6 +27,9 @@ as draft            hypotheses            scales            trend assessment
                     /knvs:learn
                     extracts insights
 
+                    /knvs:card
+                    creates learning card
+
                     /knvs:decide
                     persevere / pivot / kill
 ```
@@ -60,6 +63,7 @@ Claude: Welcome to knvs!
         ├── hypotheses/
         ├── experiments/
         ├── insights/
+        ├── learning-cards/
         ├── assessments/
         ├── archive/
         └── .knvs/config.json
@@ -84,6 +88,7 @@ Claude: Setting up your innovation workspace...
         ├── hypotheses/
         ├── experiments/
         ├── insights/
+        ├── learning-cards/
         ├── assessments/
         ├── archive/
         └── .knvs/config.json
@@ -147,6 +152,7 @@ Claude: knvs Status
    - `hypotheses/` - Hypotheses grouped by canvas
    - `experiments/` - Experiments grouped by canvas
    - `insights/` - Insights grouped by canvas
+   - `learning-cards/` - Learning Cards grouped by canvas
    - `assessments/` - Performance & Trend assessment history
    - `archive/` - Killed/pivoted canvases
 
@@ -203,6 +209,7 @@ If no issues exist, the Health section is omitted entirely.
 | 8 | Insight → Experiment | `insights/` | `source_experiment` points to non-existent file | `"Experiment X not found"` |
 | 9 | Orphaned Data Folder | `hypotheses/`, `experiments/` | Subfolder `<slug>/` has no matching canvas in `explore/` or `exploit/` | `"No matching canvas for <slug>/"` |
 | 10 | Hypothesis → Research | `hypotheses/` | `source_research` points to non-existent or non-verified file | `"Research X not found or not verified"` |
+| 11 | Learning Card → Experiment | `learning-cards/` | `experiment` frontmatter points to non-existent file | `"Experiment X not found"` |
 
 ---
 
@@ -214,6 +221,7 @@ If no issues exist, the Health section is omitted entirely.
 | Testing with no hypotheses | "X has no hypotheses → /knvs:hypothesize" |
 | Testing with open hypotheses, no experiment | "X has untested hypotheses → /knvs:experiment" |
 | Testing with completed experiment, no insights | "X has experiment results → /knvs:learn" |
+| Testing with insights but no learning card | "X has insights → /knvs:card" |
 | Testing with stale experiment | "X has stale experiment → check progress" |
 | Testing all hypotheses validated | "X ready → /knvs:exploit" |
 | EXPLOIT `last_assessment` > 90 days ago | "X assessment due → /knvs:assess" |
@@ -242,6 +250,7 @@ If no issues exist, the Health section is omitted entirely.
 ├── hypotheses/
 ├── experiments/
 ├── insights/
+├── learning-cards/
 ├── assessments/
 ├── archive/
 └── .knvs/
