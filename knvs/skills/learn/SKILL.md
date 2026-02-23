@@ -122,17 +122,15 @@ Claude: Confidence: — → moderate
    - User confirms, rejects, or edits
    - Creates insight file in `insights/<canvas-slug>/`
 6. Updates the corresponding hypothesis:
-   - Status: testing → validated/invalidated (based on success criteria)
+   - Status: testing → validated/invalidated (based on experiment `result` set by `/knvs:capture`)
    - Confidence level: assessed based on ALL completed experiments for this hypothesis
-7. Updates experiment `result` field (success/failure/inconclusive)
-8. Shows remaining hypothesis overview
+7. Shows remaining hypothesis overview
 
 ## Status Update Logic
 
-| Experiment Result | Status Update |
-|-------------------|--------------|
+| Experiment Result (from `/knvs:capture`) | Status Update |
+|------------------------------------------|--------------|
 | Success (criteria met) | status → validated |
-| Partial success | status stays testing |
 | Failure (criteria not met) | status → invalidated |
 | Inconclusive | status stays testing |
 

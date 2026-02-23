@@ -121,7 +121,7 @@ Every Canvas MUST contain these 9 core fields (Osterwalder/Pigneur), as `##` hea
 
 - **Draft (explore/):** Frontmatter `status: draft`, `created`, `updated`. Optional: `pivot_from`. Sections: Decisions, Notes, Next Steps
 - **Testing (explore/):** Frontmatter additionally `innovation_risk`, `potential_revenue`. Sections: Decisions, Next Steps
-- **Scaling (exploit/):** Frontmatter additionally `next_assessment`, `revenue_score`, `performance_score`, `trend_score`, `last_assessment`. Sections: Assessments, Decisions, Next Steps
+- **Scaling (exploit/):** Frontmatter additionally `next_assessment`, `performance_score`, `trend_score`, `last_assessment`. Sections: Assessments, Decisions, Next Steps
 
 Canonical templates for each phase are in the respective `skills/*/SKILL.md` under `## Canvas Template`.
 
@@ -544,7 +544,7 @@ Each dimension assesses an external threat or opportunity:
 | 1 | **Substitution Risk** | New entrants gaining traction with cheaper/better/substitute products | Competition shrinking, products likely to gain traction |
 | 2 | **Market Trajectory** | Markets projected to shrink significantly | Markets projected to grow significantly |
 | 3 | **Customer Friction** | Trends reducing friction for customers to leave | Trends increasing friction for customers to leave |
-| 4 | **Social/Cultural Trends** | Growing trends driving customers away (sustainability, fashion, etc.) | Trends making it harder for customers to desert us |
+| 4 | **Social/Cultural Trends** | Growing trends driving customers away (sustainability, fashion, etc.) | Growing social/cultural trends attracting customers toward our offerings |
 | 5 | **Technology Trends** | Tech trends undermining/making model obsolete | Tech trends strengthening model |
 | 6 | **Regulatory Environment** | New regulations making model more expensive/impossible | New regulations making model cheaper/easier |
 | 7 | **Supply Chain** | Suppliers/value chain changing to put model at risk | Suppliers/value chain changing to strengthen model |
