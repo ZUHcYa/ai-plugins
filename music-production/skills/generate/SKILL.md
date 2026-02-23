@@ -67,8 +67,8 @@ Claude: Reading 2026-02-Nightfall.md...
    - YouTube title and description
    - Bandcamp title, description, and tags
    - Cover art prompt
-6. Write the generated texts into the existing `## Release-Texte` and `## Cover Art` sections of `<FolderName>.md`.
-7. Update `updated:` date in frontmatter.
+7. Write the generated texts into the existing `## Release-Texte` and `## Cover Art` sections of `<FolderName>.md`.
+8. Update `updated:` date in frontmatter.
 
 ---
 

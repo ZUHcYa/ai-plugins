@@ -180,13 +180,13 @@ Claude: Das ist eine Mastering-Frage mit Mixing-Implikationen.
    - `anti_genre` aus Frontmatter: Nie in Richtung der Anti-Genres beraten. Wenn eine Idee danach klingt, explizit darauf hinweisen.
    - Ohne Strategy: Skill funktioniert weiterhin generisch (wie bisher).
 6. Focus-Area-Picker anzeigen (A/H/S/R/M/X) ODER freie Problembeschreibung akzeptieren.
-6. Falls Freitext: relevante Focus-Areas aus der Beschreibung ableiten.
-7. Focused Consultation fuehren. Guiding Questions als Geruest nutzen (nicht als starre Checkliste). An das anpassen, was der Nutzer tatsaechlich braucht.
-8. Song-Kontext verwenden (Referenzen, Notizen, Genre, Key, BPM falls vorhanden) fuer spezifische statt generische Beratung.
-9. Wenn Consultation einen natuerlichen Endpunkt erreicht oder Nutzer signalisiert: Zusammenfassung mit Key Insights und Action Items.
-10. Falls Song gewaehlt: anbieten, Action Items in `## TODOs` zu schreiben.
-11. Falls Song gewaehlt: anbieten, Consultation-Notizen in `## Notizen` anzuhaengen (optional).
-12. Falls Nutzer BPM/Key im Dialog nennt und diese noch nicht im Frontmatter stehen: anbieten, sie einzutragen.
+7. Falls Freitext: relevante Focus-Areas aus der Beschreibung ableiten.
+8. Focused Consultation fuehren. Guiding Questions als Geruest nutzen (nicht als starre Checkliste). An das anpassen, was der Nutzer tatsaechlich braucht.
+9. Song-Kontext verwenden (Referenzen, Notizen, Genre, Key, BPM falls vorhanden) fuer spezifische statt generische Beratung.
+10. Wenn Consultation einen natuerlichen Endpunkt erreicht oder Nutzer signalisiert: Zusammenfassung mit Key Insights und Action Items.
+11. Falls Song gewaehlt: anbieten, Action Items in `## TODOs` zu schreiben.
+12. Falls Song gewaehlt: anbieten, Consultation-Notizen in `## Notizen` anzuhaengen (optional).
+13. Falls Nutzer BPM/Key im Dialog nennt und diese noch nicht im Frontmatter stehen: anbieten, sie einzutragen.
 
 ## Focus Areas
 

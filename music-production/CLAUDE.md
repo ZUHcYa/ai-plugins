@@ -21,6 +21,20 @@ Die Song-Datei (`<Ordnername>.md`) ist das zentrale Begleitdokument und waechst 
 
 ---
 
+## Versioning
+
+`CHANGELOG.md` ist die Single Source of Truth fuer die Version. `plugin.json` wird automatisch
+via git pre-commit hook synchronisiert — niemals manuell editieren.
+
+| Aenderungstyp | Version-Bump |
+|---------------|-------------|
+| Neues Feature, Breaking Change in Skills | Minor (`0.x.0`) |
+| Bugfix, Docs-Korrektur | Patch (`0.x.1`) |
+
+Immer einen `## [x.y.z] - YYYY-MM-DD` Eintrag in `CHANGELOG.md` ergaenzen vor dem Commit.
+
+---
+
 ## Song Lifecycle
 
 ```
