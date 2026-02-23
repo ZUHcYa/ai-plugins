@@ -40,7 +40,7 @@ Done! The plugin is ready to use.
 
 ```
 IDEATE → HYPOTHESIZE → PRIORITIZE → EXPERIMENT → LEARN → DECIDE
-  BMC      D/F/V      Evidence ×     Run tests    Extract   Persevere
+  BMC      D/F/V      Confidence ×   Run tests    Extract   Persevere
                       Importance                  Insights  Pivot / Kill
 ```
 
@@ -51,7 +51,7 @@ IDEATE → HYPOTHESIZE → PRIORITIZE → EXPERIMENT → LEARN → DECIDE
 |  - Fill in all 9 BMC dimensions                           |
 |  - Set status: testing when ready                         |
 |  - Extract D/F/V hypotheses from BMC                      |
-|  - Prioritize by importance x evidence                    |
+|  - Prioritize by importance x confidence                   |
 |  - Design and run experiments                             |
 |  - Extract insights from results                          |
 |  - Decide: Persevere, Pivot, or Kill                      |
@@ -149,7 +149,7 @@ Distills key learnings from completed experiments.
 Creates a standalone Learning Card from a completed experiment — the classic "Testing Business Ideas" format: We believed / We observed / We learned / Therefore we will.
 
 ### `/knvs:decide` - Persevere/Pivot/Kill
-Presents evidence dashboard and documents the decision.
+Presents confidence dashboard and documents the decision.
 
 ### `/knvs:exploit` - Scale Business Model
 Moves validated canvas from `explore/` to `exploit/`.

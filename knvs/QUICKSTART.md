@@ -84,7 +84,7 @@ Claude analyzes your BMC and extracts testable hypotheses:
 - **Feasibility** — Can we build this?
 - **Viability** — Is this financially sustainable?
 
-Each hypothesis is prioritized by importance x evidence.
+Each hypothesis is prioritized by importance x confidence.
 
 ---
 
@@ -118,7 +118,7 @@ After documenting results:
 /knvs:learn
 ```
 
-Claude extracts key learnings and updates hypothesis evidence levels.
+Claude extracts key learnings and updates hypothesis confidence levels.
 
 ---
 

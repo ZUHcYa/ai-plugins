@@ -50,7 +50,7 @@ Claude: Analyzing Business Model Canvas...
         Claim: "Freelancers need automated receipt categorization"
         BMC Fields: Value Proposition, Customer Segments
         Importance: HIGH
-        Evidence: NONE
+        Confidence: —
 
         -> Accept? [Y/n/edit]
 
@@ -64,14 +64,13 @@ Claude: Saved: hypotheses/ai-bookkeeping/receipt-categorization-need.md
         Claim: "Customers will pay EUR 15-30/month"
         BMC Fields: Revenue Streams
         Importance: HIGH
-        Evidence: NONE
+        Confidence: —
 
         -> Accept? [Y/n/edit]
 
-User: edit - importance should be MEDIUM, we have some market data
+User: edit - importance should be MEDIUM
 Claude: Updated:
         Importance: MEDIUM
-        Evidence: WEAK
 
         -> Accept? [Y/n/edit]
 
@@ -89,9 +88,9 @@ Claude: Saved: hypotheses/ai-bookkeeping/customers-will-pay-monthly.md
           Feasibility: 1
           Viability: 2
 
-        Priority (high importance + no evidence):
-        1. receipt-categorization-need (Desirability, HIGH, NONE)
-        2. ai-accuracy-requirement (Feasibility, HIGH, NONE)
+        Priority (high importance + no confidence):
+        1. receipt-categorization-need (Desirability, HIGH, —)
+        2. ai-accuracy-requirement (Feasibility, HIGH, —)
 
         Next step: /knvs:experiment to design tests for priority hypotheses.
 ```
@@ -108,7 +107,7 @@ Claude: Saved: hypotheses/ai-bookkeeping/customers-will-pay-monthly.md
    - **Feasibility** (Key Resources, Key Activities, Key Partnerships)
    - **Viability** (Revenue Streams, Cost Structure)
 5. Proposes importance level (high/medium/low) based on how critical the assumption is
-6. Sets initial evidence level (default: none)
+6. Sets initial confidence level (empty — not assessed, no experiments yet)
 7. User confirms, rejects, or edits each hypothesis
 8. Creates hypothesis files in `hypotheses/<canvas-slug>/`
 9. Shows priority summary at the end
@@ -121,9 +120,9 @@ Claude: Saved: hypotheses/ai-bookkeeping/customers-will-pay-monthly.md
 4. User selects a verified research report
 5. Reads the `## Implications for Business Model` section
 6. Extracts testable claims and maps them to BMC fields on the selected canvas
-7. Sets initial evidence level to **weak** (audited source exists)
+7. Sets initial confidence level to empty (confidence is based on own experiments, not external research)
 8. Adds `source_research` to frontmatter
-9. `## Evidence` section references the research report
+9. `## Evidence` section references the research report as context
 10. User confirms, rejects, or edits each hypothesis
 11. Creates hypothesis files in `hypotheses/<canvas-slug>/`
 12. Shows priority summary at the end
@@ -165,7 +164,8 @@ Claude: Reading "Implications for Business Model" from machine-customers...
                bookkeeping services by 2028"
         BMC Fields: Customer Segments, Channels
         Importance: HIGH
-        Evidence: WEAK (source: research/machine-customers.md)
+        Confidence: —
+        Source: research/machine-customers.md
 
         -> Accept? [Y/n/edit]
 
@@ -183,7 +183,8 @@ Claude: Saved: hypotheses/ai-bookkeeping/machine-customers-purchasing.md
           Desirability: 1
           Feasibility: 1
 
-        All from-research hypotheses start with evidence: WEAK.
+        All from-research hypotheses start with confidence: — (not assessed).
+        Source research is tracked in frontmatter (source_research).
 
         Next step: /knvs:experiment to validate with your own data.
 ```
@@ -203,13 +204,13 @@ Claude: Saved: hypotheses/ai-bookkeeping/machine-customers-purchasing.md
 After all hypotheses are created, the skill shows a priority view:
 
 ```
-Priority (importance × evidence):
+Priority (importance × confidence):
 
-HIGH IMPORTANCE + NO EVIDENCE (test first):
+HIGH IMPORTANCE + NO CONFIDENCE (test first):
   1. receipt-categorization-need (Desirability)
   2. ai-accuracy-requirement (Feasibility)
 
-HIGH IMPORTANCE + WEAK EVIDENCE (validate further):
+HIGH IMPORTANCE + LOW CONFIDENCE (validate further):
   3. customers-will-pay-monthly (Viability)
 
 MEDIUM/LOW IMPORTANCE (test later):
@@ -252,7 +253,7 @@ Claude: explore/ai-bookkeeping.md has empty BMC sections.
 ## Notes
 
 - Hypotheses are individual .md files in `hypotheses/<canvas-slug>/`
-- Each hypothesis has frontmatter with evidence, importance, category, status
+- Each hypothesis has frontmatter with confidence, importance, category, status
 - The skill does NOT run experiments — use `/knvs:experiment` for that
 - Hypotheses can also be created manually in any Markdown editor
 
@@ -271,7 +272,7 @@ category: desirability|feasibility|viability
 bmc_fields:
   - Value Proposition
   - Customer Segments
-evidence: none
+confidence:
 importance: high
 status: open
 source_research: research/report-slug.md  # optional, only for From Research mode
@@ -293,7 +294,7 @@ what happens if this hypothesis is invalidated]
 ## Evidence
 
 No evidence yet. Requires experiment.
-(From Research: initial evidence from research/report-slug.md § Implications for Business Model)
+(From Research: context from research/report-slug.md § Implications for Business Model)
 
 ## Related Experiments
 

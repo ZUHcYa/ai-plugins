@@ -4,6 +4,30 @@ All notable changes to knvs will be documented in this file.
 
 ---
 
+## [3.2.0] - 2026-02-23
+
+### Breaking Changes
+
+- **`evidence` field replaced by `confidence`** on hypothesis frontmatter — 4-level Strategyzer Hypothesis Confidence model (`very-low | low | moderate | high`) replaces 3-level evidence model (`none | weak | strong`)
+- **From-Research hypotheses** now start with empty `confidence` instead of `evidence: weak` — confidence is derived from own experiments only, `source_research` tracks external context
+
+### Changed
+
+- **`/knvs:learn`** — New Confidence Level Update Logic: assesses confidence based on ALL completed experiments (count + evidence_strength + experiment_type), recommends level, user confirms
+- **`/knvs:hypothesize`** — Template uses `confidence:` (empty) instead of `evidence: none`
+- **`/knvs:decide`** — Decision dashboard shows confidence level per hypothesis
+- **`/knvs:experiment`** — Priority display uses confidence instead of evidence
+- **Prioritization** — `importance x confidence` replaces `importance x evidence`
+
+### Migration
+
+1. Replace `evidence: none` with `confidence:` (empty) in hypothesis frontmatter
+2. Replace `evidence: weak` with `confidence: very-low` or `confidence: low` (based on experiment data)
+3. Replace `evidence: strong` with `confidence: moderate` or `confidence: high` (based on experiment data)
+4. `evidence_strength` on experiment files is unchanged
+
+---
+
 ## [3.1.0] - 2026-02-23
 
 ### Added

@@ -7,14 +7,14 @@ description: "Make a Persevere/Pivot/Kill decision based on experiment evidence"
 
 ## Purpose
 
-Presents the current evidence state for an EXPLORE canvas and facilitates
+Presents the current confidence state for an EXPLORE canvas and facilitates
 a Persevere/Pivot/Kill decision. Documents the decision in the canvas.
 **Only applicable to EXPLORE canvases.** EXPLOIT canvases do not use Persevere/Pivot/Kill decisions.
 
 ## When to Use
 
 - After running experiments and extracting insights
-- When you want to evaluate your EXPLORE business model based on evidence
+- When you want to evaluate your EXPLORE business model based on confidence and evidence
 - At regular checkpoints during the EXPLORE phase
 - **NOT for EXPLOIT canvases** — these have their own mechanisms (Performance & Trend Assessments)
 
@@ -34,14 +34,14 @@ Claude: ======================================
 
         HYPOTHESES
         ----------
-        ✅ receipt-categorization-need (Desirability, STRONG, VALIDATED)
-        ✅ ai-accuracy-requirement (Feasibility, STRONG, VALIDATED)
-        ✅ customers-will-pay-monthly (Viability, STRONG, VALIDATED)
-        ❌ linkedin-channel-effectiveness (Desirability, STRONG, INVALIDATED)
-        ⬜ cloud-hosting-costs (Viability, NONE, OPEN)
+        ✅ receipt-categorization-need (Desirability, HIGH, VALIDATED)
+        ✅ ai-accuracy-requirement (Feasibility, HIGH, VALIDATED)
+        ✅ customers-will-pay-monthly (Viability, MODERATE, VALIDATED)
+        ❌ linkedin-channel-effectiveness (Desirability, MODERATE, INVALIDATED)
+        ⬜ cloud-hosting-costs (Viability, —, OPEN)
 
-        EVIDENCE SUMMARY
-        -----------------
+        CONFIDENCE SUMMARY
+        ------------------
         Validated: 3 (Desirability: 1, Feasibility: 1, Viability: 1)
         Invalidated: 1 (Desirability: 1)
         Open: 1 (Viability: 1)
@@ -145,8 +145,8 @@ Claude: Canvas archived: explore/ai-bookkeeping.md → archive/ai-bookkeeping.md
 3. Reads all hypotheses from `hypotheses/<canvas-slug>/`
 4. Reads all insights from `insights/<canvas-slug>/`
 5. Presents decision dashboard:
-   - Hypothesis status overview (validated/invalidated/open)
-   - Evidence summary by category (D/F/V)
+   - Hypothesis status overview with confidence level (validated/invalidated/open)
+   - Confidence summary by category (D/F/V)
    - Key insights list
 6. User makes decision:
    - **Persevere:** Identifies next hypotheses to test. Canvas stays in `explore/`. Decision logged.
@@ -156,7 +156,7 @@ Claude: Canvas archived: explore/ai-bookkeeping.md → archive/ai-bookkeeping.md
 
 ## Decision Criteria Guidance
 
-The skill does NOT make the decision — it presents evidence and the user decides.
+The skill does NOT make the decision — it presents confidence levels and evidence, and the user decides.
 However, it can suggest based on patterns:
 
 | Pattern | Suggestion |

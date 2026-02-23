@@ -8,7 +8,7 @@ description: "Extract insights from completed experiment results"
 ## Purpose
 
 Extracts key learnings (insights) from completed experiments and updates
-the corresponding hypothesis evidence level.
+the corresponding hypothesis confidence level.
 **Only applicable to EXPLORE canvases.** EXPLOIT canvases do not use the hypothesis loop.
 
 ## When to Use
@@ -79,23 +79,31 @@ Claude: Saved: insights/ai-bookkeeping/mobile-upload-expected.md
         HYPOTHESIS UPDATE
         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
         Hypothesis: receipt-categorization-need
-        Evidence: none → strong
         Status: testing → validated
         Result: SUCCESS (82% > 70% target)
 
+        Confidence assessment:
+        Completed experiments: 1 (Online Survey, evidence_strength: strong)
+        Recommended confidence: MODERATE
+        (1 experiment with strong evidence — but only one experiment so far)
+
+        -> Accept? [Y/n/edit]
+
+User: Y
+Claude: Confidence: — → moderate
         Updated: hypotheses/ai-bookkeeping/receipt-categorization-need.md
 
         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
         SUMMARY
         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
         Insights created: 2
-        Hypothesis updated: receipt-categorization-need (VALIDATED)
+        Hypothesis updated: receipt-categorization-need (VALIDATED, MODERATE)
 
         Remaining hypotheses for AI Bookkeeping:
-        - ai-accuracy-requirement (open, HIGH, NONE) → needs experiment
-        - customers-will-pay-monthly (testing, MEDIUM, WEAK)
-        - linkedin-channel-effectiveness (open, MEDIUM, NONE)
-        - cloud-hosting-costs (open, LOW, NONE)
+        - ai-accuracy-requirement (open, HIGH, —) → needs experiment
+        - customers-will-pay-monthly (testing, MEDIUM, VERY-LOW)
+        - linkedin-channel-effectiveness (open, MEDIUM, —)
+        - cloud-hosting-costs (open, LOW, —)
 
         Next steps:
         - /knvs:card to create a Learning Card from this experiment
@@ -114,19 +122,44 @@ Claude: Saved: insights/ai-bookkeeping/mobile-upload-expected.md
    - User confirms, rejects, or edits
    - Creates insight file in `insights/<canvas-slug>/`
 6. Updates the corresponding hypothesis:
-   - Evidence level: none → weak → strong (based on experiment result)
    - Status: testing → validated/invalidated (based on success criteria)
+   - Confidence level: assessed based on ALL completed experiments for this hypothesis
 7. Updates experiment `result` field (success/failure/inconclusive)
 8. Shows remaining hypothesis overview
 
-## Evidence Level Update Logic
+## Status Update Logic
 
-| Experiment Result | Evidence Update |
-|-------------------|-----------------|
-| Success (criteria met) | evidence → strong, status → validated |
-| Partial success | evidence → weak, status stays testing |
-| Failure (criteria not met) | evidence → strong, status → invalidated |
-| Inconclusive | evidence → weak, status stays testing |
+| Experiment Result | Status Update |
+|-------------------|--------------|
+| Success (criteria met) | status → validated |
+| Partial success | status stays testing |
+| Failure (criteria not met) | status → invalidated |
+| Inconclusive | status stays testing |
+
+## Confidence Level Update Logic
+
+After updating the hypothesis status, the skill assesses the confidence level based on **all completed experiments** for this hypothesis (not just the current one).
+
+**Assessment process:**
+1. Collect all completed experiments linked to this hypothesis
+2. Count total experiments, their `evidence_strength`, and `experiment_type`
+3. Recommend confidence level based on the criteria below
+4. User confirms or overrides
+
+| Condition | Recommended Confidence |
+|-----------|----------------------|
+| 1 experiment, evidence_strength: weak | `very-low` |
+| 1+ experiments, all evidence_strength: weak (Discovery/Say-data only) | `low` |
+| Multiple experiments with at least 1x evidence_strength: strong, OR 1 strong CTA experiment | `moderate` |
+| Multiple experiments, at least 1 Validation/CTA experiment with evidence_strength: strong | `high` |
+
+**Experiment type classification:**
+
+| Category | Types | Evidence Type |
+|----------|-------|---------------|
+| Discovery (Say) | customer-interview, online-survey, data-analysis, paper-prototype | Stated preferences |
+| Validation (Do/CTA) | concierge-mvp, wizard-of-oz, single-feature-mvp, pre-sale, crowdfunding | Actual behavior |
+| Borderline | landing-page | Depends on commitment level |
 
 ## Edge Cases
 
@@ -153,7 +186,7 @@ Claude: No completed experiments found for any EXPLORE canvas.
 - Insights are individual .md files in `insights/<canvas-slug>/`
 - Each insight is standalone and reusable across canvas boundaries
 - The skill reads experiment results — it does NOT generate fake data
-- Evidence levels are updated based on actual experiment outcomes
+- Confidence levels are updated based on all completed experiments for the hypothesis
 - Insights can also be created manually in any Markdown editor
 
 ---

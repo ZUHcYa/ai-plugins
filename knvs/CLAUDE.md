@@ -7,7 +7,7 @@
 Jedes neue Feature, jeder neue Skill, jede Erweiterung muss gegen den Strategyzer-Loop geprueft werden, bevor sie umgesetzt wird:
 
 ```
-Ideate (BMC) → Hypothesize (D/F/V) → Prioritize (Evidence × Importance)
+Ideate (BMC) → Hypothesize (D/F/V) → Prioritize (Confidence × Importance)
 → Experiment → Learn (Insights) → Decide (Persevere / Pivot / Kill)
 ```
 
@@ -30,7 +30,7 @@ Ideate (BMC) → Hypothesize (D/F/V) → Prioritize (Evidence × Importance)
 
 ```
 IDEATE → HYPOTHESIZE → PRIORITIZE → EXPERIMENT → LEARN → DECIDE
-  BMC      D/F/V      Evidence ×     Run tests    Extract   Persevere
+  BMC      D/F/V      Confidence ×   Run tests    Extract   Persevere
                       Importance                  Insights  Pivot / Kill
 ```
 
@@ -137,16 +137,39 @@ Each hypothesis belongs to one of three categories (Strategyzer):
 | **Feasibility** | Key Resources, Key Activities, Key Partnerships | Can we build/deliver this? |
 | **Viability** | Revenue Streams, Cost Structure | Is this financially sustainable? |
 
+### Confidence Level (Strategyzer 4-Stufen-Modell)
+
+Confidence reflects how confident you should be in a hypothesis based on experimental evidence.
+It is derived from the number of completed experiments and their evidence strength.
+
+| Value | Strategyzer Name | Criteria |
+|-------|-----------------|----------|
+| *(empty)* | Not assessed | No experiments completed yet |
+| `very-low` | Not confident at all | Only one experiment with weak evidence (e.g. interview, survey) |
+| `low` | Not Really Confident | Multiple experiments, but all produce weak evidence (Say-data only). People might behave differently in reality |
+| `moderate` | Somewhat Confident | Several experiments with strong evidence, OR a particularly strong call-to-action experiment |
+| `high` | Very Confident | Several experiments, at least one call-to-action test with very strong evidence |
+
+**Experiment categories for confidence assessment:**
+
+| Category | Experiment Types | Evidence Type |
+|----------|-----------------|---------------|
+| **Discovery (Say)** | Customer Interview, Online Survey, Data Analysis, Paper Prototype | What people say — opinions, stated preferences |
+| **Validation (Do/CTA)** | Concierge MVP, Wizard of Oz, Single Feature MVP, Pre-Sale, Crowdfunding | What people do — actual behavior, commitment |
+| **Borderline** | Landing Page / Smoke Test | Weak if interest only, strong if sign-ups/commits |
+
+Confidence is updated by `/knvs:learn` after experiment completion. The skill recommends a level based on all completed experiments for the hypothesis — the user confirms or overrides.
+
 ### Prioritization (2x2 Matrix via Frontmatter)
 
 Hypotheses are prioritized by two dimensions:
 
 | Field | Values | Meaning |
 |-------|--------|---------|
-| `evidence` | none / weak / strong | How much evidence do we have? |
+| `confidence` | *(empty)* / very-low / low / moderate / high | How confident are we based on experiments? |
 | `importance` | low / medium / high | How critical is this for the business model? |
 
-**Priority rule:** Test hypotheses with `importance: high` + `evidence: none` first.
+**Priority rule:** Test hypotheses with `importance: high` + empty `confidence` first.
 
 ### Required Fields (Frontmatter)
 
@@ -155,7 +178,7 @@ Hypotheses are prioritized by two dimensions:
 - `canvas` (path to the canvas, e.g. `explore/my-canvas.md`)
 - `category` (desirability | feasibility | viability)
 - `bmc_fields` (array of affected BMC fields, canonical English names)
-- `evidence` (none | weak | strong)
+- `confidence` (*(empty)* | very-low | low | moderate | high)
 - `importance` (low | medium | high)
 - `status` (open | testing | validated | invalidated)
 - `created` (YYYY-MM-DD)
@@ -180,7 +203,7 @@ category: viability
 bmc_fields:
   - Revenue Streams
   - Customer Segments
-evidence: none
+confidence:
 importance: high
 status: open
 created: YYYY-MM-DD

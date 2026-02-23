@@ -142,7 +142,7 @@ Claude: ━━━━━━━━━━━━━━━━━━━━━━━━
         - ## Conclusion section filled
 
         Next step: /knvs:learn to extract insights
-        and update hypothesis evidence.
+        and update hypothesis confidence level.
 ```
 
 ## What the Skill Does

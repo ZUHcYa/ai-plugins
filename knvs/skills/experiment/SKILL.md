@@ -30,12 +30,12 @@ Claude: Which canvas are you testing?
 User: 1
 Claude: Priority hypotheses for AI Bookkeeping:
 
-        HIGH IMPORTANCE + NO EVIDENCE:
+        HIGH IMPORTANCE + NOT YET ASSESSED:
         1. receipt-categorization-need (Desirability)
         2. ai-accuracy-requirement (Feasibility)
 
-        MEDIUM/WEAK:
-        3. customers-will-pay-monthly (Viability, WEAK evidence)
+        LOW CONFIDENCE:
+        3. customers-will-pay-monthly (Viability, VERY-LOW)
         4. linkedin-channel-effectiveness (Desirability)
         5. cloud-hosting-costs (Viability)
 
@@ -84,7 +84,7 @@ Claude: Experiment created:
 
 1. Lists canvases in `explore/` with hypothesis counts
 2. User selects canvas
-3. Shows hypotheses sorted by priority (high importance + no evidence first)
+3. Shows hypotheses sorted by priority (high importance + no confidence first)
 4. User selects hypothesis to test
 5. Suggests experiment types based on hypothesis category:
    - **Discovery experiments** (cheap, fast): Customer Interview, Online Survey, Landing Page / Smoke Test, Data Analysis, Paper Prototype
