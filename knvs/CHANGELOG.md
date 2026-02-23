@@ -4,6 +4,15 @@ All notable changes to knvs will be documented in this file.
 
 ---
 
+## [2.5.0] - 2026-02-23
+
+### Added
+
+- **NEW SKILL:** `/knvs:capture` — Start experiments (designed → running) and document results (running → completed). Bridges the gap between `/knvs:experiment` (design) and `/knvs:learn` (insights)
+- **`evidence_strength`** frontmatter field on experiments (`weak | strong`) — reflects data quality independent of result. Set by `/knvs:capture` during result documentation
+
+---
+
 ## [2.4.1] - 2026-02-23
 
 ### Fixed

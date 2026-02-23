@@ -60,7 +60,8 @@ IDEATE → HYPOTHESIZE → PRIORITIZE → EXPERIMENT → LEARN → DECIDE
 +----------------------------------------------------------+
 | EXPLOIT: Scale validated model                            |
 |  - Run and optimize the business                          |
-|  - Conduct quarterly disruption reviews                   |
+|  - Performance & Trend assessments (/knvs:assess)         |
+|  - Conduct quarterly disruption reviews (/knvs:review)    |
 +----------------------------------------------------------+
 ```
 
@@ -98,13 +99,19 @@ Fill out all 9 BMC sections, then set `status: testing` in frontmatter.
 /knvs:experiment
 ```
 
-### 6. Extract Insights
+### 6. Start Experiment and Document Results
+
+```
+/knvs:capture
+```
+
+### 7. Extract Insights
 
 ```
 /knvs:learn
 ```
 
-### 7. Make a Decision
+### 8. Make a Decision
 
 ```
 /knvs:decide
@@ -126,6 +133,9 @@ Analyzes BMC and extracts Desirability/Feasibility/Viability hypotheses.
 ### `/knvs:experiment` - Design Experiment
 Creates a structured experiment to test a hypothesis.
 
+### `/knvs:capture` - Start or Complete Experiment
+Starts a designed experiment (designed → running) or documents results after execution (running → completed).
+
 ### `/knvs:learn` - Extract Insights
 Distills key learnings from completed experiments.
 
@@ -134,6 +144,9 @@ Presents evidence dashboard and documents the decision.
 
 ### `/knvs:exploit` - Scale Business Model
 Moves validated canvas from `explore/` to `exploit/`.
+
+### `/knvs:assess` - Performance & Trend Assessment
+Scores EXPLOIT canvases on 10 dimensions (-3 to +3). Performance (current snapshot) or Trend (future projection).
 
 ### `/knvs:review` - Disruption Review
 Quarterly review of EXPLOIT canvases for risks and opportunities.
@@ -152,9 +165,11 @@ knvs/
 |   |- ideate/SKILL.md
 |   |- hypothesize/SKILL.md
 |   |- experiment/SKILL.md
+|   |- capture/SKILL.md
 |   |- learn/SKILL.md
 |   |- decide/SKILL.md
 |   |- exploit/SKILL.md
+|   |- assess/SKILL.md
 |   |- review/SKILL.md
 |
 |- explore/                    # BMCs (draft and testing)
@@ -166,6 +181,8 @@ knvs/
 |- insights/                   # Insights per canvas
 |   |- canvas-slug/
 |- reviews/                    # Disruption review history
+|   |- canvas-slug/
+|- assessments/                # Performance & Trend assessments
 |   |- canvas-slug/
 |- archive/                    # Killed/pivoted canvases
 |

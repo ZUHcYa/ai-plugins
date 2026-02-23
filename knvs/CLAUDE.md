@@ -238,6 +238,7 @@ experiment types from "Testing Business Ideas" and allows custom types.
 - `success_criteria` (measurable outcome)
 - `duration` (timeframe)
 - `result` (success | failure | inconclusive, after completion)
+- `evidence_strength` (weak | strong, set by `/knvs:capture` after completion)
 
 ### Required Sections
 
@@ -260,6 +261,7 @@ status: designed
 created: YYYY-MM-DD
 success_criteria: ">60% of respondents willing to pay EUR 15+"
 duration: "2 weeks"
+evidence_strength:
 ---
 
 # Experiment: Pricing Survey with 50 Freelancers

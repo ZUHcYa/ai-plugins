@@ -99,9 +99,19 @@ Pick a high-priority hypothesis and design an experiment:
 
 ---
 
-## 6. Extract Insights
+## 6. Start Experiment and Document Results
 
-After running your experiment:
+```
+/knvs:capture
+```
+
+Start a designed experiment (designed → running). After running it in the real world, come back to document results (running → completed) with evidence strength assessment.
+
+---
+
+## 7. Extract Insights
+
+After documenting results:
 
 ```
 /knvs:learn
@@ -111,7 +121,7 @@ Claude extracts key learnings and updates hypothesis evidence levels.
 
 ---
 
-## 7. Make a Decision
+## 8. Make a Decision
 
 ```
 /knvs:decide
@@ -128,10 +138,10 @@ Based on your evidence: **Persevere**, **Pivot**, or **Kill**.
      |              |              |              |                       |
    Setup       Create BMC      Research      Begin loop           Extract D/F/V
 
-→ /knvs:experiment → run test → /knvs:learn → /knvs:decide → /knvs:exploit
-        |                |            |              |              |
-    Design test      Execute     Insights     Persevere/      Scale
-                                              Pivot/Kill
+→ /knvs:experiment → /knvs:capture → /knvs:learn → /knvs:decide → /knvs:exploit
+        |                  |              |              |              |
+    Design test     Start & document   Insights     Persevere/      Scale
+                      results                       Pivot/Kill
 ```
 
 ---
@@ -150,9 +160,11 @@ Run `/knvs:start` anytime to see your portfolio and suggested actions.
 | `/knvs:ideate` | Create a new BMC as draft |
 | `/knvs:hypothesize` | Extract hypotheses from BMC |
 | `/knvs:experiment` | Design a validation test |
+| `/knvs:capture` | Start experiment or document results |
 | `/knvs:learn` | Extract insights from results |
 | `/knvs:decide` | Persevere / Pivot / Kill |
 | `/knvs:exploit` | Move validated canvas to scaling |
+| `/knvs:assess` | Performance & Trend assessment for EXPLOIT |
 | `/knvs:review` | Disruption check for EXPLOIT |
 
 ---

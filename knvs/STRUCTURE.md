@@ -29,8 +29,9 @@ These folders contain hypotheses, experiments, and insights grouped by canvas.
 | Folder | Purpose | Created by |
 |--------|---------|------------|
 | `hypotheses/<canvas-slug>/` | Testable assumptions from BMC | `/knvs:hypothesize` |
-| `experiments/<canvas-slug>/` | Experiment designs and results | `/knvs:experiment` |
+| `experiments/<canvas-slug>/` | Experiment designs and results | `/knvs:experiment`, `/knvs:capture` |
 | `insights/<canvas-slug>/` | Key learnings from experiments | `/knvs:learn` |
+| `assessments/<canvas-slug>/` | Performance & Trend assessments | `/knvs:assess` |
 
 Each canvas in `explore/` (with `status: testing`) has corresponding subfolders in these directories.
 
@@ -88,19 +89,24 @@ reviews/
 │   └── <canvas-slug>/
 ├── reviews/                     # Disruption review history
 │   └── <canvas-slug>/
+├── assessments/                 # Performance & Trend assessments
+│   └── <canvas-slug>/
 ├── skills/
 │   ├── start/SKILL.md
 │   ├── ideate/SKILL.md
 │   ├── hypothesize/SKILL.md
 │   ├── experiment/SKILL.md
+│   ├── capture/SKILL.md
 │   ├── learn/SKILL.md
 │   ├── decide/SKILL.md
 │   ├── exploit/SKILL.md
+│   ├── assess/SKILL.md
 │   ├── review/SKILL.md
 ├── CLAUDE.md
 ├── README.md
 ├── QUICKSTART.md
-└── STRUCTURE.md
+├── STRUCTURE.md
+└── CHANGELOG.md
 ```
 
 ---
@@ -118,4 +124,4 @@ reviews/
 
 ---
 
-**Version:** 2.0.0
+**Version:** 2.5.0
