@@ -4,6 +4,24 @@ All notable changes to knvs will be documented in this file.
 
 ---
 
+## [3.0.0] - 2026-02-23
+
+### Breaking Changes
+
+- **`/knvs:review` skill removed** — Trend Assessment in `/knvs:assess` fully replaces Disruption Reviews (10 quantitative dimensions vs. 5 qualitative areas, same methodology source)
+- **`reviews/` folder removed** from structure
+- **`next_review` frontmatter field** replaced by `next_assessment`
+- **`disruption_risk` frontmatter field** removed (Trend Score provides quantitative equivalent)
+
+### Migration
+
+1. Existing review files in `reviews/` can be kept as archive reference
+2. Replace `next_review` with `next_assessment` in EXPLOIT canvas frontmatter
+3. Remove `disruption_risk` field from EXPLOIT canvas frontmatter
+4. Use `/knvs:assess` (Trend mode) instead of `/knvs:review`
+
+---
+
 ## [2.5.0] - 2026-02-23
 
 ### Added

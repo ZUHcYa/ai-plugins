@@ -25,7 +25,7 @@ Get started with knvs in 5 minutes.
 
 ### Option B: Manual Setup
 
-1. Create folders: `explore/`, `exploit/`, `hypotheses/`, `experiments/`, `insights/`, `reviews/`, `archive/`
+1. Create folders: `explore/`, `exploit/`, `hypotheses/`, `experiments/`, `insights/`, `assessments/`, `archive/`
 2. Create `.knvs/config.json` with `{ "targetPath": "./" }`
 
 ---
@@ -45,7 +45,7 @@ Created:
 ├── hypotheses/
 ├── experiments/
 ├── insights/
-├── reviews/
+├── assessments/
 ├── archive/
 └── .knvs/config.json
 
@@ -165,7 +165,6 @@ Run `/knvs:start` anytime to see your portfolio and suggested actions.
 | `/knvs:decide` | Persevere / Pivot / Kill |
 | `/knvs:exploit` | Move validated canvas to scaling |
 | `/knvs:assess` | Performance & Trend assessment for EXPLOIT |
-| `/knvs:review` | Disruption check for EXPLOIT |
 
 ---
 
@@ -173,7 +172,7 @@ Run `/knvs:start` anytime to see your portfolio and suggested actions.
 
 knvs works without Claude Code:
 
-1. Create folders: `explore/`, `exploit/`, `hypotheses/`, `experiments/`, `insights/`, `reviews/`, `archive/`
+1. Create folders: `explore/`, `exploit/`, `hypotheses/`, `experiments/`, `insights/`, `assessments/`, `archive/`
 2. Create file: `explore/my-idea.md` with `status: draft` frontmatter
 3. Fill out BMC sections
 4. Set `status: testing`, create hypothesis files in `hypotheses/my-idea/`

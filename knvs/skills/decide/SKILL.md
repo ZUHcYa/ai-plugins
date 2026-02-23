@@ -16,7 +16,7 @@ a Persevere/Pivot/Kill decision. Documents the decision in the canvas.
 - After running experiments and extracting insights
 - When you want to evaluate your EXPLORE business model based on evidence
 - At regular checkpoints during the EXPLORE phase
-- **NOT for EXPLOIT canvases** — these have their own mechanisms (Disruption Reviews)
+- **NOT for EXPLOIT canvases** — these have their own mechanisms (Performance & Trend Assessments)
 
 ## Workflow
 

@@ -16,7 +16,7 @@ the corresponding hypothesis evidence level.
 - After completing an experiment and documenting results
 - When you want to distill learnings from experiment data
 - Before making a Persevere/Pivot/Kill decision
-- **NOT for EXPLOIT canvases** — these have their own mechanisms (Disruption Reviews)
+- **NOT for EXPLOIT canvases** — these have their own mechanisms (Performance & Trend Assessments)
 
 ## Workflow
 

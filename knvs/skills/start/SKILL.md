@@ -17,9 +17,9 @@ Single entry point for knvs. Automatically detects context:
 explore/                                                    exploit/
 (status: draft -> testing)                                  (status: scaling)
 
-/knvs:ideate        /knvs:hypothesize     /knvs:exploit     /knvs:review
-creates BMC         extracts D/F/V        moves &           quarterly
-as draft            hypotheses            adds reviews      disruption check
+/knvs:ideate        /knvs:hypothesize     /knvs:exploit     /knvs:assess
+creates BMC         extracts D/F/V        moves &           performance &
+as draft            hypotheses            scales            trend assessment
 
                     /knvs:experiment
                     designs & runs tests
@@ -60,7 +60,7 @@ Claude: Welcome to knvs!
         ├── hypotheses/
         ├── experiments/
         ├── insights/
-        ├── reviews/
+        ├── assessments/
         ├── archive/
         └── .knvs/config.json
 
@@ -84,7 +84,7 @@ Claude: Setting up your innovation workspace...
         ├── hypotheses/
         ├── experiments/
         ├── insights/
-        ├── reviews/
+        ├── assessments/
         ├── archive/
         └── .knvs/config.json
 
@@ -114,7 +114,7 @@ Claude: knvs Status
 
         EXPLOIT (1)
         -----------
-        🟢 Core Business - next review in 3 weeks
+        🟢 Core Business - last assessed: 2026-02-01
 
         Health (2 issues)
         -----------------
@@ -147,7 +147,7 @@ Claude: knvs Status
    - `hypotheses/` - Hypotheses grouped by canvas
    - `experiments/` - Experiments grouped by canvas
    - `insights/` - Insights grouped by canvas
-   - `reviews/` - Disruption review history
+   - `assessments/` - Performance & Trend assessment history
    - `archive/` - Killed/pivoted canvases
 
 ### After Setup (Overview + Portfolio)
@@ -171,7 +171,7 @@ Claude: knvs Status
 |-------|---------------------|------------|
 | DRAFTS | `age_days` | 🔴 >30 days stale, 🟡 active, 🟢 recent |
 | TESTING | `hypothesis_validation_ratio + stale_experiments` | 🔴 stale experiments, 🟡 testing, 🟢 all validated |
-| EXPLOIT | `disruption_risk * next_review proximity` | 🔴 review overdue, 🟡 soon, 🟢 on track |
+| EXPLOIT | `last_assessment age` | 🔴 assessment overdue (>90 days), 🟡 due soon, 🟢 recent |
 
 ### Status Indicators
 
@@ -216,7 +216,7 @@ If no issues exist, the Health section is omitted entirely.
 | Testing with completed experiment, no insights | "X has experiment results → /knvs:learn" |
 | Testing with stale experiment | "X has stale experiment → check progress" |
 | Testing all hypotheses validated | "X ready → /knvs:exploit" |
-| EXPLOIT `next_review` within 7 days | "X review due → /knvs:review" |
+| EXPLOIT `last_assessment` > 90 days ago | "X assessment due → /knvs:assess" |
 | No items exist | "Run /knvs:ideate to capture your first idea" |
 
 ---
@@ -242,7 +242,7 @@ If no issues exist, the Health section is omitted entirely.
 ├── hypotheses/
 ├── experiments/
 ├── insights/
-├── reviews/
+├── assessments/
 ├── archive/
 └── .knvs/
     └── config.json

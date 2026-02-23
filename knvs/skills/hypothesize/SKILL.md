@@ -21,7 +21,7 @@ Two modes:
 - When you want to systematically identify assumptions in your BMC
 - When adding new hypotheses to an existing EXPLORE canvas
 - When a verified research report has findings relevant to an EXPLORE canvas
-- **NOT for EXPLOIT canvases** — these have their own mechanisms (Disruption Reviews)
+- **NOT for EXPLOIT canvases** — these have their own mechanisms (Performance & Trend Assessments)
 
 ## Workflow
 

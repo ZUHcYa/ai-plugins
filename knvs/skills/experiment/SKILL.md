@@ -16,7 +16,7 @@ Offers predefined experiment types from "Testing Business Ideas" and allows cust
 - After extracting hypotheses with `/knvs:hypothesize`
 - When you want to test a specific assumption in an EXPLORE canvas
 - When designing a validation experiment
-- **NOT for EXPLOIT canvases** — these have their own mechanisms (Disruption Reviews)
+- **NOT for EXPLOIT canvases** — these have their own mechanisms (Performance & Trend Assessments)
 
 ## Workflow
 

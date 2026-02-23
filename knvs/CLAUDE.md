@@ -34,11 +34,11 @@ IDEATE → HYPOTHESIZE → PRIORITIZE → EXPERIMENT → LEARN → DECIDE
                       Importance                  Insights  Pivot / Kill
 ```
 
-**This loop applies exclusively to EXPLORE canvases.** EXPLOIT canvases do not use hypotheses, experiments, insights, or Persevere/Pivot/Kill decisions — they have their own mechanisms (e.g. Disruption Reviews via `/knvs:review`).
+**This loop applies exclusively to EXPLORE canvases.** EXPLOIT canvases do not use hypotheses, experiments, insights, or Persevere/Pivot/Kill decisions — they have their own mechanisms (Performance & Trend Assessments via `/knvs:assess`).
 
 **Phases (The Invincible Company):**
 - **EXPLORE** — Create Business Model Canvas (draft), then validate hypotheses through experiments. The full Strategyzer Loop applies here.
-- **EXPLOIT** — Validated, running business models. No hypothesis loop — own mechanisms (Performance Assessments via `/knvs:assess`, Disruption Reviews via `/knvs:review`).
+- **EXPLOIT** — Validated, running business models. No hypothesis loop — own mechanisms (Performance & Trend Assessments via `/knvs:assess`).
 
 New canvases start as `status: draft` in `explore/`. When the BMC is complete, the user sets `status: testing` to begin the validation loop (Hypothesize → Experiment → Learn → Decide). This validation loop is exclusive to the Explore phase.
 
@@ -117,7 +117,7 @@ Every Canvas MUST contain these 9 core fields (Osterwalder/Pigneur), as `##` hea
 
 - **Draft (explore/):** Frontmatter `status: draft`, `created`, `updated`. Optional: `pivot_from`. Sections: Decisions, Notes, Next Steps
 - **Testing (explore/):** Frontmatter additionally `innovation_risk`, `potential_revenue`. Sections: Decisions, Next Steps
-- **Scaling (exploit/):** Frontmatter additionally `next_review`, `disruption_risk`, `revenue_score`, `performance_score`, `trend_score`, `last_assessment`. Sections: Reviews, Decisions, Next Steps
+- **Scaling (exploit/):** Frontmatter additionally `next_assessment`, `revenue_score`, `performance_score`, `trend_score`, `last_assessment`. Sections: Assessments, Decisions, Next Steps
 
 Canonical templates for each phase are in the respective `skills/*/SKILL.md` under `## Canvas Template`.
 
@@ -558,8 +558,6 @@ hypotheses/          — Hypotheses, grouped by canvas
 experiments/         — Experiments, grouped by canvas
   <canvas-slug>/
 insights/            — Insights, grouped by canvas
-  <canvas-slug>/
-reviews/             — Disruption reviews
   <canvas-slug>/
 assessments/         — Performance & Trend assessments
   <canvas-slug>/

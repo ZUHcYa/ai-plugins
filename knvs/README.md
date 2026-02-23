@@ -61,7 +61,7 @@ IDEATE → HYPOTHESIZE → PRIORITIZE → EXPERIMENT → LEARN → DECIDE
 | EXPLOIT: Scale validated model                            |
 |  - Run and optimize the business                          |
 |  - Performance & Trend assessments (/knvs:assess)         |
-|  - Conduct quarterly disruption reviews (/knvs:review)    |
+|  - Monitor with Performance & Trend assessments            |
 +----------------------------------------------------------+
 ```
 
@@ -148,9 +148,6 @@ Moves validated canvas from `explore/` to `exploit/`.
 ### `/knvs:assess` - Performance & Trend Assessment
 Scores EXPLOIT canvases on 10 dimensions (-3 to +3). Performance (current snapshot) or Trend (future projection).
 
-### `/knvs:review` - Disruption Review
-Quarterly review of EXPLOIT canvases for risks and opportunities.
-
 ---
 
 ## File Structure
@@ -170,7 +167,6 @@ knvs/
 |   |- decide/SKILL.md
 |   |- exploit/SKILL.md
 |   |- assess/SKILL.md
-|   |- review/SKILL.md
 |
 |- explore/                    # BMCs (draft and testing)
 |- exploit/                    # Validated & scaling
@@ -179,8 +175,6 @@ knvs/
 |- experiments/                # Experiments per canvas
 |   |- canvas-slug/
 |- insights/                   # Insights per canvas
-|   |- canvas-slug/
-|- reviews/                    # Disruption review history
 |   |- canvas-slug/
 |- assessments/                # Performance & Trend assessments
 |   |- canvas-slug/

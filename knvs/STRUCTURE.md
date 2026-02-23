@@ -37,25 +37,6 @@ Each canvas in `explore/` (with `status: testing`) has corresponding subfolders 
 
 ---
 
-## Review Folders
-
-| Folder | Purpose |
-|--------|---------|
-| `reviews/` | Disruption review history |
-| `reviews/<canvas>/` | Reviews for a specific canvas |
-
-Reviews are stored separately from canvases for better history tracking.
-
-**Example:**
-```
-reviews/
-└── ai-bookkeeping/
-    ├── 2026-03-15.md
-    └── 2026-06-15.md
-```
-
----
-
 ## Reference Folders (Read Only)
 
 | Folder | Purpose |
@@ -87,8 +68,6 @@ reviews/
 │   └── <canvas-slug>/
 ├── insights/                    # Insights per canvas
 │   └── <canvas-slug>/
-├── reviews/                     # Disruption review history
-│   └── <canvas-slug>/
 ├── assessments/                 # Performance & Trend assessments
 │   └── <canvas-slug>/
 ├── skills/
@@ -101,7 +80,6 @@ reviews/
 │   ├── decide/SKILL.md
 │   ├── exploit/SKILL.md
 │   ├── assess/SKILL.md
-│   ├── review/SKILL.md
 ├── CLAUDE.md
 ├── README.md
 ├── QUICKSTART.md
@@ -124,4 +102,4 @@ reviews/
 
 ---
 
-**Version:** 2.5.0
+**Version:** 3.0.0
