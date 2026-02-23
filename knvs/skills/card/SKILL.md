@@ -250,10 +250,10 @@ Claude: ━━━━━━━━━━━━━━━━━━━━━━━━
 
         ### 2026-02-23 — Persevere
 
-        **Kontext:** AI accuracy hypothesis validated (94% > 90% target).
+        **Context:** AI accuracy hypothesis validated (94% > 90% target).
         3/5 hypotheses validated, 1 invalidated, 1 open.
-        **Entscheidung:** Core feasibility confirmed. Continue testing.
-        **Naechste Schritte:**
+        **Decision:** Core feasibility confirmed. Continue testing.
+        **Next Steps:**
         - Design experiment for cloud-hosting-costs hypothesis
         - Complete viability validation
 
@@ -289,11 +289,11 @@ Claude: ━━━━━━━━━━━━━━━━━━━━━━━━
 
         ### 2026-02-23 — Pivot
 
-        **Kontext:** LinkedIn channel hypothesis invalidated.
+        **Context:** LinkedIn channel hypothesis invalidated.
         Core value prop validated but distribution needs rethinking.
-        **Entscheidung:** Pivot from B2C to B2B distribution via
+        **Decision:** Pivot from B2C to B2B distribution via
         tax advisors. Value proposition stays, channel changes.
-        **Naechste Schritte:** Fill B2B canvas, rethink partnerships
+        **Next Steps:** Fill B2B canvas, rethink partnerships
 
         Next steps:
         - Edit explore/ai-bookkeeping-b2b.md with B2B model
@@ -321,9 +321,9 @@ Claude: ━━━━━━━━━━━━━━━━━━━━━━━━
 
         ### 2026-02-23 — Kill
 
-        **Kontext:** Market validation showed insufficient demand.
-        **Entscheidung:** Market too small for viable business model.
-        **Naechste Schritte:** None — archived.
+        **Context:** Market validation showed insufficient demand.
+        **Decision:** Market too small for viable business model.
+        **Next Steps:** None — archived.
 
         Hypotheses, experiments, and insights remain in their folders
         for reference.

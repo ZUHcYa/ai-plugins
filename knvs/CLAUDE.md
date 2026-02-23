@@ -672,9 +672,9 @@ Each decision records the Persevere/Pivot/Kill outcome with reasoning.
 ```markdown
 ### YYYY-MM-DD — [Persevere|Pivot|Kill]
 
-**Kontext:** [Summary of evidence and hypothesis status]
-**Entscheidung:** [Reasoning for the decision]
-**Naechste Schritte:** [What happens next]
+**Context:** [Summary of evidence and hypothesis status]
+**Decision:** [Reasoning for the decision]
+**Next Steps:** [What happens next]
 ```
 
 ### Pivot Mechanics
@@ -711,13 +711,15 @@ assessments/         — Performance & Trend assessments
 archive/             — Killed/pivoted canvases
 ```
 
+**Cross-Plugin Read:** `/knvs:hypothesize` [F] mode reads from `research/` (research plugin) for verified research reports.
+
 ---
 
 ## Namespace Strategy
 
 | Element | Format | Example |
 |---------|--------|---------|
-| Skills | `/knvs:` prefix | `/knvs:ideate`, `/knvs:hypothesize`, `/knvs:card`, `/knvs:start` |
+| Skills | `/knvs:` prefix | `/knvs:start`, `/knvs:ideate`, `/knvs:hypothesize`, `/knvs:experiment`, `/knvs:capture`, `/knvs:learn`, `/knvs:card`, `/knvs:exploit`, `/knvs:assess` |
 | Skill files | `<skill>/SKILL.md` | `skills/ideate/SKILL.md`, `skills/hypothesize/SKILL.md` |
 | Configuration | `.knvs/` folder | `.knvs/config.json` |
 | Phase folders | Short, unambiguous | `explore/`, `exploit/` |
