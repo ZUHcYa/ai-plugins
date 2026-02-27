@@ -4,6 +4,15 @@ All notable changes to journal will be documented in this file.
 
 ---
 
+## [0.2.1] - 2026-02-27
+
+### Added
+
+- `/journal:write` skill: interactive guided entry mode — asks for topic, content, and tasks step by step
+- Restores the conversational workflow alongside the `/journal` quick command
+
+---
+
 ## [0.2.0] - 2026-02-27
 
 ### Added
