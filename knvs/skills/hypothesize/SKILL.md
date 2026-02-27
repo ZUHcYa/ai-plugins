@@ -95,6 +95,22 @@ Claude: Saved: hypotheses/ai-bookkeeping/customers-will-pay-monthly.md
         Next step: /knvs:experiment to design tests for priority hypotheses.
 ```
 
+## Interaction Rules
+
+**CRITICAL: One hypothesis at a time.**
+
+1. Analyze the entire BMC (or research report) internally and identify all hypotheses first.
+2. Tell the user how many hypotheses were found: `I've identified N assumptions in your canvas:`
+3. Present **exactly ONE hypothesis**, then STOP and wait for the user's response (`[Y/n/edit]`).
+4. Do NOT output the next hypothesis until the user has responded to the current one.
+5. After the user responds (Y → save and confirm, n → skip, edit → apply changes and re-show):
+   proceed to the next hypothesis.
+6. After the last hypothesis: show the summary.
+
+This ensures the user consciously reviews each assumption rather than scanning a wall of text.
+
+---
+
 ## What the Skill Does
 
 ### From BMC (default)
@@ -108,7 +124,8 @@ Claude: Saved: hypotheses/ai-bookkeeping/customers-will-pay-monthly.md
    - **Viability** (Revenue Streams, Cost Structure)
 5. Proposes importance level (high/medium/low) based on how critical the assumption is
 6. Sets initial confidence level (empty — not assessed, no experiments yet)
-7. User confirms, rejects, or edits each hypothesis
+7. Presents each hypothesis ONE AT A TIME — waits for user confirmation (`Y/n/edit`) before
+   proceeding to the next. Never outputs multiple hypotheses in one response.
 8. Creates hypothesis files in `hypotheses/<canvas-slug>/`
 9. Shows priority summary at the end
 
@@ -123,7 +140,8 @@ Claude: Saved: hypotheses/ai-bookkeeping/customers-will-pay-monthly.md
 7. Sets initial confidence level to empty (confidence is based on own experiments, not external research)
 8. Adds `source_research` to frontmatter
 9. `## Evidence` section references the research report as context
-10. User confirms, rejects, or edits each hypothesis
+10. Presents each hypothesis ONE AT A TIME — waits for user confirmation (`Y/n/edit`) before
+    proceeding to the next. Never outputs multiple hypotheses in one response.
 11. Creates hypothesis files in `hypotheses/<canvas-slug>/`
 12. Shows priority summary at the end
 

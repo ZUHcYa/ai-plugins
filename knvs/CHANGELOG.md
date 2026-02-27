@@ -4,6 +4,14 @@ All notable changes to knvs will be documented in this file.
 
 ---
 
+## [4.0.3] - 2026-02-27
+
+### Fixed
+
+- **/knvs:hypothesize interaction** — Added explicit one-at-a-time interaction rule: skill now presents hypotheses individually and waits for user approval (`Y/n/edit`) before proceeding to the next (was: all hypotheses output at once)
+
+---
+
 ## [4.0.2] - 2026-02-27
 
 ### Fixed
