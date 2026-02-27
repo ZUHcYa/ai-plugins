@@ -127,4 +127,8 @@ pivot_from: explore/original.md   # Optional: only when created from pivot. Dele
 
 ## Next Steps
 - [ ]
+
+---
+
+> © Strategyzer AG — strategyzer.com — CC BY-SA 3.0
 ```

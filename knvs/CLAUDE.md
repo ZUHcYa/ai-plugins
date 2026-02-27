@@ -106,7 +106,7 @@ Every Canvas MUST contain these 9 core fields (Osterwalder/Pigneur), as `##` hea
 - **Cost Structure** - What are the most important costs?
 
 **Missing fields = invalid Canvas.** `/knvs:start` checks for this (Health Checks).
-**No callouts on Canvas files.** Callouts (`[!note]`, `[!warning]`, etc.) are not part of the BMC spec. Canvas content = YAML frontmatter + 9 BMC headings + optional sections (Decisions, Notes, Next Steps).
+**No callouts on Canvas files.** Callouts (`[!note]`, `[!warning]`, etc.) are not part of the BMC spec. Canvas content = YAML frontmatter + 9 BMC headings + optional sections (Decisions, Notes, Next Steps) + Strategyzer-Footer.
 
 ### Status Values
 
@@ -119,9 +119,9 @@ Every Canvas MUST contain these 9 core fields (Osterwalder/Pigneur), as `##` hea
 
 ### Phase-Specific Extensions
 
-- **Draft (explore/):** Frontmatter `status: draft`, `created`, `updated`. Optional: `pivot_from`. Sections: Decisions, Notes, Next Steps
-- **Testing (explore/):** Frontmatter additionally `innovation_risk`, `potential_revenue`. Sections: Decisions, Next Steps
-- **Scaling (exploit/):** Frontmatter additionally `next_assessment`, `performance_score`, `trend_score`, `last_assessment`. Sections: Assessments, Decisions, Next Steps
+- **Draft (explore/):** Frontmatter `status: draft`, `created`, `updated`. Optional: `pivot_from`. Sections: Decisions, Notes, Next Steps, Footer
+- **Testing (explore/):** Frontmatter additionally `innovation_risk`, `potential_revenue`. Sections: Decisions, Next Steps, Footer
+- **Scaling (exploit/):** Frontmatter additionally `next_assessment`, `performance_score`, `trend_score`, `last_assessment`. Sections: Assessments, Decisions, Next Steps, Footer
 
 Canonical templates for each phase are in the respective `skills/*/SKILL.md` under `## Canvas Template`.
 

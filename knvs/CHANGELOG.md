@@ -4,6 +4,14 @@ All notable changes to knvs will be documented in this file.
 
 ---
 
+## [4.0.2] - 2026-02-27
+
+### Fixed
+
+- **Strategyzer attribution footer** — Added `© Strategyzer AG — strategyzer.com — CC BY-SA 3.0` footer to all BMC canvas templates (draft and scaling) to comply with CC BY-SA 3.0 license requirements
+
+---
+
 ## [4.0.1] - 2026-02-23
 
 ### Fixed
