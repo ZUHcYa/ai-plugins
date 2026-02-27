@@ -76,11 +76,16 @@ Claude: Experiment created:
           - status → testing
           - Related Experiments: receipt-categorization-survey.md added
 
-        Next steps:
+        Next steps for YOU (not Claude):
         1. Run the survey
         2. Document results in the experiment file
-        3. Run /knvs:learn to extract insights
-```
+        3. Come back with /knvs:capture when done
+
+> **SKILL ENDS HERE.**
+> Claude creates the file and stops. The experiment is NOT executed by Claude.
+> The `## Process` steps are instructions for the user — NOT for Claude.
+> Claude does NOT build prototypes, write code, create mockups, or take any
+> further action. The next action comes exclusively from the user.
 
 ## What the Skill Does
 
@@ -97,6 +102,8 @@ Claude: Experiment created:
 8. Updates hypothesis file:
    - `status` → `testing` (frontmatter)
    - Adds experiment link to `## Related Experiments` section
+9. **STOP.** Skill is complete. Claude does NOT execute any Process steps,
+   does NOT build artifacts, and does NOT proceed to the execution phase.
 
 ## Experiment Types (Testing Business Ideas)
 
@@ -160,6 +167,7 @@ evidence_strength:
 
 ## Process
 
+<!-- Steps to be executed by the USER in the real world — NOT by Claude -->
 1. [Step 1]
 2. [Step 2]
 3. [Step 3]
