@@ -4,6 +4,14 @@ All notable changes to knvs will be documented in this file.
 
 ---
 
+## [4.0.4] - 2026-02-27
+
+### Fixed
+
+- **/knvs:experiment backlink** — After creating an experiment, the skill now adds the experiment link to `## Related Experiments` in the hypothesis file (was: section always stayed empty at `(none yet)`)
+
+---
+
 ## [4.0.3] - 2026-02-27
 
 ### Fixed

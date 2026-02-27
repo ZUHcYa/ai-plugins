@@ -72,7 +72,9 @@ User: 2 weeks
 Claude: Experiment created:
         File: experiments/ai-bookkeeping/receipt-categorization-survey.md
         Status: DESIGNED
-        Hypothesis updated: status → testing
+        Hypothesis updated:
+          - status → testing
+          - Related Experiments: receipt-categorization-survey.md added
 
         Next steps:
         1. Run the survey
@@ -92,7 +94,9 @@ Claude: Experiment created:
    - **Custom**: User defines their own experiment type
 6. User defines success criteria and duration
 7. Creates experiment file in `experiments/<canvas-slug>/`
-8. Updates hypothesis status to `testing`
+8. Updates hypothesis file:
+   - `status` → `testing` (frontmatter)
+   - Adds experiment link to `## Related Experiments` section
 
 ## Experiment Types (Testing Business Ideas)
 
