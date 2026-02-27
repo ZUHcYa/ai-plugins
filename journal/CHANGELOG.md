@@ -4,6 +4,20 @@ All notable changes to journal will be documented in this file.
 
 ---
 
+## [0.2.0] - 2026-02-27
+
+### Added
+
+- `/journal` command (`commands/journal.md`): direct quick-entry without interaction — write to today's file instantly
+- Supports `#tag content` syntax for topic tagging in one line
+
+### Removed
+
+- `/journal` skill (interactive mode) — replaced by the command above
+- Two-step interaction (ask for topic, ask for content) is no longer part of `/journal`
+
+---
+
 ## [0.1.0] - 2026-02-21
 
 ### Added
