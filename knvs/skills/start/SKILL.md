@@ -58,11 +58,6 @@ Claude: Welcome to knvs!
         Created:
         ├── explore/
         ├── exploit/
-        ├── hypotheses/
-        ├── experiments/
-        ├── insights/
-        ├── learning-cards/
-        ├── assessments/
         ├── archive/
         └── .knvs/config.json
 
@@ -83,11 +78,6 @@ Claude: Setting up your innovation workspace...
         Created:
         ├── explore/
         ├── exploit/
-        ├── hypotheses/
-        ├── experiments/
-        ├── insights/
-        ├── learning-cards/
-        ├── assessments/
         ├── archive/
         └── .knvs/config.json
 
@@ -122,9 +112,9 @@ Claude: knvs Status
 
         Health (2 issues)
         -----------------
-        - explore/ai-bookkeeping.md: Missing BMC field "Key Partnerships"
-        - hypotheses/old-idea/price-sensitivity.md: Canvas not found
-          → Orphaned hypothesis — archive or delete?
+        - explore/ai-bookkeeping/ai-bookkeeping.md: Missing BMC field "Key Partnerships"
+        - explore/old-idea/hypotheses/price-sensitivity.md: Canvas file not found
+          → Canvas folder exists without canvas file
 
         Suggested Actions
         -----------------
@@ -149,19 +139,15 @@ Claude: knvs Status
 3. Create folder structure at `targetPath`:
    - `explore/` - Business Model Canvases (draft and testing)
    - `exploit/` - Validated business models being scaled
-   - `hypotheses/` - Hypotheses grouped by canvas
-   - `experiments/` - Experiments grouped by canvas
-   - `insights/` - Insights grouped by canvas
-   - `learning-cards/` - Learning Cards grouped by canvas
-   - `assessments/` - Performance & Trend assessment history
    - `archive/` - Killed/pivoted canvases
+   Canvas subfolders (hypotheses/, experiments/, etc.) are created on-demand by the respective skills.
 
 ### After Setup (Overview + Portfolio)
 
 1. Read `.knvs/config.json`
 2. Scan `explore/` and `exploit/` folders
 3. Group `explore/` canvases by status (`draft` vs `testing`)
-4. For testing canvases: scan `hypotheses/<slug>/` and `experiments/<slug>/` for status
+4. For testing canvases: scan `explore/<slug>/hypotheses/` and `explore/<slug>/experiments/` for status
 5. Read frontmatter from each canvas (`risk`, `revenue`, `performance_score`, `trend_score`)
 6. Calculate priority per group (see Priority Logic below) — TESTING and EXPLOIT use `risk` field
 7. Run Health Checks (see Health Checks below)
@@ -201,17 +187,18 @@ If no issues exist, the Health section is omitted entirely.
 
 | # | Check | Scans | Condition | Message |
 |---|-------|-------|-----------|---------|
-| 1 | Invalid Canvas | `explore/`, `exploit/` | `.md` without valid YAML frontmatter | `"Invalid frontmatter"` |
-| 2 | Status ↔ Folder | `explore/`, `exploit/` | Canvas folder does not match status | `"Status X does not match folder Y"` |
-| 3 | Missing BMC Fields | `explore/`, `exploit/` | Canvas lacks one of the 9 core `##` headings | `"Missing BMC field: X"` |
-| 4 | Missing Frontmatter | `explore/`, `exploit/` | Canvas without `risk` field | `"Missing field: risk"` |
-| 5 | Hypothesis Missing Sections | `hypotheses/` | Without `## Claim` or `## Context` | `"Missing section: X"` |
-| 6 | Orphaned Hypothesis | `hypotheses/` | `canvas` frontmatter points to non-existent file | `"Canvas X not found"` |
-| 7 | Experiment → Hypothesis | `experiments/` | `hypothesis` frontmatter points to non-existent file | `"Hypothesis X not found"` |
-| 8 | Insight → Experiment | `insights/` | `source_experiment` points to non-existent file | `"Experiment X not found"` |
-| 9 | Orphaned Data Folder | `hypotheses/`, `experiments/` | Subfolder `<slug>/` has no matching canvas in `explore/` or `exploit/` | `"No matching canvas for <slug>/"` |
-| 10 | Hypothesis → Research | `hypotheses/` | `source_research` points to non-existent or non-verified file | `"Research X not found or not verified"` |
-| 11 | Learning Card → Experiment | `learning-cards/` | `experiment` (singular) or `experiments` (array) frontmatter points to non-existent file | `"Experiment X not found"` |
+| 1 | Invalid Canvas | `explore/*/`, `exploit/*/` | Canvas `.md` without valid YAML frontmatter | `"Invalid frontmatter"` |
+| 2 | Status ↔ Folder | `explore/*/`, `exploit/*/` | Canvas folder does not match status | `"Status X does not match folder Y"` |
+| 3 | Missing BMC Fields | `explore/*/`, `exploit/*/` | Canvas lacks one of the 9 core `##` headings | `"Missing BMC field: X"` |
+| 4 | Missing Frontmatter | `explore/*/`, `exploit/*/` | Canvas without `risk` field | `"Missing field: risk"` |
+| 5 | Hypothesis Missing Sections | `explore/*/hypotheses/`, `exploit/*/hypotheses/` | Without `## Claim` or `## Context` | `"Missing section: X"` |
+| 6 | Missing Canvas File | `explore/*/`, `exploit/*/` | Canvas folder exists but `<slug>.md` is missing | `"Canvas file not found in <slug>/"` |
+| 7 | Experiment → Hypothesis | `explore/*/experiments/`, `exploit/*/experiments/` | `hypothesis` frontmatter points to non-existent file (resolved as canvas-relative) | `"Hypothesis X not found"` |
+| 8 | Insight → Experiment | `explore/*/insights/`, `exploit/*/insights/` | `source_experiment` points to non-existent file (resolved as canvas-relative) | `"Experiment X not found"` |
+| 9 | Hypothesis → Research | `explore/*/hypotheses/`, `exploit/*/hypotheses/` | `source_research` points to non-existent or non-verified file (root-relative) | `"Research X not found or not verified"` |
+| 10 | Learning Card → Experiment | `explore/*/learning-cards/`, `exploit/*/learning-cards/` | `experiment` or `experiments` frontmatter points to non-existent file (canvas-relative) | `"Experiment X not found"` |
+
+**Note:** All intra-canvas references (`hypothesis:`, `experiment:`, `source_experiment:`, `insights:`) are resolved relative to the canvas folder. Only `source_research:` is root-relative.
 
 ---
 
@@ -251,15 +238,12 @@ If no issues exist, the Health section is omitted entirely.
 <targetPath>/
 ├── explore/
 ├── exploit/
-├── hypotheses/
-├── experiments/
-├── insights/
-├── learning-cards/
-├── assessments/
 ├── archive/
 └── .knvs/
     └── config.json
 ```
+
+Canvas subfolders (`hypotheses/`, `experiments/`, `insights/`, `learning-cards/`, `assessments/`) are created on-demand inside each canvas folder by the respective skills.
 
 ---
 

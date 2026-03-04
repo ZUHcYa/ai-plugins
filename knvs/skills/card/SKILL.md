@@ -102,7 +102,7 @@ User: Prioritize mobile-first receipt capture in our MVP.
 Claude: ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
         LEARNING CARD SAVED
         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-        File: learning-cards/ai-bookkeeping/receipt-categorization-survey.md
+        File: explore/ai-bookkeeping/learning-cards/receipt-categorization-survey.md
 
         Remaining experiments without learning cards:
         - Pricing Survey with 50 Freelancers → /knvs:card [E]
@@ -123,7 +123,7 @@ Claude: ━━━━━━━━━━━━━━━━━━━━━━━━
 4. Generates draft for first 3 sections from source data
 5. User confirms, rejects, or edits each section
 6. "Therefore we will..." → User provides free text
-7. Creates learning card file in `learning-cards/<canvas-slug>/`
+7. Creates learning card file in `<phase>/<canvas-slug>/learning-cards/` (creates subfolder if needed)
 8. Shows remaining experiments without cards
 
 ### Multiple Insights per Experiment
@@ -243,7 +243,7 @@ User: Core feasibility confirmed. Next priority: validate cloud
 Claude: ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
         HYPOTHESIS LEARNING CARD SAVED
         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-        File: learning-cards/ai-bookkeeping/ai-accuracy-requirement.md
+        File: explore/ai-bookkeeping/learning-cards/ai-accuracy-requirement.md
         Decision: PERSEVERE
 
         Decision logged in canvas:
@@ -257,7 +257,7 @@ Claude: ━━━━━━━━━━━━━━━━━━━━━━━━
         - Design experiment for cloud-hosting-costs hypothesis
         - Complete viability validation
 
-        Updated: explore/ai-bookkeeping.md
+        Updated: explore/ai-bookkeeping/ai-bookkeeping.md
 
         Remaining hypotheses without learning cards:
         - customers-will-pay-monthly (VALIDATED) → /knvs:card [H]
@@ -276,14 +276,14 @@ User: The channel strategy needs a complete rethink. Instead of
 Claude: ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
         HYPOTHESIS LEARNING CARD SAVED
         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-        File: learning-cards/ai-bookkeeping/linkedin-channel-effectiveness.md
+        File: explore/ai-bookkeeping/learning-cards/linkedin-channel-effectiveness.md
         Decision: PIVOT
 
         Creating pivot canvas...
 
-        Original: explore/ai-bookkeeping.md → archived
-        New canvas: explore/ai-bookkeeping-b2b.md
-        Pivot from: explore/ai-bookkeeping.md
+        Original: explore/ai-bookkeeping/ → archive/ai-bookkeeping/
+        New canvas: explore/ai-bookkeeping-b2b/ai-bookkeeping-b2b.md
+        Pivot from: ai-bookkeeping
 
         Decision logged in both canvases:
 
@@ -296,7 +296,7 @@ Claude: ━━━━━━━━━━━━━━━━━━━━━━━━
         **Next Steps:** Fill B2B canvas, rethink partnerships
 
         Next steps:
-        - Edit explore/ai-bookkeeping-b2b.md with B2B model
+        - Edit explore/ai-bookkeeping-b2b/ai-bookkeeping-b2b.md with B2B model
         - Set status: testing when done
         - /knvs:hypothesize to extract hypotheses
 ```
@@ -312,10 +312,10 @@ User: Yes, the market is too small.
 Claude: ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
         HYPOTHESIS LEARNING CARD SAVED
         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-        File: learning-cards/ai-bookkeeping/customers-will-pay-monthly.md
+        File: explore/ai-bookkeeping/learning-cards/customers-will-pay-monthly.md
         Decision: KILL
 
-        Canvas archived: explore/ai-bookkeeping.md → archive/ai-bookkeeping.md
+        Canvas folder archived: explore/ai-bookkeeping/ → archive/ai-bookkeeping/
 
         Decision logged:
 
@@ -325,10 +325,8 @@ Claude: ━━━━━━━━━━━━━━━━━━━━━━━━
         **Decision:** Market too small for viable business model.
         **Next Steps:** None — archived.
 
-        Related folders moved to archive/:
-        - hypotheses/ai-bookkeeping/ → archive/hypotheses/ai-bookkeeping/
-        - experiments/ai-bookkeeping/ → archive/experiments/ai-bookkeeping/
-        - insights/ai-bookkeeping/ → archive/insights/ai-bookkeeping/
+        (One operation — all hypotheses, experiments, insights, and learning cards
+        move together inside the canvas folder.)
 ```
 
 ### What the Hypothesis Card Does
@@ -344,12 +342,12 @@ Claude: ━━━━━━━━━━━━━━━━━━━━━━━━
 6. Generates draft for first 3 sections from aggregated source data
 7. User confirms, rejects, or edits each section
 8. "Therefore we will..." → User selects Persevere/Pivot/Kill + provides reasoning
-9. Creates learning card file in `learning-cards/<canvas-slug>/`
+9. Creates learning card file in `<phase>/<canvas-slug>/learning-cards/` (creates subfolder if needed)
 10. Adds decision entry to `## Decisions` section in canvas
 11. Executes decision consequences:
     - **Persevere:** Suggests next steps (remaining hypotheses, experiments)
-    - **Pivot:** Creates new canvas in `explore/` with `status: draft` and `pivot_from` reference. Original moves to `archive/`. Decision logged in both.
-    - **Kill:** Moves canvas to `archive/`. Moves related subfolders (`hypotheses/<canvas-slug>/`, `experiments/<canvas-slug>/`, `insights/<canvas-slug>/`, `learning-cards/<canvas-slug>/`, `assessments/<canvas-slug>/`) to matching `archive/` subfolders to prevent orphan warnings in `/knvs:start`.
+    - **Pivot:** Moves entire canvas folder to `archive/` (one operation). Creates new canvas folder in `explore/<new-slug>/` with `status: draft` and `pivot_from: <original-slug>`. Decision logged in both.
+    - **Kill:** Moves entire canvas folder to `archive/` (one operation: `mv explore/<slug>/ archive/<slug>/`). All content preserved inside.
 
 ### Decision Criteria Guidance
 
@@ -380,7 +378,7 @@ Claude: Experiment "Receipt Categorization Survey" has no insights.
 
 ```
 Claude: Learning card already exists:
-        learning-cards/ai-bookkeeping/receipt-categorization-survey.md
+        explore/ai-bookkeeping/learning-cards/receipt-categorization-survey.md
 
         Overwrite? [Y/n]
 ```
@@ -448,12 +446,12 @@ Claude: Hypothesis "cloud-hosting-costs" has no completed experiments.
 type: learning-card
 scope: experiment
 title: "[Experiment title]"
-canvas: explore/canvas-slug.md
-hypothesis: hypotheses/canvas-slug/hypothesis-slug.md
-experiment: experiments/canvas-slug/experiment-slug.md
+canvas: canvas-slug
+hypothesis: hypotheses/hypothesis-slug.md
+experiment: experiments/experiment-slug.md
 insights:
-  - insights/canvas-slug/insight-1.md
-  - insights/canvas-slug/insight-2.md
+  - insights/insight-1.md
+  - insights/insight-2.md
 created: YYYY-MM-DD
 ---
 
@@ -483,14 +481,14 @@ created: YYYY-MM-DD
 type: learning-card
 scope: hypothesis
 title: "[Hypothesis title]"
-canvas: explore/canvas-slug.md
-hypothesis: hypotheses/canvas-slug/hypothesis-slug.md
+canvas: canvas-slug
+hypothesis: hypotheses/hypothesis-slug.md
 experiments:
-  - experiments/canvas-slug/exp-1.md
-  - experiments/canvas-slug/exp-2.md
+  - experiments/exp-1.md
+  - experiments/exp-2.md
 insights:
-  - insights/canvas-slug/insight-1.md
-  - insights/canvas-slug/insight-2.md
+  - insights/insight-1.md
+  - insights/insight-2.md
 decision: persevere | pivot | kill
 created: YYYY-MM-DD
 ---

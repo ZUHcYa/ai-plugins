@@ -203,7 +203,7 @@ The final assessment is always made by the user — these are guidelines, not ru
 Claude: No experiments to start or document.
 
         - Use /knvs:experiment to design a new experiment
-        - Or check experiments/ for completed ones
+        - Or check your canvas experiments/ folders for completed ones
 ```
 
 ### Experiment already has results filled

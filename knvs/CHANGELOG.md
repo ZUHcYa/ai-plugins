@@ -4,6 +4,38 @@ All notable changes to knvs will be documented in this file.
 
 ---
 
+## [6.0.0] - 2026-03-04
+
+### Breaking Changes
+
+- **Canvas-First folder structure** — All artifacts (hypotheses, experiments, insights, learning-cards, assessments) now live inside the canvas folder instead of separate top-level type folders. `hypotheses/<canvas-slug>/` → `explore/<canvas-slug>/hypotheses/`, etc.
+- **Canvas file naming** — Canvas files are now `<phase>/<canvas-slug>/<canvas-slug>.md` instead of `<phase>/<canvas-slug>.md`
+- **Canvas-relative paths** — All intra-canvas frontmatter references are relative to the canvas folder (e.g., `hypothesis: hypotheses/slug.md` instead of `hypotheses/canvas-slug/slug.md`)
+- **`canvas:` field** — Now contains only the canvas slug (e.g., `canvas: ai-bookkeeping`) instead of a full path (`canvas: explore/ai-bookkeeping.md`)
+- **`pivot_from:` field** — Now contains only the original canvas slug (e.g., `pivot_from: original`) instead of a path
+- **Setup creates 3 folders** — `/knvs:start` now creates only `explore/`, `exploit/`, `archive/`. Canvas subfolders (hypotheses/, experiments/, etc.) are created on-demand by respective skills
+- **Health Check #9 replaced** — "Orphaned Data Folder" check (impossible in Canvas-First) replaced by "Canvas folder without canvas file" check
+
+### Why Canvas-First
+
+- Artifacts belong to exactly one canvas — folder structure now reflects the domain model
+- Kill/Archive: one `mv` operation instead of 5-6 separate moves across type folders
+- EXPLORE→EXPLOIT: `mv explore/slug/ exploit/slug/` — canvas-relative references stay valid
+- Pivot: `mv explore/slug/ archive/slug/` + create new canvas folder
+
+### Migration
+
+1. For each canvas in `explore/`: create `explore/<slug>/` folder, move `explore/<slug>.md` → `explore/<slug>/<slug>.md`
+2. Move `hypotheses/<slug>/*.md` → `explore/<slug>/hypotheses/`
+3. Move `experiments/<slug>/*.md` → `explore/<slug>/experiments/`
+4. Move `insights/<slug>/*.md` → `explore/<slug>/insights/`
+5. Move `learning-cards/<slug>/*.md` → `explore/<slug>/learning-cards/`
+6. Repeat for `exploit/` canvases (including `assessments/<slug>/` → `exploit/<slug>/assessments/`)
+7. Update frontmatter in all artifacts: `canvas:` → slug only, all paths → canvas-relative
+8. Delete empty top-level type folders (`hypotheses/`, `experiments/`, `insights/`, `learning-cards/`, `assessments/`)
+
+---
+
 ## [5.1.0] - 2026-03-04
 
 ### Breaking Changes

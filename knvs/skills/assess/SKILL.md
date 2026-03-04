@@ -84,7 +84,7 @@ User: 2
 Claude: ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
         TREND ASSESSMENT SUMMARY
         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-        Canvas: exploit/ai-bookkeeping.md
+        Canvas: ai-bookkeeping (exploit/)
         Date: 2026-02-22
 
         | # | Dimension              | Score |
@@ -110,8 +110,8 @@ Claude: ━━━━━━━━━━━━━━━━━━━━━━━━
 
         Risk Level: low ✓ (P:+8, T:+2 — both positive)
 
-        Saved: assessments/ai-bookkeeping/2026-02-22-trend.md
-        Updated: exploit/ai-bookkeeping.md (trend_score, last_assessment, risk)
+        Saved: exploit/ai-bookkeeping/assessments/2026-02-22-trend.md
+        Updated: exploit/ai-bookkeeping/ai-bookkeeping.md (trend_score, last_assessment, risk)
 ```
 
 ## What the Skill Does
@@ -126,7 +126,7 @@ Claude: ━━━━━━━━━━━━━━━━━━━━━━━━
 5. Calculates total score (sum of all 10 scores)
 6. If a previous assessment of the same type exists, shows trend comparison
 7. If both assessment types exist, shows combined overview
-8. Creates assessment file in `assessments/<canvas-slug>/YYYY-MM-DD-<type>.md`
+8. Creates assessment file in `exploit/<canvas-slug>/assessments/YYYY-MM-DD-<type>.md` (creates subfolder if needed)
 9. Updates canvas frontmatter: `performance_score` or `trend_score` + `last_assessment`
 10. Computes and updates `risk` field on canvas frontmatter:
     - `high`: `performance_score < 0` AND `trend_score < 0` (both negative), OR either score is still empty
@@ -223,7 +223,7 @@ Claude: No EXPLOIT canvases found.
 
 ### Previous assessment exists (trend comparison)
 
-When a previous assessment of the same type exists in `assessments/<canvas-slug>/`,
+When a previous assessment of the same type exists in `exploit/<canvas-slug>/assessments/`,
 the skill reads the most recent one and shows a dimension-by-dimension comparison.
 
 ```
@@ -238,7 +238,7 @@ the skill reads the most recent one and shows a dimension-by-dimension compariso
 
 ## Notes
 
-- Assessments are individual .md files in `assessments/<canvas-slug>/`
+- Assessments are individual .md files in `exploit/<canvas-slug>/assessments/`
 - Filename format: `YYYY-MM-DD-performance.md` or `YYYY-MM-DD-trend.md`
 - Assessment type and date are derived from the filename — no separate frontmatter fields needed
 - Each assessment is a complete snapshot — all 10 dimensions scored
@@ -255,7 +255,7 @@ Canonical template (also in CLAUDE.md):
 ```markdown
 ---
 type: assessment
-canvas: exploit/canvas-slug.md
+canvas: canvas-slug
 performance_score: 8
 ---
 
@@ -294,7 +294,7 @@ performance_score: 8
 ```markdown
 ---
 type: assessment
-canvas: exploit/canvas-slug.md
+canvas: canvas-slug
 trend_score: 2
 ---
 

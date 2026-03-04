@@ -4,9 +4,9 @@ Overview of the knvs folder organization.
 
 ---
 
-## Phase Folders (Your Content)
+## Phase Folders
 
-These folders contain your business model canvases.
+These folders contain your business model canvases, each in its own self-contained subfolder.
 
 | Folder | Purpose | Status Values |
 |--------|---------|---------------|
@@ -14,27 +14,25 @@ These folders contain your business model canvases.
 | `exploit/` | Validated business models being scaled | `scaling` |
 | `archive/` | Killed or pivoted canvases (reference) | — |
 
-**Lifecycle:** `/knvs:ideate` → `explore/` (draft) → set `status: testing` → validate → `/knvs:exploit` → `exploit/`
+**Lifecycle:** `/knvs:ideate` → `explore/<slug>/` (draft) → set `status: testing` → validate → `/knvs:exploit` → `exploit/<slug>/`
 
-**Pivot:** `explore/` → `archive/` (old) + `explore/` (new variant as draft)
+**Pivot:** `explore/<slug>/` → `archive/<slug>/` (old) + `explore/<new-slug>/` (new variant as draft)
 
-**Kill:** `explore/` → `archive/`
+**Kill:** `explore/<slug>/` → `archive/<slug>/` (one operation)
 
 ---
 
-## Data Folders
+## Canvas Subfolders
 
-These folders contain hypotheses, experiments, and insights grouped by canvas.
+Each canvas has its own folder containing all related data. Subfolders are created on-demand by the respective skills.
 
-| Folder | Purpose | Created by |
-|--------|---------|------------|
-| `hypotheses/<canvas-slug>/` | Testable assumptions from BMC | `/knvs:hypothesize` |
-| `experiments/<canvas-slug>/` | Experiment designs and results | `/knvs:experiment`, `/knvs:capture` |
-| `insights/<canvas-slug>/` | Key learnings from experiments | `/knvs:learn` |
-| `learning-cards/<canvas-slug>/` | Learning Cards — Experiment Cards + Hypothesis Cards (incl. decision) | `/knvs:card` |
-| `assessments/<canvas-slug>/` | Performance & Trend assessments | `/knvs:assess` |
-
-Each canvas in `explore/` (with `status: testing`) has corresponding subfolders in these directories.
+| Subfolder | Purpose | Created by |
+|-----------|---------|------------|
+| `hypotheses/` | Testable assumptions from BMC | `/knvs:hypothesize` |
+| `experiments/` | Experiment designs and results | `/knvs:experiment`, `/knvs:capture` |
+| `insights/` | Key learnings from experiments | `/knvs:learn` |
+| `learning-cards/` | Learning Cards — Experiment + Hypothesis Cards | `/knvs:card` |
+| `assessments/` | Performance & Trend assessments (EXPLOIT only) | `/knvs:assess` |
 
 ---
 
@@ -61,18 +59,22 @@ Each canvas in `explore/` (with `status: testing`) has corresponding subfolders 
 ├── .knvs/
 │   └── config.json              # Configuration
 ├── explore/                     # Your BMCs (draft + testing)
+│   └── <canvas-slug>/
+│       ├── <canvas-slug>.md     # Canvas file
+│       ├── hypotheses/          # Hypotheses for this canvas
+│       ├── experiments/         # Experiments for this canvas
+│       ├── insights/            # Insights for this canvas
+│       └── learning-cards/      # Learning Cards for this canvas
 ├── exploit/                     # Your scaling business models
+│   └── <canvas-slug>/
+│       ├── <canvas-slug>.md     # Canvas file
+│       ├── hypotheses/          # Carried over from explore
+│       ├── experiments/         # Carried over
+│       ├── insights/            # Carried over
+│       ├── learning-cards/      # Carried over
+│       └── assessments/         # Performance & Trend assessments
 ├── archive/                     # Killed/pivoted canvases
-├── hypotheses/                  # Hypotheses per canvas
-│   └── <canvas-slug>/
-├── experiments/                 # Experiments per canvas
-│   └── <canvas-slug>/
-├── insights/                    # Insights per canvas
-│   └── <canvas-slug>/
-├── learning-cards/              # Learning Cards per canvas
-│   └── <canvas-slug>/
-├── assessments/                 # Performance & Trend assessments
-│   └── <canvas-slug>/
+│   └── <canvas-slug>/          # Everything preserved as-is
 ├── skills/
 │   ├── start/SKILL.md
 │   ├── ideate/SKILL.md
@@ -82,7 +84,7 @@ Each canvas in `explore/` (with `status: testing`) has corresponding subfolders 
 │   ├── learn/SKILL.md
 │   ├── card/SKILL.md
 │   ├── exploit/SKILL.md
-│   ├── assess/SKILL.md
+│   └── assess/SKILL.md
 ├── CLAUDE.md
 ├── README.md
 ├── QUICKSTART.md
@@ -96,15 +98,17 @@ Each canvas in `explore/` (with `status: testing`) has corresponding subfolders 
 
 | Type | Convention | Example |
 |------|------------|---------|
-| Canvas files | kebab-case slug | `ai-bookkeeping.md` |
+| Canvas folder | kebab-case slug | `ai-bookkeeping/` |
+| Canvas file | slug inside folder | `ai-bookkeeping/ai-bookkeeping.md` |
 | Hypothesis files | kebab-case slug | `customers-will-pay-monthly.md` |
 | Experiment files | kebab-case slug | `pricing-survey-freelancers.md` |
 | Insight files | kebab-case slug | `freelancers-prefer-annual.md` |
 | Learning Card (experiment) | experiment-slug | `pricing-survey-freelancers.md` |
 | Learning Card (hypothesis) | hypothesis-slug | `customers-will-pay-monthly.md` |
+| Assessment files | date + type | `2026-03-04-performance.md` |
 | Skills | `<skill>/SKILL.md` | `hypothesize/SKILL.md` |
 | Config | Standard name | `config.json` |
 
 ---
 
-**Version:** 4.0.0
+**Version:** 5.0.0

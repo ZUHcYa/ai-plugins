@@ -169,18 +169,22 @@ knvs/
 |   |- assess/SKILL.md
 |
 |- explore/                    # BMCs (draft and testing)
+|   |- canvas-slug/
+|       |- canvas-slug.md      # Canvas file
+|       |- hypotheses/         # Hypotheses for this canvas
+|       |- experiments/        # Experiments for this canvas
+|       |- insights/           # Insights for this canvas
+|       |- learning-cards/     # Learning Cards for this canvas
 |- exploit/                    # Validated & scaling
-|- hypotheses/                 # Hypotheses per canvas
 |   |- canvas-slug/
-|- experiments/                # Experiments per canvas
-|   |- canvas-slug/
-|- insights/                   # Insights per canvas
-|   |- canvas-slug/
-|- learning-cards/             # Learning Cards per canvas
-|   |- canvas-slug/
-|- assessments/                # Performance & Trend assessments
-|   |- canvas-slug/
+|       |- canvas-slug.md
+|       |- hypotheses/         # Carried over from explore
+|       |- experiments/
+|       |- insights/
+|       |- learning-cards/
+|       |- assessments/        # Performance & Trend assessments
 |- archive/                    # Killed/pivoted canvases
+|   |- canvas-slug/            # Everything preserved
 |
 |- CLAUDE.md
 |- README.md

@@ -70,7 +70,7 @@ Claude: Duration?
 
 User: 2 weeks
 Claude: Experiment created:
-        File: experiments/ai-bookkeeping/receipt-categorization-survey.md
+        File: explore/ai-bookkeeping/experiments/receipt-categorization-survey.md
         Status: DESIGNED
         Hypothesis updated:
           - status → testing
@@ -98,7 +98,7 @@ Claude: Experiment created:
    - **Validation experiments** (more investment): Concierge MVP, Wizard of Oz, Single Feature MVP, Pre-Sale, Crowdfunding
    - **Custom**: User defines their own experiment type
 6. User defines success criteria and duration
-7. Creates experiment file in `experiments/<canvas-slug>/`
+7. Creates experiment file in `explore/<canvas-slug>/experiments/` (creates subfolder if needed)
 8. Updates hypothesis file:
    - `status` → `testing` (frontmatter)
    - Adds experiment link to `## Related Experiments` section
@@ -129,7 +129,7 @@ Claude: Experiment created:
 
 ## Notes
 
-- Experiment files are created in `experiments/<canvas-slug>/`
+- Experiment files are created in `<phase>/<canvas-slug>/experiments/`
 - One experiment tests one hypothesis
 - Multiple experiments can test the same hypothesis
 - The skill does NOT run the experiment — it designs and documents it
@@ -145,8 +145,8 @@ Canonical template (also in CLAUDE.md):
 ---
 type: experiment
 title: "[Experiment name]"
-canvas: explore/canvas-slug.md
-hypothesis: hypotheses/canvas-slug/hypothesis-slug.md
+canvas: canvas-slug
+hypothesis: hypotheses/hypothesis-slug.md
 experiment_type: online-survey
 status: designed
 created: YYYY-MM-DD

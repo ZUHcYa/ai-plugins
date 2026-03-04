@@ -55,7 +55,7 @@ Claude: Analyzing Business Model Canvas...
         -> Accept? [Y/n/edit]
 
 User: Y
-Claude: Saved: hypotheses/ai-bookkeeping/receipt-categorization-need.md
+Claude: Saved: explore/ai-bookkeeping/hypotheses/receipt-categorization-need.md
 
         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
         HYPOTHESIS 2 of 5
@@ -75,14 +75,14 @@ Claude: Updated:
         -> Accept? [Y/n/edit]
 
 User: Y
-Claude: Saved: hypotheses/ai-bookkeeping/customers-will-pay-monthly.md
+Claude: Saved: explore/ai-bookkeeping/hypotheses/customers-will-pay-monthly.md
 
         [... continues for remaining hypotheses ...]
 
         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
         SUMMARY
         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-        Canvas: explore/ai-bookkeeping.md
+        Canvas: ai-bookkeeping (explore/)
         Hypotheses created: 5
           Desirability: 2
           Feasibility: 1
@@ -126,7 +126,7 @@ This ensures the user consciously reviews each assumption rather than scanning a
 6. Sets initial confidence level (empty — not assessed, no experiments yet)
 7. Presents each hypothesis ONE AT A TIME — waits for user confirmation (`Y/n/edit`) before
    proceeding to the next. Never outputs multiple hypotheses in one response.
-8. Creates hypothesis files in `hypotheses/<canvas-slug>/`
+8. Creates hypothesis files in `explore/<canvas-slug>/hypotheses/` (creates subfolder if needed)
 9. Shows priority summary at the end
 
 ### From Research
@@ -142,7 +142,7 @@ This ensures the user consciously reviews each assumption rather than scanning a
 9. `## Evidence` section references the research report as context
 10. Presents each hypothesis ONE AT A TIME — waits for user confirmation (`Y/n/edit`) before
     proceeding to the next. Never outputs multiple hypotheses in one response.
-11. Creates hypothesis files in `hypotheses/<canvas-slug>/`
+11. Creates hypothesis files in `explore/<canvas-slug>/hypotheses/` (creates subfolder if needed)
 12. Shows priority summary at the end
 
 ## From Research Workflow
@@ -188,14 +188,14 @@ Claude: Reading "Implications for Business Model" from machine-customers...
         -> Accept? [Y/n/edit]
 
 User: Y
-Claude: Saved: hypotheses/ai-bookkeeping/machine-customers-purchasing.md
+Claude: Saved: explore/ai-bookkeeping/hypotheses/machine-customers-purchasing.md
 
         [... continues for remaining hypotheses ...]
 
         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
         SUMMARY
         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-        Canvas: explore/ai-bookkeeping.md
+        Canvas: ai-bookkeeping (explore/)
         Source: research/machine-customers.md
         Hypotheses created: 2 (from research)
           Desirability: 1
@@ -270,7 +270,7 @@ Claude: explore/ai-bookkeeping.md has empty BMC sections.
 
 ## Notes
 
-- Hypotheses are individual .md files in `hypotheses/<canvas-slug>/`
+- Hypotheses are individual .md files in `<phase>/<canvas-slug>/hypotheses/`
 - Each hypothesis has frontmatter with confidence, importance, category, status
 - The skill does NOT run experiments — use `/knvs:experiment` for that
 - Hypotheses can also be created manually in any Markdown editor
@@ -285,7 +285,7 @@ Canonical template (also in CLAUDE.md):
 ---
 type: hypothesis
 title: "[Testable statement]"
-canvas: explore/canvas-slug.md
+canvas: canvas-slug
 category: desirability|feasibility|viability
 bmc_fields:
   - Value Proposition

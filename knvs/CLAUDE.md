@@ -79,7 +79,7 @@ All generated files must work well in both contexts.
 
 | Type | Format | Example |
 |-----|--------|---------|
-| Canvas (all phases) | `[slug].md` | `ai-bookkeeping.md` |
+| Canvas (all phases) | `[slug]/[slug].md` | `ai-bookkeeping/ai-bookkeeping.md` |
 | Hypothesis | `[slug].md` | `customers-will-pay-monthly.md` |
 | Experiment | `[slug].md` | `pricing-survey-freelancers.md` |
 | Insight | `[slug].md` | `freelancers-prefer-annual.md` |
@@ -215,7 +215,7 @@ Hypotheses are prioritized by two dimensions:
 
 - `type: hypothesis`
 - `title` (testable statement)
-- `canvas` (path to the canvas, e.g. `explore/my-canvas.md`)
+- `canvas` (canvas slug, e.g. `my-canvas`)
 - `category` (desirability | feasibility | viability)
 - `bmc_fields` (array of affected BMC fields, canonical English names)
 - `confidence` (*(empty)* | very-low | low | moderate | high)
@@ -238,7 +238,7 @@ Hypotheses are prioritized by two dimensions:
 ---
 type: hypothesis
 title: "Customers will pay EUR 15-30/month for automated bookkeeping"
-canvas: explore/ai-bookkeeping.md
+canvas: ai-bookkeeping
 category: viability
 bmc_fields:
   - Revenue Streams
@@ -293,8 +293,8 @@ experiment types from "Testing Business Ideas" and allows custom types.
 
 - `type: experiment`
 - `title`
-- `canvas` (path to the canvas)
-- `hypothesis` (path to the hypothesis file)
+- `canvas` (canvas slug, e.g. `my-canvas`)
+- `hypothesis` (canvas-relative path, e.g. `hypotheses/hypothesis-slug.md`)
 - `experiment_type` (predefined or custom string)
 - `status` (designed | running | completed)
 - `created` (YYYY-MM-DD)
@@ -317,8 +317,8 @@ experiment types from "Testing Business Ideas" and allows custom types.
 ---
 type: experiment
 title: "Pricing Survey with 50 Freelancers"
-canvas: explore/ai-bookkeeping.md
-hypothesis: hypotheses/ai-bookkeeping/customers-will-pay-monthly.md
+canvas: ai-bookkeeping
+hypothesis: hypotheses/customers-will-pay-monthly.md
 experiment_type: online-survey
 status: designed
 created: YYYY-MM-DD
@@ -368,8 +368,8 @@ Each insight is a standalone file, reusable across canvas boundaries.
 
 - `type: insight`
 - `title` (key learning, concise)
-- `source_experiment` (path to the experiment file)
-- `canvas` (path to the canvas)
+- `source_experiment` (canvas-relative path, e.g. `experiments/experiment-slug.md`)
+- `canvas` (canvas slug, e.g. `my-canvas`)
 - `bmc_fields` (array of affected BMC fields)
 - `created` (YYYY-MM-DD)
 - `tags` (array, categorization)
@@ -387,8 +387,8 @@ Each insight is a standalone file, reusable across canvas boundaries.
 ---
 type: insight
 title: "Freelancers prefer annual billing with discount"
-source_experiment: experiments/ai-bookkeeping/pricing-survey-freelancers.md
-canvas: explore/ai-bookkeeping.md
+source_experiment: experiments/pricing-survey-freelancers.md
+canvas: ai-bookkeeping
 bmc_fields:
   - Revenue Streams
 created: YYYY-MM-DD
@@ -417,7 +417,7 @@ cash flow projections in the BMC.
 
 ## Source
 
-[[experiments/ai-bookkeeping/pricing-survey-freelancers.md]]
+[[experiments/pricing-survey-freelancers.md]]
 ```
 
 Canonical template is in `skills/learn/SKILL.md`.
@@ -438,18 +438,18 @@ Two scopes:
 - `type: learning-card`
 - `scope` (experiment | hypothesis)
 - `title`
-- `canvas` (path to the canvas)
-- `hypothesis` (path to the hypothesis file)
-- `insights` (array of paths to insight files)
+- `canvas` (canvas slug, e.g. `my-canvas`)
+- `hypothesis` (canvas-relative path, e.g. `hypotheses/hypothesis-slug.md`)
+- `insights` (array of canvas-relative paths to insight files)
 - `created` (YYYY-MM-DD)
 
 ### Experiment Card — Additional Fields
 
-- `experiment` (path to the experiment file, singular)
+- `experiment` (canvas-relative path, e.g. `experiments/experiment-slug.md`)
 
 ### Hypothesis Card — Additional Fields
 
-- `experiments` (array of paths to experiment files)
+- `experiments` (array of canvas-relative paths to experiment files)
 - `decision` (persevere | pivot | kill)
 
 ### Required Sections
@@ -466,12 +466,12 @@ Two scopes:
 type: learning-card
 scope: experiment
 title: "[Experiment title]"
-canvas: explore/canvas-slug.md
-hypothesis: hypotheses/canvas-slug/hypothesis-slug.md
-experiment: experiments/canvas-slug/experiment-slug.md
+canvas: canvas-slug
+hypothesis: hypotheses/hypothesis-slug.md
+experiment: experiments/experiment-slug.md
 insights:
-  - insights/canvas-slug/insight-1.md
-  - insights/canvas-slug/insight-2.md
+  - insights/insight-1.md
+  - insights/insight-2.md
 created: YYYY-MM-DD
 ---
 
@@ -501,14 +501,14 @@ created: YYYY-MM-DD
 type: learning-card
 scope: hypothesis
 title: "[Hypothesis title]"
-canvas: explore/canvas-slug.md
-hypothesis: hypotheses/canvas-slug/hypothesis-slug.md
+canvas: canvas-slug
+hypothesis: hypotheses/hypothesis-slug.md
 experiments:
-  - experiments/canvas-slug/exp-1.md
-  - experiments/canvas-slug/exp-2.md
+  - experiments/exp-1.md
+  - experiments/exp-2.md
 insights:
-  - insights/canvas-slug/insight-1.md
-  - insights/canvas-slug/insight-2.md
+  - insights/insight-1.md
+  - insights/insight-2.md
 decision: persevere | pivot | kill
 created: YYYY-MM-DD
 ---
@@ -586,7 +586,7 @@ Each dimension assesses an external threat or opportunity:
 ### Required Fields (Frontmatter)
 
 - `type: assessment`
-- `canvas` (path to the exploit canvas)
+- `canvas` (canvas slug, e.g. `my-canvas`)
 - `performance_score` or `trend_score` (integer, -30 to +30)
 
 Note: Assessment type and date are derived from the filename (`YYYY-MM-DD-performance.md` / `YYYY-MM-DD-trend.md`) — no separate frontmatter fields needed.
@@ -608,7 +608,7 @@ Assessment filenames include the type suffix:
 ```markdown
 ---
 type: assessment
-canvas: exploit/canvas-slug.md
+canvas: canvas-slug
 performance_score: 8
 ---
 
@@ -645,7 +645,7 @@ performance_score: 8
 ```markdown
 ---
 type: assessment
-canvas: exploit/canvas-slug.md
+canvas: canvas-slug
 trend_score: 2
 ---
 
@@ -699,36 +699,54 @@ Each decision records the Persevere/Pivot/Kill outcome with reasoning.
 ### Pivot Mechanics
 
 When a Pivot decision is made:
-1. A new canvas is created in `explore/` with `status: draft` and `pivot_from: explore/original.md` in frontmatter
-2. The original canvas is moved to `archive/`
+1. The original canvas folder is moved to `archive/` (one operation: `mv explore/<slug>/ archive/<slug>/`)
+2. A new canvas folder is created in `explore/<new-slug>/` with `status: draft` and `pivot_from: <original-slug>` (slug only; original is always in `archive/`)
 3. The decision is logged in the new canvas
 
 ### Kill Mechanics
 
 When a Kill decision is made:
-1. The canvas is moved to `archive/`
-2. Hypotheses, experiments, and insights remain for reference
+1. The canvas folder is moved to `archive/` (one operation: `mv explore/<slug>/ archive/<slug>/`)
+2. All content (hypotheses, experiments, insights, learning-cards) is preserved inside the folder
 
 ---
 
-## Folder Structure
+## Folder Structure (Canvas-First)
 
 ```
 .knvs/config.json
-explore/             — BMCs (draft and testing)
-exploit/             — Validated, running business models (scaling)
-hypotheses/          — Hypotheses, grouped by canvas
+explore/                        — BMCs (draft and testing)
   <canvas-slug>/
-experiments/         — Experiments, grouped by canvas
+    <canvas-slug>.md            — Canvas file
+    hypotheses/                 — Hypotheses for this canvas
+    experiments/                — Experiments for this canvas
+    insights/                   — Insights for this canvas
+    learning-cards/             — Learning Cards for this canvas
+exploit/                        — Validated, scaling business models
   <canvas-slug>/
-insights/            — Insights, grouped by canvas
-  <canvas-slug>/
-learning-cards/      — Learning Cards, grouped by canvas
-  <canvas-slug>/
-assessments/         — Performance & Trend assessments
-  <canvas-slug>/
-archive/             — Killed/pivoted canvases
+    <canvas-slug>.md            — Canvas file
+    hypotheses/                 — Carried over from explore
+    experiments/                — Carried over
+    insights/                   — Carried over
+    learning-cards/             — Carried over
+    assessments/                — Performance & Trend assessments
+archive/                        — Killed/pivoted canvases
+  <canvas-slug>/                — Everything preserved as-is
 ```
+
+Canvas subfolders (hypotheses/, experiments/, etc.) are created on-demand by the respective skills — not at setup.
+
+### Cross-Reference Convention
+
+**Intra-canvas references** use canvas-relative paths (phase-agnostic):
+- `canvas:` — slug only (e.g. `ai-bookkeeping`)
+- `hypothesis:`, `experiment:`, `source_experiment:`, `insights:` — relative to canvas folder (e.g. `hypotheses/slug.md`)
+
+**External references** use root-relative paths or slugs:
+- `source_research:` — root-relative (e.g. `research/report-slug.md`)
+- `pivot_from:` — slug only (original always in `archive/`)
+
+This ensures all intra-canvas references remain stable across phase transitions (EXPLORE → EXPLOIT → Archive).
 
 **Cross-Plugin Read:** `/knvs:hypothesize` [F] mode reads from `research/` (research plugin) for verified research reports.
 
@@ -742,7 +760,7 @@ archive/             — Killed/pivoted canvases
 | Skill files | `<skill>/SKILL.md` | `skills/ideate/SKILL.md`, `skills/hypothesize/SKILL.md` |
 | Configuration | `.knvs/` folder | `.knvs/config.json` |
 | Phase folders | Short, unambiguous | `explore/`, `exploit/` |
-| Data folders | Descriptive | `hypotheses/`, `experiments/`, `insights/`, `archive/` |
+| Data folders | Within canvas folder | `<phase>/<canvas-slug>/hypotheses/`, `.../experiments/`, etc. |
 
 ---
 

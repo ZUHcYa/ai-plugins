@@ -25,8 +25,9 @@ Get started with knvs in 5 minutes.
 
 ### Option B: Manual Setup
 
-1. Create folders: `explore/`, `exploit/`, `hypotheses/`, `experiments/`, `insights/`, `learning-cards/`, `assessments/`, `archive/`
+1. Create folders: `explore/`, `exploit/`, `archive/`
 2. Create `.knvs/config.json` with `{ "targetPath": "./" }`
+3. Canvas subfolders (`hypotheses/`, `experiments/`, etc.) are created on-demand inside each canvas folder
 
 ---
 
@@ -42,11 +43,6 @@ On first run, knvs automatically sets up your workspace:
 Created:
 ├── explore/
 ├── exploit/
-├── hypotheses/
-├── experiments/
-├── insights/
-├── learning-cards/
-├── assessments/
 ├── archive/
 └── .knvs/config.json
 
@@ -182,13 +178,13 @@ Run `/knvs:start` anytime to see your portfolio and suggested actions.
 
 knvs works without Claude Code:
 
-1. Create folders: `explore/`, `exploit/`, `hypotheses/`, `experiments/`, `insights/`, `learning-cards/`, `assessments/`, `archive/`
-2. Create file: `explore/my-idea.md` with `status: draft` frontmatter
+1. Create folders: `explore/`, `exploit/`, `archive/`
+2. Create canvas folder: `explore/my-idea/` with `explore/my-idea/my-idea.md` (`status: draft`)
 3. Fill out BMC sections
-4. Set `status: testing`, create hypothesis files in `hypotheses/my-idea/`
-5. Create experiment files in `experiments/my-idea/`
-6. Document results, create insight files in `insights/my-idea/`
-7. Create learning card files in `learning-cards/my-idea/` (optional)
+4. Set `status: testing`, create `explore/my-idea/hypotheses/` and add hypothesis files
+5. Create `explore/my-idea/experiments/` and add experiment files
+6. Document results, create `explore/my-idea/insights/` and add insight files
+7. Create `explore/my-idea/learning-cards/` and add learning card files (optional)
 8. Add decision to canvas `## Decisions` section
 
 All files are standard Markdown — use any editor.

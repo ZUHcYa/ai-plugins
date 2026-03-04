@@ -24,7 +24,7 @@ User: /knvs:ideate
 Claude: What's your idea? Describe your initial thoughts...
 User: [Describes idea]
 Claude: Business Model Canvas created: "[Title]"
-        File: explore/[slug].md
+        File: explore/[slug]/[slug].md
         Status: draft
 ```
 
@@ -34,31 +34,31 @@ Claude: Business Model Canvas created: "[Title]"
 User: /knvs:ideate (during /knvs:card pivot)
 Claude: Creating new BMC variant based on pivot decision...
 
-        Original canvas: explore/original-idea.md (archived)
+        Original canvas: explore/original-idea/ (archived to archive/original-idea/)
         Pivot reason: [from decision log]
 
         Business Model Canvas created: "Original Idea v2"
-        File: explore/original-idea-v2.md
+        File: explore/original-idea-v2/original-idea-v2.md
         Status: draft
-        Pivot from: explore/original-idea.md
+        Pivot from: original-idea
 ```
 
 ## What the Skill Does
 
 1. Asks for idea description (or receives pivot context from `/knvs:card`)
 2. Automatically extracts appropriate title
-3. Creates file in `explore/` folder as `[slug].md` — slug is kebab-case derived from the title.
+3. Creates canvas folder `explore/[slug]/` and file `explore/[slug]/[slug].md` — slug is kebab-case derived from the title.
    NEVER add a date prefix or sequential number.
-   CORRECT: `ai-bookkeeping-app.md`
-   WRONG:   `20260220-001-ai-bookkeeping-app.md`
+   CORRECT: `explore/ai-bookkeeping-app/ai-bookkeeping-app.md`
+   WRONG:   `explore/20260220-001-ai-bookkeeping-app/...`
 4. Initializes BMC template with `status: draft`
 5. If pivot: sets `pivot_from` frontmatter field
 6. Adds initial thoughts as notes
 
 ## Notes
 
-- File is created in `explore/` folder
-- Filename: ONLY `[title-as-slug].md` — no date prefix, no sequential number
+- Canvas folder is created as `explore/[slug]/`
+- Canvas file is `explore/[slug]/[slug].md` — no date prefix, no sequential number
 - Initial status is always `draft`
 - When the BMC is complete, set `status: testing` to begin the validation loop
 - Then run `/knvs:hypothesize` to extract hypotheses
@@ -87,7 +87,7 @@ risk: high
 revenue:
 created: YYYY-MM-DD
 updated: YYYY-MM-DD
-pivot_from: explore/original.md   # Optional: only when created from pivot. Delete otherwise.
+pivot_from: original   # Optional: slug only, original always in archive/. Delete otherwise.
 ---
 
 # Business Model Canvas: [Name]

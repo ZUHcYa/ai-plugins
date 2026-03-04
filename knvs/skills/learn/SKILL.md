@@ -32,7 +32,7 @@ Claude: Completed experiments for AI Bookkeeping:
 
         1. Receipt Categorization Needs Survey [COMPLETED]
            Hypothesis: receipt-categorization-need
-           -> experiments/ai-bookkeeping/receipt-categorization-survey.md
+           -> explore/ai-bookkeeping/experiments/receipt-categorization-survey.md
 
         Select experiment to extract insights from:
 
@@ -58,7 +58,7 @@ Claude: Reading experiment results...
         -> Accept? [Y/n/edit]
 
 User: Y
-Claude: Saved: insights/ai-bookkeeping/receipt-categorization-validated.md
+Claude: Saved: explore/ai-bookkeeping/insights/receipt-categorization-validated.md
 
         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
         INSIGHT 2 of 2
@@ -73,7 +73,7 @@ Claude: Saved: insights/ai-bookkeeping/receipt-categorization-validated.md
         -> Accept? [Y/n/edit]
 
 User: Y
-Claude: Saved: insights/ai-bookkeeping/mobile-upload-expected.md
+Claude: Saved: explore/ai-bookkeeping/insights/mobile-upload-expected.md
 
         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
         HYPOTHESIS UPDATE
@@ -91,12 +91,12 @@ Claude: Saved: insights/ai-bookkeeping/mobile-upload-expected.md
 
 User: Y
 Claude: Confidence: — → moderate
-        Updated: hypotheses/ai-bookkeeping/receipt-categorization-need.md
+        Updated: explore/ai-bookkeeping/hypotheses/receipt-categorization-need.md
 
         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
         CANVAS RISK UPDATE
         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-        Canvas: explore/ai-bookkeeping.md
+        Canvas: ai-bookkeeping (explore/)
         Risk: high (ai-accuracy-requirement is importance:high, not validated)
 
         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -126,7 +126,7 @@ Claude: Confidence: — → moderate
 5. For each insight:
    - Proposes title, BMC fields, tags, learning
    - User confirms, rejects, or edits
-   - Creates insight file in `insights/<canvas-slug>/`
+   - Creates insight file in `<phase>/<canvas-slug>/insights/` (creates subfolder if needed)
 6. Updates the corresponding hypothesis:
    - Status: testing → validated/invalidated (based on experiment `result` set by `/knvs:capture`)
    - Confidence level: assessed based on ALL completed experiments for this hypothesis
@@ -178,7 +178,7 @@ After updating the hypothesis status, the skill assesses the confidence level ba
 Claude: Experiment "Receipt Categorization Survey" has no results documented.
 
         Please fill in the ## Results and ## Conclusion sections
-        in experiments/ai-bookkeeping/receipt-categorization-survey.md
+        in explore/ai-bookkeeping/experiments/receipt-categorization-survey.md
         before running /knvs:learn.
 ```
 
@@ -192,7 +192,7 @@ Claude: No completed experiments found for any EXPLORE canvas.
 
 ## Notes
 
-- Insights are individual .md files in `insights/<canvas-slug>/`
+- Insights are individual .md files in `<phase>/<canvas-slug>/insights/`
 - Each insight is standalone and reusable across canvas boundaries
 - The skill reads experiment results — it does NOT generate fake data
 - Confidence levels are updated based on all completed experiments for the hypothesis
@@ -208,8 +208,8 @@ Canonical template (also in CLAUDE.md):
 ---
 type: insight
 title: "[Key learning]"
-source_experiment: experiments/canvas-slug/experiment-slug.md
-canvas: explore/canvas-slug.md
+source_experiment: experiments/experiment-slug.md
+canvas: canvas-slug
 bmc_fields:
   - Value Proposition
 created: YYYY-MM-DD
@@ -232,5 +232,5 @@ tags: [tag1, tag2]
 
 ## Source
 
-[[experiments/canvas-slug/experiment-slug.md]]
+[[experiments/experiment-slug.md]]
 ```
