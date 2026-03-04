@@ -119,11 +119,48 @@ Every Canvas MUST contain these 9 core fields (Osterwalder/Pigneur), as `##` hea
 
 ### Phase-Specific Extensions
 
-- **Draft (explore/):** Frontmatter `status: draft`, `created`, `updated`. Optional: `pivot_from`. Sections: Decisions, Notes, Next Steps, Footer
-- **Testing (explore/):** Frontmatter additionally `innovation_risk`, `potential_revenue`. Sections: Decisions, Next Steps, Footer
-- **Scaling (exploit/):** Frontmatter additionally `next_assessment`, `performance_score`, `trend_score`, `last_assessment`. Sections: Assessments, Decisions, Next Steps, Footer
+- **Draft (explore/):** Frontmatter `status: draft`, `risk`, `revenue`, `created`, `updated`. Optional: `pivot_from`. Sections: Decisions, Notes, Next Steps, Footer
+- **Testing (explore/):** Same fields. `risk` updated by `/knvs:learn` based on hypothesis validation. Sections: Decisions, Next Steps, Footer
+- **Scaling (exploit/):** Frontmatter additionally `next_assessment`, `performance_score`, `trend_score`, `last_assessment`. `risk` updated by `/knvs:assess`. Sections: Assessments, Decisions, Next Steps, Footer
 
 Canonical templates for each phase are in the respective `skills/*/SKILL.md` under `## Canvas Template`.
+
+### Risk & Revenue: Unified Fields
+
+`risk` and `revenue` are unified frontmatter fields present in ALL canvases (EXPLORE and EXPLOIT).
+They use the same 3-level scale in both phases, enabling portfolio-level comparison.
+
+#### `risk` — derived, 3-level
+
+| Value | Meaning |
+|-------|---------|
+| `high` | High risk — significant uncertainty or threat |
+| `moderate` | Mixed signals — some areas validated or stable, others not |
+| `low` | Low risk — well-validated or stable business model |
+
+**EXPLORE derivation** (updated by `/knvs:learn` after hypothesis changes):
+- `high`: Status is `draft`, OR any `importance: high` hypothesis is NOT validated
+- `moderate`: All `importance: high` hypotheses validated, but any `importance: medium` hypothesis is NOT validated
+- `low`: All `importance: high` and `importance: medium` hypotheses validated
+
+**EXPLOIT derivation** (updated by `/knvs:assess` after assessment):
+- `high`: `performance_score < 0` AND `trend_score < 0`, OR no assessment exists
+- `moderate`: one score positive, one negative (or one still empty)
+- `low`: `performance_score >= 0` AND `trend_score >= 0`
+
+**Manual override:** Users can set `risk` directly in any Markdown editor (tool-agnostic).
+
+#### `revenue` — user-set, 3-level
+
+| Value | Meaning |
+|-------|---------|
+| `high` | Transformative or significant revenue potential |
+| `moderate` | Meaningful addition to portfolio |
+| `low` | Incremental improvement |
+
+User-set in both phases. Skills prompt at key moments:
+- `/knvs:ideate`: optional initial estimate when creating canvas
+- `/knvs:exploit`: carried over from EXPLORE canvas (not dropped at transition)
 
 ---
 

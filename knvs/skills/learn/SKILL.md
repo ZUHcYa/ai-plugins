@@ -94,6 +94,12 @@ Claude: Confidence: — → moderate
         Updated: hypotheses/ai-bookkeeping/receipt-categorization-need.md
 
         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        CANVAS RISK UPDATE
+        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        Canvas: explore/ai-bookkeeping.md
+        Risk: high (ai-accuracy-requirement is importance:high, not validated)
+
+        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
         SUMMARY
         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
         Insights created: 2
@@ -124,7 +130,12 @@ Claude: Confidence: — → moderate
 6. Updates the corresponding hypothesis:
    - Status: testing → validated/invalidated (based on experiment `result` set by `/knvs:capture`)
    - Confidence level: assessed based on ALL completed experiments for this hypothesis
-7. Shows remaining hypothesis overview
+7. Updates canvas `risk` field based on all hypotheses for this canvas:
+   - `high`: any `importance: high` hypothesis is NOT validated
+   - `moderate`: all `importance: high` validated, but any `importance: medium` is NOT validated
+   - `low`: all `importance: high` and `importance: medium` hypotheses validated
+   - Shows risk change if it changed: `"Risk: high → moderate"`
+8. Shows remaining hypothesis overview
 
 ## Status Update Logic
 

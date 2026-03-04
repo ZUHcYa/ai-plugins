@@ -108,8 +108,10 @@ Claude: ━━━━━━━━━━━━━━━━━━━━━━━━
         Performance (current snapshot): +8 (2026-01-15)
         Trend (future projection):      +2 (2026-02-22)
 
+        Risk Level: low ✓ (P:+8, T:+2 — both positive)
+
         Saved: assessments/ai-bookkeeping/2026-02-22-trend.md
-        Updated: exploit/ai-bookkeeping.md (trend_score, last_assessment)
+        Updated: exploit/ai-bookkeeping.md (trend_score, last_assessment, risk)
 ```
 
 ## What the Skill Does
@@ -126,6 +128,10 @@ Claude: ━━━━━━━━━━━━━━━━━━━━━━━━
 7. If both assessment types exist, shows combined overview
 8. Creates assessment file in `assessments/<canvas-slug>/YYYY-MM-DD-<type>.md`
 9. Updates canvas frontmatter: `performance_score` or `trend_score` + `last_assessment`
+10. Computes and updates `risk` field on canvas frontmatter:
+    - `high`: `performance_score < 0` AND `trend_score < 0` (both negative), OR either score is still empty
+    - `moderate`: one score positive/zero, one negative (mixed signals)
+    - `low`: `performance_score >= 0` AND `trend_score >= 0` (both positive/neutral)
 
 ---
 
@@ -196,9 +202,12 @@ ASSESSMENT OVERVIEW
 ━━━━━━━━━━━━━━━━━━
 Performance Score (current snapshot):    +8
 Trend Score (future projection):         +2
+Risk Level:                              low ✓
 ```
 
 Together they answer: **How well is the business doing today, and what does the future look like?**
+
+The Risk Level is derived from the combined P+T scores and written to the canvas frontmatter (`risk` field).
 
 ---
 

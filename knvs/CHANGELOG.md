@@ -4,6 +4,33 @@ All notable changes to knvs will be documented in this file.
 
 ---
 
+## [5.0.0] - 2026-03-04
+
+### Breaking Changes
+
+- **`innovation_risk` field removed** — Replaced by unified `risk` field (`high | moderate | low`) present in ALL canvases (EXPLORE and EXPLOIT)
+- **`potential_revenue` field removed** — Replaced by unified `revenue` field (`high | moderate | low`) present in ALL canvases
+- **Health Check #4 changed** — Now checks for `risk` field instead of `innovation_risk`, scans both `explore/` and `exploit/`
+
+### Added
+
+- **Unified `risk` field** — Same frontmatter field in EXPLORE and EXPLOIT canvases. EXPLORE: derived from hypothesis validation state (updated by `/knvs:learn`). EXPLOIT: derived from Performance + Trend scores (updated by `/knvs:assess`). Can be manually set/overridden in any Markdown editor
+- **Unified `revenue` field** — Expected revenue potential (`high | moderate | low`) across both phases. User-set estimate, carried over at EXPLORE-to-EXPLOIT transition (no longer dropped)
+- **Risk derivation in `/knvs:learn`** — After hypothesis updates, computes and updates canvas `risk` based on importance-weighted hypothesis validation state
+- **Risk derivation in `/knvs:assess`** — After assessment, computes and updates canvas `risk` from combined Performance + Trend scores
+- **Risk-aware portfolio view** — `/knvs:start` now shows `risk`, `revenue`, and P/T scores for EXPLOIT canvases instead of only "last assessed" date
+- **Score-based indicators** — TESTING and EXPLOIT priority indicators based on `risk` field (red=high, yellow=moderate, green=low) instead of assessment recency only
+- **Risk-based suggested actions** — EXPLOIT canvases with `risk:high` trigger urgent review suggestions
+
+### Migration
+
+1. Replace `innovation_risk: [any value]` with `risk: high` (or appropriate level) in EXPLORE canvas frontmatter
+2. Replace `potential_revenue: [any value]` with `revenue: high|moderate|low` in canvas frontmatter
+3. Add `risk: high` and `revenue:` to EXPLOIT canvas frontmatter (risk will be updated by next `/knvs:assess` run)
+4. Add `risk: high` and `revenue:` to any EXPLORE draft canvases missing these fields
+
+---
+
 ## [4.0.4] - 2026-02-27
 
 ### Fixed

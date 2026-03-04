@@ -78,11 +78,13 @@ After creating your canvas:
 
 Canonical template for new draft canvases.
 
-> **STRICT:** Use ONLY the frontmatter fields listed below — do NOT add fields beyond the optional ones listed.
+> **STRICT:** Use ONLY the frontmatter fields listed below — do NOT add fields beyond the optional ones listed. `risk: high` is the default for new canvases (untested = high risk). `revenue` is empty until the user provides an estimate.
 
 ```markdown
 ---
 status: draft
+risk: high
+revenue:
 created: YYYY-MM-DD
 updated: YYYY-MM-DD
 pivot_from: explore/original.md   # Optional: only when created from pivot. Delete otherwise.

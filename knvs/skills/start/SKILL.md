@@ -107,17 +107,18 @@ Claude: knvs Status
 
         DRAFTS (2)
         ----------
-        🔴 AI Bookkeeping [draft] - 45 days stale
-        🟢 Invoice Tool [draft] - created 3 days ago
+        🔴 AI Bookkeeping [draft] risk:high revenue:— — 45 days stale
+        🟢 Invoice Tool [draft] risk:high revenue:moderate — created 3 days ago
 
         TESTING (2)
         -----------
-        🔴 B2B SaaS - 2/5 hypotheses validated, 1 experiment stale
-        🟢 Mobile App - all hypotheses validated → /knvs:exploit
+        🔴 B2B SaaS [testing] risk:high revenue:high — 2/5 hypotheses validated, 1 experiment stale
+        🟢 Mobile App [testing] risk:low revenue:moderate — all validated → /knvs:exploit
 
-        EXPLOIT (1)
+        EXPLOIT (2)
         -----------
-        🟢 Core Business - last assessed: 2026-02-01
+        🔴 AI Bookkeeping [scaling] risk:high revenue:high — P:-5 T:-3
+        🟢 Core Business [scaling] risk:low revenue:moderate — P:+12 T:+8
 
         Health (2 issues)
         -----------------
@@ -128,8 +129,9 @@ Claude: knvs Status
         Suggested Actions
         -----------------
         1. Mobile App: all validated → /knvs:exploit
-        2. B2B SaaS: stale experiment → check progress
-        3. AI Bookkeeping stale → set status: testing or archive
+        2. AI Bookkeeping (exploit): risk:high (P:-5 T:-3) → urgent review needed
+        3. B2B SaaS: stale experiment → check progress
+        4. AI Bookkeeping (explore): stale → set status: testing or archive
 ```
 
 ---
@@ -160,8 +162,8 @@ Claude: knvs Status
 2. Scan `explore/` and `exploit/` folders
 3. Group `explore/` canvases by status (`draft` vs `testing`)
 4. For testing canvases: scan `hypotheses/<slug>/` and `experiments/<slug>/` for status
-5. Read frontmatter from each canvas
-6. Calculate priority per group (see Priority Logic below)
+5. Read frontmatter from each canvas (`risk`, `revenue`, `performance_score`, `trend_score`)
+6. Calculate priority per group (see Priority Logic below) — TESTING and EXPLOIT use `risk` field
 7. Run Health Checks (see Health Checks below)
 8. Display status grouped by phase
 9. Show Health issues (if any — omit section when 0 issues)
@@ -174,8 +176,10 @@ Claude: knvs Status
 | Group | Priority Calculation | Indicators |
 |-------|---------------------|------------|
 | DRAFTS | `age_days` | 🔴 >30 days stale, 🟡 active, 🟢 recent |
-| TESTING | `hypothesis_validation_ratio + stale_experiments` | 🔴 stale experiments, 🟡 testing, 🟢 all validated |
-| EXPLOIT | `last_assessment age` | 🔴 assessment overdue (>90 days), 🟡 due soon, 🟢 recent |
+| TESTING | `risk field + stale_experiments` | 🔴 risk:high, 🟡 risk:moderate, 🟢 risk:low |
+| EXPLOIT | `risk field` | 🔴 risk:high, 🟡 risk:moderate, 🟢 risk:low |
+
+Assessment recency remains a secondary check: if `last_assessment` > 90 days, add to Suggested Actions regardless of risk level.
 
 ### Status Indicators
 
@@ -200,7 +204,7 @@ If no issues exist, the Health section is omitted entirely.
 | 1 | Invalid Canvas | `explore/`, `exploit/` | `.md` without valid YAML frontmatter | `"Invalid frontmatter"` |
 | 2 | Status ↔ Folder | `explore/`, `exploit/` | Canvas folder does not match status | `"Status X does not match folder Y"` |
 | 3 | Missing BMC Fields | `explore/`, `exploit/` | Canvas lacks one of the 9 core `##` headings | `"Missing BMC field: X"` |
-| 4 | Missing Frontmatter | `explore/` (testing) | Testing canvas without `innovation_risk` | `"Missing field: innovation_risk"` |
+| 4 | Missing Frontmatter | `explore/`, `exploit/` | Canvas without `risk` field | `"Missing field: risk"` |
 | 5 | Hypothesis Missing Sections | `hypotheses/` | Without `## Claim` or `## Context` | `"Missing section: X"` |
 | 6 | Orphaned Hypothesis | `hypotheses/` | `canvas` frontmatter points to non-existent file | `"Canvas X not found"` |
 | 7 | Experiment → Hypothesis | `experiments/` | `hypothesis` frontmatter points to non-existent file | `"Hypothesis X not found"` |
@@ -222,6 +226,8 @@ If no issues exist, the Health section is omitted entirely.
 | Testing with insights but no learning card | "X has insights → /knvs:card" |
 | Testing with stale experiment | "X has stale experiment → check progress" |
 | Testing all hypotheses validated | "X ready → /knvs:exploit" |
+| EXPLOIT risk:high | "X has high risk (P:score T:score) → urgent review needed" |
+| EXPLOIT risk:moderate, trend_score < 0 | "X has declining trends → consider exploring adjacent models" |
 | EXPLOIT `last_assessment` > 90 days ago | "X assessment due → /knvs:assess" |
 | No items exist | "Run /knvs:ideate to capture your first idea" |
 
