@@ -82,6 +82,7 @@ Canonical template for new draft canvases.
 
 ```markdown
 ---
+type: bmc
 status: draft
 risk: high
 revenue:

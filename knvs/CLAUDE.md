@@ -119,9 +119,9 @@ Every Canvas MUST contain these 9 core fields (Osterwalder/Pigneur), as `##` hea
 
 ### Phase-Specific Extensions
 
-- **Draft (explore/):** Frontmatter `status: draft`, `risk`, `revenue`, `created`, `updated`. Optional: `pivot_from`. Sections: Decisions, Notes, Next Steps, Footer
+- **Draft (explore/):** Frontmatter `type: bmc`, `status: draft`, `risk`, `revenue`, `created`, `updated`. Optional: `pivot_from`. Sections: Decisions, Notes, Next Steps, Footer
 - **Testing (explore/):** Same fields. `risk` updated by `/knvs:learn` based on hypothesis validation. Sections: Decisions, Next Steps, Footer
-- **Scaling (exploit/):** Frontmatter additionally `next_assessment`, `performance_score`, `trend_score`, `last_assessment`. `risk` updated by `/knvs:assess`. Sections: Assessments, Decisions, Next Steps, Footer
+- **Scaling (exploit/):** Frontmatter `type: bmc`, additionally `next_assessment`, `performance_score`, `trend_score`, `last_assessment`. `risk` updated by `/knvs:assess`. Sections: Assessments, Decisions, Next Steps, Footer
 
 Canonical templates for each phase are in the respective `skills/*/SKILL.md` under `## Canvas Template`.
 
