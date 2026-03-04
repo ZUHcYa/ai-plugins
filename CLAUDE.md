@@ -23,6 +23,11 @@ manuell in einem beliebigen Markdown-Editor (Obsidian, VS Code, Notion) durchfue
 
 Skills sind Helfer, nie Voraussetzung. Details in den jeweiligen Plugin-CLAUDE.md.
 
+## Arbeitsprinzipien
+
+- **Simplicity First:** Jede Aenderung so einfach wie moeglich. Minimaler Impact, kein Over-Engineering.
+- **Verification Before Done:** Keine Aufgabe als fertig markieren ohne zu pruefen, dass sie funktioniert. Aenderungen testen, Logs checken, Korrektheit demonstrieren.
+
 ---
 
 ## Git Workflow
