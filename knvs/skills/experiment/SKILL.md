@@ -150,7 +150,6 @@ hypothesis: hypotheses/canvas-slug/hypothesis-slug.md
 experiment_type: online-survey
 status: designed
 created: YYYY-MM-DD
-success_criteria: ">70% identify receipt categorization as top-3 pain point"
 duration: "2 weeks"
 evidence_strength:
 ---

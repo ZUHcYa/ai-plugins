@@ -299,7 +299,6 @@ experiment types from "Testing Business Ideas" and allows custom types.
 - `status` (designed | running | completed)
 - `created` (YYYY-MM-DD)
 - `completed` (YYYY-MM-DD, when done)
-- `success_criteria` (measurable outcome)
 - `duration` (timeframe)
 - `result` (success | failure | inconclusive, after completion)
 - `evidence_strength` (weak | strong, set by `/knvs:capture` after completion)
@@ -323,7 +322,6 @@ hypothesis: hypotheses/ai-bookkeeping/customers-will-pay-monthly.md
 experiment_type: online-survey
 status: designed
 created: YYYY-MM-DD
-success_criteria: ">60% of respondents willing to pay EUR 15+"
 duration: "2 weeks"
 evidence_strength:
 ---
@@ -448,13 +446,11 @@ Two scopes:
 ### Experiment Card — Additional Fields
 
 - `experiment` (path to the experiment file, singular)
-- `result` (success | failure | inconclusive)
 
 ### Hypothesis Card — Additional Fields
 
 - `experiments` (array of paths to experiment files)
 - `decision` (persevere | pivot | kill)
-- `confidence` (very-low | low | moderate | high)
 
 ### Required Sections
 
@@ -476,7 +472,6 @@ experiment: experiments/canvas-slug/experiment-slug.md
 insights:
   - insights/canvas-slug/insight-1.md
   - insights/canvas-slug/insight-2.md
-result: success | failure | inconclusive
 created: YYYY-MM-DD
 ---
 
@@ -515,7 +510,6 @@ insights:
   - insights/canvas-slug/insight-1.md
   - insights/canvas-slug/insight-2.md
 decision: persevere | pivot | kill
-confidence: very-low | low | moderate | high
 created: YYYY-MM-DD
 ---
 
@@ -592,10 +586,10 @@ Each dimension assesses an external threat or opportunity:
 ### Required Fields (Frontmatter)
 
 - `type: assessment`
-- `assessment_type` (`performance` or `trend`)
 - `canvas` (path to the exploit canvas)
 - `performance_score` or `trend_score` (integer, -30 to +30)
-- `date` (YYYY-MM-DD)
+
+Note: Assessment type and date are derived from the filename (`YYYY-MM-DD-performance.md` / `YYYY-MM-DD-trend.md`) — no separate frontmatter fields needed.
 
 ### File Naming Convention
 
@@ -614,17 +608,11 @@ Assessment filenames include the type suffix:
 ```markdown
 ---
 type: assessment
-assessment_type: performance
 canvas: exploit/canvas-slug.md
 performance_score: 8
-date: YYYY-MM-DD
 ---
 
 # Performance Assessment: [Canvas Title]
-
-## Date
-
-YYYY-MM-DD
 
 ## Scores
 
@@ -657,17 +645,11 @@ YYYY-MM-DD
 ```markdown
 ---
 type: assessment
-assessment_type: trend
 canvas: exploit/canvas-slug.md
 trend_score: 2
-date: YYYY-MM-DD
 ---
 
 # Trend Assessment: [Canvas Title]
-
-## Date
-
-YYYY-MM-DD
 
 ## Scores
 

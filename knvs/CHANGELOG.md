@@ -4,6 +4,26 @@ All notable changes to knvs will be documented in this file.
 
 ---
 
+## [5.1.0] - 2026-03-04
+
+### Breaking Changes
+
+- **Assessment: `assessment_type` field removed** — Type is derived from filename suffix (`-performance` / `-trend`). No separate frontmatter field needed.
+- **Assessment: `date` field removed** — Date is derived from filename prefix (`YYYY-MM-DD-...`). No separate frontmatter field needed.
+- **Assessment: `## Date` section removed** — Redundant with filename. Assessment files now start with `## Scores`.
+- **Learning Card (Experiment): `result` field removed** — Was a 1:1 copy of the experiment's `result` field. The card links to the experiment via `experiment:` — look up the result there.
+- **Learning Card (Hypothesis): `confidence` field removed** — Was a 1:1 copy of the hypothesis's `confidence` field. The card links to the hypothesis via `hypothesis:` — look up the confidence there.
+- **Experiment: `success_criteria` frontmatter field removed** — Redundant with the `## Success Criteria` section in the experiment body, which provides more detail. Success criteria are now exclusively documented in the section.
+
+### Migration
+
+1. Assessment files: Remove `assessment_type:` and `date:` from frontmatter, remove `## Date` section
+2. Learning Card (experiment scope): Remove `result:` from frontmatter
+3. Learning Card (hypothesis scope): Remove `confidence:` from frontmatter
+4. Experiment files: Remove `success_criteria:` from frontmatter (keep `## Success Criteria` section as-is)
+
+---
+
 ## [5.0.0] - 2026-03-04
 
 ### Breaking Changes

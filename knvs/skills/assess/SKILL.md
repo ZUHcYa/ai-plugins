@@ -240,6 +240,7 @@ the skill reads the most recent one and shows a dimension-by-dimension compariso
 
 - Assessments are individual .md files in `assessments/<canvas-slug>/`
 - Filename format: `YYYY-MM-DD-performance.md` or `YYYY-MM-DD-trend.md`
+- Assessment type and date are derived from the filename — no separate frontmatter fields needed
 - Each assessment is a complete snapshot — all 10 dimensions scored
 - The skill does NOT auto-score — the user makes all judgments
 - Assessments can also be created manually in any Markdown editor
@@ -254,17 +255,11 @@ Canonical template (also in CLAUDE.md):
 ```markdown
 ---
 type: assessment
-assessment_type: performance
 canvas: exploit/canvas-slug.md
 performance_score: 8
-date: YYYY-MM-DD
 ---
 
 # Performance Assessment: [Canvas Title]
-
-## Date
-
-YYYY-MM-DD
 
 ## Scores
 
@@ -299,17 +294,11 @@ YYYY-MM-DD
 ```markdown
 ---
 type: assessment
-assessment_type: trend
 canvas: exploit/canvas-slug.md
 trend_score: 2
-date: YYYY-MM-DD
 ---
 
 # Trend Assessment: [Canvas Title]
-
-## Date
-
-YYYY-MM-DD
 
 ## Scores
 

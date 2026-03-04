@@ -454,7 +454,6 @@ experiment: experiments/canvas-slug/experiment-slug.md
 insights:
   - insights/canvas-slug/insight-1.md
   - insights/canvas-slug/insight-2.md
-result: success | failure | inconclusive
 created: YYYY-MM-DD
 ---
 
@@ -493,7 +492,6 @@ insights:
   - insights/canvas-slug/insight-1.md
   - insights/canvas-slug/insight-2.md
 decision: persevere | pivot | kill
-confidence: very-low | low | moderate | high
 created: YYYY-MM-DD
 ---
 
