@@ -264,6 +264,22 @@ For business/technology research, Level 5 is often the highest available evidenc
 
 ---
 
+## Cross-Plugin Integration: vntrs
+
+Verified research reports can be consumed by the **vntrs** plugin (separate plugin, separate repo).
+The integration is unidirectional: research produces, vntrs reads — research has no dependency on vntrs.
+
+**What vntrs reads:**
+- Reports with `status: verified` from `research/` folder
+- Section `## Implications for Business Model` (used to derive Feasibility hypotheses)
+- Referenced via `source_research:` frontmatter field in vntrs hypothesis files
+
+**No action required from research users.** The standard report format already contains everything
+vntrs needs. Just ensure the `## Implications for Business Model` section is present (it is a
+required section in the report template).
+
+---
+
 ## Warning-Signal Check
 
 **Before every task, ask:**

@@ -114,3 +114,15 @@ This plugin works without Claude Code:
 5. Set `status: verified` and add `verified: YYYY-MM-DD`
 
 All files are standard Markdown — use any editor.
+
+---
+
+## Works well with
+
+### vntrs plugin
+
+The [vntrs](https://git.friedners.eu/friedrich/vntrs) plugin uses verified research reports
+as input for hypothesis generation. No configuration needed — vntrs reads the standard report
+format directly.
+
+The plugins are independent — research works fully without vntrs, and vntrs works fully without research.
