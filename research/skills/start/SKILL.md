@@ -58,7 +58,9 @@ Claude: Research Status
         Suggested Actions
         -----------------
         1. Vendor Analysis has audit ready → /research:finalize
-        2. Fitness Market Study is draft > 14 days → audit or verify manually
+        2. Fitness Market Study is draft > 14 days → /research:evaluate or audit
+        3. Start new research → /research:investigate <topic>
+        4. Answer a focused question → /research:review "question"
 ```
 
 ## What the Skill Does
@@ -91,8 +93,9 @@ Claude: Research Status
 | Condition | Suggestion |
 |-----------|------------|
 | Draft with matching `-audit.md` | "X has audit ready → /research:finalize" |
-| Draft older than 14 days | "X is draft > 14 days → audit or verify manually" |
-| No reports | "Place research reports in research/ to get started" |
+| Draft without evaluation | "X has no self-critique yet → /research:evaluate" |
+| Draft older than 14 days | "X is draft > 14 days → /research:evaluate or audit" |
+| No reports | "Start research → /research:investigate <topic>" |
 
 ## Configuration File
 

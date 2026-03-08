@@ -29,35 +29,38 @@ Claude: Created: .research/config.json
 
 ## 2. The Lifecycle
 
-### Step 1: Draft
+### Step 1: Investigate (NEW)
 
-Create (or import) a research report with `status: draft`:
+Research a topic with structured web search and source evaluation:
 
 ```
-research/machine-customers.md
----
-type: research
-title: "Machine Customers"
-status: draft
-created: 2026-02-22
----
-
-# Research Report: Machine Customers
-
-## Summary
-...
+/research:investigate machine customers B2B
 ```
 
-### Step 2: Audit
+Claude searches the web, evaluates sources with the CRAAP framework,
+and produces a draft report with cited evidence and quality grades.
+
+### Step 2: Evaluate (NEW — optional)
+
+Self-critique the draft before external audit:
+
+```
+/research:evaluate research/machine-customers-b2b.md
+```
+
+Detects logical fallacies, cognitive biases, unbacked claims.
+Fix flagged issues before proceeding.
+
+### Step 3: Audit
 
 Run an external audit in a separate AI session (e.g. Claude Opus with Extended Thinking).
 The audit prompt is in `CLAUDE.md`. Save the result as:
 
 ```
-research/machine-customers-audit.md
+research/machine-customers-b2b-audit.md
 ```
 
-### Step 3: Finalize
+### Step 4: Finalize
 
 ```
 /research:finalize
@@ -65,6 +68,16 @@ research/machine-customers-audit.md
 
 Claude applies the audit findings (RED: delete, AMBER: precise, GREEN: keep)
 and sets `status: verified`.
+
+### Alternative: Systematic Review (NEW)
+
+For focused, answerable questions, use `/research:review` instead:
+
+```
+/research:review "Does AI-driven pricing increase B2B churn?"
+```
+
+Searches multiple sources, compares findings, documents contradictions.
 
 ---
 
@@ -101,9 +114,15 @@ Claude: Research Pipeline Overview
 ## The Complete Workflow
 
 ```
-/research:start -> Draft -> Audit -> /research:finalize -> /research:start
-     |                                      |                     |
-   Setup                           Incorporate audit        Review status
+/research:start -> /research:investigate -> /research:evaluate -> Audit -> /research:finalize -> /research:start
+     |                    |                       |                  |              |                     |
+   Setup           Web research            Self-critique      External      Incorporate audit     Review status
+                   (draft report)          (optional)         audit file     (RED/AMBER/GREEN)
+```
+
+For focused questions:
+```
+/research:review "Question?" -> Standalone review document (no audit cycle)
 ```
 
 ---
@@ -113,7 +132,10 @@ Claude: Research Pipeline Overview
 | Skill | When to use |
 |-------|-------------|
 | `/research:start` | Setup (first run) or overview (after setup) |
+| `/research:investigate` | Research a topic with web search and source evaluation |
+| `/research:evaluate` | Self-critique a draft for critical thinking quality |
 | `/research:finalize` | Incorporate audit findings into a draft report |
+| `/research:review` | Systematic review of a focused research question |
 
 ---
 

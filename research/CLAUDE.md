@@ -29,8 +29,10 @@ Always add a `## [x.y.z] - YYYY-MM-DD` entry to `CHANGELOG.md` before committing
 
 | Type | Format | Example |
 |-----|--------|---------|
-| Research Report | `[slug].md` | `machine-customers-verified.md` |
+| Research Report | `[slug].md` | `machine-customers.md` |
 | Audit File | `[slug]-audit.md` | `machine-customers-audit.md` |
+| Evaluation File | `[slug]-evaluation.md` | `machine-customers-evaluation.md` |
+| Systematic Review | `[slug]-review.md` | `ai-pricing-churn-review.md` |
 
 **Rule:** NO date prefix. NO numbering. kebab-case slug only.
 
@@ -227,6 +229,41 @@ Here is the draft report to audit:
 
 ---
 
+## Source Evaluation: CRAAP Framework
+
+Used by `/research:investigate` and `/research:review` to evaluate source credibility.
+
+| Dimension | Question |
+|-----------|----------|
+| **Currency** | When was this published/updated? |
+| **Relevance** | Does this directly address the research question? |
+| **Authority** | Who published this? What are their credentials? |
+| **Accuracy** | Is it supported by evidence? Are claims verifiable? |
+| **Purpose** | Why does this exist? Is there bias? |
+
+Each dimension scores 1-5. Composite grade: A+ (23-25), A (19-22), B (15-18), C (11-14), D (7-10), F (5-6).
+Default quality threshold: grade C (score >= 11).
+
+---
+
+## Evidence Hierarchy
+
+Used to weight conflicting claims. Higher levels take precedence.
+
+| Level | Type |
+|-------|------|
+| 1 | Systematic Review / Meta-Analysis |
+| 2 | Randomized Controlled Trial |
+| 3 | Cohort / Longitudinal Study |
+| 4 | Case-Control Study |
+| 5 | Industry Report / Market Analysis |
+| 6 | Expert Opinion / Commentary |
+| 7 | Anecdotal / Single Case Study |
+
+For business/technology research, Level 5 is often the highest available evidence.
+
+---
+
 ## Warning-Signal Check
 
 **Before every task, ask:**
@@ -255,7 +292,7 @@ Here is the draft report to audit:
 
 | Element | Format | Example |
 |---------|--------|---------|
-| Skills | `/research:` prefix | `/research:start`, `/research:finalize` |
+| Skills | `/research:` prefix | `/research:start`, `/research:investigate`, `/research:evaluate`, `/research:finalize`, `/research:review` |
 | Skill files | `<skill>/SKILL.md` | `start/SKILL.md`, `finalize/SKILL.md` |
 | Configuration | `.research/` folder | `.research/config.json` |
 

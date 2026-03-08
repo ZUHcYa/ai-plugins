@@ -40,12 +40,15 @@ market analysis, technology assessment, or strategic decision-making.
 ## The Research Lifecycle
 
 ```
-Draft → Audit → Finalize → Verified
+Investigate → Evaluate → Audit → Finalize → Verified
 
-1. Create or import a draft research report (status: draft)
-2. Run an external audit (Maengelprotokoll) in a separate AI session
-3. /research:finalize incorporates audit findings
-4. Result: verified research report ready for use
+1. /research:investigate researches a topic with source evaluation (NEW)
+2. /research:evaluate self-critiques the draft for critical thinking quality (NEW)
+3. Run an external audit (Maengelprotokoll) in a separate AI session
+4. /research:finalize incorporates audit findings
+5. Result: verified research report ready for use
+
+For focused questions, use /research:review for a systematic review instead.
 ```
 
 ---
@@ -55,9 +58,21 @@ Draft → Audit → Finalize → Verified
 ### `/research:start` - Smart Entry Point
 Setup (first run) or overview (after setup). Shows all reports with status and suggested actions.
 
+### `/research:investigate` - Structured Web Research
+Conducts structured research on a topic using WebSearch. Evaluates every source with the
+CRAAP framework, maps claims to evidence, flags evidence gaps, and produces a draft report.
+
+### `/research:evaluate` - Critical Thinking Analysis
+Analyzes a draft for logical fallacies, cognitive biases, unbacked claims, and argument
+structure weaknesses (Toulmin model). Self-critique before external audit.
+
 ### `/research:finalize` - Finalize Research Report
 Incorporates a Maengelprotokoll into a draft research report. Applies strict editing protocol
 (RED: delete, AMBER: precise, GREEN: keep) and sets `status: verified`.
+
+### `/research:review` - Systematic Review Lite
+Answers a focused research question by searching multiple sources, comparing findings,
+documenting contradictions and consensus. Uses PICO decomposition and PRISMA-lite screening.
 
 ---
 
@@ -70,11 +85,16 @@ research/
 |
 |- skills/
 |   |- start/SKILL.md
+|   |- investigate/SKILL.md
+|   |- evaluate/SKILL.md
 |   |- finalize/SKILL.md
+|   |- review/SKILL.md
 |
-|- research/                    # Your research reports
-|   |- topic-analysis.md        # status: draft or verified
-|   |- topic-analysis-audit.md  # External audit file
+|- research/                           # Your research reports
+|   |- topic-analysis.md               # status: draft or verified
+|   |- topic-analysis-audit.md         # External audit file
+|   |- topic-analysis-evaluation.md    # Self-critique output
+|   |- focused-question-review.md      # Systematic review output
 |
 |- CLAUDE.md
 |- README.md

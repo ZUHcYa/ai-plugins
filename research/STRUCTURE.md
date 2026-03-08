@@ -12,7 +12,9 @@ research uses a flat folder for all reports and audits:
 <dataDir>/
 ├── machine-customers.md
 ├── machine-customers-audit.md
+├── machine-customers-evaluation.md
 ├── saas-pricing.md
+├── ai-pricing-churn-review.md
 └── ...
 ```
 
@@ -20,9 +22,11 @@ research uses a flat folder for all reports and audits:
 
 ```
 research/
-├── machine-customers.md
-├── machine-customers-audit.md
-└── saas-pricing.md
+├── machine-customers.md              # Research report (draft or verified)
+├── machine-customers-audit.md        # External audit (Maengelprotokoll)
+├── machine-customers-evaluation.md   # Self-critique (/research:evaluate output)
+├── saas-pricing.md                   # Another research report
+└── ai-pricing-churn-review.md        # Systematic review (/research:review output)
 ```
 
 ---
@@ -44,6 +48,8 @@ research/
 |------|---------|---------|
 | Research Report | `<slug>.md` | `machine-customers.md` |
 | Audit File | `<slug>-audit.md` | `machine-customers-audit.md` |
+| Evaluation File | `<slug>-evaluation.md` | `machine-customers-evaluation.md` |
+| Systematic Review | `<slug>-review.md` | `ai-pricing-churn-review.md` |
 
 ---
 
@@ -137,4 +143,58 @@ summary:
 
 ---
 
-**Version:** 1.0.0
+## Evaluation File Format
+
+```yaml
+---
+type: research-evaluation
+target: "research/<slug>.md"
+evaluator: "Claude / research:evaluate"
+evaluation_date: 2026-03-08
+scores:
+  logical_soundness: 6
+  bias_awareness: 4
+  evidence_quality: 5
+  argument_structure: 3
+  overall: 4.5
+---
+
+# Evaluation: [Title]
+
+## Logical Fallacies
+## Bias Indicators
+## Unbacked Claims
+## Argument Structure (Toulmin)
+## Summary
+```
+
+---
+
+## Systematic Review Format
+
+```yaml
+---
+type: research-review
+question: "Does X cause Y?"
+status: complete
+created: 2026-03-08
+confidence: moderate
+sources_included: 7
+sources_screened: 14
+sources_identified: 18
+---
+
+# Systematic Review: [Question]
+
+## Research Question
+## Search Strategy
+## Included Sources
+## Excluded Sources
+## Synthesis (Consensus / Contradictions / Evidence Gaps)
+## Answer
+## Bibliography
+```
+
+---
+
+**Version:** 1.1.0

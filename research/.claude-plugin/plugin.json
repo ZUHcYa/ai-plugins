@@ -1,11 +1,11 @@
 {
-  "version": "1.0.1",
+  "version": "1.1.0",
   "name": "research",
-  "description": "Structured research pipeline - draft, audit, and verify research reports",
+  "description": "Structured research pipeline - investigate, evaluate, audit, and verify research reports with critical thinking frameworks",
   "author": {
     "name": "zuhcya",
     "url": "https://github.com/ZUHcYa"
   },
   "repository": "https://github.com/ZUHcYa/ai-plugins",
-  "keywords": ["research", "audit", "verification", "maengelprotokoll", "deep-research"]
+  "keywords": ["research", "audit", "verification", "maengelprotokoll", "deep-research", "critical-thinking", "CRAAP", "systematic-review", "source-evaluation"]
 }
