@@ -6,27 +6,28 @@ A daily journal for reflections, thoughts, and learnings.
 
 - **Writing** timestamped entries with optional topic tags
 - **Tracking** your journaling streak and habits
-- **Managing** tasks inline or referencing your existing task system
 - **Reviewing** recent entries and statistics at a glance
 
 ## Quick Start
 
 ```
-/journal:start        Setup on first run, overview afterwards
-/journal              Add a journal entry (interactive or one-shot)
+/journal:start                          Setup on first run, overview afterwards
+/journal:write                          Interactive entry (asks for topic + content)
+/journal:write Had a great meeting      Quick-write without prompts
+/journal:write #standup API deployed    Quick-write with topic tag
 ```
 
 ## Skills
 
 | Skill | Purpose |
 |-------|---------|
-| `/journal:start` | Smart entry point - setup on first run, overview afterwards |
-| `/journal` | Add journal entries - interactive or one-shot mode |
+| `/journal:start` | Setup (first run) or overview (after setup) |
+| `/journal:write` | Add entries — interactive or quick-write |
 
-## State
+## File Structure
 
-Config lives in `.journal/config.json`. Journal entries are stored as individual Markdown files
-(one per day) with YAML frontmatter — readable in any editor, no Claude Code required.
+Config lives in `.journal/config.json` (single field: `dataDir`).
+Journal entries are stored as individual Markdown files — one per day, flat folder:
 
 ```
 entries/
@@ -35,7 +36,39 @@ entries/
   2026-02-19.md
 ```
 
-File format: `YYYY-MM-DD.md` with timestamped entries inside.
+### Day File Format
+
+```yaml
+---
+date: "2026-02-21"
+tags: ["deep-work", "reflection"]
+---
+
+# 2026-02-21
+
+### 14:30 — Deep Work
+
+Entry content here...
+
+### 18:00
+
+Quick reflection without a topic tag.
+```
+
+- Frontmatter: `date` (required), `tags` (auto-collected)
+- Entries: `### HH:MM — Topic Tag` headings, appended chronologically
+- Filename: always `YYYY-MM-DD.md`
+
+## Manual Workflow (No Skills)
+
+journal works without Claude Code:
+
+1. Create folder: `entries/`
+2. Create file: `entries/2026-02-21.md`
+3. Add frontmatter: `date`, `tags`
+4. Add entries with `### HH:MM — Topic` heading pattern
+
+All files are standard Markdown — use any editor (Obsidian, VS Code, Notion, etc.).
 
 ## Automatic Hooks
 
@@ -47,6 +80,4 @@ The hook is advisory only — it informs, never blocks.
 
 ## Documentation
 
-- [QUICKSTART.md](QUICKSTART.md) - 5-minute getting started guide
-- [STRUCTURE.md](STRUCTURE.md) - Folder structure and file format reference
 - [CHANGELOG.md](CHANGELOG.md) - Version history

@@ -4,6 +4,33 @@ All notable changes to journal will be documented in this file.
 
 ---
 
+## [0.3.0] - 2026-03-14
+
+### Changed
+
+- **BREAKING:** Unified `/journal` command and `/journal:write` skill into single `/journal:write` skill
+  - With args: quick-write (no prompts) — replaces old `/journal` command
+  - Without args: interactive mode (topic + content) — replaces old `/journal:write` interactive
+- **BREAKING:** Simplified config to single field `dataDir` — removed `filePattern`, `taskManagement`, `taskSystemRef`
+- **BREAKING:** Reduced frontmatter to `date` + `tags` — removed `entries`, `tasks_open`, `tasks_done`, `created`
+- Entries are now counted by `### HH:MM` headings instead of frontmatter counter
+- Filename pattern hardcoded to `YYYY-MM-DD.md` (no longer configurable)
+- `/journal:start` setup reduced to 1 question (data directory only)
+
+### Removed
+
+- `/journal` command (`commands/journal.md`) — replaced by `/journal:write` with args
+- `QUICKSTART.md` — content merged into README.md
+- `STRUCTURE.md` — content merged into README.md
+- Task management system (inline checkboxes and external task references)
+
+### Compatibility
+
+- Existing day files with extra frontmatter fields (`entries`, `tasks_open`, etc.) continue to work — extra fields are ignored, not deleted
+- Existing config files with extra fields continue to work — only `dataDir` is read
+
+---
+
 ## [0.2.1] - 2026-02-27
 
 ### Added

@@ -5,22 +5,11 @@
 Persoenliches Journal fuer taegliche Reflexionen, Gedanken und Learnings.
 Eine Markdown-Datei pro Tag, Eintraege mit Timestamp angehaengt. Einfach, minimal, tool-agnostisch.
 
-YAML-Frontmatter ist die Single Source of Truth fuer strukturierte Daten (Anzahl Eintraege, Tags, Tasks).
-Der Markdown-Body enthaelt die eigentlichen Journal-Eintraege in chronologischer Reihenfolge.
-
 ### Strikte Regeln
 
 - **Nur Entwicklungs-Support** fuer journal (Code-Gen, Docs, Automation)
 - **Keine User-Features** die Endnutzer direkt nutzen wuerden
 - **Keine automatischen Deployments** ohne Review
-
-### Warnsignal-Check
-
-**Vor jeder Aufgabe fragen:**
-1. Hilft dies bei der **Entwicklung von journal**?
-2. Ist es **kein User-Feature** fuer Endnutzer?
-
-**Bei Zweifeln:** SOFORT den Entwickler fragen!
 
 ---
 
@@ -46,16 +35,13 @@ Eine Datei: `.journal/config.json`
 
 ```json
 {
-  "dataDir": "./entries",
-  "filePattern": "YYYY-MM-DD",
-  "taskManagement": "inline",
-  "taskSystemRef": null
+  "dataDir": "./entries"
 }
 ```
 
-**Setup:** `/journal:start` fragt nach `dataDir`, `filePattern` und `taskManagement`.
+**Setup:** `/journal:start` fragt nach `dataDir`.
 
-### Datenverzeichnis (nutzerkonfiguriert)
+### Datenverzeichnis
 
 ```
 <dataDir>/
@@ -64,28 +50,24 @@ Eine Datei: `.journal/config.json`
   2026-02-19.md
 ```
 
-Ein flacher Ordner, eine Datei pro Tag. Einfach und greppbar.
+Ein flacher Ordner, eine Datei pro Tag (`YYYY-MM-DD.md`).
 
 ### Tages-Datei Format
 
-Frontmatter = strukturierte Metadaten. Body = Eintraege mit Timestamp.
-
 Frontmatter-Felder:
 - `date` (YYYY-MM-DD, required) — Tag den die Datei repraesentiert
-- `entries` (number, auto) — Anzahl Eintraege in dieser Datei
 - `tags` (array, auto) — Gesammelte Topic-Tags aller Eintraege
-- `tasks_open` (number, auto) — Offene Tasks (nur bei `taskManagement: "inline"`)
-- `tasks_done` (number, auto) — Erledigte Tasks (nur bei `taskManagement: "inline"`)
-- `created` (YYYY-MM-DD, auto) — Erstellungsdatum
 
-### Eintrag-Format (in der Tages-Datei)
+Eintraege werden durch `### HH:MM` Headings gezaehlt (nicht durch Frontmatter).
+Bestehende Dateien mit zusaetzlichen Frontmatter-Feldern (`entries`, `tasks_open`, etc.)
+bleiben kompatibel — extra Felder ignorieren, nicht loeschen.
+
+### Eintrag-Format
 
 ```markdown
 ### HH:MM — Topic Tag
 
 Eintrag-Inhalt hier. Freitext, mehrere Absaetze erlaubt.
-
-- [ ] Optionale Aufgabe (nur bei inline Task-Management)
 ```
 
 Ohne Topic-Tag: nur `### HH:MM`.
@@ -96,61 +78,21 @@ Ohne Topic-Tag: nur `### HH:MM`.
 
 | Element | Format | Beispiel |
 |---------|--------|----------|
-| Skills | `/journal:` Prefix | `/journal:start`, `/journal` |
-| Skill-Dateien | `skills/<skill>/SKILL.md` | `skills/start/SKILL.md` |
+| Skills | `/journal:` Prefix | `/journal:start`, `/journal:write` |
 | Konfiguration | `.journal/` Ordner | `.journal/config.json` |
 | Tages-Dateien | `YYYY-MM-DD.md` | `2026-02-21.md` |
-
-### Konfliktvermeidung
-
-- State-Dateien in `.journal/` (versteckter Ordner, gitignored)
-- Klare Abgrenzung durch `/journal:` Namespace
-- Datenverzeichnis frei konfigurierbar
 
 ---
 
 ## Markdown-Generierung
 
-**WICHTIG:** Nutzer lesen Journal-Dateien in Markdown-Viewern (Obsidian, VS Code, Notion)
-UND Claude Code liest die Inhalte.
-
-**Zielgruppe:**
-- **Primaer:** Nutzer (Mensch mit Markdown-Viewer)
-- **Sekundaer:** Claude Code / KI (muss YAML-Frontmatter und Eintraege parsen koennen)
-
-Alle generierten Dateien muessen in beiden Kontexten gut funktionieren.
+Nutzer lesen Journal-Dateien in Markdown-Viewern (Obsidian, VS Code, Notion).
+Alle generierten Dateien muessen in beiden Kontexten (Mensch + KI) gut funktionieren.
 
 ---
 
-## Emoji-Nutzung
+## Tool-Agnostisch
 
-**Regel:** Emojis nur wenn sie echten Mehrwert bieten — nicht als Dekoration.
-
-### Erlaubt
-- Status-Indikatoren wo Text allein unklar waere
-
-### Verboten
-- Dekorative Emojis ohne Funktion
-- Mehrere Emojis pro Zeile/Ueberschrift
-- Emojis in Fliesstext
-- "AI-Slop" Style
-
----
-
-## Tool-Agnostisch: Manueller Workflow immer moeglich
-
-**Kernprinzip:** Der Nutzer muss immer in der Lage sein, das Journal **manuell ohne Skills** zu fuehren.
-Das gewaehlte Tool (Obsidian, VS Code, etc.) darf keine Rolle spielen.
-
-**Regeln:**
-- Keine Features bauen, die nur mit spezifischen Tools funktionieren
-- Alle Dateien sind reines Markdown mit Standard-Frontmatter
-- Skills sind Helfer, nicht Voraussetzung
-- Nutzer koennen Dateien manuell erstellen und bearbeiten
-- Ordnerstruktur und Dateiformat sind selbsterklaerend
-
-**Verboten:**
-- Obsidian-spezifische Plugins oder Dataview-Queries als Kernfunktion
-- Proprietaere Dateiformate
-- Features, die nur mit Claude Code funktionieren
-- Abhaengigkeiten von externen APIs oder Services
+Der Nutzer muss das Journal manuell ohne Skills fuehren koennen.
+Skills sind Helfer, nicht Voraussetzung. Keine proprietaeren Formate,
+keine Features die nur mit spezifischen Tools funktionieren.
