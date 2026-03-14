@@ -7,8 +7,9 @@ description: "Extract and prioritize hypotheses from a BMC or verified research"
 
 ## Purpose
 
-Extracts testable hypotheses from a Business Model Canvas and categorizes them
-into Desirability, Feasibility, and Viability (Strategyzer methodology).
+Extracts testable hypotheses from a Canvas and categorizes them.
+Default categories for BMC canvases: Desirability, Feasibility, Viability.
+For other canvas types, categories are derived from the canvas `##` headings.
 **Only applicable to EXPLORE canvases.** EXPLOIT canvases do not use hypotheses.
 
 Two modes:
@@ -18,7 +19,7 @@ Two modes:
 ## When to Use
 
 - After setting an EXPLORE canvas to `status: testing`
-- When you want to systematically identify assumptions in your BMC
+- When you want to systematically identify assumptions in your canvas
 - When adding new hypotheses to an existing EXPLORE canvas
 - When a verified research report has findings relevant to an EXPLORE canvas
 - **NOT for EXPLOIT canvases** — these have their own mechanisms (Performance & Trend Assessments)
@@ -117,11 +118,10 @@ This ensures the user consciously reviews each assumption rather than scanning a
 
 1. Lists canvases in `explore/`
 2. User selects canvas and mode [B]
-3. Reads BMC content and identifies implicit assumptions per dimension
-4. Categorizes each assumption:
-   - **Desirability** (Value Proposition, Customer Segments, Channels, Customer Relationships)
-   - **Feasibility** (Key Resources, Key Activities, Key Partnerships)
-   - **Viability** (Revenue Streams, Cost Structure)
+3. Reads canvas content and identifies implicit assumptions per section
+4. Categorizes each assumption based on canvas headings:
+   - For BMC canvases: **Desirability** (Value Proposition, Customer Segments, Channels, Customer Relationships), **Feasibility** (Key Resources, Key Activities, Key Partnerships), **Viability** (Revenue Streams, Cost Structure)
+   - For other canvas types: categories derived from `##` headings
 5. Proposes importance level (high/medium/low) based on how critical the assumption is
 6. Sets initial confidence level (empty — not assessed, no experiments yet)
 7. Presents each hypothesis ONE AT A TIME — waits for user confirmation (`Y/n/edit`) before
@@ -158,7 +158,7 @@ User: 1
 Claude: explore/ai-bookkeeping.md already has 3 hypotheses.
 
         Options:
-        [A] Add more hypotheses (analyze BMC for uncovered assumptions)
+        [A] Add more hypotheses (analyze canvas for uncovered assumptions)
         [F] From Research (test verified research findings against this canvas)
         [V] View existing hypotheses
         [R] Re-analyze entire BMC (existing hypotheses preserved)
@@ -209,13 +209,17 @@ Claude: Saved: explore/ai-bookkeeping/hypotheses/machine-customers-purchasing.md
 
 ---
 
-## Category-to-BMC-Field Mapping
+## Default Category Mapping (BMC Canvases)
 
-| Category | BMC Fields | Core Question |
+For BMC canvases, the default category-to-field mapping is:
+
+| Category | Canvas Fields | Core Question |
 |----------|-----------|---------------|
 | **Desirability** | Value Proposition, Customer Segments, Channels, Customer Relationships | Do customers want this? |
 | **Feasibility** | Key Resources, Key Activities, Key Partnerships | Can we build/deliver this? |
 | **Viability** | Revenue Streams, Cost Structure | Is this financially sustainable? |
+
+For non-BMC canvases, suggest categories based on the canvas `##` headings.
 
 ## Prioritization
 
@@ -244,7 +248,7 @@ MEDIUM/LOW IMPORTANCE (test later):
 Claude: explore/ai-bookkeeping.md already has 3 hypotheses.
 
         Options:
-        [A] Add more hypotheses (analyze BMC for uncovered assumptions)
+        [A] Add more hypotheses (analyze canvas for uncovered assumptions)
         [F] From Research (test verified research findings against this canvas)
         [V] View existing hypotheses
         [R] Re-analyze entire BMC (existing hypotheses preserved)
@@ -262,10 +266,10 @@ Claude: No verified research reports found in research/.
 ### Canvas has no content
 
 ```
-Claude: explore/ai-bookkeeping.md has empty BMC sections.
+Claude: explore/ai-bookkeeping.md has no content sections.
         Cannot extract hypotheses from an empty canvas.
 
-        Fill in your BMC sections first, then run /knvs:hypothesize again.
+        Fill in your canvas sections first, then run /knvs:hypothesize again.
 ```
 
 ## Notes
@@ -286,8 +290,8 @@ Canonical template (also in CLAUDE.md):
 type: hypothesis
 title: "[Testable statement]"
 canvas: canvas-slug
-category: desirability|feasibility|viability
-bmc_fields:
+category: desirability
+canvas_fields:
   - Value Proposition
   - Customer Segments
 confidence:

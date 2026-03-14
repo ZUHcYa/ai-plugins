@@ -10,15 +10,15 @@ These folders contain your business model canvases, each in its own self-contain
 
 | Folder | Purpose | Status Values |
 |--------|---------|---------------|
-| `explore/` | BMCs being developed and validated | `draft`, `testing`, `validated` |
+| `explore/` | Canvases being developed and validated | `draft`, `testing`, `validated` |
 | `exploit/` | Validated business models being scaled | `scaling` |
-| `archive/` | Killed or pivoted canvases (reference) | — |
+| `archive/` | Stopped or pivoted canvases (reference) | — |
 
 **Lifecycle:** `/knvs:ideate` → `explore/<slug>/` (draft) → set `status: testing` → validate → `/knvs:exploit` → `exploit/<slug>/`
 
 **Pivot:** `explore/<slug>/` → `archive/<slug>/` (old) + `explore/<new-slug>/` (new variant as draft)
 
-**Kill:** `explore/<slug>/` → `archive/<slug>/` (one operation)
+**Stop:** `explore/<slug>/` → `archive/<slug>/` (one operation)
 
 ---
 
@@ -28,7 +28,7 @@ Each canvas has its own folder containing all related data. Subfolders are creat
 
 | Subfolder | Purpose | Created by |
 |-----------|---------|------------|
-| `hypotheses/` | Testable assumptions from BMC | `/knvs:hypothesize` |
+| `hypotheses/` | Testable assumptions from canvas | `/knvs:hypothesize` |
 | `experiments/` | Experiment designs and results | `/knvs:experiment`, `/knvs:capture` |
 | `insights/` | Key learnings from experiments | `/knvs:learn` |
 | `learning-cards/` | Learning Cards — Experiment + Hypothesis Cards | `/knvs:card` |
@@ -58,7 +58,7 @@ Each canvas has its own folder containing all related data. Subfolders are creat
 <targetPath>/
 ├── .knvs/
 │   └── config.json              # Configuration
-├── explore/                     # Your BMCs (draft + testing)
+├── explore/                     # Your Canvases (draft + testing)
 │   └── <canvas-slug>/
 │       ├── <canvas-slug>.md     # Canvas file
 │       ├── hypotheses/          # Hypotheses for this canvas
@@ -73,7 +73,7 @@ Each canvas has its own folder containing all related data. Subfolders are creat
 │       ├── insights/            # Carried over
 │       ├── learning-cards/      # Carried over
 │       └── assessments/         # Performance & Trend assessments
-├── archive/                     # Killed/pivoted canvases
+├── archive/                     # Stoped/pivoted canvases
 │   └── <canvas-slug>/          # Everything preserved as-is
 ├── skills/
 │   ├── start/SKILL.md
@@ -87,7 +87,6 @@ Each canvas has its own folder containing all related data. Subfolders are creat
 │   └── assess/SKILL.md
 ├── CLAUDE.md
 ├── README.md
-├── QUICKSTART.md
 ├── STRUCTURE.md
 └── CHANGELOG.md
 ```
@@ -111,4 +110,4 @@ Each canvas has its own folder containing all related data. Subfolders are creat
 
 ---
 
-**Version:** 5.0.0
+**Version:** 7.0.0

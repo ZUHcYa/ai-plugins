@@ -1,53 +1,50 @@
 # knvs: Plugin-Specific Rules
 
-## Design-Boundary: Strategyzer-Konzept als Leitplanke
+## Design-Boundary: Innovation Loop als Leitplanke
 
 **Harte Regel fuer alle Aenderungen am KNVS-Plugin:**
 
-Jedes neue Feature, jeder neue Skill, jede Erweiterung muss gegen den Strategyzer-Loop geprueft werden, bevor sie umgesetzt wird:
+Jedes neue Feature, jeder neue Skill, jede Erweiterung muss gegen den Innovation Loop geprueft werden:
 
 ```
-Ideate (BMC) → Hypothesize (D/F/V) → Prioritize (Confidence × Importance)
-→ Experiment → Learn (Insights) → Decide (Persevere / Pivot / Kill)
+Ideate → Hypothesize → Prioritize → Test → Learn → Decide
 ```
 
 **Prueffragen bei neuen Features:**
 1. Welchem Schritt im Loop gehoert dieses Feature?
-2. Ist es in "Testing Business Ideas" oder "The Invincible Company" verankert?
-3. Macht es den Loop klarer oder komplexer?
-4. Koennte es den Loop verzerren oder einen Schritt ueberproportional aufblaehen?
+2. Macht es den Loop klarer oder komplexer?
+3. Koennte es den Loop verzerren oder einen Schritt ueberproportional aufblaehen?
 
 **Wenn ein Feature keinem Loop-Schritt zugeordnet werden kann → nicht umsetzen.**
-**Wenn ein Feature den Loop verkompliziert statt vereinfacht → hinterfragen.**
 
 ---
 
 ## Vision
 
-**knvs** is a template for Innovation Managers based on the Strategyzer "Testing Business Ideas" and "The Invincible Company" process.
+**knvs** is a template for hypothesis-driven business model validation.
 
-### The Strategyzer Loop (EXPLORE only)
+### The Innovation Loop (EXPLORE only)
 
 ```
 IDEATE → HYPOTHESIZE → PRIORITIZE → EXPERIMENT → LEARN → CARD (DECIDE)
-  BMC      D/F/V      Confidence ×   Run tests    Extract   Learning Card
-                      Importance                  Insights  Persevere/Pivot/Kill
+Canvas    Extract        Confidence ×   Run tests    Extract   Learning Card
+          hypotheses     Importance                  Insights  Continue/Pivot/Stop
 ```
 
-**This loop applies exclusively to EXPLORE canvases.** EXPLOIT canvases do not use hypotheses, experiments, insights, or Persevere/Pivot/Kill decisions — they have their own mechanisms (Performance & Trend Assessments via `/knvs:assess`).
+**This loop applies exclusively to EXPLORE canvases.** EXPLOIT canvases do not use hypotheses, experiments, insights, or Continue/Pivot/Stop decisions — they have their own mechanisms (Performance & Trend Assessments via `/knvs:assess`).
 
-**DECIDE is embedded in the Learning Card.** The Hypothesis Learning Card (`/knvs:card [H]`) concludes the testing cycle of one hypothesis and includes the strategic decision (Persevere/Pivot/Kill) with its consequences (archive, pivot).
+**DECIDE is embedded in the Learning Card.** The Hypothesis Learning Card (`/knvs:card [H]`) concludes the testing cycle of one hypothesis and includes the strategic decision (Continue/Pivot/Stop).
 
-**Phases (The Invincible Company):**
-- **EXPLORE** — Create Business Model Canvas (draft), then validate hypotheses through experiments. The full Strategyzer Loop applies here.
+**Phases:**
+- **EXPLORE** — Create Canvas (draft), then validate hypotheses through experiments. The full Innovation Loop applies here.
 - **EXPLOIT** — Validated, running business models. No hypothesis loop — own mechanisms (Performance & Trend Assessments via `/knvs:assess`).
 
-New canvases start as `status: draft` in `explore/`. When the BMC is complete, the user sets `status: testing` to begin the validation loop (Hypothesize → Experiment → Learn → Decide). This validation loop is exclusive to the Explore phase.
+New canvases start as `status: draft` in `explore/`. When the canvas is complete, the user sets `status: testing` to begin the validation loop. This validation loop is exclusive to the Explore phase.
 
 ### Strict Rules
 
 - **Development support only** for knvs (code gen, docs, tests, automation)
-- **No user features** that Innovation Managers would use directly
+- **No user features** that end users would use directly
 - **No automatic deployments** without review
 
 ### Versioning
@@ -63,18 +60,6 @@ Always add a `## [x.y.z] - YYYY-MM-DD` entry to `CHANGELOG.md` before committing
 
 ---
 
-## Markdown Generation
-
-**IMPORTANT:** Innovation Managers use Markdown viewers (Obsidian, Notion, VS Code) AND Claude Code reads the contents.
-
-**Target audience:**
-- **Primary:** Innovation Managers (humans with a Markdown viewer)
-- **Secondary:** Claude Code / AI (must be able to parse the contents)
-
-All generated files must work well in both contexts.
-
----
-
 ## File Naming Conventions
 
 | Type | Format | Example |
@@ -83,93 +68,76 @@ All generated files must work well in both contexts.
 | Hypothesis | `[slug].md` | `customers-will-pay-monthly.md` |
 | Experiment | `[slug].md` | `pricing-survey-freelancers.md` |
 | Insight | `[slug].md` | `freelancers-prefer-annual.md` |
-| Learning Card (experiment) | `[experiment-slug].md` | `pricing-survey-freelancers.md` |
-| Learning Card (hypothesis) | `[hypothesis-slug].md` | `customers-will-pay-monthly.md` |
+| Learning Card | `[slug].md` | `customers-will-pay-monthly.md` |
 
 **Rule:** NO date prefix. NO numbering. kebab-case slug only.
-CORRECT: `ai-bookkeeping-app.md` — WRONG: `20260220-001-ai-bookkeeping-app.md`
 
 ---
 
-## Business Model Canvas: Required Fields
+## Canvas: Structure
 
-Every Canvas MUST contain these 9 core fields (Osterwalder/Pigneur), as `##` headings:
+### Convention over Configuration
 
-- **Value Proposition** - What value do we deliver? What problem do we solve?
-- **Customer Segments** - For whom are we creating value?
-- **Channels** - How do we reach our customers?
-- **Customer Relationships** - What relationship does each segment expect?
-- **Revenue Streams** - For what are customers willing to pay?
-- **Key Resources** - What resources does our value proposition require?
-- **Key Activities** - What activities does our value proposition require?
-- **Key Partnerships** - Who are our most important partners and suppliers?
-- **Cost Structure** - What are the most important costs?
+The canvas file describes itself. The `##` headings ARE the schema. Skills read
+existing headings instead of validating against a hardcoded list.
 
-**Missing fields = invalid Canvas.** `/knvs:start` checks for this (Health Checks).
-**No callouts on Canvas files.** Callouts (`[!note]`, `[!warning]`, etc.) are not part of the BMC spec. Canvas content = YAML frontmatter + 9 BMC headings + optional sections (Decisions, Notes, Next Steps) + Strategyzer-Footer.
+A canvas MUST contain **at least 1 `##` content section.** BMC (Business Model Canvas)
+with 9 fields is the default template, but not the only option.
+
+### Default BMC Template (9 fields)
+
+The default canvas uses the Osterwalder/Pigneur BMC:
+Value Proposition, Customer Segments, Channels, Customer Relationships,
+Revenue Streams, Key Resources, Key Activities, Key Partnerships, Cost Structure.
+
+For alternative canvas types, adapt `##` headings to your methodology.
+
+### Frontmatter
+
+- `type: canvas` (required; `bmc` accepted for backward compatibility)
+- `canvas_type: bmc` (optional; specifies which canvas methodology is used)
+- `status` (draft | testing | validated | scaling)
+- `risk` (high | moderate | low)
+- `revenue` (high | moderate | low, user-set)
+- `created`, `updated` (YYYY-MM-DD)
+- `pivot_from` (optional, slug only)
 
 ### Status Values
 
 | Status | Folder | Description |
 |--------|--------|-------------|
-| `draft` | `explore/` | BMC being filled out, not yet in validation |
+| `draft` | `explore/` | Canvas being filled out, not yet in validation |
 | `testing` | `explore/` | Actively validating hypotheses through experiments |
 | `validated` | `explore/` | All critical hypotheses validated, ready for EXPLOIT |
-| `scaling` | `exploit/` | Validated business model being scaled |
-
-### Phase-Specific Extensions
-
-- **Draft (explore/):** Frontmatter `type: bmc`, `status: draft`, `risk`, `revenue`, `created`, `updated`. Optional: `pivot_from`. Sections: Decisions, Notes, Next Steps, Footer
-- **Testing (explore/):** Same fields. `risk` updated by `/knvs:learn` based on hypothesis validation. Sections: Decisions, Next Steps, Footer
-- **Scaling (exploit/):** Frontmatter `type: bmc`, additionally `next_assessment`, `performance_score`, `trend_score`, `last_assessment`. `risk` updated by `/knvs:assess`. Sections: Assessments, Decisions, Next Steps, Footer
-
-Canonical templates for each phase are in the respective `skills/*/SKILL.md` under `## Canvas Template`.
+| `scaling` | `exploit/` | Validated model being scaled |
 
 ### Risk & Revenue: Unified Fields
 
-`risk` and `revenue` are unified frontmatter fields present in ALL canvases (EXPLORE and EXPLOIT).
+`risk` and `revenue` are unified frontmatter fields present in ALL canvases.
 They use the same 3-level scale in both phases, enabling portfolio-level comparison.
 
-#### `risk` — derived, 3-level
-
-| Value | Meaning |
-|-------|---------|
-| `high` | High risk — significant uncertainty or threat |
-| `moderate` | Mixed signals — some areas validated or stable, others not |
-| `low` | Low risk — well-validated or stable business model |
-
-**EXPLORE derivation** (updated by `/knvs:learn` after hypothesis changes):
+**EXPLORE `risk` derivation** (updated by `/knvs:learn`):
 - `high`: Status is `draft`, OR any `importance: high` hypothesis is NOT validated
-- `moderate`: All `importance: high` hypotheses validated, but any `importance: medium` hypothesis is NOT validated
+- `moderate`: All `importance: high` validated, some `importance: medium` NOT validated
 - `low`: All `importance: high` and `importance: medium` hypotheses validated
 
-**EXPLOIT derivation** (updated by `/knvs:assess` after assessment):
+**EXPLOIT `risk` derivation** (updated by `/knvs:assess`):
 - `high`: `performance_score < 0` AND `trend_score < 0`, OR no assessment exists
-- `moderate`: one score positive, one negative (or one still empty)
+- `moderate`: one score positive, one negative
 - `low`: `performance_score >= 0` AND `trend_score >= 0`
 
-**Manual override:** Users can set `risk` directly in any Markdown editor (tool-agnostic).
-
-#### `revenue` — user-set, 3-level
-
-| Value | Meaning |
-|-------|---------|
-| `high` | Transformative or significant revenue potential |
-| `moderate` | Meaningful addition to portfolio |
-| `low` | Incremental improvement |
-
-User-set in both phases. Skills prompt at key moments:
-- `/knvs:ideate`: optional initial estimate when creating canvas
-- `/knvs:exploit`: carried over from EXPLORE canvas (not dropped at transition)
+Canonical canvas templates are in the respective `skills/*/SKILL.md`.
 
 ---
 
 ## Hypothesis: Structure
 
-**Hypotheses apply exclusively to EXPLORE canvases.** EXPLOIT canvases do not use hypotheses — they have their own mechanisms.
+**Hypotheses apply exclusively to EXPLORE canvases.**
 
-Hypotheses are testable assumptions extracted from a Business Model Canvas.
-Each hypothesis belongs to one of three categories (Strategyzer):
+Hypotheses are testable assumptions extracted from a canvas. Each hypothesis
+has a **category** — free-text, suggested based on canvas headings.
+
+Default category suggestions for BMC canvases:
 
 | Category | BMC Fields | Core Question |
 |----------|-----------|---------------|
@@ -177,100 +145,40 @@ Each hypothesis belongs to one of three categories (Strategyzer):
 | **Feasibility** | Key Resources, Key Activities, Key Partnerships | Can we build/deliver this? |
 | **Viability** | Revenue Streams, Cost Structure | Is this financially sustainable? |
 
-### Confidence Level (Strategyzer 4-Stufen-Modell)
+For non-BMC canvases, categories are derived from the canvas `##` headings.
 
-Confidence reflects how confident you should be in a hypothesis based on experimental evidence.
-It is derived from the number of completed experiments and their evidence strength.
+### Confidence Level (3 levels)
 
-| Value | Strategyzer Name | Criteria |
-|-------|-----------------|----------|
-| *(empty)* | Not assessed | No experiments completed yet |
-| `very-low` | Not confident at all | Only one experiment with weak evidence (e.g. interview, survey) |
-| `low` | Not Really Confident | Multiple experiments, but all produce weak evidence (Say-data only). People might behave differently in reality |
-| `moderate` | Somewhat Confident | Several experiments with strong evidence, OR a particularly strong call-to-action experiment |
-| `high` | Very Confident | Several experiments, at least one call-to-action test with very strong evidence |
+| Value | Criteria |
+|-------|----------|
+| *(empty)* | No experiments completed yet |
+| `low` | Few experiments or weak evidence only |
+| `moderate` | Multiple experiments with some strong evidence |
+| `high` | Multiple experiments, at least one with very strong evidence |
 
-**Experiment categories for confidence assessment:**
+**Backward compatibility:** `very-low` is mapped to `low` when reading.
 
-| Category | Experiment Types | Evidence Type |
-|----------|-----------------|---------------|
-| **Discovery (Say)** | Customer Interview, Online Survey, Data Analysis, Paper Prototype | What people say — opinions, stated preferences |
-| **Validation (Do/CTA)** | Concierge MVP, Wizard of Oz, Single Feature MVP, Pre-Sale, Crowdfunding | What people do — actual behavior, commitment |
-| **Borderline** | Landing Page / Smoke Test | Weak if interest only, strong if sign-ups/commits |
-
-Confidence is updated by `/knvs:learn` after experiment completion. The skill recommends a level based on all completed experiments for the hypothesis — the user confirms or overrides.
-
-### Prioritization (2x2 Matrix via Frontmatter)
-
-Hypotheses are prioritized by two dimensions:
+### Prioritization
 
 | Field | Values | Meaning |
 |-------|--------|---------|
-| `confidence` | *(empty)* / very-low / low / moderate / high | How confident are we based on experiments? |
-| `importance` | low / medium / high | How critical is this for the business model? |
+| `confidence` | *(empty)* / low / moderate / high | How confident are we? |
+| `importance` | low / medium / high | How critical for the model? |
 
 **Priority rule:** Test hypotheses with `importance: high` + empty `confidence` first.
 
 ### Required Fields (Frontmatter)
 
 - `type: hypothesis`
-- `title` (testable statement)
-- `canvas` (canvas slug, e.g. `my-canvas`)
-- `category` (desirability | feasibility | viability)
-- `bmc_fields` (array of affected BMC fields, canonical English names)
-- `confidence` (*(empty)* | very-low | low | moderate | high)
-- `importance` (low | medium | high)
-- `status` (open | testing | validated | invalidated)
-- `created` (YYYY-MM-DD)
-- `updated` (YYYY-MM-DD)
-- `source_research` (optional, path to verified research report — only for hypotheses derived from external research)
+- `title`, `canvas` (slug), `category` (free-text)
+- `canvas_fields` (array; `bmc_fields` accepted for backward compatibility)
+- `confidence`, `importance`, `status` (open | testing | validated | invalidated)
+- `created`, `updated`
+- `source_research` (optional)
 
 ### Required Sections
 
-- Claim (testable statement with context)
-- Context (why this matters, which BMC dimensions are affected)
-- Evidence (summary of evidence gathered, updated after experiments)
-- Related Experiments (links to experiment files)
-
-### Hypothesis Template
-
-```markdown
----
-type: hypothesis
-title: "Customers will pay EUR 15-30/month for automated bookkeeping"
-canvas: ai-bookkeeping
-category: viability
-bmc_fields:
-  - Revenue Streams
-  - Customer Segments
-confidence:
-importance: high
-status: open
-created: YYYY-MM-DD
-updated: YYYY-MM-DD
----
-
-# Hypothesis: Customers will pay EUR 15-30/month
-
-## Claim
-
-Freelancers in Germany are willing to pay EUR 15-30/month for an AI-powered
-bookkeeping solution that automates receipt categorization and tax preparation.
-
-## Context
-
-Revenue Streams in the BMC assume a subscription model at this price point.
-If freelancers are not willing to pay this amount, the entire revenue model
-needs rethinking.
-
-## Evidence
-
-No evidence yet. Requires pricing experiment.
-
-## Related Experiments
-
-(none yet)
-```
+Claim, Context, Evidence, Related Experiments.
 
 Canonical template is in `skills/hypothesize/SKILL.md`.
 
@@ -278,82 +186,22 @@ Canonical template is in `skills/hypothesize/SKILL.md`.
 
 ## Experiment: Structure
 
-Experiments test hypotheses through structured methods. The plugin offers predefined
-experiment types from "Testing Business Ideas" and allows custom types.
-
-### Predefined Experiment Types
-
-| Category | Types |
-|----------|-------|
-| **Discovery** | Customer Interview, Online Survey, Landing Page / Smoke Test, Data Analysis, Paper Prototype |
-| **Validation** | Concierge MVP, Wizard of Oz, Single Feature MVP, Pre-Sale, Crowdfunding |
-| **Custom** | Any user-defined experiment type |
+Experiments test hypotheses through structured methods. Predefined experiment
+types are available as suggestions, and custom types are supported.
 
 ### Required Fields (Frontmatter)
 
 - `type: experiment`
-- `title`
-- `canvas` (canvas slug, e.g. `my-canvas`)
-- `hypothesis` (canvas-relative path, e.g. `hypotheses/hypothesis-slug.md`)
+- `title`, `canvas` (slug), `hypothesis` (canvas-relative path)
 - `experiment_type` (predefined or custom string)
 - `status` (designed | running | completed)
-- `created` (YYYY-MM-DD)
-- `completed` (YYYY-MM-DD, when done)
-- `duration` (timeframe)
-- `result` (success | failure | inconclusive, after completion)
-- `evidence_strength` (weak | strong, set by `/knvs:capture` after completion)
+- `created`, `completed`, `duration`
+- `result` (success | failure | inconclusive)
+- `evidence_strength` (weak | strong)
 
 ### Required Sections
 
-- Setup (what we are testing and how)
-- Success Criteria (measurable outcomes)
-- Process (steps to run the experiment)
-- Results (raw data and observations, filled after completion)
-- Conclusion (does this validate or invalidate the hypothesis?)
-
-### Experiment Template
-
-```markdown
----
-type: experiment
-title: "Pricing Survey with 50 Freelancers"
-canvas: ai-bookkeeping
-hypothesis: hypotheses/customers-will-pay-monthly.md
-experiment_type: online-survey
-status: designed
-created: YYYY-MM-DD
-duration: "2 weeks"
-evidence_strength:
----
-
-# Experiment: Pricing Survey with 50 Freelancers
-
-## Setup
-
-Online survey targeting freelancers in Germany to validate willingness
-to pay for AI-powered bookkeeping.
-
-## Success Criteria
-
-- >60% of respondents indicate willingness to pay EUR 15+/month
-- Sample size: minimum 50 respondents
-- Target group: German freelancers with annual revenue < EUR 100k
-
-## Process
-
-1. Create survey with pricing questions
-2. Distribute via freelancer communities and LinkedIn
-3. Collect responses over 2 weeks
-4. Analyze results
-
-## Results
-
-(to be filled after experiment completion)
-
-## Conclusion
-
-(to be filled after experiment completion)
-```
+Setup, Success Criteria, Process, Results, Conclusion.
 
 Canonical template is in `skills/experiment/SKILL.md`.
 
@@ -367,58 +215,13 @@ Each insight is a standalone file, reusable across canvas boundaries.
 ### Required Fields (Frontmatter)
 
 - `type: insight`
-- `title` (key learning, concise)
-- `source_experiment` (canvas-relative path, e.g. `experiments/experiment-slug.md`)
-- `canvas` (canvas slug, e.g. `my-canvas`)
-- `bmc_fields` (array of affected BMC fields)
-- `created` (YYYY-MM-DD)
-- `tags` (array, categorization)
+- `title`, `source_experiment` (canvas-relative), `canvas` (slug)
+- `canvas_fields` (array; `bmc_fields` accepted for backward compatibility)
+- `created`, `tags`
 
 ### Required Sections
 
-- Learning (what we learned)
-- Evidence (data/observations that support this)
-- Implications (how this affects the business model)
-- Source (link to experiment)
-
-### Insight Template
-
-```markdown
----
-type: insight
-title: "Freelancers prefer annual billing with discount"
-source_experiment: experiments/pricing-survey-freelancers.md
-canvas: ai-bookkeeping
-bmc_fields:
-  - Revenue Streams
-created: YYYY-MM-DD
-tags: [pricing, customer-preference]
----
-
-# Insight: Freelancers prefer annual billing with discount
-
-## Learning
-
-72% of surveyed freelancers prefer annual billing (EUR 149/year)
-over monthly billing (EUR 15/month). The 17% discount is perceived
-as significant value.
-
-## Evidence
-
-- Survey: 50 respondents, 72% chose annual option
-- Common feedback: "Monthly subscriptions add up"
-- Price sensitivity highest in EUR 20-30/month range
-
-## Implications
-
-Revenue Streams should offer both monthly and annual pricing,
-with annual as the default/recommended option. This may affect
-cash flow projections in the BMC.
-
-## Source
-
-[[experiments/pricing-survey-freelancers.md]]
-```
+Learning, Evidence, Implications, Source.
 
 Canonical template is in `skills/learn/SKILL.md`.
 
@@ -426,113 +229,20 @@ Canonical template is in `skills/learn/SKILL.md`.
 
 ## Learning Card: Structure
 
-**Learning Cards apply exclusively to EXPLORE canvases.** They synthesize hypothesis, experiment results, and insights into the classic "Testing Business Ideas" 4-part narrative.
+**Learning Cards apply exclusively to EXPLORE canvases.**
 
 Two scopes:
+- **Experiment Card** (`scope: experiment`) — One card per experiment (1:1)
+- **Hypothesis Card** (`scope: hypothesis`) — Concludes testing cycle with Continue/Pivot/Stop decision
 
-- **Experiment Card** (`scope: experiment`) — One card per experiment (1:1). Created after `/knvs:learn`.
-- **Hypothesis Card** (`scope: hypothesis`) — One card per hypothesis. Concludes the testing cycle with a Persevere/Pivot/Kill decision. Replaces the former `/knvs:decide` skill.
+### Decision Field
 
-### Common Fields (Both Scopes)
-
-- `type: learning-card`
-- `scope` (experiment | hypothesis)
-- `title`
-- `canvas` (canvas slug, e.g. `my-canvas`)
-- `hypothesis` (canvas-relative path, e.g. `hypotheses/hypothesis-slug.md`)
-- `insights` (array of canvas-relative paths to insight files)
-- `created` (YYYY-MM-DD)
-
-### Experiment Card — Additional Fields
-
-- `experiment` (canvas-relative path, e.g. `experiments/experiment-slug.md`)
-
-### Hypothesis Card — Additional Fields
-
-- `experiments` (array of canvas-relative paths to experiment files)
-- `decision` (persevere | pivot | kill)
+- `decision` on hypothesis cards: `continue | pivot | stop`
+- **Backward compatibility:** `persevere` → `continue`, `kill` → `stop` when reading
 
 ### Required Sections
 
-- We believed that... (from hypothesis claim)
-- We observed... (from experiment results/conclusion — aggregated for hypothesis cards)
-- From that we learned... (synthesized from insight(s))
-- Therefore we will... (free text for experiment cards; Persevere/Pivot/Kill + reasoning for hypothesis cards)
-
-### Experiment Card Template
-
-```markdown
----
-type: learning-card
-scope: experiment
-title: "[Experiment title]"
-canvas: canvas-slug
-hypothesis: hypotheses/hypothesis-slug.md
-experiment: experiments/experiment-slug.md
-insights:
-  - insights/insight-1.md
-  - insights/insight-2.md
-created: YYYY-MM-DD
----
-
-# Learning Card: [Experiment Title]
-
-## We believed that...
-
-[Drawn from hypothesis claim — the testable assumption]
-
-## We observed...
-
-[Drawn from experiment results and conclusion — what actually happened]
-
-## From that we learned...
-
-[Synthesized from insight(s) — key learning with supporting evidence]
-
-## Therefore we will...
-
-[User input — next action based on the learning]
-```
-
-### Hypothesis Card Template
-
-```markdown
----
-type: learning-card
-scope: hypothesis
-title: "[Hypothesis title]"
-canvas: canvas-slug
-hypothesis: hypotheses/hypothesis-slug.md
-experiments:
-  - experiments/exp-1.md
-  - experiments/exp-2.md
-insights:
-  - insights/insight-1.md
-  - insights/insight-2.md
-decision: persevere | pivot | kill
-created: YYYY-MM-DD
----
-
-# Learning Card: [Hypothesis Title]
-
-## We believed that...
-
-[From hypothesis claim — the testable assumption]
-
-## We observed...
-
-[Aggregated evidence from all experiments — what actually happened]
-
-## From that we learned...
-
-[Synthesized from all insight(s) — key learnings]
-
-## Therefore we will...
-
-**[Persevere|Pivot|Kill]**
-
-[User reasoning for the decision and what happens next]
-```
+- We believed that... / We observed... / From that we learned... / Therefore we will...
 
 Canonical templates are in `skills/card/SKILL.md`.
 
@@ -540,142 +250,26 @@ Canonical templates are in `skills/card/SKILL.md`.
 
 ## Assessment: Structure
 
-**Assessments apply exclusively to EXPLOIT canvases.** EXPLORE canvases use the hypothesis loop instead.
+**Assessments apply exclusively to EXPLOIT canvases.**
 
-Two assessment types provide complementary perspectives ("The Invincible Company"):
-
-- **Performance** — Current snapshot (Ist-Aufnahme). 10 BMC-mapped dimensions.
-- **Trend** — Future projection (Zukunftsprojektion). 10 external trend dimensions.
+Two types provide complementary perspectives:
+- **Performance** — Current snapshot. 10 dimensions mapped to canvas fields.
+- **Trend** — Future projection. 10 external trend dimensions.
 
 Each assessment scores 10 dimensions from -3 to +3, total score: -30 to +30.
-
-### Performance Assessment: 10 Dimensions
-
-Each dimension maps to a BMC field:
-
-| # | Dimension | -3 Statement | +3 Statement |
-|---|-----------|-------------|-------------|
-| 1 | **Value Proposition** | Products/services perform worse than competition | Highly differentiated and loved by customers |
-| 2 | **Customer Segments** | Lost 20%+ of customer base in last 6 months | Increased customer base by 50%+ in last 6 months |
-| 3 | **Channels** | 100% dependent on intermediaries, difficult market access | Direct market access, fully own customer relationship |
-| 4 | **Customer Relationships** | Customers could leave immediately, no switching costs | Customers locked in for years, significant switching costs |
-| 5 | **Key Resources** | Inferior to competitors, deteriorated. New entrants with better/cheaper resources | Can't be copied/emulated for years, competitive advantage (IP, brand) |
-| 6 | **Key Activities** | Inferior to competitors, deteriorated. New entrants with better/cheaper activities | Can't be copied/emulated for years, competitive advantage (cost effectiveness, scale) |
-| 7 | **Key Partnerships** | Lost access to key partners in last 6 months | Key partners locked in for years |
-| 8 | **Revenue Streams** | Lost 20%+ of revenues in last 6 months | Doubled revenues in last 6 months, growing faster than competitors |
-| 9 | **Cost Structure** | Costs grew faster than revenues, less effective than competitors | Costs shrunk vs revenue, more effective than competitors |
-| 10 | **Margins** | Margins shrunk 50%+ and/or 50%+ lower than competition | Margins increased 50%+ and/or 50%+ higher than competition |
-
-### Trend Assessment: 10 Dimensions
-
-Each dimension assesses an external threat or opportunity:
-
-| # | Dimension | -3 Statement | +3 Statement |
-|---|-----------|-------------|-------------|
-| 1 | **Substitution Risk** | New entrants gaining traction with cheaper/better/substitute products | Competition shrinking, products likely to gain traction |
-| 2 | **Market Trajectory** | Markets projected to shrink significantly | Markets projected to grow significantly |
-| 3 | **Customer Friction** | Trends reducing friction for customers to leave | Trends increasing friction for customers to leave |
-| 4 | **Social/Cultural Trends** | Growing trends driving customers away (sustainability, fashion, etc.) | Growing social/cultural trends attracting customers toward our offerings |
-| 5 | **Technology Trends** | Tech trends undermining/making model obsolete | Tech trends strengthening model |
-| 6 | **Regulatory Environment** | New regulations making model more expensive/impossible | New regulations making model cheaper/easier |
-| 7 | **Supply Chain** | Suppliers/value chain changing to put model at risk | Suppliers/value chain changing to strengthen model |
-| 8 | **Economic Resilience** | Economic downturn would be lethal | Model is resilient, would benefit from downturn |
-| 9 | **Geopolitical Dependencies** | Model depends on geopolitically affected resources | Model doesn't depend on geopolitically affected resources |
-| 10 | **VC/Startup Activity** | Significant VC funding startups in our arena, growing | Little to no VC funding in our arena |
+The specific dimensions are defined in `skills/assess/SKILL.md`.
 
 ### Required Fields (Frontmatter)
 
 - `type: assessment`
-- `canvas` (canvas slug, e.g. `my-canvas`)
+- `canvas` (slug)
 - `performance_score` or `trend_score` (integer, -30 to +30)
 
-Note: Assessment type and date are derived from the filename (`YYYY-MM-DD-performance.md` / `YYYY-MM-DD-trend.md`) — no separate frontmatter fields needed.
-
-### File Naming Convention
-
-Assessment filenames include the type suffix:
-- `YYYY-MM-DD-performance.md`
-- `YYYY-MM-DD-trend.md`
+Type and date are derived from filename (`YYYY-MM-DD-performance.md` / `YYYY-MM-DD-trend.md`).
 
 ### Required Sections
 
-- Scores (table with Dimension, Score, Note)
-- Trends (comparison with previous assessment, if available)
-- Summary (narrative of health or risk assessment)
-
-### Performance Assessment Template
-
-```markdown
----
-type: assessment
-canvas: canvas-slug
-performance_score: 8
----
-
-# Performance Assessment: [Canvas Title]
-
-## Scores
-
-| # | Dimension | Score | Note |
-|---|-----------|-------|------|
-| 1 | Value Proposition | +2 | |
-| 2 | Customer Segments | +1 | |
-| 3 | Channels | -1 | |
-| 4 | Customer Relationships | 0 | |
-| 5 | Key Resources | +2 | |
-| 6 | Key Activities | +1 | |
-| 7 | Key Partnerships | +1 | |
-| 8 | Revenue Streams | +2 | |
-| 9 | Cost Structure | -1 | |
-| 10 | Margins | +1 | |
-
-**Performance Score: +8**
-
-## Trends
-
-(compared to previous assessment, if available)
-
-## Summary
-
-[Brief narrative of overall business model health and key observations]
-```
-
-### Trend Assessment Template
-
-```markdown
----
-type: assessment
-canvas: canvas-slug
-trend_score: 2
----
-
-# Trend Assessment: [Canvas Title]
-
-## Scores
-
-| # | Dimension | Score | Note |
-|---|-----------|-------|------|
-| 1 | Substitution Risk | -2 | |
-| 2 | Market Trajectory | +2 | |
-| 3 | Customer Friction | +1 | |
-| 4 | Social/Cultural Trends | 0 | |
-| 5 | Technology Trends | -1 | |
-| 6 | Regulatory Environment | +1 | |
-| 7 | Supply Chain | 0 | |
-| 8 | Economic Resilience | +1 | |
-| 9 | Geopolitical Dependencies | +2 | |
-| 10 | VC/Startup Activity | -2 | |
-
-**Trend Score: +2**
-
-## Trends
-
-(compared to previous assessment, if available)
-
-## Summary
-
-[Brief narrative of external threats, opportunities, and disruption risk]
-```
+Scores, Trends, Summary.
 
 Canonical templates are in `skills/assess/SKILL.md`.
 
@@ -684,12 +278,11 @@ Canonical templates are in `skills/assess/SKILL.md`.
 ## Decision Log: Format
 
 Decisions are documented in a `## Decisions` section directly in the canvas file.
-Each decision records the Persevere/Pivot/Kill outcome with reasoning.
 
 ### Decision Entry Format
 
 ```markdown
-### YYYY-MM-DD — [Persevere|Pivot|Kill]
+### YYYY-MM-DD — [Continue|Pivot|Stop]
 
 **Context:** [Summary of evidence and hypothesis status]
 **Decision:** [Reasoning for the decision]
@@ -698,16 +291,14 @@ Each decision records the Persevere/Pivot/Kill outcome with reasoning.
 
 ### Pivot Mechanics
 
-When a Pivot decision is made:
-1. The original canvas folder is moved to `archive/` (one operation: `mv explore/<slug>/ archive/<slug>/`)
-2. A new canvas folder is created in `explore/<new-slug>/` with `status: draft` and `pivot_from: <original-slug>` (slug only; original is always in `archive/`)
-3. The decision is logged in the new canvas
+1. Original canvas folder moved to `archive/`
+2. New canvas folder created in `explore/<new-slug>/` with `status: draft` and `pivot_from: <original-slug>`
+3. Decision logged in the new canvas
 
-### Kill Mechanics
+### Stop Mechanics
 
-When a Kill decision is made:
-1. The canvas folder is moved to `archive/` (one operation: `mv explore/<slug>/ archive/<slug>/`)
-2. All content (hypotheses, experiments, insights, learning-cards) is preserved inside the folder
+1. Canvas folder moved to `archive/`
+2. All content preserved inside the folder
 
 ---
 
@@ -715,7 +306,7 @@ When a Kill decision is made:
 
 ```
 .knvs/config.json
-explore/                        — BMCs (draft and testing)
+explore/                        — Canvases (draft and testing)
   <canvas-slug>/
     <canvas-slug>.md            — Canvas file
     hypotheses/                 — Hypotheses for this canvas
@@ -730,25 +321,21 @@ exploit/                        — Validated, scaling business models
     insights/                   — Carried over
     learning-cards/             — Carried over
     assessments/                — Performance & Trend assessments
-archive/                        — Killed/pivoted canvases
+archive/                        — Stopped/pivoted canvases
   <canvas-slug>/                — Everything preserved as-is
 ```
 
-Canvas subfolders (hypotheses/, experiments/, etc.) are created on-demand by the respective skills — not at setup.
+Canvas subfolders are created on-demand by the respective skills.
 
 ### Cross-Reference Convention
 
 **Intra-canvas references** use canvas-relative paths (phase-agnostic):
-- `canvas:` — slug only (e.g. `ai-bookkeeping`)
-- `hypothesis:`, `experiment:`, `source_experiment:`, `insights:` — relative to canvas folder (e.g. `hypotheses/slug.md`)
+- `canvas:` — slug only
+- `hypothesis:`, `experiment:`, `source_experiment:`, `insights:` — relative to canvas folder
 
 **External references** use root-relative paths or slugs:
-- `source_research:` — root-relative (e.g. `research/report-slug.md`)
+- `source_research:` — root-relative
 - `pivot_from:` — slug only (original always in `archive/`)
-
-This ensures all intra-canvas references remain stable across phase transitions (EXPLORE → EXPLOIT → Archive).
-
-**Cross-Plugin Read:** `/knvs:hypothesize` [F] mode reads from `research/` (research plugin) for verified research reports.
 
 ---
 
@@ -757,40 +344,28 @@ This ensures all intra-canvas references remain stable across phase transitions 
 | Element | Format | Example |
 |---------|--------|---------|
 | Skills | `/knvs:` prefix | `/knvs:start`, `/knvs:ideate`, `/knvs:hypothesize`, `/knvs:experiment`, `/knvs:capture`, `/knvs:learn`, `/knvs:card`, `/knvs:exploit`, `/knvs:assess` |
-| Skill files | `<skill>/SKILL.md` | `skills/ideate/SKILL.md`, `skills/hypothesize/SKILL.md` |
+| Skill files | `<skill>/SKILL.md` | `skills/ideate/SKILL.md` |
 | Configuration | `.knvs/` folder | `.knvs/config.json` |
 | Phase folders | Short, unambiguous | `explore/`, `exploit/` |
-| Data folders | Within canvas folder | `<phase>/<canvas-slug>/hypotheses/`, `.../experiments/`, etc. |
 
 ---
 
-## Emoji Usage
+## Markdown Generation
 
-**Rule:** Emojis only when they provide real value - not as decoration.
-
-### Allowed
-- Status indicators where text alone would be unclear (e.g. in compact tables)
-- Phase symbols for quick visual orientation
-
-### Forbidden
-- Decorative emojis without function
-- Multiple emojis per line/heading
-- Emojis in body text
+All generated files must work in Markdown viewers (Obsidian, VS Code, Notion)
+AND be parseable by Claude Code.
 
 ---
 
 ## Tool-Agnostic: Manual Workflow Always Possible
 
-**Core principle:** The user must always be able to carry out the knvs process **manually without skills**.
+All files are pure Markdown with standard frontmatter. Skills are helpers, not a prerequisite.
+Users can create, move, and edit files manually. No proprietary formats, no tool-specific dependencies.
 
-**Rules:**
-- All files are pure Markdown with standard frontmatter
-- Skills are helpers, not a prerequisite
-- Users can create, move, and edit files manually
-- Folder structure and file format are self-explanatory
+---
 
-**Forbidden:**
-- Obsidian-specific plugins or Dataview queries as core functionality
-- Proprietary file formats
-- Features that only work with Claude Code
-- Dependencies on external APIs or services
+## References
+
+Assessment dimensions are based on concepts from business model innovation literature
+(Osterwalder, Pigneur, Smith, Etiemble). The BMC template follows the Osterwalder/Pigneur
+Business Model Canvas (CC BY-SA 3.0).

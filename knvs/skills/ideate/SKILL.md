@@ -1,19 +1,21 @@
 ---
 name: "ideate"
-description: "Create a new Business Model Canvas as draft in explore/"
+description: "Create a new Canvas as draft in explore/"
 ---
 
 # /knvs:ideate
 
 ## Purpose
 
-Creates a new Business Model Canvas in the `explore/` folder with `status: draft`.
+Creates a new Canvas in the `explore/` folder with `status: draft`.
+The default template is a Business Model Canvas (BMC), but alternative canvas types
+can be used by adapting the `##` headings.
 
 ## When to Use
 
 - When you have a new business idea and want to capture it systematically
 - Starting the innovation lifecycle for a new concept
-- When pivoting: creating a new BMC variant based on learnings
+- When pivoting: creating a new canvas variant based on learnings
 
 ## Workflow
 
@@ -51,7 +53,7 @@ Claude: Creating new BMC variant based on pivot decision...
    NEVER add a date prefix or sequential number.
    CORRECT: `explore/ai-bookkeeping-app/ai-bookkeeping-app.md`
    WRONG:   `explore/20260220-001-ai-bookkeeping-app/...`
-4. Initializes BMC template with `status: draft`
+4. Initializes canvas template with `status: draft` (default: BMC with 9 fields)
 5. If pivot: sets `pivot_from` frontmatter field
 6. Adds initial thoughts as notes
 
@@ -60,14 +62,14 @@ Claude: Creating new BMC variant based on pivot decision...
 - Canvas folder is created as `explore/[slug]/`
 - Canvas file is `explore/[slug]/[slug].md` — no date prefix, no sequential number
 - Initial status is always `draft`
-- When the BMC is complete, set `status: testing` to begin the validation loop
+- When the canvas is complete, set `status: testing` to begin the validation loop
 - Then run `/knvs:hypothesize` to extract hypotheses
 
 ## Next Steps
 
 After creating your canvas:
 1. Open the file in your Markdown editor (Obsidian, VS Code, etc.)
-2. Fill out all BMC sections (Value Proposition, Customer Segments, etc.)
+2. Fill out all canvas sections (for BMC: Value Proposition, Customer Segments, etc.)
 3. Research and document your assumptions
 4. When ready to validate: set `status: testing`
 5. Run `/knvs:hypothesize` to extract hypotheses
@@ -80,9 +82,12 @@ Canonical template for new draft canvases.
 
 > **STRICT:** Use ONLY the frontmatter fields listed below — do NOT add fields beyond the optional ones listed. `risk: high` is the default for new canvases (untested = high risk). `revenue` is empty until the user provides an estimate.
 
+> **BMC is the default template.** For alternative canvas types, adapt `##` headings and set `canvas_type` accordingly.
+
 ```markdown
 ---
-type: bmc
+type: canvas
+canvas_type: bmc
 status: draft
 risk: high
 revenue:
@@ -133,5 +138,5 @@ pivot_from: original   # Optional: slug only, original always in archive/. Delet
 
 ---
 
-> © Strategyzer AG — strategyzer.com — CC BY-SA 3.0
+> Based on the Business Model Canvas by Osterwalder/Pigneur — CC BY-SA 3.0
 ```

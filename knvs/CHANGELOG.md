@@ -4,6 +4,43 @@ All notable changes to knvs will be documented in this file.
 
 ---
 
+## [7.0.0] - 2026-03-14
+
+### Breaking Changes
+
+- **Decoupled from Strategyzer methodology** — Plugin is now methodology-agnostic
+- **`type: bmc` → `type: canvas`** — Canvas type is now generic. Optional `canvas_type: bmc` for BMC canvases. `type: bmc` accepted for backward compatibility
+- **`bmc_fields` → `canvas_fields`** — Renamed across all artifact types. `bmc_fields` accepted as fallback
+- **Hypothesis categories** — Now free-text instead of D/F/V enum. Desirability/Feasibility/Viability remain as default suggestions for BMC canvases
+- **Confidence levels simplified** — 4 levels → 3: removed `very-low` (mapped to `low` when reading)
+- **Decision terminology** — `persevere` → `continue`, `kill` → `stop`. Old values mapped when reading
+- **Canvas validation** — "Missing BMC Fields" health check → "Canvas has no content sections". Canvases must have at least 1 `##` section (not necessarily 9 BMC fields)
+- **Strategyzer Loop** → **Innovation Loop** — All references updated
+- **Attribution** — Strategyzer CC BY-SA footer → "Based on Business Model Canvas by Osterwalder/Pigneur"
+
+### Changed
+
+- `CLAUDE.md` rewritten (796 → ~350 lines): templates moved to skills, assessment dimensions moved to assess/SKILL.md
+- All skills updated for new terminology (Continue/Pivot/Stop, canvas_fields, type: canvas)
+- `README.md` rewritten: merged QUICKSTART.md, removed Strategyzer references
+- `plugin.json` description and keywords updated
+
+### Removed
+
+- `QUICKSTART.md` — content merged into README.md
+- Hardcoded 9-field BMC requirement — canvases now self-describe via `##` headings
+- Strategyzer footer from canvas templates (replaced with Osterwalder/Pigneur CC BY-SA note)
+
+### Compatibility
+
+- `type: bmc` continues to work (mapped to `type: canvas`)
+- `bmc_fields` continues to work (mapped to `canvas_fields`)
+- `confidence: very-low` mapped to `low` when reading
+- `decision: persevere` mapped to `continue`, `kill` mapped to `stop` when reading
+- Existing D/F/V category values remain valid (free-text accepts any string)
+
+---
+
 ## [6.0.0] - 2026-03-04
 
 ### Breaking Changes

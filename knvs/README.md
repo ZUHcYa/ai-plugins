@@ -6,14 +6,15 @@
 
 ## What is knvs?
 
-**knvs** is a Claude Code plugin for operationalizing the **Strategyzer "Testing Business Ideas"** and **"The Invincible Company"** process. It helps you systematically validate business ideas through hypothesis-driven experimentation.
+**knvs** is a Claude Code plugin for hypothesis-driven business model validation.
+It helps you systematically validate business ideas through structured experimentation.
 
 ### Who is knvs for?
 
 **Innovation Managers, Product Managers, Founders, and Intrapreneurs** who:
 - Want to systematically validate new business ideas
 - Work hypothesis-driven (not gut feeling)
-- Use the Business Model Canvas professionally
+- Use structured canvases (Business Model Canvas or custom)
 - Want Claude Code as an intelligent sparring partner
 
 ---
@@ -36,117 +37,62 @@ Done! The plugin is ready to use.
 
 ---
 
-## The Strategyzer Loop
+## The Innovation Loop
 
 ```
 IDEATE → HYPOTHESIZE → PRIORITIZE → EXPERIMENT → LEARN → CARD (DECIDE)
-  BMC      D/F/V      Confidence ×   Run tests    Extract   Learning Card
-                      Importance                  Insights  Persevere/Pivot/Kill
+Canvas    Extract        Confidence ×   Run tests    Extract   Learning Card
+          hypotheses     Importance                  Insights  Continue/Pivot/Stop
 ```
 
 ```
 +----------------------------------------------------------+
-| EXPLORE: Create and validate Business Model Canvas        |
-|  - Create BMC as draft (/knvs:ideate)                     |
-|  - Fill in all 9 BMC dimensions                           |
+| EXPLORE: Create and validate Canvas                       |
+|  - Create Canvas as draft (/knvs:ideate)                  |
+|  - Fill in all content sections                           |
 |  - Set status: testing when ready                         |
-|  - Extract D/F/V hypotheses from BMC                      |
-|  - Prioritize by importance x confidence                   |
+|  - Extract hypotheses from canvas                         |
+|  - Prioritize by importance x confidence                  |
 |  - Design and run experiments                             |
 |  - Extract insights from results                          |
-|  - Learning Card: conclude with Persevere, Pivot, or Kill |
+|  - Learning Card: conclude with Continue, Pivot, or Stop  |
 +----------------------------------------------------------+
                            |
 +----------------------------------------------------------+
 | EXPLOIT: Scale validated model                            |
 |  - Run and optimize the business                          |
 |  - Performance & Trend assessments (/knvs:assess)         |
-|  - Monitor with Performance & Trend assessments            |
 +----------------------------------------------------------+
 ```
 
 ---
 
-## Getting Started
+## Quick Start
 
-**Want a quick overview?** See the [Quick-Start Guide](QUICKSTART.md).
-
-### 1. Setup
-
-```
-/knvs:start
-```
-
-### 2. Create Your First Business Idea
-
-```
-/knvs:ideate
-```
-
-### 3. Fill Out BMC and Set Status
-
-Fill out all 9 BMC sections, then set `status: testing` in frontmatter.
-
-### 4. Extract Hypotheses
-
-```
-/knvs:hypothesize
-```
-
-### 5. Design Experiments
-
-```
-/knvs:experiment
-```
-
-### 6. Start Experiment and Document Results
-
-```
-/knvs:capture
-```
-
-### 7. Extract Insights
-
-```
-/knvs:learn
-```
-
-### 8. Create Learning Card and Decide
-
-```
-/knvs:card
-```
+1. `/knvs:start` — Setup workspace
+2. `/knvs:ideate` — Create your first canvas
+3. Fill out canvas sections, set `status: testing`
+4. `/knvs:hypothesize` — Extract hypotheses
+5. `/knvs:experiment` — Design tests
+6. `/knvs:capture` — Start experiment and document results
+7. `/knvs:learn` — Extract insights
+8. `/knvs:card` — Learning Card + Decision (Continue/Pivot/Stop)
 
 ---
 
 ## Available Skills
 
-### `/knvs:start` - Smart Entry Point
-Setup (first run) or portfolio overview with health checks (after setup).
-
-### `/knvs:ideate` - Create New Idea
-Creates a new Business Model Canvas as draft in `explore/`.
-
-### `/knvs:hypothesize` - Extract Hypotheses
-Analyzes BMC and extracts Desirability/Feasibility/Viability hypotheses.
-
-### `/knvs:experiment` - Design Experiment
-Creates a structured experiment to test a hypothesis.
-
-### `/knvs:capture` - Start or Complete Experiment
-Starts a designed experiment (designed → running) or documents results after execution (running → completed).
-
-### `/knvs:learn` - Extract Insights
-Distills key learnings from completed experiments.
-
-### `/knvs:card` - Create Learning Card and Decide
-Creates Learning Cards in the classic "Testing Business Ideas" format: We believed / We observed / We learned / Therefore we will. Two modes: [E] Experiment Card (per experiment) and [H] Hypothesis Card (concludes testing cycle with Persevere/Pivot/Kill decision).
-
-### `/knvs:exploit` - Scale Business Model
-Moves validated canvas from `explore/` to `exploit/`.
-
-### `/knvs:assess` - Performance & Trend Assessment
-Scores EXPLOIT canvases on 10 dimensions (-3 to +3). Performance (current snapshot) or Trend (future projection).
+| Skill | Purpose |
+|-------|---------|
+| `/knvs:start` | Setup (first run) or portfolio overview with health checks |
+| `/knvs:ideate` | Create a new Canvas as draft in `explore/` |
+| `/knvs:hypothesize` | Extract hypotheses from canvas (default: D/F/V for BMC) |
+| `/knvs:experiment` | Design a structured experiment to test a hypothesis |
+| `/knvs:capture` | Start experiment or document results |
+| `/knvs:learn` | Extract insights from completed experiments |
+| `/knvs:card` | Learning Card + Decision: [E] per experiment, [H] per hypothesis (Continue/Pivot/Stop) |
+| `/knvs:exploit` | Move validated canvas from `explore/` to `exploit/` |
+| `/knvs:assess` | Performance & Trend Assessment for EXPLOIT canvases (10 dimensions, -3 to +3) |
 
 ---
 
@@ -154,62 +100,45 @@ Scores EXPLOIT canvases on 10 dimensions (-3 to +3). Performance (current snapsh
 
 ```
 knvs/
-|- .claude-plugin/
-|   |- plugin.json
-|
-|- skills/
-|   |- start/SKILL.md
-|   |- ideate/SKILL.md
-|   |- hypothesize/SKILL.md
-|   |- experiment/SKILL.md
-|   |- capture/SKILL.md
-|   |- learn/SKILL.md
-|   |- card/SKILL.md
-|   |- exploit/SKILL.md
-|   |- assess/SKILL.md
-|
-|- explore/                    # BMCs (draft and testing)
-|   |- canvas-slug/
-|       |- canvas-slug.md      # Canvas file
-|       |- hypotheses/         # Hypotheses for this canvas
-|       |- experiments/        # Experiments for this canvas
-|       |- insights/           # Insights for this canvas
-|       |- learning-cards/     # Learning Cards for this canvas
-|- exploit/                    # Validated & scaling
-|   |- canvas-slug/
-|       |- canvas-slug.md
-|       |- hypotheses/         # Carried over from explore
-|       |- experiments/
-|       |- insights/
-|       |- learning-cards/
-|       |- assessments/        # Performance & Trend assessments
-|- archive/                    # Killed/pivoted canvases
-|   |- canvas-slug/            # Everything preserved
-|
-|- CLAUDE.md
-|- README.md
-|- QUICKSTART.md
-|- STRUCTURE.md
-|- CHANGELOG.md
+├── explore/                    Canvas drafts and testing
+│   └── canvas-slug/
+│       ├── canvas-slug.md      Canvas file
+│       ├── hypotheses/
+│       ├── experiments/
+│       ├── insights/
+│       └── learning-cards/
+├── exploit/                    Validated & scaling
+│   └── canvas-slug/
+│       ├── canvas-slug.md
+│       └── assessments/        Performance & Trend
+├── archive/                    Stopped/pivoted canvases
+├── skills/                     Skill definitions
+├── CLAUDE.md
+├── README.md
+└── CHANGELOG.md
 ```
 
 ---
 
-## Markdown Format
+## Manual Workflow (No Skills)
 
-All content is Markdown — readable by humans and machines:
-- Obsidian, Notion, VS Code (humans)
-- Claude Code (AI sparring partner)
-- Git-friendly, platform-independent
+knvs works without Claude Code:
+
+1. Create folders: `explore/`, `exploit/`, `archive/`
+2. Create canvas: `explore/my-idea/my-idea.md` with `status: draft`
+3. Fill out canvas sections, set `status: testing`
+4. Create hypotheses, experiments, insights, learning cards as Markdown files
+5. Add decisions to canvas `## Decisions` section
+
+All files are standard Markdown — use any editor.
+
+## Documentation
+
+- [CHANGELOG.md](CHANGELOG.md) - Version history
 
 ---
 
-## Resources
+## References
 
-### Strategyzer Methodology
-- "Testing Business Ideas" by David Bland & Alex Osterwalder
-- "The Invincible Company" by Alex Osterwalder et al.
-
----
-
-**Good luck developing and validating your business ideas!**
+- Business Model Canvas: Osterwalder/Pigneur (CC BY-SA 3.0)
+- Assessment dimensions: Osterwalder, Pigneur, Smith, Etiemble

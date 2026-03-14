@@ -18,7 +18,7 @@ explore/                                                    exploit/
 (status: draft -> testing)                                  (status: scaling)
 
 /knvs:ideate        /knvs:hypothesize     /knvs:exploit     /knvs:assess
-creates BMC         extracts D/F/V        moves &           performance &
+creates BMC         extracts testable        moves &           performance &
 as draft            hypotheses            scales            trend assessment
 
                     /knvs:experiment
@@ -29,7 +29,7 @@ as draft            hypotheses            scales            trend assessment
 
                     /knvs:card
                     learning card + decision
-                    (persevere / pivot / kill)
+                    (continue / pivot / stop)
 ```
 
 ## When to Use
@@ -112,7 +112,7 @@ Claude: knvs Status
 
         Health (2 issues)
         -----------------
-        - explore/ai-bookkeeping/ai-bookkeeping.md: Missing BMC field "Key Partnerships"
+        - explore/ai-bookkeeping/ai-bookkeeping.md: Canvas has no content sections
         - explore/old-idea/hypotheses/price-sensitivity.md: Canvas file not found
           → Canvas folder exists without canvas file
 
@@ -139,7 +139,7 @@ Claude: knvs Status
 3. Create folder structure at `targetPath`:
    - `explore/` - Business Model Canvases (draft and testing)
    - `exploit/` - Validated business models being scaled
-   - `archive/` - Killed/pivoted canvases
+   - `archive/` - Stopped/pivoted canvases
    Canvas subfolders (hypotheses/, experiments/, etc.) are created on-demand by the respective skills.
 
 ### After Setup (Overview + Portfolio)
@@ -189,7 +189,7 @@ If no issues exist, the Health section is omitted entirely.
 |---|-------|-------|-----------|---------|
 | 1 | Invalid Canvas | `explore/*/`, `exploit/*/` | Canvas `.md` without valid YAML frontmatter | `"Invalid frontmatter"` |
 | 2 | Status ↔ Folder | `explore/*/`, `exploit/*/` | Canvas folder does not match status | `"Status X does not match folder Y"` |
-| 3 | Missing BMC Fields | `explore/*/`, `exploit/*/` | Canvas lacks one of the 9 core `##` headings | `"Missing BMC field: X"` |
+| 3 | Missing Content Sections | `explore/*/`, `exploit/*/` | Canvas has no `##` content sections | `"Canvas has no content sections"` |
 | 4 | Missing Frontmatter | `explore/*/`, `exploit/*/` | Canvas without `risk` field | `"Missing field: risk"` |
 | 5 | Hypothesis Missing Sections | `explore/*/hypotheses/`, `exploit/*/hypotheses/` | Without `## Claim` or `## Context` | `"Missing section: X"` |
 | 6 | Missing Canvas File | `explore/*/`, `exploit/*/` | Canvas folder exists but `<slug>.md` is missing | `"Canvas file not found in <slug>/"` |

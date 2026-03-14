@@ -8,7 +8,7 @@ description: "Design and document an experiment to test a hypothesis"
 ## Purpose
 
 Designs and documents an experiment to test a specific hypothesis.
-Offers predefined experiment types from "Testing Business Ideas" and allows custom types.
+Offers predefined experiment types for hypothesis validation and allows custom types.
 **Only applicable to EXPLORE canvases.** EXPLOIT canvases do not use experiments.
 
 ## When to Use
@@ -105,7 +105,7 @@ Claude: Experiment created:
 9. **STOP.** Skill is complete. Claude does NOT execute any Process steps,
    does NOT build artifacts, and does NOT proceed to the execution phase.
 
-## Experiment Types (Testing Business Ideas)
+## Experiment Types
 
 ### Discovery Experiments
 
@@ -139,7 +139,7 @@ Claude: Experiment created:
 
 ## Experiment Template
 
-Canonical template (also in CLAUDE.md):
+Canonical template:
 
 ```markdown
 ---

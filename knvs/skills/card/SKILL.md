@@ -1,17 +1,17 @@
 ---
 name: "card"
-description: "Create Learning Cards — per experiment or per hypothesis (with Persevere/Pivot/Kill decision)"
+description: "Create Learning Cards — per experiment or per hypothesis (with Continue/Pivot/Stop decision)"
 ---
 
 # /knvs:card
 
 ## Purpose
 
-Creates Learning Cards in the classic "Testing Business Ideas" 4-part narrative.
+Creates Learning Cards in the classic hypothesis-driven validation 4-part narrative.
 Two modes:
 
 - **Experiment Card** — Synthesizes one experiment into a learning card
-- **Hypothesis Card** — Concludes the testing cycle of one hypothesis with a strategic decision (Persevere/Pivot/Kill)
+- **Hypothesis Card** — Concludes the testing cycle of one hypothesis with a strategic decision (Continue/Pivot/Stop)
 
 **Only applicable to EXPLORE canvases.**
 
@@ -230,12 +230,12 @@ Claude: ## Therefore we will...
 
         What is your strategic decision for the business model?
 
-        [P] PERSEVERE — Continue testing remaining hypotheses
+        [C] CONTINUE — Continue testing remaining hypotheses
         [V] PIVOT — Change direction based on this learning
-        [K] KILL — Abandon this business model
+        [S] STOP — Abandon this business model
 
 User: P
-Claude: Why persevere? What happens next?
+Claude: Why continue? What happens next?
 
 User: Core feasibility confirmed. Next priority: validate cloud
       hosting costs to complete the viability picture.
@@ -248,7 +248,7 @@ Claude: ━━━━━━━━━━━━━━━━━━━━━━━━
 
         Decision logged in canvas:
 
-        ### 2026-02-23 — Persevere
+        ### 2026-02-23 — Continue
 
         **Context:** AI accuracy hypothesis validated (94% > 90% target).
         3/5 hypotheses validated, 1 invalidated, 1 open.
@@ -301,7 +301,7 @@ Claude: ━━━━━━━━━━━━━━━━━━━━━━━━
         - /knvs:hypothesize to extract hypotheses
 ```
 
-### Kill Flow
+### Stop Flow
 
 ```
 User: K (KILL)
@@ -319,7 +319,7 @@ Claude: ━━━━━━━━━━━━━━━━━━━━━━━━
 
         Decision logged:
 
-        ### 2026-02-23 — Kill
+        ### 2026-02-23 — Stop
 
         **Context:** Market validation showed insufficient demand.
         **Decision:** Market too small for viable business model.
@@ -335,32 +335,32 @@ Claude: ━━━━━━━━━━━━━━━━━━━━━━━━
 2. User selects canvas
 3. Shows hypothesis dashboard:
    - Hypothesis status overview with confidence level (validated/invalidated/open)
-   - Confidence summary by category (D/F/V)
+   - Confidence summary by category (category)
    - Which hypotheses already have learning cards
 4. User selects hypothesis (validated or invalidated only)
 5. Reads ALL experiments and insights linked to that hypothesis
 6. Generates draft for first 3 sections from aggregated source data
 7. User confirms, rejects, or edits each section
-8. "Therefore we will..." → User selects Persevere/Pivot/Kill + provides reasoning
+8. "Therefore we will..." → User selects Continue/Pivot/Stop + provides reasoning
 9. Creates learning card file in `<phase>/<canvas-slug>/learning-cards/` (creates subfolder if needed)
 10. Adds decision entry to `## Decisions` section in canvas
 11. Executes decision consequences:
-    - **Persevere:** Suggests next steps (remaining hypotheses, experiments)
+    - **Continue:** Suggests next steps (remaining hypotheses, experiments)
     - **Pivot:** Moves entire canvas folder to `archive/` (one operation). Creates new canvas folder in `explore/<new-slug>/` with `status: draft` and `pivot_from: <original-slug>`. Decision logged in both.
-    - **Kill:** Moves entire canvas folder to `archive/` (one operation: `mv explore/<slug>/ archive/<slug>/`). All content preserved inside.
+    - **Stop:** Moves entire canvas folder to `archive/` (one operation: `mv explore/<slug>/ archive/<slug>/`). All content preserved inside.
 
 ### Decision Criteria Guidance
 
-The skill does NOT make the decision — it presents confidence levels and evidence, and the user decides.
+The sstop does NOT make the decision — it presents confidence levels and evidence, and the user decides.
 However, it can suggest based on patterns:
 
 | Pattern | Suggestion |
 |---------|------------|
-| All D/F/V validated | Consider `/knvs:exploit` |
-| Core D validated, F/V open | Persevere — test remaining |
-| Core D invalidated | Consider Pivot or Kill |
+| All category validated | Consider `/knvs:exploit` |
+| Core D validated, F/V open | Continue — test remaining |
+| Core D invalidated | Consider Pivot or Stop |
 | V invalidated | Consider Pivot (pricing/revenue model change) |
-| All hypotheses invalidated | Consider Kill |
+| All hypotheses invalidated | Consider Stop |
 
 ---
 
@@ -429,13 +429,13 @@ Claude: Hypothesis "cloud-hosting-costs" has no completed experiments.
 - One learning card per hypothesis (1:1 relationship)
 - Filename matches the hypothesis slug
 - Aggregates ALL experiments and insights for the hypothesis
-- "Therefore we will..." is a structured decision (Persevere/Pivot/Kill) + user reasoning
-- The decision triggers actions (archive for Kill, new canvas for Pivot)
+- "Therefore we will..." is a structured decision (Continue/Pivot/Stop) + user reasoning
+- The decision triggers actions (archive for Stop, new canvas for Pivot)
 - Decisions are logged in the canvas `## Decisions` section
 
 ### Both Types
 - Learning cards are standalone and can be created manually in any Markdown editor
-- The skill reads existing artifacts — it does NOT generate fake data
+- The sstop reads existing artifacts — it does NOT generate fake data
 
 ---
 
@@ -489,7 +489,7 @@ experiments:
 insights:
   - insights/insight-1.md
   - insights/insight-2.md
-decision: persevere | pivot | kill
+decision: continue | pivot | stop
 created: YYYY-MM-DD
 ---
 
@@ -509,7 +509,7 @@ created: YYYY-MM-DD
 
 ## Therefore we will...
 
-**[Persevere|Pivot|Kill]**
+**[Continue|Pivot|Stop]**
 
 [User reasoning for the decision and what happens next]
 ```

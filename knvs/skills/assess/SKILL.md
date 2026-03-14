@@ -7,11 +7,11 @@ description: "Run a Performance or Trend Assessment on an EXPLOIT canvas (10 dim
 
 ## Purpose
 
-Runs structured assessments on EXPLOIT canvases based on "The Invincible Company"
-methodology. Two assessment types provide complementary perspectives:
+Runs structured assessments on EXPLOIT canvases. Two assessment types
+provide complementary perspectives:
 
-- **Performance** — Current snapshot (Ist-Aufnahme). 10 BMC-mapped dimensions.
-- **Trend** — Future projection (Zukunftsprojektion). 10 external trend dimensions.
+- **Performance** — Current snapshot. 10 canvas-mapped dimensions.
+- **Trend** — Future projection. 10 external trend dimensions.
 
 Each assessment scores 10 dimensions from -3 to +3, producing a total score (-30 to +30).
 
@@ -244,13 +244,14 @@ the skill reads the most recent one and shows a dimension-by-dimension compariso
 - Each assessment is a complete snapshot — all 10 dimensions scored
 - The skill does NOT auto-score — the user makes all judgments
 - Assessments can also be created manually in any Markdown editor
-- Source: "The Invincible Company" by Osterwalder, Pigneur, Smith, Etiemble
+- Assessment dimensions are adaptable by directly editing templates
+- References: Concepts from Osterwalder, Pigneur, Smith, Etiemble
 
 ---
 
 ## Performance Assessment Template
 
-Canonical template (also in CLAUDE.md):
+Canonical template:
 
 ```markdown
 ---

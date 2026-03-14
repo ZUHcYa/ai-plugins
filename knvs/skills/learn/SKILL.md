@@ -15,7 +15,7 @@ the corresponding hypothesis confidence level.
 
 - After completing an experiment and documenting results
 - When you want to distill learnings from experiment data
-- Before making a Persevere/Pivot/Kill decision
+- Before making a Continue/Pivot/Stop decision
 - **NOT for EXPLOIT canvases** — these have their own mechanisms (Performance & Trend Assessments)
 
 ## Workflow
@@ -157,10 +157,11 @@ After updating the hypothesis status, the skill assesses the confidence level ba
 
 | Condition | Recommended Confidence |
 |-----------|----------------------|
-| 1 experiment, evidence_strength: weak | `very-low` |
-| 1+ experiments, all evidence_strength: weak (Discovery/Say-data only) | `low` |
-| Multiple experiments with at least 1x evidence_strength: strong, OR 1 strong CTA experiment | `moderate` |
+| 1 experiment or all evidence_strength: weak | `low` |
+| Multiple experiments with at least 1x evidence_strength: strong | `moderate` |
 | Multiple experiments, at least 1 Validation/CTA experiment with evidence_strength: strong | `high` |
+
+**Backward compatibility:** `very-low` is mapped to `low` when reading.
 
 **Experiment type classification:**
 
@@ -202,7 +203,7 @@ Claude: No completed experiments found for any EXPLORE canvas.
 
 ## Insight Template
 
-Canonical template (also in CLAUDE.md):
+Canonical template:
 
 ```markdown
 ---
@@ -210,7 +211,7 @@ type: insight
 title: "[Key learning]"
 source_experiment: experiments/experiment-slug.md
 canvas: canvas-slug
-bmc_fields:
+canvas_fields:
   - Value Proposition
 created: YYYY-MM-DD
 tags: [tag1, tag2]
