@@ -40,8 +40,7 @@ Always add a `## [x.y.z] - YYYY-MM-DD` entry to `CHANGELOG.md` before committing
 
 ## Research Report: Structure
 
-Research reports are structured analyses of external topics (markets, technologies,
-competitors, trends). They follow a draft-to-verified lifecycle.
+Research reports follow a draft-to-verified lifecycle.
 
 **Required fields (frontmatter):**
 - `type: research`
@@ -52,215 +51,29 @@ competitors, trends). They follow a draft-to-verified lifecycle.
 
 **Optional fields:**
 - `source_report` (reference to the original document)
-- `vendor` (name of the external organization, when the report focuses on a specific vendor, partner, or competitor)
-
-**Note:** `status: verified` can be set manually when the research report has already been
-reviewed externally. The `verified` date field is also required for manual verification
-(enter your own review date).
-
-**Finalization workflow:** For AI-generated research drafts, the recommended path is:
-1. External AI generates draft (`status: draft`)
-2. Separate AI session creates a Maengelprotokoll (`research/<slug>-audit.md`)
-3. `/research:finalize` incorporates audit findings and sets `status: verified`
+- `vendor` (external organization name)
 
 **Required Sections:**
-- Summary
-- Research Context (Problem Space, Market Context, Target Audience)
-- Key Findings (with sources)
-- Supporting Data
-- Implications for Business Model
-- Next Steps
+Summary, Research Context, Key Findings (with sources), Supporting Data,
+Implications for Business Model, Next Steps.
 
-**Optional Sections:**
-- Limitations
-- Bibliography
+**Finalization workflow:**
+1. External AI generates draft (`status: draft`)
+2. Separate AI session creates a Maengelprotokoll (`<slug>-audit.md`)
+3. `/research:finalize` incorporates audit findings and sets `status: verified`
 
-### Research Report Template
-
-```markdown
----
-type: research
-title: "[Research Topic]"
-status: verified
-created: YYYY-MM-DD
-verified: YYYY-MM-DD
-source_report: "[Original filename]"  # optional
----
-
-# Research Report: [Title]
-
-## Summary
-
-[Overview of the research findings]
-
----
-
-## Research Context
-
-### Problem Space
-[What problem does this research address?]
-
-### Market Context
-[Market size, trends, dynamics]
-
-### Target Audience
-[Who is affected by this problem?]
-
----
-
-## Key Findings
-
-### Finding 1: [Title]
-[Content]
-
-**Sources:**
-- [Citation 1 with link]
-
----
-
-## Supporting Data
-
-### Market Statistics
-[Statistics with sources]
-
-### Competitive Landscape
-[Competitive analysis]
-
-### Technical Feasibility
-[Technical assessments]
-
----
-
-## Implications for Business Model
-
-[Assessments of how this research could inform a business model]
-
----
-
-## Next Steps
-
-- [ ] Review and use findings in relevant context
-```
+Full report template is in `skills/investigate/SKILL.md`.
 
 ---
 
 ## Audit Format (Maengelprotokoll)
 
-### Expected Format
-
-```markdown
----
-type: research-audit
-target: "research/<slug>.md"
-auditor: "Claude Opus / Extended Thinking"
-audit_date: YYYY-MM-DD
-summary:
-  red: 3
-  amber: 5
-  green: 4
----
-
-# Maengelprotokoll: [Research Title]
-
-**Target:** [[research/<slug>]]
-**Audit Date:** YYYY-MM-DD
-
----
-
-## Findings
-
-### 1. [Section Name] - [Claim summary]
-
-**Severity:** RED
-**Location:** Key Findings > Finding 1
-**Claim:** "[Exact quote from draft]"
-**Issue:** What is wrong
-**Recommendation:** What to do
-
----
-
-## Overall Assessment
-
-[Brief narrative assessment]
-```
-
-### Tolerant Parsing
-
-The audit may come from different AI systems with slight format variations.
-The skill handles:
+**Tolerant Parsing:** The audit may come from different AI systems. The finalize skill handles:
 - German severity labels: ROT/GELB/GRUEN mapped to RED/AMBER/GREEN
-- Emoji markers: red_circle/warning/white_check_mark mapped to RED/AMBER/GREEN
-- Missing `**Recommendation:**` field
-- Unnumbered findings
-- Findings not wrapped in `### N.` headings
+- Emoji markers mapped to RED/AMBER/GREEN
+- Missing fields, unnumbered findings, flexible heading structure
 
-### Audit Generation Prompt
-
-*Ready to copy into Claude Opus / Extended Thinking session:*
-
-````
-You are a research auditor. Review the following draft research report
-with engineering-grade rigor.
-
-For EVERY factual claim, statistic, quote, and source citation in the report,
-determine one of three severities:
-
-- RED (Hallucination / Not Verified): Claim cannot be verified from
-  the cited source, source does not exist, or claim is fabricated.
-- AMBER (Context Missing / Nuance Lost): Claim is broadly correct but
-  missing important context, qualifiers, dates, or attribution specifics.
-- GREEN (Verified): Claim is accurate and properly attributed.
-
-Output format:
-1. YAML frontmatter with type: research-audit, target, auditor, audit_date,
-   and summary counts (red, amber, green).
-2. Numbered findings (### 1. Section - Claim), each with:
-   - **Severity:** RED | AMBER | GREEN
-   - **Location:** Section > Subsection
-   - **Claim:** "Exact quote from draft"
-   - **Issue:** What is wrong or missing
-   - **Recommendation:** Specific fix
-3. Overall Assessment paragraph at the end.
-
-Here is the draft report to audit:
-
-[PASTE DRAFT HERE]
-````
-
----
-
-## Source Evaluation: CRAAP Framework
-
-Used by `/research:investigate` and `/research:review` to evaluate source credibility.
-
-| Dimension | Question |
-|-----------|----------|
-| **Currency** | When was this published/updated? |
-| **Relevance** | Does this directly address the research question? |
-| **Authority** | Who published this? What are their credentials? |
-| **Accuracy** | Is it supported by evidence? Are claims verifiable? |
-| **Purpose** | Why does this exist? Is there bias? |
-
-Each dimension scores 1-5. Composite grade: A+ (23-25), A (19-22), B (15-18), C (11-14), D (7-10), F (5-6).
-Default quality threshold: grade C (score >= 11).
-
----
-
-## Evidence Hierarchy
-
-Used to weight conflicting claims. Higher levels take precedence.
-
-| Level | Type |
-|-------|------|
-| 1 | Systematic Review / Meta-Analysis |
-| 2 | Randomized Controlled Trial |
-| 3 | Cohort / Longitudinal Study |
-| 4 | Case-Control Study |
-| 5 | Industry Report / Market Analysis |
-| 6 | Expert Opinion / Commentary |
-| 7 | Anecdotal / Single Case Study |
-
-For business/technology research, Level 5 is often the highest available evidence.
+Full audit format and generation prompt are in `skills/finalize/SKILL.md`.
 
 ---
 
@@ -271,36 +84,8 @@ The integration is unidirectional: research produces, vntrs reads — research h
 
 **What vntrs reads:**
 - Reports with `status: verified` from `research/` folder
-- Section `## Implications for Business Model` (used to derive Feasibility hypotheses)
+- Section `## Implications for Business Model`
 - Referenced via `source_research:` frontmatter field in vntrs hypothesis files
-
-**No action required from research users.** The standard report format already contains everything
-vntrs needs. Just ensure the `## Implications for Business Model` section is present (it is a
-required section in the report template).
-
----
-
-## Warning-Signal Check
-
-**Before every task, ask:**
-1. Does this help with **developing research** (code, docs, automation)?
-2. Is it **not a user feature** for end users?
-
-**If in doubt:** IMMEDIATELY ask the developer!
-
----
-
-## Emoji Usage
-
-**Rule:** Emojis only when they provide real value - not as decoration.
-
-### Allowed
-- Status indicators where text alone would be unclear (e.g. in compact tables)
-
-### Forbidden
-- Decorative emojis without function
-- Multiple emojis per line/heading
-- Emojis in body text
 
 ---
 
@@ -308,7 +93,7 @@ required section in the report template).
 
 | Element | Format | Example |
 |---------|--------|---------|
-| Skills | `/research:` prefix | `/research:start`, `/research:investigate`, `/research:evaluate`, `/research:finalize`, `/research:review` |
+| Skills | `/research:` prefix | `/research:start`, `/research:investigate` |
 | Skill files | `<skill>/SKILL.md` | `start/SKILL.md`, `finalize/SKILL.md` |
 | Configuration | `.research/` folder | `.research/config.json` |
 
@@ -316,16 +101,5 @@ required section in the report template).
 
 ## Tool-Agnostic: Manual Workflow Always Possible
 
-**Core principle:** The user must always be able to carry out the research process **manually without skills**.
-
-**Rules:**
-- All files are pure Markdown with standard frontmatter
-- Skills are helpers, not a prerequisite
-- Users can create, edit, and verify files manually
-- Folder structure and file format are self-explanatory
-
-**Forbidden:**
-- Obsidian-specific plugins or Dataview queries as core functionality
-- Proprietary file formats
-- Features that only work with Claude Code
-- Dependencies on external APIs or services
+All files are pure Markdown with standard frontmatter. Skills are helpers, not a prerequisite.
+Users can create, edit, and verify files manually. No proprietary formats, no tool-specific dependencies.

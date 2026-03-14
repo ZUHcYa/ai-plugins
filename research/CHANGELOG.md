@@ -4,6 +4,19 @@ All notable changes to research will be documented in this file.
 
 ---
 
+## [1.1.1] - 2026-03-14
+
+### Changed
+
+- `CLAUDE.md`: Removed duplicated templates (report, audit, CRAAP, evidence hierarchy ~180 lines) — these live in skills
+- Consolidated `QUICKSTART.md` into `README.md`
+
+### Removed
+
+- `QUICKSTART.md` — content merged into README.md
+
+---
+
 ## [1.1.0] - 2026-03-08
 
 ### Added
