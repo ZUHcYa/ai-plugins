@@ -5,7 +5,7 @@
 A marketplace of specialized plugins covering various domains:
 - **Creative workflows** (Music Production)
 - **Business innovation** (Business Model Canvas)
-- **Finance & compliance** (Dienstreisen / Business Travel)
+- **Research** (Structured Research Pipeline)
 
 Each plugin follows a tool-agnostic philosophy: all workflows work with plain Markdown in any editor (Obsidian, VS Code, Notion). Claude Code skills are optional helpers, never requirements.
 
@@ -28,7 +28,7 @@ Add this marketplace, then install individual plugins:
 ```bash
 /plugin install music-production@ai-plugins
 /plugin install knvs@ai-plugins
-/plugin install trips@ai-plugins
+/plugin install research@ai-plugins
 ```
 
 ---
@@ -38,13 +38,13 @@ Add this marketplace, then install individual plugins:
 | Plugin | Description | Status |
 |--------|-------------|--------|
 | [**music-production**](music-production/) | Music Production Workflow Companion | Stable |
-| [**knvs**](knvs/) | Business Model Innovation - Testing Business Ideas with Claude Code | Stable |
-| [**trips**](trips/) | Business Travel Tracker - Record Dienstreisen and generate Finanzamt reports | Stable |
+| [**knvs**](knvs/) | Business Model Innovation - Hypothesis-driven validation with Claude Code | Stable |
+| [**research**](research/) | Structured Research Pipeline - investigate, audit, and verify research reports | Stable |
 
 See each plugin's README for details:
 - [music-production/README.md](music-production/README.md)
 - [knvs/README.md](knvs/README.md)
-- [trips/README.md](trips/README.md)
+- [research/README.md](research/README.md)
 
 ---
 
@@ -65,12 +65,11 @@ ai-plugins/
 │   │   └── plugin.json
 │   ├── CLAUDE.md
 │   └── skills/
-├── trips/                    # Dienstreisen-Tracking
+├── research/                 # Structured Research
 │   ├── .claude-plugin/
 │   │   └── plugin.json
 │   ├── CLAUDE.md
-│   ├── skills/
-│   └── hooks/
+│   └── skills/
 └── README.md
 ```
 

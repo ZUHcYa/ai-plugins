@@ -16,17 +16,7 @@
     {
       "name": "knvs",
       "source": "./knvs",
-      "description": "Business Model Innovation - Testing Business Ideas with the Strategyzer Loop"
-    },
-    {
-      "name": "trips",
-      "source": "./trips",
-      "description": "Business travel tracking for German tax returns - record trips, list them, generate Finanzamt-ready reports"
-    },
-    {
-      "name": "journal",
-      "source": "./journal",
-      "description": "Personal Journal - daily reflections, thoughts, and learnings with timestamps"
+      "description": "Business Model Innovation - Hypothesis-driven validation with the Innovation Loop"
     },
     {
       "name": "research",

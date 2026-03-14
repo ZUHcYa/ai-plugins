@@ -44,14 +44,8 @@ Thumbs.db
 # knvs - Private business model state
 .knvs/
 
-# Trips - Private trip tracking config
-.trips/
-
 # Research - Private research config
 .research/
-
-# Journal - Private journal config
-.journal/
 
 # Roadmap - Private planning
 ROADMAP.md
