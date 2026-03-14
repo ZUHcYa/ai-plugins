@@ -35,10 +35,8 @@ Kilometerpauschale (§ 9 Abs. 1 Satz 3 Nr. 4a EStG) is calculated automatically.
 
 ## State
 
-Config lives in `.trips/config.json`. Trip records are stored as individual Markdown files
-with YAML frontmatter - readable in any editor, no Claude Code required.
-
-Each trip is a file in your configured data directory:
+Config lives in `.trips/config.json` (`dataDir` and `company`).
+Trip records are stored as individual Markdown files with YAML frontmatter.
 
 ```
 <dataDir>/
@@ -51,8 +49,6 @@ Each trip is a file in your configured data directory:
         _report-2026-02.pdf
 ```
 
-File naming: `YYYY-MM-DD_<destination-kebab-case>.md`
-
 ## Automatic Hooks
 
 | Hook | When | What it does |
@@ -61,13 +57,31 @@ File naming: `YYYY-MM-DD_<destination-kebab-case>.md`
 
 The hook is advisory only — it informs, never blocks.
 
-## PDF Export
+## PDF Export (MCP Server)
 
 The plugin ships with an optional MCP server (`markdown2pdf-mcp`) that generates PDFs
-from monthly reports. Requires Node.js 18+. Without it, the Markdown report works as-is.
+from monthly reports.
+
+- **Server:** `markdown2pdf-mcp` (Node.js + Puppeteer, on-demand via npx)
+- **Tool:** `create_pdf_from_markdown` — automatically called by `/trips:report`
+- **`outputFilename`** accepts ONLY filenames (e.g. `_report-2026-02.pdf`), not paths. Saves to `M2P_OUTPUT_DIR` (default: HOME). Move the PDF to the target folder afterwards.
+- **Prerequisites:** Node.js 18+ and npm (Puppeteer downloads ~170 MB Chromium on first start)
+- Without Node.js: PDF export is skipped, all other features work normally
+
+MCP is an automation layer, not a core component. The Markdown report remains fully usable without it.
+
+## Manual Workflow (No Skills)
+
+trips works without Claude Code:
+
+1. Create the folder: `<dataDir>/2026/02 - 2026/Your Name/`
+2. Create file: `2026-02-03_berlin.md`
+3. Add YAML frontmatter (see [STRUCTURE.md](STRUCTURE.md) for required fields)
+4. Calculate reimbursement: `distanceKm x 0.30`
+
+All files are standard Markdown — use any editor.
 
 ## Documentation
 
-- [QUICKSTART.md](QUICKSTART.md) - 5-minute getting started guide
-- [STRUCTURE.md](STRUCTURE.md) - Folder structure and file format reference
+- [STRUCTURE.md](STRUCTURE.md) - Folder structure, file format, and field reference
 - [CHANGELOG.md](CHANGELOG.md) - Version history

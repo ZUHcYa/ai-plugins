@@ -4,6 +4,20 @@ All notable changes to trips will be documented in this file.
 
 ---
 
+## [0.4.2] - 2026-03-14
+
+### Changed
+
+- `CLAUDE.md`: Removed data structure and MCP sections (229 → ~70 lines) — live in STRUCTURE.md and README.md
+- Consolidated `QUICKSTART.md` into `README.md`
+- Moved MCP server documentation to README.md
+
+### Removed
+
+- `QUICKSTART.md` — content merged into README.md
+
+---
+
 ## [0.4.1] - 2026-02-23
 
 ### Fixed
