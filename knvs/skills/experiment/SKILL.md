@@ -35,7 +35,7 @@ Claude: Priority hypotheses for AI Bookkeeping:
         2. ai-accuracy-requirement (Feasibility)
 
         LOW CONFIDENCE:
-        3. customers-will-pay-monthly (Viability, VERY-LOW)
+        3. customers-will-pay-monthly (Viability, LOW)
         4. linkedin-channel-effectiveness (Desirability)
         5. cloud-hosting-costs (Viability)
 

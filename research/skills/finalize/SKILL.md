@@ -168,7 +168,7 @@ Claude: Warning: Audit file does not match expected format.
         [M] Attempt manual parsing (I will show what I found)
         [A] Abort - please regenerate the audit in the expected format
 
-        Tip: Use the Audit Generation Prompt from CLAUDE.md.
+        Tip: Use the Audit Generation Prompt below to create the audit.
 ```
 
 ### Draft already has status: verified
@@ -178,6 +178,41 @@ Claude: research/projekt-analysis.md already has status: verified.
         Re-finalization is not supported. If you need to apply a new audit,
         manually set status back to "draft" first.
 ```
+
+---
+
+## Audit Generation Prompt
+
+*Ready to copy into Claude Opus / Extended Thinking session:*
+
+````
+You are a research auditor. Review the following draft research report
+with engineering-grade rigor.
+
+For EVERY factual claim, statistic, quote, and source citation in the report,
+determine one of three severities:
+
+- RED (Hallucination / Not Verified): Claim cannot be verified from
+  the cited source, source does not exist, or claim is fabricated.
+- AMBER (Context Missing / Nuance Lost): Claim is broadly correct but
+  missing important context, qualifiers, dates, or attribution specifics.
+- GREEN (Verified): Claim is accurate and properly attributed.
+
+Output format:
+1. YAML frontmatter with type: research-audit, target, auditor, audit_date,
+   and summary counts (red, amber, green).
+2. Numbered findings (### 1. Section - Claim), each with:
+   - **Severity:** RED | AMBER | GREEN
+   - **Location:** Section > Subsection
+   - **Claim:** "Exact quote from draft"
+   - **Issue:** What is wrong or missing
+   - **Recommendation:** Specific fix
+3. Overall Assessment paragraph at the end.
+
+Here is the draft report to audit:
+
+[PASTE DRAFT HERE]
+````
 
 ---
 

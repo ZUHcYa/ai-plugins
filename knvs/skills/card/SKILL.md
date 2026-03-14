@@ -234,7 +234,7 @@ Claude: ## Therefore we will...
         [V] PIVOT — Change direction based on this learning
         [S] STOP — Abandon this business model
 
-User: P
+User: C
 Claude: Why continue? What happens next?
 
 User: Core feasibility confirmed. Next priority: validate cloud
@@ -244,7 +244,7 @@ Claude: ━━━━━━━━━━━━━━━━━━━━━━━━
         HYPOTHESIS LEARNING CARD SAVED
         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
         File: explore/ai-bookkeeping/learning-cards/ai-accuracy-requirement.md
-        Decision: PERSEVERE
+        Decision: CONTINUE
 
         Decision logged in canvas:
 
@@ -304,7 +304,7 @@ Claude: ━━━━━━━━━━━━━━━━━━━━━━━━
 ### Stop Flow
 
 ```
-User: K (KILL)
+User: S (STOP)
 Claude: Are you sure? This will archive the canvas and all related data.
 
 User: Yes, the market is too small.
@@ -313,7 +313,7 @@ Claude: ━━━━━━━━━━━━━━━━━━━━━━━━
         HYPOTHESIS LEARNING CARD SAVED
         ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
         File: explore/ai-bookkeeping/learning-cards/customers-will-pay-monthly.md
-        Decision: KILL
+        Decision: STOP
 
         Canvas folder archived: explore/ai-bookkeeping/ → archive/ai-bookkeeping/
 
@@ -351,7 +351,7 @@ Claude: ━━━━━━━━━━━━━━━━━━━━━━━━
 
 ### Decision Criteria Guidance
 
-The sstop does NOT make the decision — it presents confidence levels and evidence, and the user decides.
+The skill does NOT make the decision — it presents confidence levels and evidence, and the user decides.
 However, it can suggest based on patterns:
 
 | Pattern | Suggestion |
@@ -435,7 +435,7 @@ Claude: Hypothesis "cloud-hosting-costs" has no completed experiments.
 
 ### Both Types
 - Learning cards are standalone and can be created manually in any Markdown editor
-- The sstop reads existing artifacts — it does NOT generate fake data
+- The skill reads existing artifacts — it does NOT generate fake data
 
 ---
 

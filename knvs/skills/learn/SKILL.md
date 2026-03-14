@@ -107,7 +107,7 @@ Claude: Confidence: — → moderate
 
         Remaining hypotheses for AI Bookkeeping:
         - ai-accuracy-requirement (open, HIGH, —) → needs experiment
-        - customers-will-pay-monthly (testing, MEDIUM, VERY-LOW)
+        - customers-will-pay-monthly (testing, MEDIUM, LOW)
         - linkedin-channel-effectiveness (open, MEDIUM, —)
         - cloud-hosting-costs (open, LOW, —)
 

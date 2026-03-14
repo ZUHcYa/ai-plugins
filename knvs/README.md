@@ -86,7 +86,7 @@ Canvas    Extract        Confidence ×   Run tests    Extract   Learning Card
 |-------|---------|
 | `/knvs:start` | Setup (first run) or portfolio overview with health checks |
 | `/knvs:ideate` | Create a new Canvas as draft in `explore/` |
-| `/knvs:hypothesize` | Extract hypotheses from canvas (default: D/F/V for BMC) |
+| `/knvs:hypothesize` | Extract hypotheses from canvas (default: Desirability/Feasibility/Viability for BMC) |
 | `/knvs:experiment` | Design a structured experiment to test a hypothesis |
 | `/knvs:capture` | Start experiment or document results |
 | `/knvs:learn` | Extract insights from completed experiments |

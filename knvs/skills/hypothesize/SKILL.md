@@ -155,7 +155,7 @@ Claude: Which canvas do you want to analyze?
         2. Fitness App (explore/) - 0 hypotheses
 
 User: 1
-Claude: explore/ai-bookkeeping.md already has 3 hypotheses.
+Claude: explore/ai-bookkeeping/ai-bookkeeping.md already has 3 hypotheses.
 
         Options:
         [A] Add more hypotheses (analyze canvas for uncovered assumptions)
@@ -245,7 +245,7 @@ MEDIUM/LOW IMPORTANCE (test later):
 ### Canvas already has hypotheses
 
 ```
-Claude: explore/ai-bookkeeping.md already has 3 hypotheses.
+Claude: explore/ai-bookkeeping/ai-bookkeeping.md already has 3 hypotheses.
 
         Options:
         [A] Add more hypotheses (analyze canvas for uncovered assumptions)
