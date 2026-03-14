@@ -4,6 +4,20 @@ All notable changes to music-production will be documented in this file.
 
 ---
 
+## [0.5.2] - 2026-03-14
+
+### Changed
+
+- Consolidated QUICKSTART.md and STRUCTURE.md into README.md (4 docs → 2)
+- README.md now includes folder structure, song file format, and configuration reference
+
+### Removed
+
+- `QUICKSTART.md` — content merged into README.md
+- `STRUCTURE.md` — content merged into README.md
+
+---
+
 ## [0.5.1] - 2026-02-23
 
 ### Fixed

@@ -56,20 +56,65 @@ The plugin expects this structure to already exist in your music production root
 
 ```
 Music-Root/
-  01_Projects/          Active productions
-  02_Vault/             Finished, waiting for release
-  03_Catalog/           Released and archived
-  .music-production/    Plugin config (created by /music-production:start)
+├── .music-production/           Plugin config (created by /music-production:start)
+│   ├── config.json              Catalog prefix and next number
+│   └── strategy.md              Artist identity (created by /music-production:strategy)
+├── 01_Projects/                 Active songs in production
+│   └── 2026-02-Nightfall/
+│       └── 2026-02-Nightfall.md
+├── 02_Vault/                    Finished, waiting for release
+│   └── 2025-12-Horizons/
+│       └── 2025-12-Horizons.md
+└── 03_Catalog/                  Released songs with catalog numbers
+    └── FW003-Lionheart/
+        └── FW003-Lionheart.md
 ```
 
-Each song lives in its own folder with a central `<Ordnername>.md` file (named exactly like its folder).
+### Song Folder Convention
 
-## State
+Each song lives in its own folder. The song file MUST be named exactly like its folder.
 
-Config lives in `.music-production/config.json` (created automatically on first run).
-Artist strategy lives in `.music-production/strategy.md` (created by `/music-production:strategy`).
+| Phase | Naming | Example |
+|-------|--------|---------|
+| `01_Projects/`, `02_Vault/` | `YYYY-MM-Songtitel/` | `2026-02-Nightfall/` |
+| `03_Catalog/` | `PREFIX###-Songtitel/` | `FW004-Nightfall/` |
 
-Files are plain markdown with YAML frontmatter - readable in any editor, no Claude Code required.
+### Song File Format
+
+```yaml
+---
+title: Nightfall
+created: 2026-02-20
+status: production
+bpm: 128
+key: Am
+mood: melancholic
+catalog_nr:
+---
+
+# Nightfall
+
+## Notes
+...
+```
+
+Frontmatter is the single source of truth. The Markdown body is for notes and generated release texts.
+
+### Configuration
+
+**Location:** `.music-production/config.json`
+
+```json
+{
+  "version": "1.0",
+  "created": "YYYY-MM-DD",
+  "targetPath": "./",
+  "catalog": {
+    "prefix": "FW",
+    "nextNumber": 4
+  }
+}
+```
 
 ## Automatic Hooks
 
@@ -80,8 +125,18 @@ Files are plain markdown with YAML frontmatter - readable in any editor, no Clau
 
 Hooks are advisory only — they inform, never block.
 
+## Manual Workflow (No Skills)
+
+music-production works without Claude Code:
+
+1. Create folder: `01_Projects/2026-02-Mysong/`
+2. Create file: `01_Projects/2026-02-Mysong/2026-02-Mysong.md` (file must be named exactly like its folder)
+3. Add frontmatter: `status: production`, `created: 2026-02-20`
+4. When done: move folder to `02_Vault/`, update `status: vault`
+5. After release prep: move folder to `03_Catalog/`, rename to `FW004-Mysong/`
+
+All files are standard Markdown — use any editor (Obsidian, VS Code, Finder, etc.).
+
 ## Documentation
 
-- [QUICKSTART.md](QUICKSTART.md) - 5-minute getting started guide
-- [STRUCTURE.md](STRUCTURE.md) - Folder structure and file format reference
 - [CHANGELOG.md](CHANGELOG.md) - Version history
