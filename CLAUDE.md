@@ -28,6 +28,12 @@ Skills sind Helfer, nie Voraussetzung. Details in den jeweiligen Plugin-CLAUDE.m
 - **Simplicity First:** Jede Aenderung so einfach wie moeglich. Minimaler Impact, kein Over-Engineering.
 - **Verification Before Done:** Keine Aufgabe als fertig markieren ohne zu pruefen, dass sie funktioniert. Aenderungen testen, Logs checken, Korrektheit demonstrieren.
 
+### Refactoring-Regeln
+
+- **replace_all mit Vorsicht:** Nie auf kurze/generische Woerter anwenden (z.B. "Kill" trifft auch "skill"). Immer mit genug Kontext oder gezielten Einzel-Edits arbeiten.
+- **Templates verschieben, nicht nur loeschen:** Wenn ein Template aus CLAUDE.md entfernt wird, muss es im zugehoerigen Skill landen. Dangling References pruefen.
+- **Workflow-Beispiele in Skills sind normativ:** Claude nutzt sie als Vorlage fuer Output. Stale Werte in Beispielen (alte Enums, Pfade, Shortcuts) propagieren direkt in generierte Dateien.
+
 ---
 
 ## Git Workflow
