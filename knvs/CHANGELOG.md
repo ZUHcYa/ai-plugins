@@ -4,6 +4,18 @@ All notable changes to knvs will be documented in this file.
 
 ---
 
+## [7.1.0] - 2026-03-19
+
+### Changed
+
+- **`/knvs:hypothesize` — Domain Lenses** — Cross-functional perspectives (Design, Tech,
+  Legal, Data, Sales, Marketing, Research, Finance) applied during hypothesis generation.
+  Each canvas section is analyzed through relevant domain lenses to surface assumptions that
+  pure category analysis misses. Summary now shows domain coverage with blind spot hints.
+  For non-BMC canvases, lens questions are adapted to the canvas's own headings.
+
+---
+
 ## [7.0.0] - 2026-03-14
 
 ### Breaking Changes

@@ -167,6 +167,11 @@ For non-BMC canvases, categories are derived from the canvas `##` headings.
 
 **Priority rule:** Test hypotheses with `importance: high` + empty `confidence` first.
 
+**Domain Lenses:** During hypothesis generation, Claude applies cross-functional
+perspectives (Design, Tech, Legal, Data, Sales, Marketing, Research, Finance) to surface
+assumptions beyond the standard category analysis. See `skills/hypothesize/SKILL.md`
+for the full lens table.
+
 ### Required Fields (Frontmatter)
 
 - `type: hypothesis`

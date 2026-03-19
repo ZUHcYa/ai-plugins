@@ -93,6 +93,13 @@ Claude: Saved: explore/ai-bookkeeping/hypotheses/customers-will-pay-monthly.md
         1. receipt-categorization-need (Desirability, HIGH, —)
         2. ai-accuracy-requirement (Feasibility, HIGH, —)
 
+        Domain coverage:
+          Product ✓  Design —  Tech ✓  Data —
+          Legal —  Sales —  Marketing —  Finance ✓
+
+        Blind spots: Design, Data, Legal, Sales, Marketing
+        have no hypotheses. Consider if these are relevant for this canvas.
+
         Next step: /knvs:experiment to design tests for priority hypotheses.
 ```
 
@@ -118,7 +125,9 @@ This ensures the user consciously reviews each assumption rather than scanning a
 
 1. Lists canvases in `explore/`
 2. User selects canvas and mode [B]
-3. Reads canvas content and identifies implicit assumptions per section
+3. Reads canvas content and identifies implicit assumptions per section.
+   Applies **Domain Lenses** (see below) to each canvas section to surface
+   assumptions that pure canvas analysis might miss (Legal, Finance, Data, Design, etc.)
 4. Categorizes each assumption based on canvas headings:
    - For BMC canvases: **Desirability** (Value Proposition, Customer Segments, Channels, Customer Relationships), **Feasibility** (Key Resources, Key Activities, Key Partnerships), **Viability** (Revenue Streams, Cost Structure)
    - For other canvas types: categories derived from `##` headings
@@ -220,6 +229,32 @@ For BMC canvases, the default category-to-field mapping is:
 | **Viability** | Revenue Streams, Cost Structure | Is this financially sustainable? |
 
 For non-BMC canvases, suggest categories based on the canvas `##` headings.
+
+## Domain Lenses
+
+During hypothesis generation, apply cross-functional perspectives to each canvas section.
+Each lens-question that uncovers a non-trivial assumption becomes a hypothesis.
+Not every lens is relevant for every canvas — skip obviously irrelevant ones
+(e.g. Legal for a pure content project without user data).
+
+The following table shows default lenses for BMC canvases (mapped to D/F/V).
+For non-BMC canvases, adapt the lens questions to the canvas's own section headings.
+
+| Domain | Desirability | Feasibility | Viability |
+|--------|-------------|-------------|-----------|
+| **Product** | Is the problem real, frequent, urgent? | — | — |
+| **Design** | Is the interaction intuitive for the segment? | — | — |
+| **Tech** | — | Can we build this with current stack/team? Technical risk? | — |
+| **Data** | — | Do we have the required data infrastructure? ML feasibility? | — |
+| **Legal** | — | Regulatory, compliance, IP, data privacy blockers? | Regulatory costs, license fees? |
+| **Sales** | Can we reach the segment through our channels? | — | Sales cycle length, CAC, conversion? |
+| **Marketing** | Is the messaging compelling? Brand fit? | — | Channel economics, acquisition costs? |
+| **Research** | What do market data say about demand? | — | — |
+| **Finance** | — | — | Unit economics, margins, capital expenditure, break-even? |
+
+**Domain coverage in summary:** After all hypotheses are created, derive which domains are
+covered from `canvas_fields`, `category`, and claim content. Show coverage as checklist with
+blind spot hints (informational only, never an error).
 
 ## Prioritization
 
